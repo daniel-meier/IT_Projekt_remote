@@ -150,3 +150,5 @@ public class Messenger implements EntryPoint {
 		nameField.addKeyUpHandler(handler);
 	}
 }
+
+//TESTKOMMENTAR
