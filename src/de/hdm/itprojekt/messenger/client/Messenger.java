@@ -152,3 +152,5 @@ public class Messenger implements EntryPoint {
 }
 
 //TESTKOMMENTAR
+
+//TESTKOMMENTAR 2
