@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.shared.bo;
 
-public class HashtagAbonnement {
+public class HashtagAbonnement extends Abonnement{
 	
 	private int abonnierterHashtagID;
 
