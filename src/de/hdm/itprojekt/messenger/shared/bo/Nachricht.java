@@ -9,8 +9,8 @@ public class Nachricht {
 	private static final long serialVersionUID =1L;
 	private String text;
 	private Nutzer sender;
-	private Nutzer empfeanger;
-	private Nutzer empfaenger;
+	private Nutzer gempfaenger;
+	private Nutzer sempfaenger;
 	
 	
 	//Anlegen der Methoden 
@@ -27,7 +27,7 @@ public class Nachricht {
 	}
 	
 	public Nutzer getEmpfaenger(){
-		return empfaenger;
+		return gempfaenger;
 	}
 	
 	public void setText(String text){
@@ -35,7 +35,7 @@ public class Nachricht {
 	}
 	
 	public void setEmpfaenger (Nutzer empfaenger){
-		this.empfaenger = empfaenger;
+		this.sempfaenger = empfaenger;
 	}
 	
 
