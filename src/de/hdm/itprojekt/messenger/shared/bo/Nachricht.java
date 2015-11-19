@@ -2,7 +2,7 @@ package de.hdm.itprojekt.messenger.shared.bo;
 
 import java.util.ArrayList;
 
-public class Nachricht {
+public class Nachricht extends BusinessObject{
 	
 	
 	//Anlegen der Attribute

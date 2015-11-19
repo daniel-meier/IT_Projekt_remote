@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.shared.bo;
 
-public class NutzerAbonnement {
+public class NutzerAbonnement extends Abonnement{
 	
 	private int abonnierterNutzerID;
 	
