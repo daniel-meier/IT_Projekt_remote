@@ -9,7 +9,7 @@ public class Nachricht {
 	private static final long serialVersionUID =1L;
 	private String text;
 	private Nutzer sender;
-	private ArrayList<Nutzer> empfeanger;
+	private Nutzer empfeanger;
 	private Nutzer empfaenger;
 	
 	
@@ -31,11 +31,11 @@ public class Nachricht {
 	}
 	
 	public void setText(String text){
-		
+		this.text = text;
 	}
 	
-	public void setEmpfaenger (ArrayList<Nutzer> enpfanger){
-		
+	public void setEmpfaenger (Nutzer empfaenger){
+		this.empfaenger = empfaenger;
 	}
 	
 
