@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.shared.bo;
 
-public class Nutzer {
+public class Nutzer extends BusinessObject{
 	
 	private static final long serialVersionUID = 1L;
 	private String vorname;
