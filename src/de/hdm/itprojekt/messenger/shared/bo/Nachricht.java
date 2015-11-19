@@ -34,8 +34,16 @@ public class Nachricht {
 		this.text = text;
 	}
 	
-	public void setEmpfaenger (Nutzer empfaenger){
-		this.sempfaenger = empfaenger;
+	/*public void setEmpfaenger (Nutzer empfaenger){
+		this.setSempfaenger(empfaenger);
+	}*/
+
+	public Nutzer getSempfaenger() {
+		return sempfaenger;
+	}
+
+	public void setSempfaenger(Nutzer sempfaenger) {
+		this.sempfaenger = sempfaenger;
 	}
 	
 
