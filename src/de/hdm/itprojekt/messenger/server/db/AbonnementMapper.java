@@ -41,7 +41,7 @@ public class AbonnementMapper {
 	 * 
 	 * @param Abonnement
 	 */
-	public void löschen (abonnement Abonnement) {
+	public void loeschen (abonnement Abonnement) {
 		
 	}
 	
