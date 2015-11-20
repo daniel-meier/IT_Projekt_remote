@@ -32,7 +32,7 @@ public class NutzerMapper {
 	 * @param NutzerMapper
 	 * @return
 	 */
-	public NutzerMapper einfuegen (nutzerMapper NutzerMapper) {
+	public NutzerMapper einfuegen (nutzer Nutzer) {
 		
 	}
 	
@@ -41,7 +41,7 @@ public class NutzerMapper {
 	 * @param NutzerMapper
 	 * @return
 	 */
-	public NutzerMapper bearbeiten (nutzerMapper NutzerMapper) {
+	public NutzerMapper bearbeiten (nutzer Nutzer) {
 		
 	}
 	
@@ -49,7 +49,7 @@ public class NutzerMapper {
 	 * 
 	 * @param NutzerMapper
 	 */
-	public void loeschen (nutzerMapper NutzerMapper) {
+	public void loeschen (nutzer Nutzer) {
 		
 	}
 	
