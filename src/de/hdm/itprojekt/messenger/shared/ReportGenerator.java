@@ -6,6 +6,14 @@ import com.google.gwt.user.client.rpc.RemoteService;
 
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
+import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
+import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
+import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
+import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
+import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
+import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
+import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 
 
 public interface ReportGenerator extends RemoteService {
