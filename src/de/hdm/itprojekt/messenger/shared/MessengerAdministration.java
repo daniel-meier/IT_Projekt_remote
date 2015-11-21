@@ -13,86 +13,65 @@ public class MessengerAdministration {
 	/** Methode zum einloggen 
 	 * 
 	 */
-	public void login (){
+	public void login ();
 		
 	}
 	
 	/** Erstelle ein HahstagAbonnement
 	 * 
 	 */
-	public Hashtag erstelleHashtagAbonnement (String hashtag){
-	 return Abonnement;
-	}
+	public Hashtag erstelleHashtagAbonnement (String hashtag);
 	
 	/** Eine Nachricht bearbeiten 
 	 * 
 	 */
-	public Nachricht bearbeiteNachricht(String text){
-		return Nachricht;
-	}
+	public Nachricht bearbeiteNachricht(String text);
 	
 	/** Einen Teilnehmer hinzufügen
 	 * 
 	 */
-	public Nachricht teilnehmerHinzufügen (ArrayList<Nutzer> teilnehmer){
-		return Nachricht;
-	}
+	public Nachricht teilnehmerHinzufügen (ArrayList<Nutzer> teilnehmer);
+	
 
 	/** Einen Teilnehmer entfernen
 	 * 
 	 */
-	public void teilnehmerEntfernen (ArrayList<Nutzer> teilnehmer){
-		
-	}
+	public void teilnehmerEntfernen (ArrayList<Nutzer> teilnehmer);
 	
 	/** Eine Unterhaltung löschen 
 	 * 
 	 */
-	public void loescheUnterhaltung(Unterhaltung unterhaltung){
-		
-	}
+	public void loescheUnterhaltung(Unterhaltung unterhaltung);
 	
 	/** Ein HashtagAbonnement löschen 
 	 * 
 	 */
-	public void loescheHashtagAbonnement(Abonnement abonnement){
-		
-	}
+	public void loescheHashtagAbonnement(Abonnement abonnement);
 	
 	/** Ein init anlegen
 	 * 
 	 */
-	public void init(){
-		
-	}
+	public void init();
 	
 	/** Einen Nutzer beim Namen ausgeben lassen 
 	 * 
 	 */
-	public Nutzer getNutzerByName (String name){
-		return ArrayList<Nutzer>;
-	}
+	public Nutzer getNutzerByName (String name);
 	
 	/** Ausloggen
 	 * 
 	 */
-	public void logout(){
-		
-	}
+	public void logout();
 	
 	/** Einen Hashtag beim Namen ausgeben lassen 
 	 * 
 	 */
-	public Hashtag getHashtagByName (String name){
-		return Hashtag;
-	}
+	public Hashtag getHashtagByName (String name);
 	
 	/** Einen Nutzer bei der ID ausgeben lassen
 	 *  
 	 */
-	public Nutzer getNutzerByID (int id){
-		return Nutzer;
-	}
+	public Nutzer getNutzerByID (int id);
 }
 
 
