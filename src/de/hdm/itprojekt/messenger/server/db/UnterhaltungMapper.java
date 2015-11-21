@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.server.db;
 
-public class UnterhaltungMapper {
+public class UnterhaltungMapper extends DBConnection{
 	
 	public UnterhaltungMapper () {
 		
