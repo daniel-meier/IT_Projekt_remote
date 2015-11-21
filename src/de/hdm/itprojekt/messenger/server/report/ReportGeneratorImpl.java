@@ -19,6 +19,14 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 public class ReportGeneratorImpl extends RemoteServiceServlet 
 	implements ReportGenerator {
 
+	public ReportGeneratorImpl(){
+		
+	}
+	
+	public void init(){
+		
+	}
+	
 	@Override
 	public void setNutzer(Nutzer nutzer) {
 		// TODO Auto-generated method stub
