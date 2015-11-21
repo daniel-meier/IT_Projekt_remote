@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.server.db;
 
-public class HashtagMapper {
+public class HashtagMapper extends DBConnection{
 	
 	public HashtagMapper () {
 		

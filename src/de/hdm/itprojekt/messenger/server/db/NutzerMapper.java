@@ -1,6 +1,6 @@
 package de.hdm.itprojekt.messenger.server.db;
 
-public class NutzerMapper {
+public class NutzerMapper extends DBConnection{
 	
 	public NutzerMapper () {
 		
