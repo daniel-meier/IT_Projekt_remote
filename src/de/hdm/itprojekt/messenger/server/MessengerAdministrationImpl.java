@@ -150,6 +150,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * 
 	 * @param abonnement
 	 */
+	@Override
 	public void loescheNutzerAbonnement(Abonnement abonnement){
 		
 	}
@@ -161,6 +162,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param nachname
 	 * @return Nutzer
 	 */
+	@Override
 	public Nutzer nutzerAnlegen(String email, String vorname, String nachname){
 		Nutzer n = new Nutzer();
 		return n;
@@ -171,6 +173,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param id
 	 * @return Unterhaltung
 	 */
+	@Override
 	public Unterhaltung getUnterhaltungByID(int id){
 		
 	}
@@ -180,6 +183,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param nachricht
 	 * @return Nachricht
 	 */
+	@Override
 	public Nachricht erstelleNachricht(String nachricht){
 		
 	}
@@ -188,6 +192,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * 
 	 * @param nachricht
 	 */
+	@Override
 	public void loescheNachricht(Nachricht nachricht){
 		
 	}
@@ -197,6 +202,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param nutzer
 	 * @return Abonnement
 	 */
+	@Override
 	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer){
 		
 	}
@@ -206,6 +212,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param hashtag
 	 * @return Hashtag
 	 */
+	@Override
 	public Hashtag erstelleHashtag(String hashtag){
 		
 	}
@@ -214,6 +221,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * 
 	 * @param nutzer
 	 */
+	@Override
 	public void loescheNutzer(Nutzer nutzer){
 		
 	}
@@ -222,6 +230,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * 
 	 * @param hashtag
 	 */
+	@Override
 	public void loescheHashtag(Hashtag hashtag){
 		
 	}
@@ -230,6 +239,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * 
 	 * @return Nutzer
 	 */
+	@Override
 	public Nutzer getAllNutzer(){
 		return Nutzer;
 	}
@@ -239,6 +249,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param id
 	 * @return Hashtag
 	 */
+	@Override
 	public Hashtag getHashtagByID(int id){
 		
 	}
