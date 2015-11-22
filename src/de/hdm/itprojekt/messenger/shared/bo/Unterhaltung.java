@@ -2,31 +2,33 @@ package de.hdm.itprojekt.messenger.shared.bo;
 
 import java.util.*;
  
+/**
+ * BusinessObjects ist die Superklasse von Unterhaltung
+ * 
+ * @author danielmeier
+ */
 public class Unterhaltung extends BusinessObject{
 
 	private static final long serialVersionUID = 1L;
 	
-	//brauchen wir unterhaltungsID wenn wir in BO eh eine ID haben?
-	private int unterhaltungsID = 0;
-	
 	/**
-	 * Attribut teilnehmer vom Typ ArrayList um einer Unterhaltung verschiedene Nutzer als
-	 * Teilnehmer hinzufügen zu können.
+	 * Anlegen des Attributs teilnehmer vom Typ ArrayList, um einer Unterhaltung verschiedene Nutzer als
+	 * Teilnehmer hinzufuegen zu koennen.
 	 */
 	private ArrayList<Nutzer> teilnehmer;
 	
 	/**
-	 * Konstruktor 
+	 * No-Argument Konstruktor 
 	 */
 	public Unterhaltung(){
 		this.teilnehmer = new ArrayList<Nutzer>();
 	}
 	
 	/**
-	 * Hinzufügen von Nutzer zu einer Unterhaltung.
-	 * 
+	 * Hinzufuegen von Nutzer zu einer Unterhaltung.
+	 *
 	 * @param t
-	 * 		Nutzer der hinzugefügt werden soll.
+	 * 		Nutzer der hinzugefuegt werden soll.
 	 */
 	public void setTeilnehmer(Nutzer t){
 		if (t != null) {
@@ -34,9 +36,9 @@ public class Unterhaltung extends BusinessObject{
 	}
 	
 	/**
-	 * Liefert alle Nutzer im Form eines Arrays.
+	 * Auslesen aller Nutzer im Form eines Arrays.
 	 * 
-	 * @return
+	 * @return result
 	 * 		Array mit allen Nutzern
 	 */
 	public List<Nutzer> getTeilnehmer(){
@@ -48,11 +50,4 @@ public class Unterhaltung extends BusinessObject{
 		return result;
 	}
 	
-	public int getUnterhaltungsID(){
-		return this.unterhaltungsID;
-	}
-	
-	public void setUnterhaltungsID(int unterhaltungsID){
-		unterhaltungsID = this.unterhaltungsID;
-	}
 }
