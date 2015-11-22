@@ -19,60 +19,72 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 public class ReportGeneratorImpl extends RemoteServiceServlet 
 	implements ReportGenerator {
 
+	public ReportGeneratorImpl(){
+		
+	}
+	
+	public void init(){
+		
+	}
+	
 	@Override
-	public void setNutzer(Nutzer nutzer) {
+	public void setNutzer(Nutzer nutzer) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) {
+	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) 
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public NachrichtByNutzerZeitraumReport erstelleNachrichtByNutzerZeitraumReport(
-			Nutzer nutzer, Date date) {
+			Nutzer nutzer, Date date) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbonnementByHashtagReport erstelleAbonnementByHashtagReport(
-			Hashtag hashtag) {
+			Hashtag hashtag) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport() {
+	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport() 
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbonnementsByNutzerReport erstelleAbonnementByNutzerReport(
-			Nutzer nutzer) {
+			Nutzer nutzer) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(
-			Nutzer nutzer, Hashtag hashtag) {
+			Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date) {
+	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date) 
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport() {
+	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport()  
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return null;
 	}
