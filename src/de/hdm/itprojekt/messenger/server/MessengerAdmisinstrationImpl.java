@@ -95,4 +95,110 @@ package de.hdm.itprojekt.messenger.server;
 		public Nutzer getNutzerByID (int id){
 			return Nutzer;
 		}
+		
+		/**Eine Unterhaltung erstellen
+		 * 
+		 * @return Unterhaltung
+		 */
+		public Unterhaltung erstelleUnterhaltung(ArrayList<Nutzer> teilnehmer){
+			Unterhaltung u = new Unterhaltung();
+			return u;
+		}
+		
+		/**NutzerAbonnement loeschen
+		 * 
+		 * @param abonnement
+		 */
+		public void loescheNutzerAbonnement(Abonnement abonnement){
+			
+		}
+		
+		/**Nutzer anlegen
+		 * 
+		 * @param email
+		 * @param vorname
+		 * @param nachname
+		 * @return Nutzer
+		 */
+		public Nutzer nutzerAnlegen(String email, String vorname, String nachname){
+			Nutzer n = new Nutzer();
+			return n;
+		}
+		
+		/**Unterhaltung nach ID ausgeben
+		 * 
+		 * @param id
+		 * @return Unterhaltung
+		 */
+		public Unterhaltung getUnterhaltungByID(int id){
+			
+		}
+		
+		/**Nachricht erstellen
+		 * 
+		 * @param nachricht
+		 * @return Nachricht
+		 */
+		public Nachricht erstelleNachricht(String nachricht){
+			
+		}
+		
+		/**Nachricht loeschen
+		 * 
+		 * @param nachricht
+		 */
+		public void loescheNachricht(Nachricht nachricht){
+			
+		}
+		
+		/**NutzerAbonnement erstellen
+		 * 
+		 * @param nutzer
+		 * @return Abonnement
+		 */
+		public Abonnement erstelleNutzerAbonnement(Nutzer nutzer){
+			
+		}
+		
+		/**Hashtag erstellen
+		 * 
+		 * @param hashtag
+		 * @return Hashtag
+		 */
+		public Hashtag erstelleHashtag(String hashtag){
+			
+		}
+		
+		/**Nutzer loeschen
+		 * 
+		 * @param nutzer
+		 */
+		public void loescheNutzer(Nutzer nutzer){
+			
+		}
+		
+		/**Hashtag loeschen
+		 * 
+		 * @param hashtag
+		 */
+		public void loescheHashtag(Hashtag hashtag){
+			
+		}
+		
+		/**Alle Nutzer ausgeben
+		 * 
+		 * @return Nutzer
+		 */
+		public Nutzer getAllNutzer(){
+			return Nutzer;
+		}
+		
+		/**Hashtag nach ID ausgeben
+		 * 
+		 * @param id
+		 * @return Hashtag
+		 */
+		public Hashtag getHashtagByID(int id){
+			
+		}
 }
