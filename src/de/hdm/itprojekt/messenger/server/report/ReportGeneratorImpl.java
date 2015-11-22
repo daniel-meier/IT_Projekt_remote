@@ -16,23 +16,48 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
 import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
 import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 
-public class ReportGeneratorImpl extends RemoteServiceServlet 
-	implements ReportGenerator {
+/**
+ * Implementierungsklasse des ReportGenerators Interface
+ *
+ */
+public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
-	public ReportGeneratorImpl(){
+	public ReportGeneratorImpl() throws IllegalArgumentException{
 		
 	}
 	
-	public void init(){
+	/**
+	 * Initialisierung des Objekts
+	 * 
+	 * @throws IllegalArgumentException
+	 * void
+	 */
+	public void init() throws IllegalArgumentException{
 		
 	}
 	
+	/**
+	 * Setzen des zugeordneten Nutzer
+	 * 
+	 * @param nutzer
+	 * @throws IllegalArgumentException
+	 * void
+	 */
 	@Override
 	public void setNutzer(Nutzer nutzer) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Erstellen eines NachrichtByNutzerReport-Reports. 
+	 * Dieser Report-Typ stellt sämtliche Nachrichten nach Nutzer dar.
+	 * 
+	 * @param nutzer
+	 * @return
+	 * @throws IllegalArgumentException
+	 * NachrichtByNutzerReport
+	 */
 	@Override
 	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) 
 			throws IllegalArgumentException {
@@ -40,6 +65,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines NachrichtByNutzerZeitraumReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Nachrichten nach Nutzer in einem bestimmten Zeitraum dar.
+	 * 
+	 * @param nutzer
+	 * @param date
+	 * @return
+	 * @throws IllegalArgumentException
+	 * NachrichtByNutzerZeitraumReport
+	 */
 	@Override
 	public NachrichtByNutzerZeitraumReport erstelleNachrichtByNutzerZeitraumReport(
 			Nutzer nutzer, Date date) throws IllegalArgumentException {
@@ -47,6 +82,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines AbonnementByHashtagReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Abonnements eines bestimmten Hashtags dar.
+	 * 
+	 * @param hashtag
+	 * @return
+	 * @throws IllegalArgumentException
+	 * AbonnementByHashtagReport
+	 */
 	@Override
 	public AbonnementByHashtagReport erstelleAbonnementByHashtagReport(
 			Hashtag hashtag) throws IllegalArgumentException {
@@ -54,6 +98,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines AlleHashtagAbonemmentReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Hashtag Abonnements aller Nutzer dar.
+	 * 
+	 * @return
+	 * @throws IllegalArgumentException
+	 * AllHashtagAbonnementReport
+	 */
 	@Override
 	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport() 
 			throws IllegalArgumentException {
@@ -61,6 +113,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines AbonnementByNutzerReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Abonnements von Nutzern eines Nutzers dar.
+	 * 
+	 * @param nutzer
+	 * @return
+	 * @throws IllegalArgumentException
+	 * AbonnementsByNutzerReport
+	 */
 	@Override
 	public AbonnementsByNutzerReport erstelleAbonnementByNutzerReport(
 			Nutzer nutzer) throws IllegalArgumentException {
@@ -68,6 +129,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines AbonnementsByNutzerHashtagReport-Reports.
+	 * ???
+	 * 
+	 * @param nutzer
+	 * @param hashtag
+	 * @return
+	 * @throws IllegalArgumentException
+	 * AbonnementsByNutzerHashtagReport
+	 */
 	@Override
 	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(
 			Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
@@ -75,6 +146,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines NachrichtByZeitraumReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Nachrichten in einem bestimmten Zeitraum dar.
+	 * 
+	 * @param date
+	 * @return
+	 * @throws IllegalArgumentException
+	 * NachrichtByZeitraumReport
+	 */
 	@Override
 	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date) 
 			throws IllegalArgumentException {
@@ -82,6 +162,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet
 		return null;
 	}
 
+	/**
+	 * Erstellen eines AlleNutzerAbonnementsReport-Reports.
+	 * Dieser Report-Typ stellt sämtliche Nutzer Abonnements aller Nutzer dar.
+	 * 
+	 * @return
+	 * @throws IllegalArgumentException
+	 * AllNutzerAbonnementsReport
+	 */
 	@Override
 	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport()  
 			throws IllegalArgumentException{
