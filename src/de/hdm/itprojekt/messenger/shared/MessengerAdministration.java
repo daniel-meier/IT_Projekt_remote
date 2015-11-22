@@ -8,14 +8,14 @@ import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
-public class MessengerAdministration {
+public interface MessengerAdministration {
 	
 	/** Methode zum einloggen 
 	 * 
 	 */
 	public void login ();
 		
-	}
+	
 	
 	/** Erstelle ein HahstagAbonnement
 	 * 
@@ -30,7 +30,7 @@ public class MessengerAdministration {
 	/** Einen Teilnehmer hinzufügen
 	 * 
 	 */
-	public Nachricht teilnehmerHinzufügen (ArrayList<Nutzer> teilnehmer);
+	public Nachricht teilnehmerHinzufuegen (ArrayList<Nutzer> teilnehmer);
 	
 
 	/** Einen Teilnehmer entfernen
