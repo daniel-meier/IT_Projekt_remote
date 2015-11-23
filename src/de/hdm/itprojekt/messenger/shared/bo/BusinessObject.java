@@ -12,10 +12,10 @@ public abstract class BusinessObject implements Serializable {
 	private Date erstellungszeitpunkt;
 	
 	/**
-	 * Leerer Konstruktor
+	 * Beim erzeugen eines Objects wird es mit dem Datum versehen.
 	 */
 	public BusinessObject(){
-		
+		this.erstellungszeitpunkt = new Date();
 	}
 	
 	/**
@@ -52,14 +52,29 @@ public abstract class BusinessObject implements Serializable {
 		return this.getClass().getName() + " #" + this.id;
 	  }
 	
-	
+	/**
+	 * 
+	 */
 	public boolean equals (Object o){
 	/**
 	 * Abfragen, ob das Objekt gleich ist und ob ein Objekt gecastet werden kann	
 	 */
-		return false;
+		boolean result = false;
+		if (o != null && o instanceof BusinessObject){
+			BusinessObject b = (BusinessObject) o;
+			try {
+				if (b.getID() == this.id) {
+					result = true;
+				}
+			}
+			catch (IllegalArgumentException e) {
+				/**
+				 * Bei einem Fehler false zurückgeben.
+				 */
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
 	}
-		
 	
-
 }
