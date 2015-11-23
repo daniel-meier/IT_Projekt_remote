@@ -18,7 +18,7 @@ public class Nutzer extends BusinessObject{
 	private String email;
 	
 	/**
-	 * (Noch leerer) Konstruktor.
+	 *  Konstruktor
 	 */
 	public Nutzer () {
 		
@@ -61,7 +61,7 @@ public class Nutzer extends BusinessObject{
 	 * @return email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
