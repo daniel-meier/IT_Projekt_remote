@@ -2,6 +2,7 @@ package de.hdm.itprojekt.messenger.shared.bo;
 
 /**
  * BusinessObjects ist die Superklasse von Nutzer. 
+ * Ein Nutzer besitzt einen Vor-, Nachnamen und eine Email Adresse.
  * 
  * @author danielmeier
  *
@@ -28,7 +29,7 @@ public class Nutzer extends BusinessObject{
 	 * @return vorname
 	 */
 	public String getVorname () {
-		return vorname;
+		return this.vorname;
 	}
 	
 	/**
@@ -44,7 +45,7 @@ public class Nutzer extends BusinessObject{
 	 * @return nachname
 	 */
 	public String getNachname() {
-		return nachname;
+		return this.nachname;
 	}
 
 	/**
@@ -70,5 +71,14 @@ public class Nutzer extends BusinessObject{
 	public void setEmail(String email) {
 		this.email = email;
 	}	
+	
+	/**
+	 * Erzeugen einer einfachen textuellen Darstellung der Instanz.
+	 * Besteht aus dem Text, der durch die Methode toString() aus der 
+	 * Superklasse BusinessObjects erzeugt wird.
+	 */
+	public String toString() {
+	    return super.toString() + " " + this.vorname + " " + this.nachname;
+	  }
 
 }
