@@ -27,7 +27,6 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void login() {
-		// TODO Auto-generated method stub
 		
 	}
 
