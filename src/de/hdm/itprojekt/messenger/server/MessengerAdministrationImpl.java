@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
+import de.hdm.itprojekt.messenger.server.db.HashtagMapper;
+import de.hdm.itprojekt.messenger.server.db.NachrichtMapper;
+import de.hdm.itprojekt.messenger.server.db.NutzerMapper;
+import de.hdm.itprojekt.messenger.server.db.UnterhaltungMapper;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
@@ -21,6 +26,13 @@ import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
  */
 public class MessengerAdministrationImpl extends RemoteServiceServlet implements MessengerAdministration{
 
+	private static final long serialVersionUID = 1L;
+	
+	private NutzerMapper nutzerMapper = null;
+	private UnterhaltungMapper unterhaltungMapper = null;
+	private HashtagMapper hashtagMapper = null;
+	private AbonnementMapper abonnementMapper = null;
+	private NachrichtMapper nachrichtMapper = null;
 	
 	/**
 	 * Methode um sich in das System einloggen 
@@ -29,6 +41,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public void login() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void init() throws IllegalArgumentException {
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -142,6 +158,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Unterhaltung erstelleUnterhaltung(ArrayList<Nutzer> teilnehmer){
+		// TODO Auto-generated method stub
 		Unterhaltung u = new Unterhaltung();
 		return u;
 	}
@@ -152,6 +169,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheNutzerAbonnement(Abonnement abonnement){
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -164,6 +182,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Nutzer nutzerAnlegen(String email, String vorname, String nachname){
+		// TODO Auto-generated method stub
 		Nutzer n = new Nutzer();
 		return n;
 	}
@@ -175,6 +194,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Unterhaltung getUnterhaltungByID(int id){
+		// TODO Auto-generated method stub
+		return null;
 		
 	}
 	
@@ -185,7 +206,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Nachricht erstelleNachricht(String nachricht){
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**Nachricht loeschen
@@ -194,6 +216,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheNachricht(Nachricht nachricht){
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -204,7 +227,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer){
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**Hashtag erstellen
@@ -214,7 +238,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Hashtag erstelleHashtag(String hashtag){
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**Nutzer loeschen
@@ -223,7 +248,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheNutzer(Nutzer nutzer){
-		
+		// TODO Auto-generated method stub
 	}
 	
 	/**Hashtag loeschen
@@ -232,7 +257,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheHashtag(Hashtag hashtag){
-		
+		// TODO Auto-generated method stub
 	}
 	
 	/**Alle Nutzer ausgeben
@@ -241,7 +266,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Nutzer getAllNutzer(){
-		return Nutzer;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**Hashtag nach ID ausgeben
@@ -251,7 +277,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Hashtag getHashtagByID(int id){
-		
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
