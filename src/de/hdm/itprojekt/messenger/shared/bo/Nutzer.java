@@ -2,20 +2,33 @@ package de.hdm.itprojekt.messenger.shared.bo;
 
 /**
  * BusinessObjects ist die Superklasse von Nutzer. 
- * Ein Nutzer besitzt einen Vor-, Nachnamen und eine Email Adresse.
  * 
  * @author danielmeier
  *
  */
 public class Nutzer extends BusinessObject{
 	
-	/**
-	 * Anlegen der Attribute.
-	 */
 	private static final long serialVersionUID = 1L;
-	private String vorname;
-	private String nachname;
+	
+	private boolean loggedIn = false;
+	private String loginUrl;
+	private String logoutUrl;
+	
+	/**
+	 * Vorname des Nutzers
+	 */
+	private String vorname = "";
+	
+	/**
+	 * Nachname des Nutzers
+	 */
+	private String nachname = "";
+	
+	/**
+	 * E-Mail des Nutzers
+	 */
 	private String email;
+	
 	
 	/**
 	 *  Konstruktor
@@ -23,6 +36,55 @@ public class Nutzer extends BusinessObject{
 	public Nutzer () {
 		
 	}
+	
+	/**
+	 * 
+	 * @return loggedIn
+	 */
+	private boolean isloggedIn () {
+		return this.loggedIn;		
+	}
+	
+	/**
+	 * Setzen des Loggedin 
+	 * @param loggedIn
+	 */
+	public void setLoggedIn (boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+	
+	/**
+	 * Auslesen der Login Url
+	 * @return loginUrl
+	 */
+	public String getLoginUrl () {
+		return this.loginUrl;
+	}
+	
+	/**
+	 * Setzen der Login Url
+	 * @param loginUrl
+	 */
+	public void setLoginUrl (String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+	
+	/**
+	 * Auslesen der Logout Url
+	 * @return logoutUrl
+	 */
+	public String getLogoutUrl () {
+		return this.logoutUrl;
+	}
+	
+	/**
+	 * Setzden der Logout Url
+	 * @param logoutUrl
+	 */
+	public void setLogoutUrl (String logoutUrl) {
+		this.logoutUrl = logoutUrl;
+	}
+	
 	
 	/**
 	 * Auslesen des Vornamens.
