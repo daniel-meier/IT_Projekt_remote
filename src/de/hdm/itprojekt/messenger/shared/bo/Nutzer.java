@@ -41,7 +41,7 @@ public class Nutzer extends BusinessObject{
 	 * 
 	 * @return loggedIn
 	 */
-	private boolean isloggedIn () {
+	public boolean isloggedIn () {
 		return this.loggedIn;		
 	}
 	
