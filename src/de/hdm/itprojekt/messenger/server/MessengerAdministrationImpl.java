@@ -10,6 +10,14 @@ import java.util.Vector;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import java.io.IOException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+
+
 import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
 import de.hdm.itprojekt.messenger.server.db.HashtagMapper;
 import de.hdm.itprojekt.messenger.server.db.NachrichtMapper;
@@ -40,24 +48,26 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * Methode um sich in das System einloggen 
 	 */
 	@Override
-/** public LoginInfo login(String requestUri) {
-		NutzerService nutzerService = NutzerServiceFactory.getNutzerService();
-		Nutzer nutzer = nutzerService.getCurrentNutzer();
-		LoginInfo loginInfo = new LoginInfo();
-		
-		if (nutzer != null) {
-			loginInfo.setLoggedIn(true);
-			loginInfo.setEmailAdresse(nutzer.getEmail());
-			loginInfo.setVorname(nutzer.getVorname());
-			loginInfo.setNachname(nutzer.getNachname());
-			loginInfo.setLogoutUrl(nutzerService.createLogoutURL (requestUri));
-		} else {
-			loginInfo.setLoggedIn(false);
-			loginInfo.setLoginUrl(nutzerService.createLoginURL(requestUri));
-		}
-		return loginInfo;
-	 }
-	*/
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+        UserService userService = UserServiceFactory.getUserService();
+
+        String thisURL = req.getRequestURI();
+
+        resp.setContentType("text/html");
+        if (req.getUserPrincipal() != null) {
+            resp.getWriter().println("<p>Hallo, " +
+                                     req.getUserPrincipal().getName() +
+                                     "!  Du kannst <a href=\"" +
+                                     userService.createLogoutURL(thisURL) +
+                                     "\">ausloggen</a>.</p>");
+        } else {
+            resp.getWriter().println("<p>Bitte <a href=\"" +
+                                     userService.createLoginURL(thisURL) +
+                                     "\">einloggen</a>.</p>");
+        }
+    }
+
 	
 	public void init() throws IllegalArgumentException {
 		// TODO Auto-generated method stub
