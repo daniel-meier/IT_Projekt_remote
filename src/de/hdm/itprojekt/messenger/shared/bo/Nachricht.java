@@ -1,7 +1,5 @@
 package de.hdm.itprojekt.messenger.shared.bo;
 
-import java.util.ArrayList;
-
 /**
  * BusinessObject, ist die Superklasse von Nachricht
  * @author tinohauler
