@@ -1,16 +1,16 @@
 package de.hdm.itprojekt.messenger.shared.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * BusinessObject, ist die Superklasse von Nachricht
+ * 
  * @author tinohauler
  *
  */
 
-
-
 public class Nachricht extends BusinessObject{
-	
-	
 	
 	/**
 	 * Anlegen der Attribute
@@ -18,10 +18,10 @@ public class Nachricht extends BusinessObject{
 	private static final long serialVersionUID =1L;
 	private String text;
 	private Nutzer sender;
-	private Nutzer empfaenger;
+	private ArrayList<Nutzer> empfaenger;
 	
 	/**
-	 * leerer Kontrusktor
+	 * Konstruktor
 	 */
 	public Nachricht() {
 	}
@@ -31,7 +31,7 @@ public class Nachricht extends BusinessObject{
 	 * @return text
 	 */
 	public String getText() {
-		return text;
+		return this.text;
 	}
 
 	
@@ -48,7 +48,7 @@ public class Nachricht extends BusinessObject{
 	 * @return sender
 	 */
 	public Nutzer getSender() {
-		return sender;
+		return this.sender;
 	}
 
 	/**
@@ -60,18 +60,26 @@ public class Nachricht extends BusinessObject{
 	}
 
 	/**
-	 * Auslesen des Empfängers
+	 * Auslesen des Empfaengers aus der ArrayList<Nutzer>
 	 * @return emfaenger
 	 */
-	public Nutzer getEmpfaenger() {
-		return empfaenger;
+	public List<Nutzer> getEmpfaenger() {
+		List<Nutzer> result = new ArrayList<Nutzer>();
+		for (Nutzer e : this.empfaenger) {
+			result.add(e);
+		}
+		return result;
 	}
 
 	/**
-	 * Setzen des Emfängers
+	 * Setzen des Emfaengers in einer Nachricht
 	 * @param empfaenger
 	 */
-	public void setEmpfaenger(Nutzer empfaenger) {
-		this.empfaenger = empfaenger;
+	public void setEmpfaenger(Nutzer e) {
+		if (e != null) {
+			empfaenger.add(e);	}
+		else {
+			//keinen Empfaenger setzen 
+		}
 	}
 }
