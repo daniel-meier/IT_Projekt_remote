@@ -17,7 +17,7 @@ public class NutzerMapper extends DBConnection{
 	 * @param id
 	 * @return
 	 */
-	public NutzerMapper findByNutzerID (int id) {
+	public NutzerMapper findNutzerByID (int id) {
 		
 	}
 	

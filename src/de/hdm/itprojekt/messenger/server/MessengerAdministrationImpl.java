@@ -164,7 +164,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Nutzer getNutzerByID(int id) {
 		
-		return this.nutzerMapper.findByNutzerID(id);
+		return this.nutzerMapper.findNutzerByID(id);
 		
 	}
 	
@@ -263,7 +263,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param nutzer
 	 */
 	@Override
-	public void loescheNutzer(Nutzer nutzer) throws IllegalArgumentException{
+	public void loescheNutzer(Nutzer n) throws IllegalArgumentException{
 		
 		Vector<Nachricht> nachricht = this.getNachricht(n)
 		if (nachricht != null) {
@@ -281,17 +281,19 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 	
-	/**Hashtag loeschen
-	 * 
+	/**
+	 * Hashtag loeschen
 	 * @param hashtag
 	 */
 	@Override
-	public void loescheHashtag(Hashtag hashtag){
-		// TODO Auto-generated method stub
+	public void loescheHashtag(Hashtag hashtag) throws IllegalArgumentException{
+		
+		 this.hashtagMapper.loeschen(hashtag);
+		
 	}
 	
-	/**Alle Nutzer ausgeben
-	 * 
+	/**
+	 * Alle Nutzer ausgeben
 	 * @return Nutzer
 	 */
 	@Override
@@ -307,9 +309,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Hashtag
 	 */
 	@Override
-	public Hashtag getHashtagByID(int id){
-		// TODO Auto-generated method stub
-		return null;
+	public Hashtag getHashtagByID(int id) throws IllegalArgumentException{
+		
+		return this.hashtagMapper.findbyID(id);
+		
 	}
 
 }
