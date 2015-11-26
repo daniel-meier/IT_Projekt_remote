@@ -1,13 +1,15 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+
 public class NutzerMapper extends DBConnection{
 	
 	public NutzerMapper () {
 		
 	}
 	
-	public NutzerMapper nutzerMapper() {
-		
+	public NutzerMapper getNutzerMapper() {
+		return null;
 	}
 	
 	/** Suche eines Nutzers nach seiner eindeutigen Nummer
@@ -15,7 +17,7 @@ public class NutzerMapper extends DBConnection{
 	 * @param id
 	 * @return
 	 */
-	public NutzerMapper findByNutzerID (int id) {
+	public NutzerMapper findNutzerByID (int id) {
 		
 	}
 	
@@ -57,8 +59,15 @@ public class NutzerMapper extends DBConnection{
 	 * 
 	 * @return
 	 */
-	public Vector<Nutzer> getNutzer() {
+	public ArrayList<Nutzer> getAllNutzer() {
 		
 	}
+
+
+	public Nutzer findNutzerByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

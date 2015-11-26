@@ -1,5 +1,9 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.util.Vector;
+
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+
 public class HashtagMapper extends DBConnection{
 	
 	public HashtagMapper () {
@@ -51,6 +55,7 @@ public class HashtagMapper extends DBConnection{
 	 * @return
 	 */
 	public Vector<Hashtag> findByName (String name) {
+		return null;
 		
 	}
 	
