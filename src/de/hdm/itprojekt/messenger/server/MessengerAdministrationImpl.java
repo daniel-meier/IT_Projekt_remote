@@ -6,6 +6,7 @@ package de.hdm.itprojekt.messenger.server;
 
 import java.util.ArrayList;
 
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
@@ -38,9 +39,24 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * Methode um sich in das System einloggen 
 	 */
 	@Override
-	public void login() {
+/** public LoginInfo login(String requestUri) {
+		NutzerService nutzerService = NutzerServiceFactory.getNutzerService();
+		Nutzer nutzer = nutzerService.getCurrentNutzer();
+		LoginInfo loginInfo = new LoginInfo();
 		
-	}
+		if (nutzer != null) {
+			loginInfo.setLoggedIn(true);
+			loginInfo.setEmailAdresse(nutzer.getEmail());
+			loginInfo.setVorname(nutzer.getVorname());
+			loginInfo.setNachname(nutzer.getNachname());
+			loginInfo.setLogoutUrl(nutzerService.createLogoutURL (requestUri));
+		} else {
+			loginInfo.setLoggedIn(false);
+			loginInfo.setLoginUrl(nutzerService.createLoginURL(requestUri));
+		}
+		return loginInfo;
+	 }
+	*/
 	
 	public void init() throws IllegalArgumentException {
 		// TODO Auto-generated method stub
@@ -147,8 +163,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Nutzer getNutzerByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.nutzerMapper.findByNutzerID(id);
+		
 	}
 	
 	/**Eine Unterhaltung erstellen
@@ -241,13 +258,27 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return null;
 	}
 	
-	/**Nutzer loeschen
-	 * 
+	/**
+	 * Nutzer loeschen inkl. seiner Nachichten, Abonnements 
 	 * @param nutzer
 	 */
 	@Override
-	public void loescheNutzer(Nutzer nutzer){
-		// TODO Auto-generated method stub
+	public void loescheNutzer(Nutzer nutzer) throws IllegalArgumentException{
+		
+		Vector<Nachricht> nachricht = this.getNachricht(n)
+		if (nachricht != null) {
+			for (Nachricht n : nachricht)
+			this.loescheNachricht(n);
+		}
+		
+		Vector<Abonnement> abonnement = this.getAbonnement(n)
+		if (abonnement != null) {
+			for (Abonnement a: abonnement)
+			this.loescheAbonnement(a);
+		}
+		
+		this.nutzerMapper.loescheNutzer(n);
+		
 	}
 	
 	/**Hashtag loeschen
@@ -264,9 +295,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer getAllNutzer(){
-		// TODO Auto-generated method stub
-		return null;
+	public Nutzer getAllNutzer() throws IllegalArgumentException{
+		
+		return this.nutzerMapper.getAllNutzer(ArrayList<Nutzer>);
+
 	}
 	
 	/**Hashtag nach ID ausgeben
