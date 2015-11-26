@@ -1,13 +1,19 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
+
+
+
 public class NachrichtMapper extends DBConnection {
 
-	public NachrichtMapper () {
+	private static NachrichtMapper nachrichtMapper = null;
+	
+	protected NachrichtMapper () {
 		
 	}
 	
-	public NachrichtMapper nachrichtMapper () {
-		
+	public static NachrichtMapper getNachrichtMapper(){
+		return nachrichtMapper;
 	}
 	
 	/** Suche einer Nachricht nach seiner eindeutigen Nummer
@@ -41,7 +47,7 @@ public class NachrichtMapper extends DBConnection {
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht bearbeiten (nachricht Nachricht) {
+	public Nachricht bearbeiten (Nachricht nachricht) {
 		
 	}
 	

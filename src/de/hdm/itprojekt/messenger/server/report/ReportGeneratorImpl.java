@@ -22,6 +22,8 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
  */
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
+	private static final long serialVersionUID = 1L;
+	
 	public ReportGeneratorImpl() throws IllegalArgumentException{
 		
 	}

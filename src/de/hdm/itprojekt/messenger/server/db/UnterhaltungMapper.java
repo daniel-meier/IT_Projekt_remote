@@ -1,13 +1,18 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
+
+
 public class UnterhaltungMapper extends DBConnection{
 	
-	public UnterhaltungMapper () {
+	private static UnterhaltungMapper unterhaltungMapper = null;
+	
+	protected UnterhaltungMapper () {
 		
 	}
 	
-	public UnterhaltungMapper unterhaltungMapper () {
-		
+	public static UnterhaltungMapper getUnterhaltungMapper() {
+		return unterhaltungMapper;
 	}
 	
 	/** Suche einer Unterhaltung nach seiner eindeutigen Nummer
@@ -41,7 +46,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * 
 	 * @param Unterhaltung
 	 */
-	public void loeschen (unterhaltung Unterhaltung){
+	public void loeschen (Unterhaltung Unterhaltung){
 		
 	}
 	

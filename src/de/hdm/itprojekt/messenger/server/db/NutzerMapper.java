@@ -64,5 +64,10 @@ public class NutzerMapper extends DBConnection{
 	}
 
 
+	public Nutzer findNutzerByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
