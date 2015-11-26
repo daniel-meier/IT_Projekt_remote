@@ -5,6 +5,7 @@ package de.hdm.itprojekt.messenger.server;
  */
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -65,7 +66,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Nachricht bearbeiteNachricht(String text) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return NachrichtMapper.getNachrichtMapper().bearbeiten(nachricht);
+		return this.nachrichtMapper.bearbeiten(nachricht);
 	}
 
 	/**
@@ -95,7 +96,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheUnterhaltung(Unterhaltung unterhaltung) {
-		UnterhaltungMapper.getUnterhaltungMapper().loeschen(unterhaltung);
+		this.unterhaltungMapper.loeschen(unterhaltung);
 		
 	}
 
@@ -117,7 +118,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Nutzer getNutzerByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nutzerMapper.findNutzerByName(name);
 	}
 
 	/**
@@ -135,9 +136,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Hashtag getHashtagByName(String name) {
+	public Vector<Hashtag> getHashtagByName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagMapper.findByName(name);
 	}
 
 	/**
@@ -148,7 +149,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Nutzer getNutzerByID(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return NutzerMapper.nutzerMapper().findByNutzerID(id);
 	}
 	
 	/**Eine Unterhaltung erstellen
