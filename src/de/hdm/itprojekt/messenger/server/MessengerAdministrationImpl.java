@@ -63,9 +63,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nachricht bearbeiteNachricht(String text) {
+	public Nachricht bearbeiteNachricht(String text) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return NachrichtMapper.getNachrichtMapper().bearbeiten(nachricht);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheUnterhaltung(Unterhaltung unterhaltung) {
-		// TODO Auto-generated method stub
+		UnterhaltungMapper.getUnterhaltungMapper().loeschen(unterhaltung);
 		
 	}
 
