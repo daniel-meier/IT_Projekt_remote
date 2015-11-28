@@ -51,26 +51,40 @@ public class Messenger implements EntryPoint {
 		unterhaltungenButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(unterhaltungenButton);
 		
+		unterhaltungenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel unterhaltungen = new Unterhaltungen();
+		        
+		        RootPanel.get("text").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("text").add(unterhaltungen);
+		      }
+		    });
+		
+		
 		/**
 		 * Button
 		 */
-		final Button suchenButton = new Button("Nutzer und Hashtag suchen",
-				new ClickHandler() {
-					public void onClick(ClickEvent event) {
-						Window.alert("Test");
-					}
-				}
-	          );
+		final Button suchenButton = new Button("Nutzer und Hashtag suchen");
 		suchenButton.setStylePrimaryName("messenger-menubutton");
-		
 		navPanel.add(suchenButton);
 		
+		suchenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel suche = new Suche();
+		        
+		        RootPanel.get("text").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("text").add(suche);
+		      }
+		    });
 		/**
 		 * Button
 		 */
 		final Button nachrichtSchreibenButton = new Button("Nachricht schreiben");
 		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(nachrichtSchreibenButton);
+		
 		
 		/**
 		 * Button
@@ -96,58 +110,70 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Button
 		 */
-		final Button logoutButton = new Button("Logout");
+		final Button logoutButton = new Button("Logout",
+				new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Window.alert("Test");
+			}
+		}
+      );
 		logoutButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(logoutButton);
+		
+		/**
+		 * Label mit Willkommenstext
+		 */
+		Label willkommen = new Label("Herzlich Willkommen. Bitte links wählen!");
+		RootPanel.get("text").add(willkommen);        
 		
 		
 		/**
 		 * Vertial Panel für Text
 		 */
-		VerticalPanel textPanel = new VerticalPanel();
-		RootPanel.get("text").add(textPanel);
-		
-		RichTextArea textArea = new RichTextArea();
-		textPanel.add(textArea);
+//		VerticalPanel textPanel = new VerticalPanel();
+//		RootPanel.get("text").add(textPanel);
+//		
+//		RichTextArea textArea = new RichTextArea();
+//		textPanel.add(textArea);
 //	    textArea.setVisibleLines(20);
 
 	    
-	    /**
-		 * Horizontal Panel für Edit-Buttons
-		 */
-	    HorizontalPanel buttonPanel = new HorizontalPanel();	
-		RootPanel.get("editbuttons").add(buttonPanel);
-	    
-	    
-	    /**
-		 * Button
-		 */
-		final Button nutzerhButton = new Button("Nutzer hinzufügen");
-		nutzerhButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(nutzerhButton);
-	
-	
-		/**
-		 * Button
-		 */
-		final Button nutzerlButton = new Button("Nutzer löschen");
-		nutzerlButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(nutzerlButton);
-	
-
-		/**
-		 * Button
-	   	 */
-		final Button löschenButton = new Button("löschen");
-		löschenButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(löschenButton);
-	
-		/**
-		 * Button
-		 */
-		final Button zurückButton = new Button("zurück");
-		zurückButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(zurückButton);
+//	    /**
+//		 * Horizontal Panel für Edit-Buttons
+//		 */
+//	    HorizontalPanel buttonPanel = new HorizontalPanel();	
+//		RootPanel.get("editbuttons").add(buttonPanel);
+//	    
+//	    
+//	    /**
+//		 * Button
+//		 */
+//		final Button nutzerhButton = new Button("Nutzer hinzufügen");
+//		nutzerhButton.setStylePrimaryName("edit-button");
+//		buttonPanel.add(nutzerhButton);
+//	
+//	
+//		/**
+//		 * Button
+//		 */
+//		final Button nutzerlButton = new Button("Nutzer löschen");
+//		nutzerlButton.setStylePrimaryName("edit-button");
+//		buttonPanel.add(nutzerlButton);
+//	
+//
+//		/**
+//		 * Button
+//	   	 */
+//		final Button löschenButton = new Button("löschen");
+//		löschenButton.setStylePrimaryName("edit-button");
+//		buttonPanel.add(löschenButton);
+//	
+//		/**
+//		 * Button
+//		 */
+//		final Button zurückButton = new Button("zurück");
+//		zurückButton.setStylePrimaryName("edit-button");
+//		buttonPanel.add(zurückButton);
 	
 	}
 }
