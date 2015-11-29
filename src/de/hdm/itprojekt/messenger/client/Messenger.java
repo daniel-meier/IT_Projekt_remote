@@ -54,23 +54,37 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Button
 		 */
-		final Button suchenButton = new Button("Nutzer und Hashtag suchen",
-				new ClickHandler() {
-					public void onClick(ClickEvent event) {
-						Window.alert("Test");
-					}
-				}
-	          );
+		final Button suchenButton = new Button("Nutzer und Hashtag suchen");
 		suchenButton.setStylePrimaryName("messenger-menubutton");
-		
 		navPanel.add(suchenButton);
 		
+		suchenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel suchen = new Suchen();
+		        
+		        RootPanel.get("text").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("text").add(suchen);
+		      }
+		    });
 		/**
 		 * Button
 		 */
 		final Button nachrichtSchreibenButton = new Button("Nachricht schreiben");
 		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(nachrichtSchreibenButton);
+		
+		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
+
+				RootPanel.get("Empfänger auswählen").clear();
+				RootPanel.get("Hinzufügen").clear();
+				RootPanel.get("text").add(nachrichtSchreiben);
+			}
+		
+		});
+		
 		
 		/**
 		 * Button
