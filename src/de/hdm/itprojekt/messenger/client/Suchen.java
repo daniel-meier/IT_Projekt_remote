@@ -68,13 +68,14 @@ public class Suchen implements EntryPoint {
 		navPanel.add(nachrichtSchreibenButton);
 		
 		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
-			public void onClickHanler(ClickEvent event) {
+			public void onClick(ClickEvent event) {
 				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
-				
+
 				RootPanel.get("Empfänger auswählen").clear();
 				RootPanel.get("Hinzufügen").clear();
-				RootPanel.get("text").add(textPanel);
+				RootPanel.get("text").add(nachrichtSchreiben);
 			}
+		
 		});
 		
 		
