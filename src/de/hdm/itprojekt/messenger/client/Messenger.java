@@ -100,6 +100,15 @@ public class Messenger implements EntryPoint {
 		impressumButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(impressumButton);
 		
+		impressumButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel impressum = new Impressum();
+		        
+		        RootPanel.get("text").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("text").add(impressum);
+		      }
+		    });	
 		/**
 		 * Button
 		 */
