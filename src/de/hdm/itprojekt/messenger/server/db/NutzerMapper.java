@@ -36,12 +36,12 @@ public class NutzerMapper extends DBConnection{
 	       */
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
-	        Nutzer c = new Nutzer();
-	        c.setId(rs.getInt("id"));
-	        c.setVorname(rs.getString("vorname"));
-	        c.setNachname(rs.getString("nachname"));
+	        Nutzer n = new Nutzer();
+	        n.setID(rs.getInt("id"));
+	        n.setVorname(rs.getString("vorname"));
+	        n.setNachname(rs.getString("nachname"));
 
-	        return c;
+	        return n;
 	      }
 	    }
 	    catch (SQLException e) {
@@ -56,7 +56,7 @@ public class NutzerMapper extends DBConnection{
 	   * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
 	   * 
 	   * @param name Nachname der Kunden, die ausgegeben werden sollen
-	   * @return Ein Vektor mit Customer-Objekten, die sämtliche Kunden mit dem
+	   * @return Ein Vektor mit Nutzer-Objekten, die sämtliche Nutzer mit dem
 	   *         gesuchten Nachnamen repräsentieren. Bei evtl. Exceptions wird ein
 	   *         partiell gefüllter oder ggf. auch leerer Vetor zurückgeliefert.
 	   */
@@ -74,13 +74,13 @@ public class NutzerMapper extends DBConnection{
 	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
-	        Nutzer c = new Nutzer();
-	        c.setId(rs.getInt("id"));
-	        c.setVorname(rs.getString("vorname"));
-	        c.setNachname(rs.getString("nachname"));
+	        Nutzer n = new Nutzer();
+	        n.setID(rs.getInt("id"));
+	        n.setVorname(rs.getString("vorname"));
+	        n.setNachname(rs.getString("nachname"));
 
 	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
-	        result.addElement(c);
+	        result.addElement(n);
 	      }
 	    }
 	    catch (SQLException e) {
@@ -92,15 +92,48 @@ public class NutzerMapper extends DBConnection{
 	  }
 	
 	
+	/**
+	   * Einfügen eines <code>Nutzer</code>-Objekts in die Datenbank. Dabei wird
+	   * auch der Primärschlüssel des übergebenen Objekts geprüft und ggf.
+	   * berichtigt.
+	   * 
+	   * @param c das zu speichernde Objekt
+	   * @return das bereits übergebene Objekt, jedoch mit ggf. korrigierter
+	   *         <code>id</code>.
+	   */
+	  public Nutzer insert(Nutzer n) {
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      /*
+	       * Zunächst schauen wir nach, welches der momentan höchste
+	       * Primärschlüsselwert ist.
+	       */
+	      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+	          + "FROM nutzer ");
+
+	      // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
+	      if (rs.next()) {
+	        /*
+	         * c erhält den bisher maximalen, nun um 1 inkrementierten
+	         * Primärschlüssel.
+	         */
+	        n.setID(rs.getInt("maxid") + 1);
+
+	        stmt = con.createStatement();
+
+	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
+	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt) "
+	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
+	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "')");
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
 	
-	/** Einf�gen eines Nutzer Objekts in die Datenbank
-	 * 
-	 * @param NutzerMapper
-	 * @return
-	 */
-	public NutzerMapper einfuegen (nutzer Nutzer) {
-		
-	}
 	
 	/** Bearbeiten eines Nutzer Objekts in der Datenbank
 	 * 
