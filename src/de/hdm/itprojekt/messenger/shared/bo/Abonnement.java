@@ -7,21 +7,13 @@ package de.hdm.itprojekt.messenger.shared.bo;
  */
 public class Abonnement extends BusinessObject {
 	
-	
-/**
- * 
- */
-	private static final long serialVersionUID = 1L;
-	
 	/**
-	 * Nutzer ist Abonnent
+	 * Attribute eines Abonnements
 	 */
+	private static final long serialVersionUID = 1L;
 	private Nutzer abonnent = null;
 	
-	/**
-	 * Abonnement ist Abonnement 
-	 */
-	private Abonnement abonnement = null;
+	//private Abonnement abonnement = null;
 
 	/**
 	 * Leerer Konstruktor
@@ -39,9 +31,6 @@ public class Abonnement extends BusinessObject {
 	
 	
 	/**
-	 * 
-	 * @return
-	 */
 	public Abonnement getAbonnement() {
 		return abonnement;
 	}
@@ -49,5 +38,5 @@ public class Abonnement extends BusinessObject {
 	public void setAbonnement(Abonnement abonnement) {
 		this.abonnement  = abonnement;
 	}
-	
+	*/
 }
