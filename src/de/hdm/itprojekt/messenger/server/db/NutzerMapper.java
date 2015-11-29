@@ -60,7 +60,7 @@ public class NutzerMapper extends DBConnection{
 	   *         gesuchten Nachnamen repräsentieren. Bei evtl. Exceptions wird ein
 	   *         partiell gefüllter oder ggf. auch leerer Vetor zurückgeliefert.
 	   */
-	  public Vector<Nutzer> findByNachnme(String name) {
+	  public Vector<Nutzer> findByNachname(String name) {
 	    Connection con = DBConnection.connection();
 	    Vector<Nutzer> result = new Vector<Nutzer>();
 
@@ -101,7 +101,7 @@ public class NutzerMapper extends DBConnection{
 	   * @return das bereits übergebene Objekt, jedoch mit ggf. korrigierter
 	   *         <code>id</code>.
 	   */
-	  public Nutzer insert(Nutzer n) {
+	  public Nutzer nutzerAnlegen(Nutzer n) {
 	    Connection con = DBConnection.connection();
 
 	    try {
@@ -151,6 +151,24 @@ public class NutzerMapper extends DBConnection{
 	public void loeschen (nutzer Nutzer) {
 		
 	}
+	
+	/**
+	   * Löschen der Daten eines <code>Customer</code>-Objekts aus der Datenbank.
+	   * 
+	   * @param c das aus der DB zu löschende "Objekt"
+	   */
+	  public void loescheNutzer(Nutzer n) {
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + n.getID());
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+	  }
 	
 	/** Auslesen aller Nutzer
 	 * 
