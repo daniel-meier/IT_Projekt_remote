@@ -17,7 +17,7 @@ public class NutzerMapper extends DBConnection{
 	 * @param id
 	 * @return
 	 */
-	public NutzerMapper findNutzerByID (int id) {
+	public Nutzer findNutzerByID (int id) {
 		 // DB-Verbindung holen
 	    Connection con = DBConnection.connection();
 
@@ -137,27 +137,36 @@ public class NutzerMapper extends DBConnection{
 	
 	/** Bearbeiten eines Nutzer Objekts in der Datenbank
 	 * 
-	 * @param NutzerMapper
-	 * @return
-	 */
-	public NutzerMapper bearbeiten (nutzer Nutzer) {
-		
-	}
+	 @param n das Objekt, das in die DB geschrieben werden soll
+   * @return das als Parameter übergebene Objekt
+   */
+
+	public Nutzer bearbeiteNutzer(Nutzer n) {
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      stmt.executeUpdate("UPDATE nutzer " + "SET vorname=\""
+	          + n.getVorname() + "\", " + "nachname=\"" + n.getNachname() + "\" "
+	          + "WHERE id=" + n.getID());
+
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Um Analogie zu insert(Customer c) zu wahren, geben wir c zurück
+	    return n;
+	  }
 	
-	/** L�schen eines Nutzer Objekts aus der Datenbank
-	 * 
-	 * @param NutzerMapper
-	 */
-	public void loeschen (nutzer Nutzer) {
-		
-	}
 	
 	/**
-	   * Löschen der Daten eines <code>Customer</code>-Objekts aus der Datenbank.
+	   * Löschen der Daten eines <code>Nutzer</code>-Objekts aus der Datenbank.
 	   * 
-	   * @param c das aus der DB zu löschende "Objekt"
+	   * @param n das aus der DB zu löschende "Objekt"
 	   */
-	  public void loescheNutzer(Nutzer n) {
+	  public void loescheNutzer(Nutzer nutzer) {
 	    Connection con = DBConnection.connection();
 
 	    try {
@@ -172,9 +181,40 @@ public class NutzerMapper extends DBConnection{
 	
 	/** Auslesen aller Nutzer
 	 * 
-	 * @return
+	 * @return Ein Vektor mit Customer-Objekten, die sämtliche Kunden
+   *         repräsentieren. Bei evtl. Exceptions wird ein partiell gef�llter
+   *         oder ggf. auch leerer Vetor zurückgeliefert.
 	 */
 	public ArrayList<Nutzer> getAllNutzer() {
+		  Connection con = DBConnection.connection();
+		    // Ergebnisvektor vorbereiten
+		    Vector<Nutzer> result = new Vector<Nutzer>();
+
+		    try {
+		      Statement stmt = con.createStatement();
+
+		      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname "
+		          + "FROM nutzer " + "ORDER BY nachname");
+
+		      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+		      // erstellt.
+		      while (rs.next()) {
+		        Nutzer n = new Nutzer();
+		        n.setID(rs.getInt("id"));
+		        n.setVorname(rs.getString("vorname"));
+		        n.setNachname(rs.getString("nachname"));
+
+		        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+		        result.addElement(n);
+		      }
+		    }
+		    catch (SQLException e) {
+		      e.printStackTrace();
+		    }
+
+		    // Ergebnisvektor zurückgeben
+		    return result;
+	}
 		
 	}
 
