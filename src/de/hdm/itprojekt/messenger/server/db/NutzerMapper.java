@@ -27,8 +27,8 @@ public class NutzerMapper extends DBConnection{
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, Vorname, Nachname FROM nutzer "
-	              + "WHERE id=" + id + " ORDER BY Nachname");
+	          .executeQuery("SELECT id, vorname, nachname FROM nutzer "
+	              + "WHERE id=" + id + " ORDER BY nachname");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -38,8 +38,8 @@ public class NutzerMapper extends DBConnection{
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nutzer c = new Nutzer();
 	        c.setId(rs.getInt("id"));
-	        c.setVorname(rs.getString("Vorname"));
-	        c.setNachname(rs.getString("Nachname"));
+	        c.setVorname(rs.getString("vorname"));
+	        c.setNachname(rs.getString("nachname"));
 
 	        return c;
 	      }
@@ -52,15 +52,46 @@ public class NutzerMapper extends DBConnection{
 	    return null;
 	  }
 
+	/**
+	   * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
+	   * 
+	   * @param name Nachname der Kunden, die ausgegeben werden sollen
+	   * @return Ein Vektor mit Customer-Objekten, die sämtliche Kunden mit dem
+	   *         gesuchten Nachnamen repräsentieren. Bei evtl. Exceptions wird ein
+	   *         partiell gefüllter oder ggf. auch leerer Vetor zurückgeliefert.
+	   */
+	  public Vector<Nutzer> findByNachnme(String name) {
+	    Connection con = DBConnection.connection();
+	    Vector<Nutzer> result = new Vector<Nutzer>();
 
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname "
+	          + "FROM nutzer " + "WHERE nachname LIKE '" + name
+	          + "' ORDER BY nachname");
+
+	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+	      // erstellt.
+	      while (rs.next()) {
+	        Nutzer c = new Nutzer();
+	        c.setId(rs.getInt("id"));
+	        c.setVorname(rs.getString("vorname"));
+	        c.setNachname(rs.getString("nachname"));
+
+	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(c);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurückgeben
+	    return result;
+	  }
 	
-	/** Suche ein Nutzer Objekt nach seinem Nachnamen
-	 * 
-	 * @return
-	 */
-	public Vector<Nutzer> findByNachname () {
-		
-	}
+	
 	
 	/** Einf�gen eines Nutzer Objekts in die Datenbank
 	 * 
