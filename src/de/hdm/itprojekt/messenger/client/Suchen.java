@@ -27,7 +27,7 @@ public class Suchen extends VerticalPanel {
 	 */
 	public void onLoad() {
 		super.onLoad();
-		
+		 
 		/**
 		 * Horizontales Panel für Nutzer- und Hashtagsuche
 		 */
