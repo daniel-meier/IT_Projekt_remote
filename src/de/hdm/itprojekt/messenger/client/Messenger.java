@@ -116,6 +116,16 @@ public class Messenger implements EntryPoint {
 		kontaktButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(kontaktButton);
 		
+		kontaktButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel kontakt = new Kontakt();
+		        
+		        RootPanel.get("text").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("text").add(kontakt);
+		      }
+		    });	
+		
 		/**
 		 * Button
 		 */
