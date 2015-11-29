@@ -18,8 +18,41 @@ public class NutzerMapper extends DBConnection{
 	 * @return
 	 */
 	public NutzerMapper findNutzerByID (int id) {
-		
-	}
+		 // DB-Verbindung holen
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      // Leeres SQL-Statement (JDBC) anlegen
+	      Statement stmt = con.createStatement();
+
+	      // Statement ausfüllen und als Query an die DB schicken
+	      ResultSet rs = stmt
+	          .executeQuery("SELECT id, Vorname, Nachname FROM nutzer "
+	              + "WHERE id=" + id + " ORDER BY Nachname");
+
+	      /*
+	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
+	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       */
+	      if (rs.next()) {
+	        // Ergebnis-Tupel in Objekt umwandeln
+	        Nutzer c = new Nutzer();
+	        c.setId(rs.getInt("id"));
+	        c.setVorname(rs.getString("Vorname"));
+	        c.setNachname(rs.getString("Nachname"));
+
+	        return c;
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+
+	    return null;
+	  }
+
+
 	
 	/** Suche ein Nutzer Objekt nach seinem Nachnamen
 	 * 
@@ -29,7 +62,7 @@ public class NutzerMapper extends DBConnection{
 		
 	}
 	
-	/** Einf�gen eines Nutzer Objekts in die Datenbank
+	/** Einf�gen eines Nutzer Objekts in die Datenbank
 	 * 
 	 * @param NutzerMapper
 	 * @return
@@ -47,7 +80,7 @@ public class NutzerMapper extends DBConnection{
 		
 	}
 	
-	/** L�schen eines Nutzer Objekts aus der Datenbank
+	/** L�schen eines Nutzer Objekts aus der Datenbank
 	 * 
 	 * @param NutzerMapper
 	 */
