@@ -80,6 +80,7 @@ public class Messenger implements EntryPoint {
 
 				RootPanel.get("Empfänger auswählen").clear();
 				RootPanel.get("Hinzufügen").clear();
+				RootPanel.get("text").clear();
 				RootPanel.get("text").add(nachrichtSchreiben);
 			}
 		
