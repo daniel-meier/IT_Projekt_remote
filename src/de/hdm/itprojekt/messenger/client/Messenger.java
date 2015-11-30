@@ -21,21 +21,13 @@ import com.google.gwt.user.datepicker.client.DatePicker;
  */
 public class Messenger implements EntryPoint {
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
-	 */
+	
 	public void onModuleLoad() {
 		/**
 		 * Roter Balken mit Überschrift
 		 */
 		HorizontalPanel messengerPanel = new HorizontalPanel();	
 		RootPanel.get("header").add(messengerPanel);
-		
-	//	/**
-	//	 * Horizontales Panel, dass die vertikalen Panels Navigation und Text nebeneinander enthält
-	//	 */
-	//	HorizontalPanel mainPanel = new HorizontalPanel();	
-	//	RootPanel.get("main").add(mainPanel);
 		
 		
 		/**
@@ -51,6 +43,17 @@ public class Messenger implements EntryPoint {
 		unterhaltungenButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(unterhaltungenButton);
 		
+		unterhaltungenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel unterhaltungen = new Unterhaltungen();
+		        
+		        RootPanel.get("window").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("window").add(unterhaltungen);
+		      }
+		    });
+		
+		
 		/**
 		 * Button
 		 */
@@ -60,11 +63,12 @@ public class Messenger implements EntryPoint {
 		
 		suchenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+
 		        VerticalPanel suchen = new Suchen();
 		        
-		        RootPanel.get("text").clear();
+		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
-		        RootPanel.get("text").add(suchen);
+		        RootPanel.get("window").add(suchen);
 		      }
 		    });
 		/**
@@ -74,14 +78,17 @@ public class Messenger implements EntryPoint {
 		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(nachrichtSchreibenButton);
 		
+		
 		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
 
-				RootPanel.get("Empfänger auswählen").clear();
-				RootPanel.get("Hinzufügen").clear();
-				RootPanel.get("text").clear();
-				RootPanel.get("text").add(nachrichtSchreiben);
+
+
+				RootPanel.get("window").clear();
+				RootPanel.get("editbuttons").clear();
+				RootPanel.get("window").add(nachrichtSchreiben);
+
 			}
 		
 		});
@@ -101,6 +108,15 @@ public class Messenger implements EntryPoint {
 		impressumButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(impressumButton);
 		
+		impressumButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel impressum = new Impressum();
+		        
+		        RootPanel.get("window").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("window").add(impressum);
+		      }
+		    });	
 		/**
 		 * Button
 		 */
@@ -108,62 +124,36 @@ public class Messenger implements EntryPoint {
 		kontaktButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(kontaktButton);
 		
+		kontaktButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+		        VerticalPanel kontakt = new Kontakt();
+		        
+		        RootPanel.get("window").clear();
+			    RootPanel.get("editbuttons").clear();
+		        RootPanel.get("window").add(kontakt);
+		      }
+		    });	
+		
 		/**
 		 * Button
 		 */
-		final Button logoutButton = new Button("Logout");
+		final Button logoutButton = new Button("Logout",
+				new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Window.alert("Logout");
+			}
+		}
+      );
 		logoutButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(logoutButton);
+		        
 		
 		
 		/**
-		 * Vertial Panel für Text
+		 * Anzeigen der Unterhaltungsseite als Startseite
 		 */
-		VerticalPanel textPanel = new VerticalPanel();
-		RootPanel.get("text").add(textPanel);
-		
-		RichTextArea textArea = new RichTextArea();
-		textPanel.add(textArea);
-//	    textArea.setVisibleLines(20);
-
-	    
-	    /**
-		 * Horizontal Panel für Edit-Buttons
-		 */
-	    HorizontalPanel buttonPanel = new HorizontalPanel();	
-		RootPanel.get("editbuttons").add(buttonPanel);
-	    
-	    
-	    /**
-		 * Button
-		 */
-		final Button nutzerhButton = new Button("Nutzer hinzufügen");
-		nutzerhButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(nutzerhButton);
-	
-	
-		/**
-		 * Button
-		 */
-		final Button nutzerlButton = new Button("Nutzer löschen");
-		nutzerlButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(nutzerlButton);
-	
-
-		/**
-		 * Button
-	   	 */
-		final Button löschenButton = new Button("löschen");
-		löschenButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(löschenButton);
-	
-		/**
-		 * Button
-		 */
-		final Button zurückButton = new Button("zurück");
-		zurückButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(zurückButton);
-	
+		VerticalPanel unterhaltungen = new Unterhaltungen();
+        RootPanel.get("window").add(unterhaltungen);
 	}
 }
 

@@ -6,6 +6,8 @@ public class NachrichtSchreiben extends VerticalPanel{
 	
 	public void onLoad() {
 		super.onLoad();
+		RichTextArea text = new RichTextArea();
+		this.add(text);
 		
 		 HorizontalPanel buttonPanel = new HorizontalPanel();	
 			RootPanel.get("editbuttons").add(buttonPanel);
