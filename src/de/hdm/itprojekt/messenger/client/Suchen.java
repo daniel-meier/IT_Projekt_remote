@@ -22,29 +22,24 @@ import com.google.gwt.user.client.ui.*;
  */
 public class Suchen extends VerticalPanel {
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
-	 */
+
 	public void onLoad() {
 		super.onLoad();
 		 
-		/**
-		 * Horizontales Panel für Nutzer- und Hashtagsuche
-		 */
-		HorizontalPanel suchPanel = new HorizontalPanel();	
-		RootPanel.get("editbuttons").add(suchPanel);
-		
-		
-		RichTextArea suchArea = new RichTextArea();
-		suchPanel.add(suchArea);
 		
 		 /**
 		 * Horizontal Panel für Edit-Buttons
 		 */
-		
 	    HorizontalPanel buttonPanel = new HorizontalPanel();	
 		RootPanel.get("editbuttons").add(buttonPanel);
 	    
+		/**
+		 * Textbox für die Eingabe des Suchbegriffs
+		 */
+		TextBox suchEingabe = new TextBox();
+		suchEingabe.setStylePrimaryName("suchEingabe-textbox");
+		buttonPanel.add(suchEingabe);
+		
 	    
 		/**
 		 * Button
@@ -52,17 +47,18 @@ public class Suchen extends VerticalPanel {
 		final Button findenButton = new Button("Finden");
 		findenButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(findenButton);
-	
 
+		
+		RichTextArea suchAusgabe = new RichTextArea();
+		this.add(suchAusgabe);
+		
+		
 		/**
 		 * Button
 	   	 */
 		final Button abonnierenButton = new Button("abonnieren");
 		abonnierenButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(abonnierenButton);
-		
-	
-	
+		this.add(abonnierenButton);
 	
 	}
 }
