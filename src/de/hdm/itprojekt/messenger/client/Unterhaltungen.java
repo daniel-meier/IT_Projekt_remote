@@ -25,7 +25,7 @@ public class Unterhaltungen extends VerticalPanel {
 	    /**
 		 * Button
 		 */
-		final Button nutzerhButton = new Button("Nutzer hinzufügen");
+		final Button nutzerhButton = new Button("Nutzer hinzufÃ¼gen");
 		nutzerhButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerhButton);
 	
@@ -33,7 +33,7 @@ public class Unterhaltungen extends VerticalPanel {
 		/**
 		 * Button
 		 */
-		final Button nutzerlButton = new Button("Nutzer löschen");
+		final Button nutzerlButton = new Button("Nutzer lÃ¶schen");
 		nutzerlButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerlButton);
 	
@@ -41,16 +41,16 @@ public class Unterhaltungen extends VerticalPanel {
 		/**
 		 * Button
 	   	 */
-		final Button löschenButton = new Button("löschen");
-		löschenButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(löschenButton);
+		final Button lÃ¶schenButton = new Button("lÃ¶schen");
+		lÃ¶schenButton.setStylePrimaryName("edit-button");
+		buttonPanel.add(lÃ¶schenButton);
 	
 		/**
 		 * Button
 		 */
-		final Button zurückButton = new Button("zurück");
-		zurückButton.setStylePrimaryName("edit-button");
-		buttonPanel.add(zurückButton);
+		final Button zurÃ¼ckButton = new Button("zurÃ¼ck");
+		zurÃ¼ckButton.setStylePrimaryName("edit-button");
+		buttonPanel.add(zurÃ¼ckButton);
 		
 	}
 }
