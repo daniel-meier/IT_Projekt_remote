@@ -1,6 +1,13 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 
 
@@ -63,8 +70,8 @@ public class NachrichtMapper extends DBConnection {
 	 * 
 	 * @return
 	 */
-	public Vector<Nachricht> findByNutzer (nutzer Nutzer) {
-		
+	public Vector<Nachricht> findByNutzer (Nutzer nutzer) {
+		return null;
 	}
 	
 	/** Einf�gen eines Nachricht Objekts in die Datenbank
@@ -72,8 +79,8 @@ public class NachrichtMapper extends DBConnection {
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht einfuegen (nachricht Nachricht) {
-		
+	public Nachricht einfuegen (Nachricht nachricht) {
+		return null;
 	}
 	
 	/** Bearbeiten eines Nachricht Objekts in der Datenbank
@@ -82,14 +89,14 @@ public class NachrichtMapper extends DBConnection {
 	 * @return
 	 */
 	public Nachricht bearbeiten (Nachricht nachricht) {
-		
+		return null;
 	}
 	
 	/** L�schen eines Nachrichten Objekts aus der Datenbank
 	 * 
 	 * @param Nachricht
 	 */
-	public void loeschen (nachricht Nachricht) {
+	public void loeschen (Nachricht nachricht) {
 		
 	}
 	
@@ -98,6 +105,13 @@ public class NachrichtMapper extends DBConnection {
 	 * @return
 	 */
 	public Vector<Nachricht> getNachricht () {
+		return null;
+		
+	}
+	
+	//Wichtig!! getNachrichtByNutzer Methode
+	public Vector<Nachricht> getNachrichtByNutzer(Nutzer n){
+		return null;
 		
 	}
 	

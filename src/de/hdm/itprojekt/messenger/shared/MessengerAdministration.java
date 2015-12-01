@@ -23,7 +23,7 @@ public interface MessengerAdministration {
 	/** Eine Nachricht bearbeiten 
 	 * 
 	 */
-	public Nachricht bearbeiteNachricht(String text);
+	public Nachricht bearbeiteNachricht(Nachricht nachricht);
 	
 	/** Einen Teilnehmer hinzufügen
 	 * 
@@ -125,7 +125,7 @@ public interface MessengerAdministration {
 	/**Alle Nutzer ausgeben
 	 * 
 	 */
-	public Nutzer getAllNutzer();
+	public ArrayList<Nutzer> getAllNutzer();
 	
 	/**Hashtag nach ID ausgeben
 	 * 

@@ -134,7 +134,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nachricht bearbeiteNachricht(String text) throws IllegalArgumentException {
+	public Nachricht bearbeiteNachricht(Nachricht nachricht) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return this.nachrichtMapper.bearbeiten(nachricht);
 	}
@@ -219,7 +219,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Nutzer getNutzerByID(int id) {
 		// TODO Auto-generated method stub
-		return NutzerMapper.nutzerMapper().findByNutzerID(id);
+		return this.nutzerMapper.findNutzerByID(id);
 	}
 	
 	/**Eine Unterhaltung erstellen
@@ -254,7 +254,12 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Nutzer nutzerAnlegen(String email, String vorname, String nachname){
 		// TODO Auto-generated method stub
 		Nutzer n = new Nutzer();
+		this.nutzerMapper.nutzerAnlegen(n);
+		n.setVorname(vorname);
+		n.setNachname(nachname);
+		n.setEmail(email);
 		return n;
+		
 	}
 	
 	/**Unterhaltung nach ID ausgeben
@@ -286,8 +291,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 */
 	@Override
 	public void loescheNachricht(Nachricht nachricht){
-		// TODO Auto-generated method stub
-		
+		this.nachrichtMapper.loeschen(nachricht);
 	}
 	
 	/**NutzerAbonnement erstellen
@@ -319,17 +323,25 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public void loescheNutzer(Nutzer n) throws IllegalArgumentException{
 		
-		Vector<Nachricht> nachricht = this.getNachricht(n)
+		Vector<Nachricht> nachricht = this.nachrichtMapper.getNachrichtByNutzer(n);
 		if (nachricht != null) {
-			for (Nachricht n : nachricht)
-			this.loescheNachricht(n);
+			for (Nachricht na : nachricht)
+				this.nachrichtMapper.loeschen(na);
 		}
 		
-		Vector<Abonnement> abonnement = this.getAbonnement(n)
+		/**
+		Vector<Abonnement> abonnement = this.getNutzerAbonnement(n);
 		if (abonnement != null) {
 			for (Abonnement a: abonnement)
-			this.loescheAbonnement(a);
+			this.loescheNutzerAbonnement(a);
 		}
+		
+		Vector<Abonnement> hashtagAbonnement = this.getHashtagAbonnement();
+		if (hashtagAbonnement != null) {
+			for (Abonnement h: hashtagAbonnement)
+			this.loescheHashtagAbonnement(h);
+		}
+		*/
 		
 		this.nutzerMapper.loescheNutzer(n);
 		
@@ -351,9 +363,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer getAllNutzer() throws IllegalArgumentException{
+	public ArrayList<Nutzer> getAllNutzer() throws IllegalArgumentException{
 		
-		return this.nutzerMapper.getAllNutzer(ArrayList<Nutzer>);
+		return this.nutzerMapper.getAllNutzer();
 
 	}
 	

@@ -1,15 +1,25 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import de.hdm.itprojekt.messenger.server.db.DBConnection;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 public class NutzerMapper extends DBConnection{
+	
+	private static NutzerMapper nutzerMapper = null;
 	
 	public NutzerMapper () {
 		
 	}
 	
 	public static NutzerMapper getNutzerMapper() {
-		return null;
+		return nutzerMapper;
 	}
 	
 	/** Suche eines Nutzers nach seiner eindeutigen Nummer

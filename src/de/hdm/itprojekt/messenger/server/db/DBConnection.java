@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 */
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import com.google.appengine.api.rdbms.AppEngineDriver;
 import com.google.cloud.sql.jdbc.ResultSet;
 
@@ -61,7 +65,7 @@ public class DBConnection {
 		if ( con == null) {
 			try {
 				// Ersteinmal muss der passende SB-Treiber geladen werden
-				DriverManager.registerDriver(new AppEngingeDriver());
+				DriverManager.registerDriver(new AppEngineDriver());
 				
 				/*
 				 * Dann erst kann uns der DriveManager eine Verbindung mit den oben 
@@ -82,4 +86,4 @@ public class DBConnection {
 	}
 }
 
-}
+
