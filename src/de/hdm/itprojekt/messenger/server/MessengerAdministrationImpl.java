@@ -11,11 +11,14 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+
 
 
 import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
@@ -44,9 +47,55 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	private AbonnementMapper abonnementMapper = null;
 	private NachrichtMapper nachrichtMapper = null;
 	
+
+	/**
+	 * no-argument Konstruktor.
+	 * @throws IllegalArgumentException
+	 */
+	public MessengerAdministrationImpl () throws IllegalArgumentException {
+		
+	}
+	
+	/**Initialisierungsmethode.
+	 * Diese Methode muss für jede Instanz von MessengerAdministrationImpl aufgerufen werden.
+	 * @throws IllegalArgumentException
+	 */
+	public void init() throws IllegalArgumentException {
+		 /*
+	     * Ganz wesentlich ist, dass die MessengerAdministration einen vollständigen Satz
+	     * von Mappern besitzt, mit deren Hilfe sie dann mit der Datenbank
+	     * kommunizieren kann.
+	     */
+		this.nutzerMapper = NutzerMapper.getNutzerMapper();
+		this.unterhaltungMapper = UnterhaltungMapper.getUnterhaltungMapper ();
+		this.hashtagMapper = HashtagMapper.getHashtagMapper ();
+		this.abonnementMapper = AbonnementMapper.getAbonnementMapper ();
+		this.nachrichtMapper = NachrichtMapper.getNachrichtMapper ();
+	}
+
+
+	/*
+	 * *********************************************************
+	 * ABSCHNITT, Ende: Initialisierung
+	 * *********************************************************
+	 */
+	
+	/*
+	 * *********************************************************
+	 * ABSCHNITT, Beginn: Methoden für Customer-Objekte
+	 * *********************************************************
+	 */
+	
 	/**
 	 * Methode um sich in das System einloggen 
 	 */
+	
+
+	@Override
+	public void login() {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
@@ -67,12 +116,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
                                      "\">einloggen</a>.</p>");
         }
     }
-
 	
-	public void init() throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-	}
-
 	/**
 	 * Methode um ein Hashtag zu abonnieren
 	 * @param hashtag
@@ -323,6 +367,13 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 		return this.hashtagMapper.findbyID(id);
 		
+	}
+
+
+	@Override
+	public Hashtag getHashtagByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
