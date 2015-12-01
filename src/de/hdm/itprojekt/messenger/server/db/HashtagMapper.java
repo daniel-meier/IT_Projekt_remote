@@ -6,12 +6,14 @@ import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 
 public class HashtagMapper extends DBConnection{
 	
-	public HashtagMapper () {
+private static HashtagMapper hashtagMapper = null;
+	
+	protected HashtagMapper () {
 		
 	}
 	
-	public HashtagMapper hashtagMapper () {
-		
+	public static HashtagMapper getHashtagMapper() {
+		return hashtagMapper;
 	}
 	
 	/** Suche eines Hashtags nach seiner eindeutigen Nummer

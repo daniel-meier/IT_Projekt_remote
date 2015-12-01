@@ -2,13 +2,15 @@ package de.hdm.itprojekt.messenger.server.db;
 
 public class AbonnementMapper extends DBConnection {
 
-	public AbonnementMapper () {
+private static AbonnementMapper abonnementMapper = null;
+	
+	protected AbonnementMapper () {
 		
 	}
 	
-	public AbonnementMapper abonnementMapper () {
-		
- 	}
+	public static AbonnementMapper getAbonnementMapper() {
+		return abonnementMapper;
+	}
 	
 	/** Suche eines Abonnements nach seiner eindeutigen Nummer
 	 * 

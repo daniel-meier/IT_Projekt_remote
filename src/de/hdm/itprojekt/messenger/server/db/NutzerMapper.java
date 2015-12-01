@@ -8,7 +8,7 @@ public class NutzerMapper extends DBConnection{
 		
 	}
 	
-	public NutzerMapper getNutzerMapper() {
+	public static NutzerMapper getNutzerMapper() {
 		return null;
 	}
 	
