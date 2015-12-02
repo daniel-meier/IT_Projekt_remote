@@ -33,23 +33,35 @@ div#navigation {
 /* 	border-style: solid; */
 }
 
-
-div#text {
-/* 	background: black; */
+div#headline {
+	margin-top: 15pt;
 }
 
 .edit-button {
 	font-size: 100%;
 	font-weight: none;
 	width: 100%;
-	margin-bottom: 1em;
-	margin-top: 15pt;
+	margin-bottom: 10pt;
+	margin-top: 10pt;
 /* 	margin-left: 15pt; */
 }
-	
-div#editbuttons {
-/* 	background: black; */
+
+.label1 {
+	font-size: 150%;
+	font-style: bold;
+	color: red;
+	margin-right: 5pt;
+/* 	margin-bottom: 1em; */
+/* 	margin-top: 16pt; */
 }
+
+.teilnehmerNamen {
+	font-size: 150%;
+	font-style: bold;
+/* 	margin-bottom: 1em; */
+/* 	margin-top: 16pt; */
+}
+	
 	
 .suchEingabe-textbox {
 	margin-top: 16pt;
