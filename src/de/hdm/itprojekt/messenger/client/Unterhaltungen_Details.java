@@ -49,19 +49,37 @@ public class Unterhaltungen_Details extends VerticalPanel {
 	    /**
 	     * DialoxBox für einen Nutzer, welcher zum Chat hinzugefügt werden soll 
 	     */
-		final DialogBox dialogBox = new DialogBox();
-	    dialogBox.setGlassEnabled(true);
-	    dialogBox.setAnimationEnabled(true);
-	    dialogBox.setText("Geben sie einen Namen ein!");
+		final DialogBox hinzufuegenDialogBox = new DialogBox();
+		hinzufuegenDialogBox.setGlassEnabled(true);
+	    hinzufuegenDialogBox.setAnimationEnabled(true);
+	    hinzufuegenDialogBox.setText("Geben Sie einen Namen zum Hinzufügen eines Teilnehmers ein!");
 
+	    HorizontalPanel hinzufuegenDialogContents = new HorizontalPanel();
+	    hinzufuegenDialogContents.setSpacing(40);
+	    hinzufuegenDialogBox.setWidget(hinzufuegenDialogContents);
 		
+	    MultiWordSuggestOracle hinzufuegenOracle = new MultiWordSuggestOracle();
+	    hinzufuegenOracle.add("Test");
+	    
+	    final SuggestBox hinzufuegenSuggestBox = new SuggestBox(hinzufuegenOracle);
+	    hinzufuegenDialogContents.add(hinzufuegenSuggestBox);
+	    
+	    Button hinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
+	              public void onClick(ClickEvent event) {
+	            	  hinzufuegenDialogBox.hide();
+	                //Hier Applikationslogik für hinzufügen des Unterhaltungsteilnehmers einfügen!!!
+	              }
+	            });
+	    hinzufuegenDialogContents.add(hinzufuegenButton);
+	    
+	    
 	    /**
-		 * Button
+		 * Button zum hinzufügen eines Nutzers
 		 */
 		final Button nutzerhButton = new Button("Nutzer hinzufügen", new ClickHandler() {
 	          public void onClick(ClickEvent sender) {
-		            dialogBox.center();
-		            dialogBox.show();
+	        	  hinzufuegenDialogBox.center();
+	        	  hinzufuegenDialogBox.show();
 		          }
 		        });
 		
@@ -69,11 +87,44 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		buttonPanel.add(nutzerhButton);
 		        		
 		
+		
+		
+		/**
+	     * DialoxBox für einen Nutzer, welcher vom Chat gelöscht werden soll 
+	     */
+		final DialogBox loeschenDialogBox = new DialogBox();
+		loeschenDialogBox.setGlassEnabled(true);
+		loeschenDialogBox.setAnimationEnabled(true);
+		loeschenDialogBox.setText("Geben Sie einen Namen zum Löschen eines Teilnehmers ein!");
+
+	    HorizontalPanel loeschenDialogContents = new HorizontalPanel();
+	    loeschenDialogContents.setSpacing(40);
+	    loeschenDialogBox.setWidget(loeschenDialogContents);
+		
+	    MultiWordSuggestOracle loeschenOracle = new MultiWordSuggestOracle();
+	    loeschenOracle.add("Test");
+	    
+	    final SuggestBox loeschenSuggestBox = new SuggestBox(loeschenOracle);
+	    loeschenDialogContents.add(loeschenSuggestBox);
+	    
+	    Button loeschenButton = new Button("Löschen", new ClickHandler() {
+	              public void onClick(ClickEvent event) {
+	            	  loeschenDialogBox.hide();
+	                //Hier Applikationslogik für löschen des Unterhaltungsteilnehmers !!!
+	              }
+	            });
+	    loeschenDialogContents.add(loeschenButton);
+	    
 	
 		/**
-		 * Button
+		 * Button zum löschen eines Nutzers
 		 */
-		final Button nutzerlButton = new Button("Nutzer löschen");
+		final Button nutzerlButton = new Button("Nutzer löschen",new ClickHandler() {
+	          public void onClick(ClickEvent sender) {
+	        	  loeschenDialogBox.center();
+	        	  loeschenDialogBox.show();
+		          }
+		});
 		nutzerlButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerlButton);
 	
