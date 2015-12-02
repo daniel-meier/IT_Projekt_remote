@@ -49,6 +49,7 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(unterhaltungen);
 		      }
 		    });
@@ -68,6 +69,7 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(suchen);
 		      }
 		    });
@@ -83,9 +85,10 @@ public class Messenger implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
 
-				RootPanel.get("window").clear();
-				RootPanel.get("editbuttons").clear();
-				RootPanel.get("window").add(nachrichtSchreiben);
+				  RootPanel.get("window").clear();
+				    RootPanel.get("editbuttons").clear();
+				    RootPanel.get("headline").clear();
+			        RootPanel.get("window").add(nachrichtSchreiben);
 			}
 		
 		});
@@ -111,6 +114,7 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(impressum);
 		      }
 		    });	
@@ -127,6 +131,7 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(kontakt);
 		      }
 		    });	

@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.messenger.client;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
 
@@ -42,15 +44,31 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		teilnehmerNamen.setStylePrimaryName("teilnehmerNamen");
 	    headlinePanel.add(teilnehmerNamen);
 
-		
+	    
+	    
+	    /**
+	     * DialoxBox für einen Nutzer, welcher zum Chat hinzugefügt werden soll 
+	     */
+		final DialogBox dialogBox = new DialogBox();
+	    dialogBox.setGlassEnabled(true);
+	    dialogBox.setAnimationEnabled(true);
+	    dialogBox.setText("Geben sie einen Namen ein!");
+
 		
 	    /**
 		 * Button
 		 */
-		final Button nutzerhButton = new Button("Nutzer hinzufügen");
+		final Button nutzerhButton = new Button("Nutzer hinzufügen", new ClickHandler() {
+	          public void onClick(ClickEvent sender) {
+		            dialogBox.center();
+		            dialogBox.show();
+		          }
+		        });
+		
 		nutzerhButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerhButton);
-	
+		        		
+		
 	
 		/**
 		 * Button
