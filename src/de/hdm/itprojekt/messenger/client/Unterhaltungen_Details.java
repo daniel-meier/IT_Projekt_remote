@@ -54,23 +54,40 @@ public class Unterhaltungen_Details extends VerticalPanel {
 	    hinzufuegenDialogBox.setAnimationEnabled(true);
 	    hinzufuegenDialogBox.setText("Geben Sie einen Namen zum Hinzufügen eines Teilnehmers ein!");
 
+	    /**
+	     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+	     */
 	    HorizontalPanel hinzufuegenDialogContents = new HorizontalPanel();
 	    hinzufuegenDialogContents.setSpacing(40);
 	    hinzufuegenDialogBox.setWidget(hinzufuegenDialogContents);
-		
+	    
+	    /**
+	     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+	     */
 	    MultiWordSuggestOracle hinzufuegenOracle = new MultiWordSuggestOracle();
 	    hinzufuegenOracle.add("Test");
 	    
+	    /**
+	     * SuggestBox, die anschließend dem Panel hinzufuegenDialogBox hinzugefügt wird
+	     */
 	    final SuggestBox hinzufuegenSuggestBox = new SuggestBox(hinzufuegenOracle);
 	    hinzufuegenDialogContents.add(hinzufuegenSuggestBox);
 	    
+	    /**
+	     * Button, zum hinzufügen des gewählten Nutzers 
+	     */
 	    Button hinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
 	              public void onClick(ClickEvent event) {
 	            	  hinzufuegenDialogBox.hide();
 	                //Hier Applikationslogik für hinzufügen des Unterhaltungsteilnehmers einfügen!!!
 	              }
 	            });
+	    
+	    /**
+	     * Hinzufügen des Buttons zum hinzufuegenDialogContents Panel
+	     */
 	    hinzufuegenDialogContents.add(hinzufuegenButton);
+	    
 	    
 	    
 	    /**
@@ -83,6 +100,9 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		          }
 		        });
 		
+		/**
+		 * Stylen und hinzufügen des Buttons zum buttonPanel
+		 */
 		nutzerhButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerhButton);
 		        		
@@ -96,28 +116,44 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		loeschenDialogBox.setGlassEnabled(true);
 		loeschenDialogBox.setAnimationEnabled(true);
 		loeschenDialogBox.setText("Geben Sie einen Namen zum Löschen eines Teilnehmers ein!");
-
+		
+		/**
+	     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+	     */
 	    HorizontalPanel loeschenDialogContents = new HorizontalPanel();
 	    loeschenDialogContents.setSpacing(40);
 	    loeschenDialogBox.setWidget(loeschenDialogContents);
 		
+	    /**
+	     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+	     */
 	    MultiWordSuggestOracle loeschenOracle = new MultiWordSuggestOracle();
 	    loeschenOracle.add("Test");
 	    
+	    /**
+	     * SuggestBox, die anschließend dem Panel loeschenDialogBox hinzugefügt wird
+	     */
 	    final SuggestBox loeschenSuggestBox = new SuggestBox(loeschenOracle);
 	    loeschenDialogContents.add(loeschenSuggestBox);
 	    
+	    /**
+	     * Hinzufügen des Buttons zum loeschenDialogContents Panel
+	     */
 	    Button loeschenButton = new Button("Löschen", new ClickHandler() {
 	              public void onClick(ClickEvent event) {
 	            	  loeschenDialogBox.hide();
 	                //Hier Applikationslogik für löschen des Unterhaltungsteilnehmers !!!
 	              }
 	            });
+	    
+	    /**
+	     * Hinzufügen des Buttons zum loeschenDialogContents Panel
+	     */
 	    loeschenDialogContents.add(loeschenButton);
 	    
 	
 		/**
-		 * Button zum löschen eines Nutzers
+		 * Button zum Löschen eines Nutzers
 		 */
 		final Button nutzerlButton = new Button("Nutzer löschen",new ClickHandler() {
 	          public void onClick(ClickEvent sender) {
@@ -125,19 +161,23 @@ public class Unterhaltungen_Details extends VerticalPanel {
 	        	  loeschenDialogBox.show();
 		          }
 		});
+		
+		/**
+		 * Stylen und hinzufügen des Nutzer löschen Buttons zum buttonPanel
+		 */
 		nutzerlButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerlButton);
 	
 
 		/**
-		 * Button
-	   	 */
+		 * Erstellen, Stylen und hinzufügen des Unterhaltung löschen Buttons zum buttonPanel
+		 */
 		final Button löschenButton = new Button("löschen");
 		löschenButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(löschenButton);
 	
 		/**
-		 * Button
+		 * Erstellen, Stylen und hinzufügen des Zurück-Buttons zum buttonPanel
 		 */
 		final Button zurückButton = new Button("zurück");
 		zurückButton.setStylePrimaryName("edit-button");
