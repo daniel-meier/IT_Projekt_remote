@@ -135,9 +135,9 @@ public class NutzerMapper extends DBConnection{
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt) "
+	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungsdatum) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
-	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "')");
+	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungsdatum() + "')");
 	      }
 	    }
 	    catch (SQLException e) {
@@ -225,14 +225,177 @@ public class NutzerMapper extends DBConnection{
 		    // Ergebnisvektor zurückgeben
 		    return result;
 	}
-		
+	/**
+	 * Suchen eines Nutzers mit vorgegebenem Namen. Da dieser nicht eindeutig ist,
+	 * werden mehrere Objekte zurueckgegeben.
+	 * 
+	 *  @param ID Prim‰rschl¸sselattribut (->DB)
+	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schl¸ssel entspricht, null bei 
+	 *  nicht vohandenem DB-Tupel.
+	 */
 	}
 
-
+/**
 	public Nutzer findNutzerByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//DB-Verbindung holen
+				Connection con = DBConnection.connection();
+				
+				try {
+					//Leeeres SQL-Statement (JDBC) anlegen
+					Statement stmt = con.createStatement();
+					
+					//Statement ausf¸llen und als Query an die B schicken
+					ResultSet rs = stmt.executeQuery("SELECT ID, id, vorname, nachname, email, erstellungsdatum "
+							+ "FROM nutzer "
+							+ "WHERE Vorname, Nachname=" + eingabe );
+					
+					/*
+					 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+					 
+					if (rs.next()) {
+						//Ergebnis-Tupel in Objekt umwandeln
+						Nutzer n = new Nutzer();
+						n.setID(rs.getInt("ID"));
+						n.setVorname(rs.getString ("Vorname"));
+						n.setNachname(rs.getString ("Nachname"));
+						n.setEmail(rs.getString ("Email"));
+						n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+						
+				
+						return n;
+					}
+				}
+				catch (SQLException e2) {
+					e2.printStackTrace();
+					return null;
+					
+				}
+				return null;
 	}
+	*/
+	  
+	  //fuer Tino
+	/**
+	public Partlist findByName(String searchWord, int maxResults,
+				boolean onlyModules, boolean onlyProducts)
+				throws IllegalArgumentException, SQLException {
+			// DB-Verbindung holen
+			Connection con = DBConnection.connection();
+			Partlist result = new Partlist();
+			String whereQuery = "";
+			if (!searchWord.isEmpty()) {
+				String[] words = searchWord.split(" ");
+				for (String word : words) {
+					if (word.length() > 3) {
+						Vector<String> fuzzySearchWords = getLevenshtein1(word);
+						for (String fuzzyWord : fuzzySearchWords) {
+							whereQuery += "name LIKE '%" + fuzzyWord + "%' OR ";
+							whereQuery += "description LIKE '%" + fuzzyWord
+									+ "%' OR ";
+							whereQuery += "material_description LIKE '%"
+									+ fuzzyWord + "%' OR ";
+						}
+					} else {
+						// Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben
+						// haben
+						whereQuery += "name LIKE '%" + word + "%' OR ";
+						whereQuery += "description LIKE '%" + word + "%' OR ";
+						whereQuery += "material_description LIKE '%" + word
+								+ "%' OR ";
+					}
+				}
+				if (whereQuery.length() > 5) {
+					// Letztes OR aus Query entfernen
+					whereQuery = whereQuery.substring(0, whereQuery.length() - 4);
+				}
+				try {
+					// Leeres SQL-Statement (JDBC) anlegen
+					Statement stmt = con.createStatement();
+					// Statement ausfuellen
+					String sqlQuery = "SELECT * FROM element WHERE " + whereQuery
+							+ " ORDER BY name LIMIT " + maxResults;
+					 // Query an die DB schicken
+					ResultSet rs = stmt.executeQuery(sqlQuery);
 
+					// Für jeden Eintrag im Suchergebnis wird nun ein Element-Objekt
+					// erstellt.
+					while (rs.next()) {
+						int elementId = rs.getInt("element_id");
+						Element elementFromCache = cachePartlist
+								.getElementById(elementId);
+						if (elementFromCache != null
+								&& !(elementFromCache instanceof Module)
+								&& !onlyProducts && !onlyModules) {
+							result.add(elementFromCache, 1);
+							continue;
+						}
 
+						Product p = ProductMapper.getProductMapper().findByElement(
+								elementId);
+
+						if (p != null) {
+							result.add(p, 1);
+						} else if (!onlyProducts) {
+
+							// Zuerst nachschauen ob es sich bei dem Element um ein
+							// Modul handelt.
+							Module m = ModuleMapper.getModuleMapper()
+									.findByElement(elementId);
+
+							// Wenn es sich um ein Modul handelt, dieses hinzufügen
+							// ansonsten, das Element als
+							// Bauteil hinzufügen.
+							if (m != null) {
+								result.add(m, 1);
+							} else {
+								if (!onlyModules && !onlyProducts) {
+
+									Element e = new Element();
+									e.setId(elementId);
+
+									e.setName(rs.getString("name"));
+									e.setDescription(rs.getString("description"));
+									e.setMaterialDescription(rs
+											.getString("material_description"));
+
+									Timestamp timestamp = rs
+											.getTimestamp("creation_date");
+									if (timestamp != null) {
+										Date creationDate = new java.util.Date(
+												timestamp.getTime());
+										e.setCreationDate(creationDate);
+									}
+
+									Timestamp timestamp2 = rs
+											.getTimestamp("last_update");
+									if (timestamp2 != null) {
+										Date lastUpdateDate = new java.util.Date(
+												timestamp2.getTime());
+										e.setLastUpdate(lastUpdateDate);
+									}
+
+									e.setLastUser(UserMapper.getUserMapper()
+											.getLastUpdateUserNameByElementId(
+													e.getId()));
+
+									// Hinzufuegen des neuen Objekts zum
+									// Ergebnisvektor
+									result.add(e, 1);
+								}
+							}
+						}
+					}
+
+					rs.close();
+					stmt.close();
+				} catch (SQLException ex) {
+					throw new IllegalArgumentException(ex.getMessage());
+				}
+			}
+
+			return result;
+		}
+	*/
 }
+
