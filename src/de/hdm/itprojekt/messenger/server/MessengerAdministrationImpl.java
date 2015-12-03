@@ -384,8 +384,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Hashtag getHashtagByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagMapper.findByName(name);
 	}
 
 }
