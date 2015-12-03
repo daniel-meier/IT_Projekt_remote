@@ -12,10 +12,10 @@ public abstract class BusinessObject implements Serializable {
 	private Date erstellungsdatum;
 	
 	/**
-	 * Beim erzeugen eines Objects wird es mit dem Datum versehen.
+	 * 
 	 */
 	public BusinessObject(){
-		this.erstellungsdatum = new Date();
+		
 	}
 	
 	/**
@@ -40,6 +40,10 @@ public abstract class BusinessObject implements Serializable {
 	 */
 	public Date getErstellungsdatum(){
 		return this.erstellungsdatum;
+	}
+	
+	public void setErstellungsdatum(Date erstellungsdatum){
+		this.erstellungsdatum = erstellungsdatum;
 	}
 	
 	/**
