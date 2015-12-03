@@ -60,6 +60,19 @@ div#editbuttons {
 	font-size: 25pt;
 	}
 
+div#impressum {
+	float: center;
+	margin-top: 15pt;
+}
+
+.inhalt{
+	font-size: 100%;
+	font-weight: none;
+	width: 100%;
+	margin-bottom: 1em;
+	margin-top: 15pt;
+}
+
 
 	
 
