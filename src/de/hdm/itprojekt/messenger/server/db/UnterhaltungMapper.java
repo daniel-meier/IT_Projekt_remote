@@ -1,5 +1,10 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
 
@@ -85,16 +90,17 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @return
 	 */
 	public Vector<Unterhaltung> getUnterhaltung() {
-		
+		return null;
 	}
 	
 	/** Auslesen aller Teilnehmer einer Unterhaltung
 	 * 
 	 * @return
 	 */
-	public Vector<Nutzer> getTeilnehmer() {
+	public Unterhaltung getTeilnehmer(Vector<Nutzer> teilnehmer) {
+		return null;
 		
 	}
-	
+
 
 }

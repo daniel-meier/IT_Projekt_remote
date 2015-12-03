@@ -207,5 +207,14 @@ Connection c = DBConnection.connection();
 		return null;
 		
 	}
+	/**
+	 * einen oder mehrere Teilnehmer in Nachricht einfügen
+	 * @param teilnehmer
+	 * @return
+	 */
+	public Nachricht getTeilnehmer(Vector<Nutzer> teilnehmer) {
+		return null;
+		
+	}
 	
 }
