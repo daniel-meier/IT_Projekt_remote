@@ -16,6 +16,7 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
 import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
 import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 
+
 /**
  * Implementierungsklasse des ReportGenerators Interface
  *
@@ -24,18 +25,19 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	private static final long serialVersionUID = 1L;
 	
+	
 	public ReportGeneratorImpl() throws IllegalArgumentException{
 		
 	}
 	
 	/**
-	 * Initialisierung des Objekts
-	 * 
+	 * Initialisierung des Objekts um Clientseitig direkt nach der GWT.create 
+	 * eine Initialisierung der Instanz vorzunehmen.
 	 * @throws IllegalArgumentException
 	 * void
 	 */
 	public void init() throws IllegalArgumentException{
-		
+
 	}
 	
 	/**
@@ -46,7 +48,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * void
 	 */
 	@Override
-	public void setNutzer(Nutzer nutzer) throws IllegalArgumentException {
+	public void setNutzer(Nutzer n) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -61,7 +63,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * NachrichtByNutzerReport
 	 */
 	@Override
-	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) 
+	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer n) 
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;

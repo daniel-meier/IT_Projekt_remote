@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
@@ -64,7 +65,7 @@ public interface MessengerAdministration {
 	/** Einen Hashtag beim Namen ausgeben lassen 
 	 * 
 	 */
-	public Hashtag getHashtagByName (String name);
+	public Vector<Hashtag> getHashtagByName (String name);
 	
 	/** Einen Nutzer bei der ID ausgeben lassen
 	 *  
@@ -95,7 +96,7 @@ public interface MessengerAdministration {
 	/**Nachricht erstellen
 	 * 
 	 */
-	public Nachricht erstelleNachricht(String nachricht);
+	public Nachricht erstelleNachricht(Nachricht nachricht);
 	
 	/**Nachricht loeschen
 	 * 
@@ -110,7 +111,7 @@ public interface MessengerAdministration {
 	/**Hashtag erstellen
 	 * 
 	 */
-	public Hashtag erstelleHashtag(String hashtag);
+	public Hashtag erstelleHashtag(Hashtag hashtag);
 	
 	/**Nutzer loeschen
 	 * 
@@ -131,6 +132,8 @@ public interface MessengerAdministration {
 	 * 
 	 */
 	public Hashtag getHashtagByID(int id);
+
+	Hashtag getHashtagByName();
 }
 
 

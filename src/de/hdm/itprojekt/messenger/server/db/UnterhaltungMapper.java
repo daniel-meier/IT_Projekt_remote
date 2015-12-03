@@ -20,7 +20,8 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param id
 	 * @return
 	 */
-	public UnterhaltungMapper findByID (int id) {
+	public Unterhaltung findByID (int id) {
+		return null;
 		
 	}
 	

@@ -22,6 +22,7 @@ private static HashtagMapper hashtagMapper = null;
 	 * @return
 	 */
 	public Hashtag findbyID (int id) {
+		return null;
 		
 	}
 	
@@ -30,7 +31,8 @@ private static HashtagMapper hashtagMapper = null;
 	 * @param Hashtag
 	 * @return
 	 */
-	public Hashtag einfuegen (hashtag Hashtag) {
+	public Hashtag einfuegen (Hashtag hashtag) {
+		return hashtag;
 		
 	}
 	
@@ -39,7 +41,8 @@ private static HashtagMapper hashtagMapper = null;
 	 * @param Hashtag
 	 * @return
 	 */
-	public Hashtag bearbeiten (hashtag Hashtag) {
+	public Hashtag bearbeiten (Hashtag hashtag) {
+		return hashtag;
 		
 	}
 	
@@ -47,7 +50,7 @@ private static HashtagMapper hashtagMapper = null;
 	 * 
 	 * @param Hashtag
 	 */
-	public void loeschen (hashtag Hashtag) {
+	public void loeschen (Hashtag hashtag) {
 		
 	}
 	
@@ -66,6 +69,7 @@ private static HashtagMapper hashtagMapper = null;
 	 * @return
 	 */
 	public Vector<Hashtag> getAllHashtags () {
+		return null;
 		
 	}
 

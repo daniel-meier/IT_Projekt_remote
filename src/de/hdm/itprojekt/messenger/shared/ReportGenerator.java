@@ -34,7 +34,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * void
 	 */
-	public void setNutzer (Nutzer nutzer) throws IllegalArgumentException;
+	public void setNutzer (Nutzer n) throws IllegalArgumentException;
 	
 
 	/**

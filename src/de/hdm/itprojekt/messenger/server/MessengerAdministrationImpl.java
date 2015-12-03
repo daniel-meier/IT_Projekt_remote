@@ -262,16 +262,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 	
-	/**Unterhaltung nach ID ausgeben
-	 * 
+	/**
+	 * Unterhaltung nach ID ausgeben
 	 * @param id
 	 * @return Unterhaltung
 	 */
 	@Override
 	public Unterhaltung getUnterhaltungByID(int id){
-		// TODO Auto-generated method stub
-		return null;
-		
+		return this.unterhaltungMapper.findByID(id);
 	}
 	
 	/**Nachricht erstellen
@@ -280,9 +278,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nachricht
 	 */
 	@Override
-	public Nachricht erstelleNachricht(String nachricht){
+	public Nachricht erstelleNachricht(Nachricht nachricht){
 		// TODO Auto-generated method stub
-		return null;
+		return this.nachrichtMapper.einfuegen(nachricht);
 	}
 	
 	/**Nachricht loeschen
@@ -311,9 +309,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Hashtag
 	 */
 	@Override
-	public Hashtag erstelleHashtag(String hashtag){
+	public Hashtag erstelleHashtag(Hashtag hashtag){
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagMapper.einfuegen(hashtag);
 	}
 	
 	/**
@@ -383,7 +381,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 
 
 	@Override
-	public Hashtag getHashtagByName(String name) {
+	public Hashtag getHashtagByName() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -74,8 +74,8 @@ public class NachrichtMapper extends DBConnection {
 		return null;
 	}
 	
-	/** Einf�gen eines Nachricht Objekts in die Datenbank
-	 * 
+	/** Einfuegen eines Nachricht Objekts in die Datenbank
+	 * Mittels dieser Methode wird die Nachricht erstellt.
 	 * @param Nachricht
 	 * @return
 	 */
