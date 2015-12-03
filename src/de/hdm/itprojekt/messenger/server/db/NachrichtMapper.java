@@ -38,8 +38,8 @@ public class NachrichtMapper extends DBConnection {
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, text, erstellungsdatum, hashtagID, unterhaltungsID. NutzerID "
-	              + "WHERE id=" + id + " ORDER BY erstellungsdatum");
+	          .executeQuery("SELECT id, text, erstellungszeitpunkt, hashtagID, unterhaltungsID. NutzerID "
+	              + "WHERE id=" + id + " ORDER BY erstellungszeitpunkt");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -50,7 +50,7 @@ public class NachrichtMapper extends DBConnection {
 	        Nachricht n = new Nachricht();
 	        n.setID(rs.getInt("id"));
 	        n.setText(rs.getText("text"));
-	        n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 	        n.setHashtagID(rs.getInt("hashtagID"));
 	        n.setUnterhaltungsID(rs.getInt("unterhaltungsID"));
 	        n.setNutzerID(rs.getInt("NutzerID"));
@@ -81,7 +81,7 @@ public class NachrichtMapper extends DBConnection {
 				Statement stmt = con.createStatement();
 				
 				//Statement ausf¸llen und als Query an die B schicken
-				ResultSet rs = stmt.executeQuery("SELECT ID, text, erstellungsdatum, nutzerID FROM nachricht "
+				ResultSet rs = stmt.executeQuery("SELECT ID, text, erstellungszeitpunkt, nutzerID FROM nachricht "
 						+ "WHERE ID=" + id + " ORDER BY Datum");
 				
 				/*
@@ -92,7 +92,7 @@ public class NachrichtMapper extends DBConnection {
 					Nachricht n = new Nachricht();
 					n.setID(rs.getInt("ID"));
 					n.setText(rs.getString ("Text"));
-					n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+					n.seterstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 					n.setNutzerID(rs.getInt("NutzerID"));
 					return n;
 				}
@@ -134,8 +134,8 @@ public class NachrichtMapper extends DBConnection {
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO nachricht (ID, Text, Erstellungsdatum, NutzerID" + "VALUES ("
-			+ n.getID() + "," + n.getText() + "," + n.getErstellungsdatum() + "," + n.getNutzerID()+"')");
+			stmt.executeUpdate("INSERT INTO nachricht (ID, text, erstellungszeitpunkt, nutzerID" + "VALUES ("
+			+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," + n.getNutzerID()+"')");
 				
 				}
 			}
