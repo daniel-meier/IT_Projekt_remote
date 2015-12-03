@@ -118,23 +118,7 @@ public class Messenger implements EntryPoint {
 		        RootPanel.get("window").add(impressum);
 		      }
 		    });	
-		/**
-		 * Button
-		 */
-		final Button kontaktButton = new Button("Kontakt");
-		kontaktButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(kontaktButton);
 		
-		kontaktButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-		        VerticalPanel kontakt = new Kontakt();
-		        
-		        RootPanel.get("window").clear();
-			    RootPanel.get("editbuttons").clear();
-			    RootPanel.get("headline").clear();
-		        RootPanel.get("window").add(kontakt);
-		      }
-		    });	
 		
 		/**
 		 * Button

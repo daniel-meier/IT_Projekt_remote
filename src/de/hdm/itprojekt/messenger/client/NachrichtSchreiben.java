@@ -16,7 +16,7 @@ public class NachrichtSchreiben extends VerticalPanel{
 			/**
 			 * TextArea, um eine Nachricht zu schreiben
 			 */
-		 TextArea nachrichtSchreiben = new TextArea();
+			TextArea nachrichtSchreiben = new TextArea();
 		    nachrichtSchreiben.setCharacterWidth(80);
 		    nachrichtSchreiben.setVisibleLines(10);
 		    this.add(nachrichtSchreiben);
