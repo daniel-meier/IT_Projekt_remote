@@ -67,3 +67,8 @@ div#headline {
 	margin-top: 16pt;
 }
 
+
+.impressum-headline {
+	font-size: 150%;
+	font-style: bold;
+}
