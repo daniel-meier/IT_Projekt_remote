@@ -32,7 +32,7 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		 * Text des Labels: "Unterhaltung mit"
 		 */
 	    Label l = new Label("Unterhaltung mit ");
-		l.setStylePrimaryName("label1");
+		l.setStylePrimaryName("headline");
 		headlinePanel.add(l);
 		
 		/**
@@ -265,23 +265,28 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		
 		
 		/**
-		 * Ausgabe des Chats
+		 * (Platzhalter für) Ausgabe des Chats
 		 */
-		RichTextArea textAreaAusgabe = new RichTextArea();
-		this.add(textAreaAusgabe);
+		TextArea unterhaltungAusgabe = new TextArea();
+		unterhaltungAusgabe.setCharacterWidth(80);
+		unterhaltungAusgabe.setVisibleLines(10);
+	    this.add(unterhaltungAusgabe);
 		
 		/**
-		 * Eingabe der neuen zu sendenden Nachricht/Antwort
+		 * TextArea, um eine Nachricht/Antwort zu schreiben
 		 */
-		RichTextArea textAreaEingabe = new RichTextArea();
-		this.add(textAreaEingabe);
+		TextArea nachrichtSchreiben = new TextArea();
+	    nachrichtSchreiben.setCharacterWidth(80);
+	    nachrichtSchreiben.setVisibleLines(3);
+	    this.add(nachrichtSchreiben);
 		
 		/**
 		 * Button zum Absenden der Nachricht/Antwort
 		 */
 		final Button antwortenButton = new Button("Antwort absenden");
-		zurückButton.setStylePrimaryName("edit-button");
+		antwortenButton.setStylePrimaryName("edit-button");
 		this.add(antwortenButton);
 		
+	
 	}
 }

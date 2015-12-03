@@ -16,7 +16,7 @@ public class Impressum extends VerticalPanel {
 		
 		
 		Label headline = new Label("Impressum");
-		headline.setStyleName("impressum-headline");
+		headline.setStyleName("headline");
         headlinePanel.add(headline);
         
         Grid impressumGrid = new Grid(7, 3);

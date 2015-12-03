@@ -7,9 +7,19 @@ import com.google.gwt.event.dom.client.ClickHandler;
 public class NachrichtSchreiben extends VerticalPanel{
 	
 	public void onLoad() {
-		super.onLoad();
+			super.onLoad();
 		
-		  HorizontalPanel buttonPanel = new HorizontalPanel();
+			
+			HorizontalPanel headlinePanel = new HorizontalPanel();
+			RootPanel.get("headline").add(headlinePanel);
+			
+			Label headline = new Label("Nachricht schreiben");
+			headline.setStyleName("headline");
+	        headlinePanel.add(headline);
+			
+			
+		
+			HorizontalPanel buttonPanel = new HorizontalPanel();
 			RootPanel.get("editbuttons").add(buttonPanel);
 		
 			
@@ -53,10 +63,10 @@ public class NachrichtSchreiben extends VerticalPanel{
 			 * Oracle, dass die vorzuschlagenden Hashtags der suggestBox enthält
 			 */
 			MultiWordSuggestOracle hinzufuegenHashtagOracle = new MultiWordSuggestOracle ();
-			hinzufuegenOracle.add("#0711");
-			hinzufuegenOracle.add("#Stuttgart");
-			hinzufuegenOracle.add("#Hochschule der Medien");
-			hinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
+			hinzufuegenHashtagOracle.add("#0711");
+			hinzufuegenHashtagOracle.add("#Stuttgart");
+			hinzufuegenHashtagOracle.add("#Hochschule der Medien");
+			hinzufuegenHashtagOracle.add("#Ich Liebe das IT-Projekt");
 			
 			/**
 			 * SuggestBox, die anschließend dem Panel hingefügt wird

@@ -49,7 +49,7 @@ div#headline {
 .label1 {
 	font-size: 150%;
 	font-style: bold;
-	color: red;
+	color: black;
 	margin-right: 5pt;
 /* 	margin-bottom: 1em; */
 /* 	margin-top: 16pt; */
@@ -68,7 +68,7 @@ div#headline {
 }
 
 
-.impressum-headline {
+.headline {
 	font-size: 150%;
 	font-style: bold;
 }
