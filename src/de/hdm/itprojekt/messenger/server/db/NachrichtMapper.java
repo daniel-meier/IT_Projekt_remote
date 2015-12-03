@@ -38,8 +38,8 @@ public class NachrichtMapper extends DBConnection {
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, text, erstellungszeitpunkt, hashtagID, unterhaltungsID. NutzerID "
-	              + "WHERE id=" + id + " ORDER BY erstellungszeitpunkt");
+	          .executeQuery("SELECT id, text, erstellungsdatum, hashtagID, unterhaltungsID. NutzerID "
+	              + "WHERE id=" + id + " ORDER BY erstellungsdatum");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -50,7 +50,7 @@ public class NachrichtMapper extends DBConnection {
 	        Nachricht n = new Nachricht();
 	        n.setID(rs.getInt("id"));
 	        n.setText(rs.getText("text"));
-	        n.setErstellungszeitpunkt(rs.getDatetime("erstellungszeitpunkt"));
+	        n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
 	        n.setHashtagID(rs.getInt("hashtagID"));
 	        n.setUnterhaltungsID(rs.getInt("unterhaltungsID"));
 	        n.setNutzerID(rs.getInt("NutzerID"));
@@ -71,15 +71,80 @@ public class NachrichtMapper extends DBConnection {
 	 * @return
 	 */
 	public Vector<Nachricht> findByNutzer (Nutzer nutzer) {
-		return null;
-	}
+
+		public Nachricht findeDurchID(int id) {
+			//DB-Verbindung holen
+			Connection con = DBConnection.connection();
+			
+			try {
+				//Leeeres SQL-Statement (JDBC) anlegen
+				Statement stmt = con.createStatement();
+				
+				//Statement ausf¸llen und als Query an die B schicken
+				ResultSet rs = stmt.executeQuery("SELECT ID, text, erstellungsdatum, nutzerID FROM nachricht "
+						+ "WHERE ID=" + id + " ORDER BY Datum");
+				
+				/*
+				 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+				 */
+				if (rs.next()) {
+					//Ergebnis-Tupel in Objekt umwandeln
+					Nachricht n = new Nachricht();
+					n.setID(rs.getInt("ID"));
+					n.setText(rs.getString ("Text"));
+					n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+					n.setNutzerID(rs.getInt("NutzerID"));
+					return n;
+				}
+			}
+			catch (SQLException e2) {
+				e2.printStackTrace();
+				return null;
+				
+			}
+			return null;
+
 	
 	/** Einf�gen eines Nachricht Objekts in die Datenbank
 	 * 
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht einfuegen (Nachricht nachricht) {
+	public Nachricht einfuegen (Nachricht n) {
+	Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			/*
+			 * Zun‰chst schauen wir nach, welches der mmentan hˆchste 
+			 * Prim‰rsch¸sselwert ist.
+			 */
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id AS maxid"
+					+ "FROM nachricht ");
+			
+			// Wenn wir etwas zur¸ckerhalten, kann dies nur einzeilig sein
+			if (rs.next()) {
+				/*
+				 * t erh‰lt den bisher maximalen, un um 1 inkremetierten
+				 * Prim‰rschl¸ssel.
+				 */
+				n.setID(rs.getInt("maxid")+1);
+				
+			stmt = con.createStatement();
+			
+			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
+			stmt.executeUpdate("INSERT INTO nachricht (ID, Text, Erstellungsdatum, NutzerID" + "VALUES ("
+			+ n.getID() + "," + n.getText() + "," + n.getErstellungsdatum() + "," + n.getNutzerID()+"')");
+				
+				}
+			}
+			catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		
+		
+	}
 		return null;
 	}
 	
