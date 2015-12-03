@@ -94,9 +94,22 @@ public class NachrichtMapper extends DBConnection {
 	
 	/** L�schen eines Nachrichten Objekts aus der Datenbank
 	 * 
-	 * @param Nachricht
+	 * @param nachricht auf der DB zu löschende "objekt"
 	 */
 	public void loeschen (Nachricht nachricht) {
+			Connection con =DBConnection.connection();
+			
+			try {
+				Statement stmt = con.createStatement();
+				
+				stmt.executeUpdate("DELETE FROM nachricht " + "WHERE id=" + nachricht.getID());
+				
+			}
+			catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		
 		
 	}
 	
