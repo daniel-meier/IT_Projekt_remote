@@ -110,6 +110,23 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @return
 	 */
 	public UnterhaltungMapper bearbeiten (unterhaltung Unterhaltung) {
+		Connection c = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + Unterhaltung.getText() + "' " + "WHERE id=" + Unterhaltung.getID());
+								
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		// um Analoge zu insert(Textbeitrag t) zu wahren, geben wir t zur¸ck
+		return Unterhaltung;
+	}
+		
+		
 		
 	}
 	
@@ -118,6 +135,19 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param Unterhaltung
 	 */
 	public void loeschen (Unterhaltung Unterhaltung){
+		
+	Connection con =DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + Unterhaltung.getID());
+			
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+	}
 		
 	}
 	
