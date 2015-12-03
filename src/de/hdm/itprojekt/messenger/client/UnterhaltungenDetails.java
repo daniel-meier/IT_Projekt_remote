@@ -6,44 +6,17 @@ import com.google.gwt.user.client.ui.*;
 
 
 
-public class Unterhaltungen_Details extends VerticalPanel {
+public class UnterhaltungenDetails extends Formular {
 
 	public void onLoad(){
 		
 		super.onLoad();
 		
 		
-		/**
-		 * Horizontal Panel für Überschrift
-		 */
-	    HorizontalPanel headlinePanel = new HorizontalPanel();
-		RootPanel.get("headline").add(headlinePanel);
-		
-		/**
-		 * Horizontal Panel für Edit-Buttons
-		 */
-	    HorizontalPanel buttonPanel = new HorizontalPanel();
-		RootPanel.get("editbuttons").add(buttonPanel);
-	    
-		
-		
-		/**
-		 * Label für Beschriftung der folgenden Textbox. 
-		 * Text des Labels: "Unterhaltung mit"
-		 */
-	    Label l = new Label("Unterhaltung mit ");
-		l.setStylePrimaryName("headline");
-		headlinePanel.add(l);
-		
-		/**
-		 * Read-only Textbox für Ausgabe der Teilnehmernamen
-		 */
-		TextBox teilnehmerNamen = new TextBox();
-		teilnehmerNamen.setText("platzhaltername");
-		teilnehmerNamen.setEnabled(false);
-		teilnehmerNamen.setStylePrimaryName("teilnehmerNamen");
-	    headlinePanel.add(teilnehmerNamen);
+		setHeadline("Unterhaltung mit"); //Hier noch Label mit Unterhaltungsteilnehmer anfügen
 
+		HorizontalPanel headlinePanel = getHeadline();
+		HorizontalPanel buttonPanel = getButtonPanel();
 	    
 	    
 	    /**

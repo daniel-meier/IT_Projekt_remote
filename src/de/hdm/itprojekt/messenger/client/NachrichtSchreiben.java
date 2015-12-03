@@ -4,23 +4,15 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.event.dom.client.ClickHandler;
 
-public class NachrichtSchreiben extends VerticalPanel{
+public class NachrichtSchreiben extends Formular{
 	
 	public void onLoad() {
 			super.onLoad();
 		
+			setHeadline("Nachricht schreiben");
 			
-			HorizontalPanel headlinePanel = new HorizontalPanel();
-			RootPanel.get("headline").add(headlinePanel);
-			
-			Label headline = new Label("Nachricht schreiben");
-			headline.setStyleName("headline");
-	        headlinePanel.add(headline);
-			
-			
+			HorizontalPanel buttonPanel = getButtonPanel();
 		
-			HorizontalPanel buttonPanel = new HorizontalPanel();
-			RootPanel.get("editbuttons").add(buttonPanel);
 		
 			
 			/**

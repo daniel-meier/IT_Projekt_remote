@@ -22,26 +22,16 @@ import com.google.gwt.user.client.ui.*;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Suchen extends VerticalPanel {
+public class Suchen extends Formular {
 
 
 	public void onLoad() {
 		super.onLoad();
 		 
-		HorizontalPanel headlinePanel = new HorizontalPanel();
-		RootPanel.get("headline").add(headlinePanel);
-		
-		Label headline = new Label("Nutzer und Hashtag suchen");
-		headline.setStyleName("headline");
-        headlinePanel.add(headline);
-		
-		
-		 /**
-		 * Horizontal Panel für Edit-Buttons
-		 */
-	    HorizontalPanel buttonPanel = new HorizontalPanel();	
-		RootPanel.get("editbuttons").add(buttonPanel);
+		setHeadline("Nutzer und Hashtag suchen");
 	    
+		HorizontalPanel buttonPanel = getButtonPanel();
+
 	
 		
 		/**
