@@ -153,7 +153,22 @@ public class NachrichtMapper extends DBConnection {
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht bearbeiten (Nachricht nachricht) {
+	public Nachricht bearbeiten (Nachricht n) {
+		
+Connection c = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("UPDATE nachricht " + "SET Text= '" + n.getText() + "' " + "WHERE id=" + n.getID());
+								
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		// um Analoge zu insert(Textbeitrag n) zu wahren, geben wir n zur¸ck
+		return n;
 		return null;
 	}
 	
@@ -161,13 +176,13 @@ public class NachrichtMapper extends DBConnection {
 	 * 
 	 * @param nachricht auf der DB zu löschende "objekt"
 	 */
-	public void loeschen (Nachricht nachricht) {
+	public void loeschen (Nachricht n) {
 			Connection con =DBConnection.connection();
 			
 			try {
 				Statement stmt = con.createStatement();
 				
-				stmt.executeUpdate("DELETE FROM nachricht " + "WHERE id=" + nachricht.getID());
+				stmt.executeUpdate("DELETE FROM nachricht " + "WHERE id=" + n.getID());
 				
 			}
 			catch (SQLException e2) {
