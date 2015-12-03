@@ -381,10 +381,4 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 
-
-	@Override
-	public Hashtag getHashtagByName(String name) {
-		return this.hashtagMapper.findByName(name);
-	}
-
 }
