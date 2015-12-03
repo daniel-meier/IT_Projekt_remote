@@ -21,6 +21,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 
 
+
 import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
 import de.hdm.itprojekt.messenger.server.db.HashtagMapper;
 import de.hdm.itprojekt.messenger.server.db.NachrichtMapper;
@@ -123,7 +124,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Hashtag erstelleHashtagAbonnement(String hashtag) {
+	public Hashtag erstelleHashtagAbonnement(String hashtag) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -134,7 +136,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nachricht bearbeiteNachricht(Nachricht nachricht) throws IllegalArgumentException {
+	public Nachricht bearbeiteNachricht(Nachricht nachricht) 
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return this.nachrichtMapper.bearbeiten(nachricht);
 	}
@@ -145,9 +148,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nachricht teilnehmerHinzufuegen(ArrayList<Nutzer> teilnehmer) {
+	public Nachricht teilnehmerHinzufuegen(Vector<Nutzer> teilnehmer) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return null;
+		return this.nachrichtMapper.getTeilnehmer(teilnehmer);
 	}
 
 	/**
@@ -155,7 +159,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param teilnehmer
 	 */
 	@Override
-	public void teilnehmerEntfernen(ArrayList<Nutzer> teilnehmer) {
+	public void teilnehmerEntfernen(ArrayList<Nutzer> teilnehmer) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		
 	}
@@ -165,7 +170,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param unterhaltung
 	 */
 	@Override
-	public void loescheUnterhaltung(Unterhaltung unterhaltung) {
+	public void loescheUnterhaltung(Unterhaltung unterhaltung) 
+			throws IllegalArgumentException{
 		this.unterhaltungMapper.loeschen(unterhaltung);
 		
 	}
@@ -175,7 +181,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param abonnement
 	 */
 	@Override
-	public void loescheHashtagAbonnement(Abonnement abonnement) {
+	public void loescheHashtagAbonnement(Abonnement abonnement) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		
 	}
@@ -186,7 +193,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nutzer getNutzerByName(String name) {
+	public Nutzer getNutzerByName(String name) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.nutzerMapper.findNutzerByName(name);
 	}
@@ -206,7 +213,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Vector<Hashtag> getHashtagByName(String name) {
+	public Vector<Hashtag> getHashtagByName(String name) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return this.hashtagMapper.findByName(name);
 	}
@@ -217,7 +224,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nutzer getNutzerByID(int id) {
+	public Nutzer getNutzerByID(int id) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.nutzerMapper.findNutzerByID(id);
 	}
@@ -227,7 +234,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Unterhaltung
 	 */
 	@Override
-	public Unterhaltung erstelleUnterhaltung(ArrayList<Nutzer> teilnehmer){
+	public Unterhaltung erstelleUnterhaltung(ArrayList<Nutzer> teilnehmer)
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		Unterhaltung u = new Unterhaltung();
 		return u;
@@ -251,7 +259,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer nutzerAnlegen(String email, String vorname, String nachname){
+	public Nutzer nutzerAnlegen(String email, String vorname, String nachname)
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		Nutzer n = new Nutzer();
 		this.nutzerMapper.nutzerAnlegen(n);
@@ -268,7 +277,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Unterhaltung
 	 */
 	@Override
-	public Unterhaltung getUnterhaltungByID(int id){
+	public Unterhaltung getUnterhaltungByID(int id) throws IllegalArgumentException{
 		return this.unterhaltungMapper.findByID(id);
 	}
 	
@@ -278,7 +287,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nachricht
 	 */
 	@Override
-	public Nachricht erstelleNachricht(Nachricht nachricht){
+	public Nachricht erstelleNachricht(Nachricht nachricht) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.nachrichtMapper.einfuegen(nachricht);
 	}
@@ -288,7 +297,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param nachricht
 	 */
 	@Override
-	public void loescheNachricht(Nachricht nachricht){
+	public void loescheNachricht(Nachricht nachricht) throws IllegalArgumentException{
 		this.nachrichtMapper.loeschen(nachricht);
 	}
 	
@@ -298,7 +307,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Abonnement
 	 */
 	@Override
-	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer){
+	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -309,7 +318,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Hashtag
 	 */
 	@Override
-	public Hashtag erstelleHashtag(Hashtag hashtag){
+	public Hashtag erstelleHashtag(Hashtag hashtag) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.hashtagMapper.einfuegen(hashtag);
 	}
@@ -379,11 +388,5 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 
-
-	@Override
-	public Hashtag getHashtagByName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

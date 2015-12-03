@@ -29,7 +29,7 @@ public interface MessengerAdministration {
 	/** Einen Teilnehmer hinzufügen
 	 * 
 	 */
-	public Nachricht teilnehmerHinzufuegen (ArrayList<Nutzer> teilnehmer);
+	public Nachricht teilnehmerHinzufuegen (Vector<Nutzer> teilnehmer);
 	
 
 	/** Einen Teilnehmer entfernen
@@ -133,7 +133,7 @@ public interface MessengerAdministration {
 	 */
 	public Hashtag getHashtagByID(int id);
 
-	Hashtag getHashtagByName();
+
 }
 
 
