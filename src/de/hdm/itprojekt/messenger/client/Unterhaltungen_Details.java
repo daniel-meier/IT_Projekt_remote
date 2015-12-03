@@ -137,7 +137,7 @@ public class Unterhaltungen_Details extends VerticalPanel {
 	    loeschenDialogContents.add(loeschenSuggestBox);
 	    
 	    /**
-	     * Hinzufügen des Buttons zum loeschenDialogContents Panel
+	     * Button, zum löschen des gewählten Nutzers 
 	     */
 	    Button loeschenButton = new Button("Löschen", new ClickHandler() {
 	              public void onClick(ClickEvent event) {
@@ -154,6 +154,7 @@ public class Unterhaltungen_Details extends VerticalPanel {
 	
 		/**
 		 * Button zum Löschen eines Nutzers
+		 * ...
 		 */
 		final Button nutzerlButton = new Button("Nutzer löschen",new ClickHandler() {
 	          public void onClick(ClickEvent sender) {
@@ -168,18 +169,97 @@ public class Unterhaltungen_Details extends VerticalPanel {
 		nutzerlButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerlButton);
 	
+		
+		
+		
+		
 
+		/**
+	     * DialoxBox für eine Bestätigung zum löschen einer Unterhaltung
+	     */
+		final DialogBox unterhaltungLoeschenDialogBox = new DialogBox();
+		unterhaltungLoeschenDialogBox.setGlassEnabled(true);
+		unterhaltungLoeschenDialogBox.setAnimationEnabled(true);
+		unterhaltungLoeschenDialogBox.setText("Wirkich, wirklich, wirklich?");
+		
+		/**
+	     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+	     */
+	    HorizontalPanel unterhaltungLoeschenDialogContents = new HorizontalPanel();
+	    unterhaltungLoeschenDialogContents.setSpacing(40);
+	    unterhaltungLoeschenDialogBox.setWidget(unterhaltungLoeschenDialogContents);
+		
+	    
+	    /**
+	     * Button, zum bestätigen des löschens der aktiven Unterhaltung 
+	     */
+	    Button unterhaltungLoeschenButton = new Button("Ja, löschen", new ClickHandler() {
+	              public void onClick(ClickEvent event) {
+	            	  unterhaltungLoeschenDialogBox.hide();
+	            	  
+	            	  VerticalPanel unterhaltungen = new Unterhaltungen();
+	            	  RootPanel.get("window").clear();
+	            	  RootPanel.get("editbuttons").clear();
+	            	  RootPanel.get("headline").clear();
+	            	  RootPanel.get("window").add(unterhaltungen);
+	            	  
+	                //Hier Applikationslogik für löschen der aktiven Unterhaltung !!!
+	              }
+	            });
+	    
+	    /**
+	     * Button, zum abbrechen des läschens der aktiven Unterhaltung 
+	     */
+	    Button unterhaltungNichtLoeschenButton = new Button("Nein, nicht löschen", new ClickHandler() {
+	              public void onClick(ClickEvent event) {
+	            	  unterhaltungLoeschenDialogBox.hide();
+	              }
+	            });
+	    
+	    /**
+	     * Hinzufügen der Buttons zum unterhaltungLoeschenDialogContents Panel
+	     */
+	    unterhaltungLoeschenDialogContents.add(unterhaltungLoeschenButton);
+	    unterhaltungLoeschenDialogContents.add(unterhaltungNichtLoeschenButton);
+		
+		
+		
 		/**
 		 * Erstellen, Stylen und hinzufügen des Unterhaltung löschen Buttons zum buttonPanel
 		 */
-		final Button löschenButton = new Button("löschen");
+		final Button löschenButton = new Button("löschen", new ClickHandler() {
+	          public void onClick(ClickEvent sender) {
+	        	  unterhaltungLoeschenDialogBox.center();
+	        	  unterhaltungLoeschenDialogBox.show();
+		          }
+		});
+		
+		/**
+		 * Stylen und hinzufügen des Unterhaltung löschen Buttons zum buttonPanel
+		 */
 		löschenButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(löschenButton);
 	
+		
+		
+		
+		
+		
 		/**
-		 * Erstellen, Stylen und hinzufügen des Zurück-Buttons zum buttonPanel
+		 * Erstellen, Stylen und hinzufügen des Zurück-Buttons zum buttonPanel.
+		 * Hinzufügen des ClickHandlers, welcher auf die Unterhaltungsseite verweist
 		 */
-		final Button zurückButton = new Button("zurück");
+		final Button zurückButton = new Button("zurück", new ClickHandler() {
+            public void onClick(ClickEvent event) {
+            	
+		        VerticalPanel unterhaltungen = new Unterhaltungen();
+
+            	RootPanel.get("window").clear();
+			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
+		        RootPanel.get("window").add(unterhaltungen);
+            }
+          });	
 		zurückButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(zurückButton);
 		
