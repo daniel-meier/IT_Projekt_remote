@@ -19,20 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-
-
-
-import de.hdm.itprojekt.messenger.server.db.AbonnementMapper;
-import de.hdm.itprojekt.messenger.server.db.HashtagMapper;
-import de.hdm.itprojekt.messenger.server.db.NachrichtMapper;
-import de.hdm.itprojekt.messenger.server.db.NutzerMapper;
-import de.hdm.itprojekt.messenger.server.db.UnterhaltungMapper;
+import de.hdm.itprojekt.messenger.server.db.*;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
-import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
-import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
-import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
-import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
-import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
+import de.hdm.itprojekt.messenger.shared.bo.*;
 
 /**
  * Die Klasse MessengerAdministrationImpl erbt von der Klasse RemoteServiceServlet
@@ -45,7 +34,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	private NutzerMapper nutzerMapper = null;
 	private UnterhaltungMapper unterhaltungMapper = null;
 	private HashtagMapper hashtagMapper = null;
-	private AbonnementMapper abonnementMapper = null;
+	private NutzerAbonnementMapper nutzerAbonnementMapper = null;
+	private HashtagAbonnementMapper hashtagAbonnementMapper = null;
 	private NachrichtMapper nachrichtMapper = null;
 	
 
@@ -70,7 +60,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		this.nutzerMapper = NutzerMapper.getNutzerMapper();
 		this.unterhaltungMapper = UnterhaltungMapper.getUnterhaltungMapper ();
 		this.hashtagMapper = HashtagMapper.getHashtagMapper ();
-		this.abonnementMapper = AbonnementMapper.getAbonnementMapper ();
+		this.nutzerAbonnementMapper = NutzerAbonnementMapper.getNutzerAbonnementMapper();
+		this.hashtagAbonnementMapper = HashtagAbonnementMapper.getHashtagAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.getNachrichtMapper ();
 	}
 
@@ -127,7 +118,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Hashtag erstelleHashtagAbonnement(String hashtag) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagAbonnementMapper.erstellen(hashtag);
 	}
 
 	/**
@@ -155,7 +146,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Methode um einen oder mehrere Nutzer aus einer Unterhaltung zu entferen
+	 * Methode um einen oder mehrere Nutzer aus einer Unterhaltung zu entfernen
 	 * @param teilnehmer
 	 */
 	@Override
@@ -309,7 +300,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return null;
+		return this.nutzerAbonnementMapper.erstellen(nutzer);
 	}
 	
 	/**Hashtag erstellen

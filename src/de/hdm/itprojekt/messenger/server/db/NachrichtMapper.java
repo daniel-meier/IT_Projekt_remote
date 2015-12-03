@@ -109,9 +109,9 @@ public class NachrichtMapper extends DBConnection {
 	 * Mittels dieser Methode wird die Nachricht erstellt.
 	 * @param Nachricht
 	 * @return
-	 */
+	 */		
 	public Nachricht einfuegen (Nachricht n) {
-	Connection con = DBConnection.connection();
+		Connection con = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
@@ -153,9 +153,9 @@ public class NachrichtMapper extends DBConnection {
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht bearbeiten (Nachricht n) {
+	public Nachricht bearbeite(Nachricht n) {
 		
-Connection c = DBConnection.connection();
+		Connection con = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
@@ -169,7 +169,6 @@ Connection c = DBConnection.connection();
 		
 		// um Analoge zu insert(Textbeitrag n) zu wahren, geben wir n zur¸ck
 		return n;
-		return null;
 	}
 	
 	/** L�schen eines Nachrichten Objekts aus der Datenbank

@@ -1,5 +1,9 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -64,7 +68,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
-	public UnterhaltungMapper einfuegen (unterhaltung Unterhaltung) {
+	public UnterhaltungMapper einfuegen (Unterhaltung unterhaltung) {
 	Connection con = DBConnection.connection();
 		
 		try {
@@ -105,7 +109,7 @@ public class UnterhaltungMapper extends DBConnection{
 			 * explizite R¸ckgabe von t ist eher ein Stilmittel, um zu signalisieren, 
 			 * dass sich das Objekt evtl. im Laufer der Methode ver‰ndert hat.
 			 */
-			return Unterhaltung;
+			return unterhaltung;
 	}
 		
 	
@@ -114,7 +118,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
-	public UnterhaltungMapper bearbeiten (unterhaltung Unterhaltung) {
+	public UnterhaltungMapper bearbeiten (Unterhaltung unterhaltung) {
 		Connection c = DBConnection.connection();
 		
 		try {
@@ -128,7 +132,7 @@ public class UnterhaltungMapper extends DBConnection{
 		}
 		
 		// um Analoge zu insert(Textbeitrag t) zu wahren, geben wir t zur¸ck
-		return Unterhaltung;
+		return unterhaltung;
 	}
 		
 		
@@ -154,7 +158,6 @@ public class UnterhaltungMapper extends DBConnection{
 		}
 	}
 		
-	}
 	
 	/** Auslesen aller Unterhaltungen
 	 * 
