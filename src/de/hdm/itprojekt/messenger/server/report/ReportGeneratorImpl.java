@@ -39,19 +39,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 	
 	/**
-	 * Setzen des zugeordneten Nutzer
-	 * 
-	 * @param nutzer
-	 * @throws IllegalArgumentException
-	 * void
-	 */
-	@Override
-	public void setNutzer(Nutzer nutzer) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
 	 * Erstellen eines NachrichtByNutzerReport-Reports. 
 	 * Dieser Report-Typ stellt sämtliche Nachrichten nach Nutzer dar.
 	 * 

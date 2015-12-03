@@ -29,14 +29,12 @@ public class Abonnement extends BusinessObject {
 		return abonnent;
 	}
 	
-	
 	/**
-	public Abonnement getAbonnement() {
-		return abonnement;
+	 * Setzen eines Abonnenten
+	 * @param abonnent
+	 */
+	public void setAbonnent(Nutzer abonnent) {
+		this.abonnent = abonnent;
 	}
-
-	public void setAbonnement(Abonnement abonnement) {
-		this.abonnement  = abonnement;
-	}
-	*/
+	
 }
