@@ -17,14 +17,43 @@ public class UnterhaltungMapper extends DBConnection{
 	
 	/** Suche einer Unterhaltung nach seiner eindeutigen Nummer
 	 *  
-	 * @param id
+	 * @param id Primaerschluesselattribut
 	 * @return
 	 */
 	public UnterhaltungMapper findByID (int id) {
 		
+		//DB-Verbindung holen
+		Connection con = DBConnection.connection();
+		
+		try {
+			//Leeeres SQL-Statement (JDBC) anlegen
+			Statement stmt = con.createStatement();
+			
+			//Statement ausf¸llen und als Query an die B schicken
+			ResultSet rs = stmt.executeQuery("SELECT ID,  erstellungsdatum FROM unterhaltung "
+					+ "WHERE ID=" + id + " ORDER BY Datum");
+			
+			/*
+			 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+			 */
+			if (rs.next()) {
+				//Ergebnis-Tupel in Objekt umwandeln
+				Unterhaltung u = new Unterhaltung();
+				u.setID(rs.getInt("ID"));
+				u.setErstellungdatum(rs.getDate("Erstellungsdatum"));
+				return u;
+			}
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+			return null;
+			
+		}
+		return null;
 	}
-	
-	/** Einf�gen eines Unterhaltungs Objekts in die Datenbank
+
+		
+	/** Einf�gen eines Unterhaltungs Objekts in die Datenbank
 	 * 
 	 * @param UnterhaltungMapper
 	 * @return
@@ -42,7 +71,7 @@ public class UnterhaltungMapper extends DBConnection{
 		
 	}
 	
-	/** L�schen eines Unterhaltungs Objekts aus der Datenbank
+	/** L�schen eines Unterhaltungs Objekts aus der Datenbank
 	 * 
 	 * @param Unterhaltung
 	 */
