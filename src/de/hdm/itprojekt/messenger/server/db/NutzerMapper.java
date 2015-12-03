@@ -274,5 +274,128 @@ public class NutzerMapper extends DBConnection{
 				return null;
 	}
 	*/
+	  
+	  //fuer Tino
+	/**
+	public Partlist findByName(String searchWord, int maxResults,
+				boolean onlyModules, boolean onlyProducts)
+				throws IllegalArgumentException, SQLException {
+			// DB-Verbindung holen
+			Connection con = DBConnection.connection();
+			Partlist result = new Partlist();
+			String whereQuery = "";
+			if (!searchWord.isEmpty()) {
+				String[] words = searchWord.split(" ");
+				for (String word : words) {
+					if (word.length() > 3) {
+						Vector<String> fuzzySearchWords = getLevenshtein1(word);
+						for (String fuzzyWord : fuzzySearchWords) {
+							whereQuery += "name LIKE '%" + fuzzyWord + "%' OR ";
+							whereQuery += "description LIKE '%" + fuzzyWord
+									+ "%' OR ";
+							whereQuery += "material_description LIKE '%"
+									+ fuzzyWord + "%' OR ";
+						}
+					} else {
+						// Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben
+						// haben
+						whereQuery += "name LIKE '%" + word + "%' OR ";
+						whereQuery += "description LIKE '%" + word + "%' OR ";
+						whereQuery += "material_description LIKE '%" + word
+								+ "%' OR ";
+					}
+				}
+				if (whereQuery.length() > 5) {
+					// Letztes OR aus Query entfernen
+					whereQuery = whereQuery.substring(0, whereQuery.length() - 4);
+				}
+				try {
+					// Leeres SQL-Statement (JDBC) anlegen
+					Statement stmt = con.createStatement();
+					// Statement ausfuellen
+					String sqlQuery = "SELECT * FROM element WHERE " + whereQuery
+							+ " ORDER BY name LIMIT " + maxResults;
+					 // Query an die DB schicken
+					ResultSet rs = stmt.executeQuery(sqlQuery);
+
+					// Für jeden Eintrag im Suchergebnis wird nun ein Element-Objekt
+					// erstellt.
+					while (rs.next()) {
+						int elementId = rs.getInt("element_id");
+						Element elementFromCache = cachePartlist
+								.getElementById(elementId);
+						if (elementFromCache != null
+								&& !(elementFromCache instanceof Module)
+								&& !onlyProducts && !onlyModules) {
+							result.add(elementFromCache, 1);
+							continue;
+						}
+
+						Product p = ProductMapper.getProductMapper().findByElement(
+								elementId);
+
+						if (p != null) {
+							result.add(p, 1);
+						} else if (!onlyProducts) {
+
+							// Zuerst nachschauen ob es sich bei dem Element um ein
+							// Modul handelt.
+							Module m = ModuleMapper.getModuleMapper()
+									.findByElement(elementId);
+
+							// Wenn es sich um ein Modul handelt, dieses hinzufügen
+							// ansonsten, das Element als
+							// Bauteil hinzufügen.
+							if (m != null) {
+								result.add(m, 1);
+							} else {
+								if (!onlyModules && !onlyProducts) {
+
+									Element e = new Element();
+									e.setId(elementId);
+
+									e.setName(rs.getString("name"));
+									e.setDescription(rs.getString("description"));
+									e.setMaterialDescription(rs
+											.getString("material_description"));
+
+									Timestamp timestamp = rs
+											.getTimestamp("creation_date");
+									if (timestamp != null) {
+										Date creationDate = new java.util.Date(
+												timestamp.getTime());
+										e.setCreationDate(creationDate);
+									}
+
+									Timestamp timestamp2 = rs
+											.getTimestamp("last_update");
+									if (timestamp2 != null) {
+										Date lastUpdateDate = new java.util.Date(
+												timestamp2.getTime());
+										e.setLastUpdate(lastUpdateDate);
+									}
+
+									e.setLastUser(UserMapper.getUserMapper()
+											.getLastUpdateUserNameByElementId(
+													e.getId()));
+
+									// Hinzufuegen des neuen Objekts zum
+									// Ergebnisvektor
+									result.add(e, 1);
+								}
+							}
+						}
+					}
+
+					rs.close();
+					stmt.close();
+				} catch (SQLException ex) {
+					throw new IllegalArgumentException(ex.getMessage());
+				}
+			}
+
+			return result;
+		}
+	*/
 }
 
