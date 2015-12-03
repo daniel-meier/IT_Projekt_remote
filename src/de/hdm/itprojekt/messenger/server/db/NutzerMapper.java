@@ -135,9 +135,9 @@ public class NutzerMapper extends DBConnection{
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt) "
+	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungsdatum) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
-	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "')");
+	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungsdatum() + "')");
 	      }
 	    }
 	    catch (SQLException e) {
@@ -225,14 +225,54 @@ public class NutzerMapper extends DBConnection{
 		    // Ergebnisvektor zurückgeben
 		    return result;
 	}
-		
+	/**
+	 * Suchen eines Nutzers mit vorgegebenem Namen. Da dieser nicht eindeutig ist,
+	 * werden mehrere Objekte zurueckgegeben.
+	 * 
+	 *  @param ID Prim‰rschl¸sselattribut (->DB)
+	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schl¸ssel entspricht, null bei 
+	 *  nicht vohandenem DB-Tupel.
+	 */
 	}
 
-
+/**
 	public Nutzer findNutzerByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//DB-Verbindung holen
+				Connection con = DBConnection.connection();
+				
+				try {
+					//Leeeres SQL-Statement (JDBC) anlegen
+					Statement stmt = con.createStatement();
+					
+					//Statement ausf¸llen und als Query an die B schicken
+					ResultSet rs = stmt.executeQuery("SELECT ID, id, vorname, nachname, email, erstellungsdatum "
+							+ "FROM nutzer "
+							+ "WHERE Vorname, Nachname=" + eingabe );
+					
+					/*
+					 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+					 
+					if (rs.next()) {
+						//Ergebnis-Tupel in Objekt umwandeln
+						Nutzer n = new Nutzer();
+						n.setID(rs.getInt("ID"));
+						n.setVorname(rs.getString ("Vorname"));
+						n.setNachname(rs.getString ("Nachname"));
+						n.setEmail(rs.getString ("Email"));
+						n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+						
+				
+						return n;
+					}
+				}
+				catch (SQLException e2) {
+					e2.printStackTrace();
+					return null;
+					
+				}
+				return null;
 	}
-
-
+	*/
 }
+
