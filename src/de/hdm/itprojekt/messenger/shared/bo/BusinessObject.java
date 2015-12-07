@@ -9,7 +9,7 @@ public abstract class BusinessObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id = 0;
-	private Date erstellungsdatum;
+	private Date erstellungszeitpunkt;
 	
 	/**
 	 * 
@@ -38,12 +38,12 @@ public abstract class BusinessObject implements Serializable {
 	 * Auslesen des Erstellungszeitpunktes
 	 * @return erstellungszeitpunkt
 	 */
-	public Date getErstellungsdatum(){
-		return this.erstellungsdatum;
+	public Date getErstellungszeitpunkt(){
+		return this.erstellungszeitpunkt;
 	}
 	
-	public void setErstellungsdatum(Date erstellungsdatum){
-		this.erstellungsdatum = erstellungsdatum;
+	public void setErstellungszeitpunkt(Date erstellungszeitpunkt){
+		this.erstellungszeitpunkt = erstellungszeitpunkt;
 	}
 	
 	/**
