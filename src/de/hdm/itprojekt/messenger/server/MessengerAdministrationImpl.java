@@ -118,7 +118,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Hashtag erstelleHashtagAbonnement(String hashtag) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return this.hashtagAbonnementMapper.erstellen(hashtag);
+		// return this.hashtagAbonnementMapper.erstellen(hashtag);
+		return null;
 	}
 
 	/**
@@ -179,14 +180,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Methode zum auslesen eines Nutzers nach seinem Namen
+	 * Methode zum auslesen eines Nutzers nach seinem Nachnamen
 	 * @param name
 	 * @return null
 	 */
 	@Override
-	public Nutzer getNutzerByName(String name) throws IllegalArgumentException{
+	public Vector<Nutzer> getNutzerByName(String name) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return this.nutzerMapper.findNutzerByName(name);
+		return this.nutzerMapper.findByNachname(name);
 	}
 
 	/**
@@ -237,9 +238,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param abonnement
 	 */
 	@Override
-	public void loescheNutzerAbonnement(Abonnement abonnement){
+	public void loescheNutzerAbonnement(Abonnement nutzerAbonnement){
 		// TODO Auto-generated method stub
-		
+		this.nutzerAbonnementMapper.loeschen(nutzerAbonnement);
 	}
 	
 	/**Nutzer anlegen
@@ -278,9 +279,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nachricht
 	 */
 	@Override
-	public Nachricht erstelleNachricht(Nachricht nachricht) throws IllegalArgumentException{
+	public Nachricht erstelleNachricht(Nachricht n) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return null;
+		return this.nachrichtMapper.einfuegen(n);
 	}
 	
 	/**Nachricht loeschen
@@ -311,7 +312,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public Hashtag erstelleHashtag(Hashtag hashtag) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagMapper.einfuegen(hashtag);
 	}
 	
 	/**

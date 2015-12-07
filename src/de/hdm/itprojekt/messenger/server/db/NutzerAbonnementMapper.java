@@ -1,5 +1,6 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 
@@ -28,7 +29,8 @@ public class NutzerAbonnementMapper extends DBConnection {
 	 * NutzerAbonnement loeschen
 	 * @param Hashtag
 	 */
-	public void loeschen(NutzerAbonnement nutzerAbonnement) {
+	public void loeschen(Abonnement nutzerAbonnement) {
+		// TODO Auto-generated method stub
 		
 	}
 

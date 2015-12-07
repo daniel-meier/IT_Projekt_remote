@@ -48,11 +48,11 @@ public class NachrichtMapper extends DBConnection {
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nachricht n = new Nachricht();
-	        n.setID(rs.getInt("id"));
-	        n.setText(rs.getText("text"));
-	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-	        n.setHashtagID(rs.getInt("hashtagID"));
-	        n.setUnterhaltungsID(rs.getInt("unterhaltungsID"));
+	        n.setID(rs.getInt("ID"));
+	        n.setText(rs.getText("Text"));
+	        n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+	        n.setHashtagID(rs.getInt("HashtagID"));
+	        n.setUnterhaltungsID(rs.getInt("UnterhaltungsID"));
 	        n.setNutzerID(rs.getInt("NutzerID"));
 	        return n;
 	      }
@@ -70,9 +70,9 @@ public class NachrichtMapper extends DBConnection {
 	 * 
 	 * @return
 	 */
-	public Vector<Nachricht> findByNutzer (Nutzer nutzer) {
+	public Vector<Nachricht> findByNutzer (int id) {
 
-		public Nachricht findeDurchID(int id) {
+	//	public Nachricht findeDurchID(int id) {
 			//DB-Verbindung holen
 			Connection con = DBConnection.connection();
 			
@@ -92,17 +92,16 @@ public class NachrichtMapper extends DBConnection {
 					Nachricht n = new Nachricht();
 					n.setID(rs.getInt("ID"));
 					n.setText(rs.getString ("Text"));
-					n.seterstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+					n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 					n.setNutzerID(rs.getInt("NutzerID"));
 					return n;
 				}
 			}
 			catch (SQLException e2) {
 				e2.printStackTrace();
-				return null;
 				
 			}
-			return null;
+	}	
 
 	
 	/** Einfuegen eines Nachricht Objekts in die Datenbank
@@ -145,15 +144,13 @@ public class NachrichtMapper extends DBConnection {
 		
 		
 	}
-		return null;
-	}
-	
+
 	/** Bearbeiten eines Nachricht Objekts in der Datenbank
 	 * 
 	 * @param Nachricht
 	 * @return
 	 */
-	public Nachricht bearbeite(Nachricht n) {
+	public Nachricht bearbeiten (Nachricht n) {
 		
 		Connection con = DBConnection.connection();
 		
@@ -190,7 +187,6 @@ public class NachrichtMapper extends DBConnection {
 		}
 		
 		
-	}
 	
 	/** Auslesen aller Nachrichten
 	 * 

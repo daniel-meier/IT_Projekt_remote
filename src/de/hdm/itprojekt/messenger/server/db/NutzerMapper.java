@@ -135,15 +135,16 @@ public class NutzerMapper extends DBConnection{
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungsdatum) "
+	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
-	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungsdatum() + "')");
+	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "')");
 	      }
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
 	    }
-	
+		return n;
+	  }
 	
 	/** Bearbeiten eines Nutzer Objekts in der Datenbank
 	 * 
@@ -182,7 +183,7 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + n.getID());
+	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + nutzer.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -397,5 +398,5 @@ public class NutzerMapper extends DBConnection{
 			return result;
 		}
 	*/
-}
+
 

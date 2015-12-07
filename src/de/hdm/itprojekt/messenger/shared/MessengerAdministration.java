@@ -55,7 +55,7 @@ public interface MessengerAdministration {
 	/** Einen Nutzer beim Namen ausgeben lassen 
 	 * 
 	 */
-	public Nutzer getNutzerByName (String name);
+	public Vector<Nutzer> getNutzerByName (String name);
 	
 	/** Ausloggen
 	 * 
