@@ -30,7 +30,6 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @return
 	 */
 	public Unterhaltung findByID (int id) {
-		return null;
 		
 		//DB-Verbindung holen
 		Connection con = DBConnection.connection();
@@ -119,9 +118,10 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @return
 	 */
 	public Unterhaltung bearbeiten (Unterhaltung unterhaltung) {
-		Connection c = DBConnection.connection();
+		Connection con = DBConnection.connection();
 		
 		try {
+			//Leeeres SQL-Statement (JDBC) anlegen
 			Statement stmt = con.createStatement();
 			
 			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
