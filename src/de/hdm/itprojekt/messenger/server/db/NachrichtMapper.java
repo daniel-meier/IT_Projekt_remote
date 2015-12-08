@@ -38,7 +38,7 @@ public class NachrichtMapper extends DBConnection {
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, text, erstellungszeitpunkt, hashtagID, unterhaltungsID. NutzerID "
+	          .executeQuery("SELECT id, text, erstellungszeitpunkt, hashtagID, unterhaltungsID. nutzerID "
 	              + "WHERE id=" + id + " ORDER BY erstellungszeitpunkt");
 
 	      /*
@@ -48,22 +48,19 @@ public class NachrichtMapper extends DBConnection {
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nachricht n = new Nachricht();
-	        n.setID(rs.getInt("ID"));
-	        n.setText(rs.getText("Text"));
-	        n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-	        n.setHashtagID(rs.getInt("HashtagID"));
-	        n.setUnterhaltungsID(rs.getInt("UnterhaltungsID"));
-	        n.setNutzerID(rs.getInt("NutzerID"));
+	        n.setID(rs.getInt("id"));
+	        n.setText(rs.getText("text"));
+	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	        n.setHashtagID(rs.getInt("hashtagID"));
+	        n.setUnterhaltungsID(rs.getInt("unterhaltungsID"));
+	        n.setNutzerID(rs.getInt("nutzerID"));
 	        return n;
 	      }
 	    }
 	    catch (SQLException e2) {
 	      e2.printStackTrace();
-	      return null;
 	    }
-
-	    return null;
-		
+	    
 	}
 	
 	/** Suche ein Nachricht Objekt nach seinem Nutzer
@@ -81,7 +78,7 @@ public class NachrichtMapper extends DBConnection {
 				Statement stmt = con.createStatement();
 				
 				//Statement ausf¸llen und als Query an die B schicken
-				ResultSet rs = stmt.executeQuery("SELECT ID, text, erstellungszeitpunkt, nutzerID FROM nachricht "
+				ResultSet rs = stmt.executeQuery("SELECT id, text, erstellungszeitpunkt, nutzerID FROM nachricht "
 						+ "WHERE ID=" + id + " ORDER BY Datum");
 				
 				/*
@@ -90,18 +87,18 @@ public class NachrichtMapper extends DBConnection {
 				if (rs.next()) {
 					//Ergebnis-Tupel in Objekt umwandeln
 					Nachricht n = new Nachricht();
-					n.setID(rs.getInt("ID"));
-					n.setText(rs.getString ("Text"));
-					n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-					n.setNutzerID(rs.getInt("NutzerID"));
+					n.setID(rs.getInt("id"));
+					n.setText(rs.getString ("text"));
+					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+					n.setNutzerID(rs.getInt("nutzerID"));
 					return n;
-				}
+				} 
+				
 			}
 			catch (SQLException e2) {
 				e2.printStackTrace();
-				
-			}
-	}	
+			}	
+	}
 
 	
 	/** Einfuegen eines Nachricht Objekts in die Datenbank
@@ -141,6 +138,7 @@ public class NachrichtMapper extends DBConnection {
 			catch (SQLException e2) {
 				e2.printStackTrace();
 			}
+		return n;
 		
 		
 	}
@@ -157,7 +155,7 @@ public class NachrichtMapper extends DBConnection {
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("UPDATE nachricht " + "SET Text= '" + n.getText() + "' " + "WHERE id=" + n.getID());
+			stmt.executeUpdate("UPDATE nachricht " + "SET text= '" + n.getText() + "' " + "WHERE id=" + n.getID());
 								
 		}
 		catch (SQLException e2) {
