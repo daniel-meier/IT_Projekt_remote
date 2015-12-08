@@ -196,7 +196,7 @@ public class NutzerMapper extends DBConnection{
    *         repräsentieren. Bei evtl. Exceptions wird ein partiell gef�llter
    *         oder ggf. auch leerer Vetor zurückgeliefert.
 	 */
-	public ArrayList<Nutzer> getAllNutzer() {
+	public Vector<Nutzer> getAllNutzer() {
 		  Connection con = DBConnection.connection();
 		    // Ergebnisvektor vorbereiten
 		    Vector<Nutzer> result = new Vector<Nutzer>();
