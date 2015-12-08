@@ -68,7 +68,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
-	public UnterhaltungMapper einfuegen (Unterhaltung unterhaltung) {
+	public Unterhaltung einfuegen (Unterhaltung unterhaltung) {
 	Connection con = DBConnection.connection();
 		
 		try {
@@ -87,13 +87,13 @@ public class UnterhaltungMapper extends DBConnection{
 				 * t erh‰lt den bisher maximalen, un um 1 inkremetierten
 				 * Prim‰rschl¸ssel.
 				 */
-				Unterhaltung.setID(rs.getInt("maxid")+1);
+				unterhaltung.setID(rs.getInt("maxid")+1);
 				
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
 			stmt.executeUpdate("INSERT INTO unterhaltung (unterhaltungsID, Erstellzeitpunkt" + "VALUES ("
-			+ Unterhaltung.getID() + "," + Unterhaltung.getErstellzeitpunkt() +"')");
+			+ unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
 				
 				}
 			}
@@ -118,13 +118,13 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
-	public UnterhaltungMapper bearbeiten (Unterhaltung unterhaltung) {
+	public Unterhaltung bearbeiten (Unterhaltung unterhaltung) {
 		Connection c = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + Unterhaltung.getText() + "' " + "WHERE id=" + Unterhaltung.getID());
+			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -136,8 +136,6 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 		
 		
-		
-	}
 	
 	/** L�schen eines Unterhaltungs Objekts aus der Datenbank
 	 * 
