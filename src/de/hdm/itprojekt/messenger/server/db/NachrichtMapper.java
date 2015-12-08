@@ -49,7 +49,7 @@ public class NachrichtMapper extends DBConnection {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nachricht n = new Nachricht();
 	        n.setID(rs.getInt("id"));
-	        n.setText(rs.getText("text"));
+	        n.setText(rs.getString("text"));
 	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 	        n.setHashtagID(rs.getInt("hashtagID"));
 	        n.setUnterhaltungsID(rs.getInt("unterhaltungsID"));
@@ -59,9 +59,11 @@ public class NachrichtMapper extends DBConnection {
 	    }
 	    catch (SQLException e2) {
 	      e2.printStackTrace();
+	      return null;
 	    }
-	    
-	}
+	
+    return null;
+  }
 	
 	/** Suche ein Nachricht Objekt nach seinem Nutzer
 	 * 
@@ -72,7 +74,7 @@ public class NachrichtMapper extends DBConnection {
 	//	public Nachricht findeDurchID(int id) {
 			//DB-Verbindung holen
 			Connection con = DBConnection.connection();
-			
+		    Vector<Nachricht> result = new Vector<Nachricht>();
 			try {
 				//Leeeres SQL-Statement (JDBC) anlegen
 				Statement stmt = con.createStatement();
@@ -91,15 +93,18 @@ public class NachrichtMapper extends DBConnection {
 					n.setText(rs.getString ("text"));
 					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 					n.setNutzerID(rs.getInt("nutzerID"));
-					return n;
-				} 
-				
-			}
-			catch (SQLException e2) {
-				e2.printStackTrace();
-			}	
-	}
+				      
+					// Hinzufügen des neuen Objekts zum Ergebnisvektor
+			        result.addElement(n);
+			      }
+			    }
+			    catch (SQLException e) {
+			      e.printStackTrace();
+			    }
 
+			    // Ergebnisvektor zurückgeben
+			    return result;
+			  }
 	
 	/** Einfuegen eines Nachricht Objekts in die Datenbank
 	 * Mittels dieser Methode wird die Nachricht erstellt.
@@ -201,7 +206,7 @@ public class NachrichtMapper extends DBConnection {
 		
 	}
 	/**
-	 * einen oder mehrere Teilnehmer in Nachricht einf�gen
+	 * einen oder mehrere Teilnehmer in Nachricht einf�gen
 	 * @param teilnehmer
 	 * @return
 	 */
