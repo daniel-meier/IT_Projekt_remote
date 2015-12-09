@@ -1,5 +1,7 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.util.Vector;
+
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
@@ -32,6 +34,15 @@ public class NutzerAbonnementMapper extends DBConnection {
 	public void loeschen(Abonnement nutzerAbonnement) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * Auslesen aller Nutzer Abonnements
+	 * @return
+	 */
+	public Vector<Abonnement> getNutzerAbonnement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

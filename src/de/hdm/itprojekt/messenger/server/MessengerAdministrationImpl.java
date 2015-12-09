@@ -58,11 +58,11 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	     * kommunizieren kann.
 	     */
 		this.nutzerMapper = NutzerMapper.getNutzerMapper();
-		this.unterhaltungMapper = UnterhaltungMapper.getUnterhaltungMapper ();
-		this.hashtagMapper = HashtagMapper.getHashtagMapper ();
+		this.unterhaltungMapper = UnterhaltungMapper.getUnterhaltungMapper();
+		this.hashtagMapper = HashtagMapper.getHashtagMapper();
 		this.nutzerAbonnementMapper = NutzerAbonnementMapper.getNutzerAbonnementMapper();
 		this.hashtagAbonnementMapper = HashtagAbonnementMapper.getHashtagAbonnementMapper();
-		this.nachrichtMapper = NachrichtMapper.getNachrichtMapper ();
+		this.nachrichtMapper = NachrichtMapper.getNachrichtMapper();
 	}
 
 
@@ -118,8 +118,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Hashtag erstelleHashtagAbonnement(String hashtag) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		// return this.hashtagAbonnementMapper.erstellen(hashtag);
-		return null;
+		return this.hashtagAbonnementMapper.erstellen(hashtag);
 	}
 
 	/**
@@ -151,14 +150,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param teilnehmer
 	 */
 	@Override
-	public void teilnehmerEntfernen(ArrayList<Nutzer> teilnehmer) 
+	public void teilnehmerEntfernen(Vector<Nutzer> teilnehmer) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		
+		this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
 	}
 
 	/**
-	 * Methode um eine Unterhaltung zu löschen
+	 * Methode um eine Unterhaltung zu loeschen
 	 * @param unterhaltung
 	 */
 	@Override
@@ -169,14 +168,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Methode um ein Hashtag Abonnement zu löschen
+	 * Methode um ein Hashtag Abonnement zu loeschen
 	 * @param abonnement
 	 */
 	@Override
 	public void loescheHashtagAbonnement(Abonnement abonnement) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		
+		this.hashtagAbonnementMapper.loeschen(abonnement);
 	}
 
 	/**
@@ -328,22 +327,19 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 				this.nachrichtMapper.loeschen(na);
 		}
 		
-		/**
-		Vector<Abonnement> abonnement = this.getNutzerAbonnement(n);
+		Vector<Abonnement> abonnement = this.nutzerAbonnementMapper.getNutzerAbonnement();
 		if (abonnement != null) {
 			for (Abonnement a: abonnement)
 			this.loescheNutzerAbonnement(a);
 		}
 		
-		Vector<Abonnement> hashtagAbonnement = this.getHashtagAbonnement();
+		Vector<Abonnement> hashtagAbonnement = this.hashtagAbonnementMapper.getHashtagAbonnement();
 		if (hashtagAbonnement != null) {
 			for (Abonnement h: hashtagAbonnement)
 			this.loescheHashtagAbonnement(h);
 		}
-		*/
 		
 		this.nutzerMapper.loescheNutzer(n);
-		
 	}
 	
 	/**
@@ -362,14 +358,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Nutzer
 	 */
 	@Override
-	public ArrayList<Nutzer> getAllNutzer() throws IllegalArgumentException{
+	public Vector<Nutzer> getAllNutzer() throws IllegalArgumentException{
 		
 		return this.nutzerMapper.getAllNutzer();
 
 	}
 	
-	/**Hashtag nach ID ausgeben
-	 * 
+	/**
+	 * Hashtag nach ID ausgeben
 	 * @param id
 	 * @return Hashtag
 	 */

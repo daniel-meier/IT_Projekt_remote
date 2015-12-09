@@ -155,6 +155,14 @@ public class UnterhaltungMapper extends DBConnection{
 			e2.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
+	 * @return
+	 */
+	public void teilnehmerLoeschen(Vector<Nutzer> teilnehmer) {
+		
+	}
 		
 	
 	/** Auslesen aller Unterhaltungen
@@ -173,6 +181,8 @@ public class UnterhaltungMapper extends DBConnection{
 		return null;
 		
 	}
+	
+	
 
 
 }
