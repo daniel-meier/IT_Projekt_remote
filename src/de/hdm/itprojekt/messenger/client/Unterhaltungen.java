@@ -141,7 +141,7 @@ public class Unterhaltungen extends Formular {
     Column<Unterhaltung, Date> dateColumn = new Column<Unterhaltung, Date>(dateCell) {
       @Override
       public Date getValue(Unterhaltung object) {
-//        return object.getLastMessageTime;
+        return object.getLastMessageTime();
       }
     };
     table.addColumn(dateColumn, "Zeitpunkt der letzten Nachricht");
@@ -150,8 +150,7 @@ public class Unterhaltungen extends Formular {
     TextColumn<Unterhaltung> nameColumn = new TextColumn<Unterhaltung>() {
       @Override
       public String getValue(Unterhaltung object) {
-//        return object.getNamesAsString;
-    	  return "Test";
+        return object.getNamesAsString();
       }
     };
     table.addColumn(nameColumn, "Teilnehmer");
@@ -161,7 +160,7 @@ public class Unterhaltungen extends Formular {
     TextColumn<Unterhaltung> messageColumn = new TextColumn<Unterhaltung>() {
       @Override
       public String getValue(Unterhaltung object) {
-//        return object.getLastMessage;
+        return object.getLastMessage();
       }
     };
     table.addColumn(messageColumn, "Letzte Nachricht");
@@ -182,8 +181,9 @@ public class Unterhaltungen extends Formular {
 //    // paging calculations, so its good habit to keep the row count up to date.
 //    table.setRowCount(CONTACTS.size(), true);
 
+    
     // Push the data into the widget.
-    table.setRowData(0, CONTACTS);
+    table.setRowData(0, Unterhaltung.UNTERHALTUNGEN);
 
     // Add it to the panel.
     this.add(table);

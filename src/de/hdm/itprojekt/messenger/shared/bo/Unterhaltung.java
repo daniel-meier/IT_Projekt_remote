@@ -10,19 +10,32 @@ import java.util.*;
 public class Unterhaltung extends BusinessObject{
 
 	private static final long serialVersionUID = 1L;
+	public static List<Unterhaltung> UNTERHALTUNGEN = null;
 	
 	/**
 	 * Anlegen des Attributs teilnehmer vom Typ ArrayList, um einer Unterhaltung verschiedene Nutzer als
 	 * Teilnehmer hinzufuegen zu koennen.
 	 */
-	private ArrayList<Nutzer> teilnehmer;
+	private ArrayList<Nutzer> teilnehmer = null;
 	
 	/**
-	 * No-Argument Konstruktor 
+	 * Anlegen des Attributs nachrichten vom Typ ArrayList, um einer Unterhaltung verschiedene Nachrichten 
+	 * hinzufuegen zu koennen.
 	 */
-	public Unterhaltung(){
-		this.teilnehmer = new ArrayList<Nutzer>();
+	private ArrayList<Nachricht> nachrichten = null;
+	
+	
+	
+	/**
+	 * Konstruktor 
+	 */
+	public Unterhaltung(ArrayList<Nutzer> teilnehmer, ArrayList<Nachricht> nachrichten){
+		this.teilnehmer = teilnehmer;
+		this.nachrichten = nachrichten;
+		UNTERHALTUNGEN.add(this);
 	}
+	
+	
 	
 	/**
 	 * Hinzufuegen von Nutzer zu einer Unterhaltung.
@@ -30,7 +43,7 @@ public class Unterhaltung extends BusinessObject{
 	 * @param t
 	 * 		Nutzer der hinzugefuegt werden soll.
 	 */
-	public void setTeilnehmer(Nutzer t){
+	public void addTeilnehmer(Nutzer t){
 		if (t != null) {
 			teilnehmer.add(t);	}
 	}
@@ -48,6 +61,20 @@ public class Unterhaltung extends BusinessObject{
 			result.add(t);
 		}
 		return result;
+	}
+	
+	
+	
+	public String getLastMessage(){
+		return "Testnachricht";
+	};
+	
+	public Date getLastMessageTime(){
+		return new Date(80, 4, 12);
+	}
+	
+	public String getNamesAsString(){
+		return "Name1, Name2";
 	}
 	
 }
