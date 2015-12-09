@@ -82,6 +82,30 @@ div#impressum {
 	margin-top: 15pt;
 }
 
+.impressumGrid {
+	padding-top: 15pt;
+}
+
+.labelName {
+	font-size: 12pt;
+}
+
+.labelKontakt {
+	font-size: 12pt;
+}
+
+.labelAbteilung {
+	font-size: 12pt;
+}
+
+.labelChris {
+	padding-right: 15pt;
+}
+
+.labelDani {
+	padding-right: 15pt;
+}
+
 .inhalt{
 	font-size: 100%;
 	font-weight: none;
