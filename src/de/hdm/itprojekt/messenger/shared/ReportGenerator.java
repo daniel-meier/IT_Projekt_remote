@@ -1,20 +1,16 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
-import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
-
+import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
+import de.hdm.itprojekt.messenger.shared.report.*;
 
 public interface ReportGenerator extends RemoteService {
 	
@@ -46,7 +42,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByNutzerReport
 	 */
-	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) throws IllegalArgumentException;
+	public Vector<Nutzer> erstelleNachrichtByNutzerReport(Nutzer nutzer) throws IllegalArgumentException;
 	
 
 	/**
@@ -59,7 +55,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByNutzerZeitraumReport
 	 */
-	public NachrichtByNutzerZeitraumReport erstelleNachrichtByNutzerZeitraumReport(Nutzer nutzer, Date date) throws IllegalArgumentException;
+	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(String nutzer, String von, String bis) 
+			throws IllegalArgumentException;
 	
 	
 	/**
@@ -71,7 +68,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AbonnementByHashtagReport
 	 */
-	public AbonnementByHashtagReport erstelleAbonnementByHashtagReport(Hashtag hashtag) throws IllegalArgumentException;
+	public Vector<HashtagAbonnement> erstelleAbonnementByHashtagReport(String name) 
+			throws IllegalArgumentException;
 	
 
 	/**
@@ -82,24 +80,24 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AllHashtagAbonnementReport
 	 */
-	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport() throws IllegalArgumentException;
+	public Vector<HashtagAbonnement> erstelleAlleHashtagAbonemmentReport() throws IllegalArgumentException;
 	
 	
 	/**
 	 * Erstellen eines AbonnementByNutzerReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Abonnements von Nutzern eines Nutzers dar.
+	 * Dieser Report-Typ stellt saemtliche Abonnements von Nutzern eines Nutzers dar.
 	 * 
 	 * @param nutzer
 	 * @return
 	 * @throws IllegalArgumentException
 	 * AbonnementsByNutzerReport
 	 */
-	public AbonnementsByNutzerReport erstelleAbonnementByNutzerReport(Nutzer nutzer) throws IllegalArgumentException;
+	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(String nachname) throws IllegalArgumentException;
 	
 	
 	/**
 	 * Erstellen eines AbonnementsByNutzerHashtagReport-Reports.
-	 * ???
+	 * Dieser Report-Typ stellt saemtliche Abonnements dar.
 	 * 
 	 * @param nutzer
 	 * @param hashtag
@@ -107,7 +105,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AbonnementsByNutzerHashtagReport
 	 */
-	//public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException;
+	public AbonnementsByNutzerHashtagReport erstelleAbonnementByNutzerHashtagReport
+		(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException;
 	
 	
 	/**
@@ -119,7 +118,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByZeitraumReport
 	 */
-	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date) throws IllegalArgumentException;
+	public Vector<Nachricht> erstelleNachrichtByZeitraumReport(Date date) 
+			throws IllegalArgumentException;
 	
 	
 	/**
@@ -130,6 +130,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AllNutzerAbonnementsReport
 	 */
-	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport() throws IllegalArgumentException;
-	
+	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport() throws IllegalArgumentException;
+
+
 }

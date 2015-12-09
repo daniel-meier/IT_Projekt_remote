@@ -1,19 +1,18 @@
 package de.hdm.itprojekt.messenger.server.report;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itprojekt.messenger.shared.ReportGenerator;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
-import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
+import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
+import de.hdm.itprojekt.messenger.shared.report.*;
+import de.hdm.itprojekt.messenger.server.db.*;
 
 /**
  * Diese Klasse ist die Implementierungsklasse von ReportGenerator
@@ -24,11 +23,18 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator{
 
 	private static final long serialVersionUID = 1L;
+
+	private NutzerAbonnementMapper nutzerAbonnementMapper;
+	private NachrichtMapper nachrichtMapper;
+	private HashtagAbonnementMapper hashtagAbonnementMapper;
 	
 	public ReportGeneratorImpl() throws IllegalArgumentException {
 		
 	}
 	
+	/**
+	 * Initialisierungsmethode
+	 */
 	public void init() throws IllegalArgumentException {
 
 	}
@@ -38,9 +44,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Nutzers.
 	 */
 	@Override
-	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer)
+	public Vector<Nutzer> erstelleNachrichtByNutzerReport(Nutzer nutzer)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
+		//return this.nachrichtMapper.findByNutzer(id);
 		return null;
 	}
 
@@ -49,21 +56,22 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Nutzers und eines Zeitraums.
 	 */
 	@Override
-	public NachrichtByNutzerZeitraumReport erstelleNachrichtByNutzerZeitraumReport(
-			Nutzer nutzer, Date date) throws IllegalArgumentException {
+	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(
+			String nutzer, String von, String bis) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nachrichtMapper.findByNutzerZeitraum(nutzer, von, bis);
 	}
 
 	/**
 	 * Erstellen eines AbonnementByHashtag-Reports.
 	 * Darstellen saemtlicher Abonnements nach der Angabe eines Hashtags.
+	 * @param name 
 	 */
 	@Override
-	public AbonnementByHashtagReport erstelleAbonnementByHashtagReport(
-			Hashtag hashtag) throws IllegalArgumentException {
+	public Vector<HashtagAbonnement> erstelleAbonnementByHashtagReport(
+			String name) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagAbonnementMapper.getHashtagAbonnementByName(name);
 	}
 
 	/**
@@ -71,38 +79,44 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Darstellen saemtlicher Hashtag-Abonnements.
 	 */
 	@Override
-	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport()
+	public Vector<HashtagAbonnement> erstelleAlleHashtagAbonemmentReport()
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagAbonnementMapper.getAllHashtagAbonnement();
 	}
 
 	/**
 	 * Erstellen eines AbonnementByNutzer-Reports.
-	 * Darstellen saemtlicher Abonnements nach Angabe eines Nutzers.
+	 * Darstellen saemtlicher Nutzer Abonnements nach Angabe eines Nutzers.
 	 */
 	@Override
-	public AbonnementsByNutzerReport erstelleAbonnementByNutzerReport(
-			Nutzer nutzer) throws IllegalArgumentException {
+	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(
+			String nachname) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nutzerAbonnementMapper.getNutzerAbonnementByNutzer(nachname);
 	}
 
-/**	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(
-			Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
+	/**
+	 * Erstellen eines AbonnementByNutzerHashtag-Reports
+	 * Darstellen aller Abonnements.
+	 */
+	public AbonnementsByNutzerHashtagReport erstelleAbonnementByNutzerHashtagReport
+		(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
+		//return this.hashtagAbonnementMapper.getAllHashtagAbonnement();
+		//return this.nutzerAbonnementMapper.getAllNutzerAbonnement();
 		return null;
-	} */
+	} 
 
 	/**
 	 * Erstellen eines NachrichtByZeitraum-Reports.
 	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Zeitraums
 	 */
 	@Override
-	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date)
+	public Vector<Nachricht> erstelleNachrichtByZeitraumReport(Date date)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nachrichtMapper.getNachrichtByZeitraum();
 	}
 
 	/**
@@ -110,10 +124,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Darstellen saemtlicher Abonnements eines Nutzers.
 	 */
 	@Override
-	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport()
+	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport()
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nutzerAbonnementMapper.getAllNutzerAbonnement();
 	}
 
 }

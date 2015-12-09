@@ -1,10 +1,15 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
+
 
 public class NutzerAbonnementMapper extends DBConnection {
 	
@@ -37,12 +42,73 @@ public class NutzerAbonnementMapper extends DBConnection {
 	}
 
 	/**
+	 * Auslesen der Nutzer Abonnements nach Nutzer (nachname) angabe
+	 * @param nachname 
+	 * @return
+	 */
+	public Vector<NutzerAbonnement> getNutzerAbonnementByNutzer(String nachname) {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+	    Vector<NutzerAbonnement> result = new Vector<NutzerAbonnement>();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM nutzerAbonnement" 
+	    		  + "WHERE name LIKE '" + nachname + "' ORDER BY nachname");
+
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
+	      while (rs.next()) {
+	        NutzerAbonnement n = new NutzerAbonnement();
+	        n.setID(rs.getInt("id"));
+	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	    //    n.setVorname(rs.getString("vorname"));
+	    //    n.setNachname(rs.getString("nachname"));
+
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(n);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurueckgeben
+	    return result;
+	}
+	
+	/**
 	 * Auslesen aller Nutzer Abonnements
 	 * @return
 	 */
-	public Vector<Abonnement> getNutzerAbonnement() {
+	public Vector<NutzerAbonnement> getAllNutzerAbonnement() {
 		// TODO Auto-generated method stub
-		return null;
+		Connection con = DBConnection.connection();
+	    Vector<NutzerAbonnement> result = new Vector<NutzerAbonnement>();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM nutzerAbonnement" 
+	          + "' ORDER BY name");
+
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
+	      while (rs.next()) {
+	        NutzerAbonnement h = new NutzerAbonnement();
+	        h.setID(rs.getInt("id"));
+	        h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(h);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurueckgeben
+	    return result;
 	}
+
 
 }

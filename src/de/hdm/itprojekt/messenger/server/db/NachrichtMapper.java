@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
 
 
 
@@ -65,8 +66,8 @@ public class NachrichtMapper extends DBConnection {
     return null;
   }
 	
-	/** Suche ein Nachricht Objekt nach seinem Nutzer
-	 * 
+	/** 
+	 * Suche ein Nachricht Objekt nach seinem Nutzer
 	 * @return
 	 */
 	public Vector<Nachricht> findByNutzer (int id) {
@@ -79,12 +80,12 @@ public class NachrichtMapper extends DBConnection {
 				//Leeeres SQL-Statement (JDBC) anlegen
 				Statement stmt = con.createStatement();
 				
-				//Statement ausf¸llen und als Query an die B schicken
+				//Statement ausfuellen und als Query an die DB schicken
 				ResultSet rs = stmt.executeQuery("SELECT id, text, erstellungszeitpunkt, nutzerID FROM nachricht "
 						+ "WHERE ID=" + id + " ORDER BY Datum");
 				
 				/*
-				 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+				 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
 				 */
 				if (rs.next()) {
 					//Ergebnis-Tupel in Objekt umwandeln
@@ -94,7 +95,7 @@ public class NachrichtMapper extends DBConnection {
 					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 					n.setNutzerID(rs.getInt("nutzerID"));
 				      
-					// Hinzufügen des neuen Objekts zum Ergebnisvektor
+					// Hinzufuegen des neuen Objekts zum Ergebnisvektor
 			        result.addElement(n);
 			      }
 			    }
@@ -102,11 +103,12 @@ public class NachrichtMapper extends DBConnection {
 			      e.printStackTrace();
 			    }
 
-			    // Ergebnisvektor zurückgeben
+			    // Ergebnisvektor zurueckgeben
 			    return result;
 			  }
 	
-	/** Einfuegen eines Nachricht Objekts in die Datenbank
+	/** 
+	 * Einfuegen eines Nachricht Objekts in die Datenbank
 	 * Mittels dieser Methode wird die Nachricht erstellt.
 	 * @param Nachricht
 	 * @return
@@ -148,8 +150,8 @@ public class NachrichtMapper extends DBConnection {
 		
 	}
 
-	/** Bearbeiten eines Nachricht Objekts in der Datenbank
-	 * 
+	/** 
+	 * Bearbeiten eines Nachricht Objekts in der Datenbank
 	 * @param Nachricht
 	 * @return
 	 */
@@ -171,9 +173,9 @@ public class NachrichtMapper extends DBConnection {
 		return n;
 	}
 	
-	/** L�schen eines Nachrichten Objekts aus der Datenbank
+	/** Loeschen eines Nachrichten Objekts aus der Datenbank
 	 * 
-	 * @param nachricht auf der DB zu löschende "objekt"
+	 * @param nachricht auf der DB zu loeschende "objekt"
 	 */
 	public void loeschen (Nachricht n) {
 			Connection con =DBConnection.connection();
@@ -213,6 +215,60 @@ public class NachrichtMapper extends DBConnection {
 	public Nachricht getTeilnehmer(Vector<Nutzer> teilnehmer) {
 		return null;
 		
+	}
+
+	/**
+	 * Suche eine Nachricht Objekt nach Nutzer und Zeitraum
+	 * @param nutzer 
+	 * @param von 
+	 * @param bis 
+	 * @return
+	 */
+	public Vector<Nachricht> findByNutzerZeitraum(String nutzer, String von, String bis) {
+		// TODO Auto-generated method stub
+		//DB-Verbindung holen
+		Connection con = DBConnection.connection();
+	    Vector<Nachricht> result = new Vector<Nachricht>();
+		try {
+			//Leeeres SQL-Statement (JDBC) anlegen
+			Statement stmt = con.createStatement();
+			
+			//Statement ausfuellen und als Query an die DB schicken
+			ResultSet rs = stmt.executeQuery ("SELECT * FROM nachricht WHERE erstellungszeitpunkt BETWEEN '" + von + "' AND '" + bis + "'" +
+					"AND nutzer =" + nutzer + " ORDER BY Datum");
+			
+			/*
+			 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
+			 */
+			if (rs.next()) {
+				//Ergebnis-Tupel in Objekt umwandeln
+				Nachricht n = new Nachricht();
+				n.setID(rs.getInt("id"));
+				n.setText(rs.getString ("text"));
+				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				n.setNutzerID(rs.getInt("nutzerID"));
+			      
+				// Hinzufuegen des neuen Objekts zum Ergebnisvektor
+		        result.addElement(n);
+		      }
+		    }
+		    catch (SQLException e) {
+		      e.printStackTrace();
+		    }
+
+		    // Ergebnisvektor zurueckgeben
+		    return result;
+		    
+		    
+	}
+
+	/**
+	 * Auslesen aller Nachrichten nach Angabe eines Zeitraumes
+	 * @return
+	 */
+	public Vector<Nachricht> getNachrichtByZeitraum() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
