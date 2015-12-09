@@ -75,23 +75,6 @@
 
 
 
-
-
-/*
- * Copyright 2010 Google Inc.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
 package de.hdm.itprojekt.messenger.client;
 
 import com.google.gwt.cell.client.DateCell;
@@ -107,6 +90,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -120,25 +106,25 @@ public class Unterhaltungen extends Formular {
   /**
    * A simple data type that represents a contact.
    */
-  private static class Contact {
-    private final String address;
-    private final Date birthday;
-    private final String name;
-
-    public Contact(String name, Date birthday, String address) {
-      this.name = name;
-      this.birthday = birthday;
-      this.address = address;
-    }
-  }
-
-  /**
-   * The list of data to display.
-   */
-  private static final List<Contact> CONTACTS = Arrays.asList(
-      new Contact("John", new Date(80, 4, 12), "123 Fourth Avenue"),
-      new Contact("Joe", new Date(85, 2, 22), "22 Lance Ln"),
-      new Contact("George", new Date(46, 6, 6), "1600 Pennsylvania Avenue"));
+//  private static class Contact {
+//    private final String address;
+//    private final Date birthday;
+//    private final String name;
+//
+//    public Contact(String name, Date birthday, String address) {
+//      this.name = name;
+//      this.birthday = birthday;
+//      this.address = address;
+//    }
+//  }
+//
+//  /**
+//   * The list of data to display.
+//   */
+//  private static final List<Contact> CONTACTS = Arrays.asList(
+//      new Contact("John", new Date(80, 4, 12), "123 Fourth Avenue"),
+//      new Contact("Joe", new Date(85, 2, 22), "22 Lance Ln"),
+//      new Contact("George", new Date(46, 6, 6), "1600 Pennsylvania Avenue"));
 
   public void onLoad() {
 	  
@@ -147,52 +133,54 @@ public class Unterhaltungen extends Formular {
 
 	  
     // Create a CellTable.
-    CellTable<Contact> table = new CellTable<Contact>();
+    CellTable<Unterhaltung> table = new CellTable<Unterhaltung>();
     table.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-
-    // Add a text column to show the name.
-    TextColumn<Contact> nameColumn = new TextColumn<Contact>() {
-      @Override
-      public String getValue(Contact object) {
-        return object.name;
-      }
-    };
-    table.addColumn(nameColumn, "Name");
 
     // Add a date column to show the birthday.
     DateCell dateCell = new DateCell();
-    Column<Contact, Date> dateColumn = new Column<Contact, Date>(dateCell) {
+    Column<Unterhaltung, Date> dateColumn = new Column<Unterhaltung, Date>(dateCell) {
       @Override
-      public Date getValue(Contact object) {
-        return object.birthday;
+      public Date getValue(Unterhaltung object) {
+//        return object.getLastMessageTime;
       }
     };
-    table.addColumn(dateColumn, "Birthday");
+    table.addColumn(dateColumn, "Zeitpunkt der letzten Nachricht");
+    
+    // Add a text column to show the name.
+    TextColumn<Unterhaltung> nameColumn = new TextColumn<Unterhaltung>() {
+      @Override
+      public String getValue(Unterhaltung object) {
+//        return object.getNamesAsString;
+    	  return "Test";
+      }
+    };
+    table.addColumn(nameColumn, "Teilnehmer");
+
 
     // Add a text column to show the address.
-    TextColumn<Contact> addressColumn = new TextColumn<Contact>() {
+    TextColumn<Unterhaltung> messageColumn = new TextColumn<Unterhaltung>() {
       @Override
-      public String getValue(Contact object) {
-        return object.address;
+      public String getValue(Unterhaltung object) {
+//        return object.getLastMessage;
       }
     };
-    table.addColumn(addressColumn, "Address");
+    table.addColumn(messageColumn, "Letzte Nachricht");
 
     // Add a selection model to handle user selection.
-    final SingleSelectionModel<Contact> selectionModel = new SingleSelectionModel<Contact>();
+    final SingleSelectionModel<Unterhaltung> selectionModel = new SingleSelectionModel<Unterhaltung>();
     table.setSelectionModel(selectionModel);
     selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
       public void onSelectionChange(SelectionChangeEvent event) {
-        Contact selected = selectionModel.getSelectedObject();
+    	Unterhaltung selected = selectionModel.getSelectedObject();
         if (selected != null) {
-          Window.alert("You selected: " + selected.name);
+//          Window.alert("You selected: " + selected.name);
         }
       }
     });
 
-    // Set the total row count. This isn't strictly necessary, but it affects
-    // paging calculations, so its good habit to keep the row count up to date.
-    table.setRowCount(CONTACTS.size(), true);
+//    // Set the total row count. This isn't strictly necessary, but it affects
+//    // paging calculations, so its good habit to keep the row count up to date.
+//    table.setRowCount(CONTACTS.size(), true);
 
     // Push the data into the widget.
     table.setRowData(0, CONTACTS);
