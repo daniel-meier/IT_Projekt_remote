@@ -7,67 +7,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 public class NachrichtSchreiben extends Formular{
 	
 	public void onLoad() {
-<<<<<<< HEAD
-		super.onLoad();
-=======
 			super.onLoad();
->>>>>>> refs/heads/GuiTest
 		
-<<<<<<< HEAD
-		  HorizontalPanel buttonPanel = new HorizontalPanel();
-			RootPanel.get("editbuttons").add(buttonPanel);
-		
-			
-			/**
-			 * TextArea, um eine Nachricht zu schreiben
-			 */
-		 TextArea nachrichtSchreiben = new TextArea();
-		    nachrichtSchreiben.setCharacterWidth(80);
-		    nachrichtSchreiben.setVisibleLines(10);
-		    this.add(nachrichtSchreiben);
-		
-		        
-			/**
-			 * Oracle, dass die vorzuschlagenden Wörter der suggestBox enthält
-			 */
-			MultiWordSuggestOracle hinzufuegenOracle = new MultiWordSuggestOracle ();
-			hinzufuegenOracle.add("Meier");
-			hinzufuegenOracle.add("Meler");
-			
-			/**
-			 * SuggestBox, die anschließend dem Panel hingefügt wird
-			 */
-			final SuggestBox hinzufuegenSuggestBox = new SuggestBox(hinzufuegenOracle);
-			buttonPanel.add(hinzufuegenSuggestBox);
-			
-			/**
-			 * Button
-			 */
-			Button hinzufuegenButton = new Button("Hinzufügen" , new ClickHandler() {
-				public void onClick(ClickEvent event) {
-				//Hier Applikationslogik für hinzufügen eines Empfängers eingüfen!!!
-					
-					
-				}
-			});
-	
-			buttonPanel.add(hinzufuegenButton);
-		
-			
-			/**
-			 * Oracle, dass die vorzuschlagenden Hashtags der suggestBox enthält
-			 */
-			MultiWordSuggestOracle hinzufuegenHashtagOracle = new MultiWordSuggestOracle ();
-			hinzufuegenOracle.add("#0711");
-			hinzufuegenOracle.add("#Stuttgart");
-			hinzufuegenOracle.add("#Hochschule der Medien");
-			hinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
-			
-			/**
-			 * SuggestBox, die anschließend dem Panel hingefügt wird
-			 */
-			final SuggestBox hinzufuegenHashtagSuggestBox = new SuggestBox(hinzufuegenOracle);
-=======
 			setHeadline("Nachricht schreiben");
 			
 			HorizontalPanel buttonPanel = getButtonPanel();
@@ -123,7 +64,6 @@ public class NachrichtSchreiben extends Formular{
 			 * SuggestBox, die anschließend dem Panel hingefügt wird
 			 */
 			final SuggestBox hinzufuegenHashtagSuggestBox = new SuggestBox(hinzufuegenHashtagOracle);
->>>>>>> refs/heads/GuiTest
 			buttonPanel.add(hinzufuegenHashtagSuggestBox);
 			
 			/**
