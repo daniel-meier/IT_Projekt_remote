@@ -67,7 +67,6 @@ div#headline {
 	margin-top: 16pt;
 }
 
-<<<<<<< HEAD
 .label1 {
 	color: black;
 	font-size: 25pt;
@@ -75,6 +74,11 @@ div#headline {
 
 div#impressum {
 	float: center;
+	margin-top: 15pt;
+	font-size: 100%;
+}
+
+.labelGesetz {
 	margin-top: 15pt;
 }
 
@@ -87,14 +91,7 @@ div#impressum {
 }
 
 
-	
-
-
-
-=======
-
 .headline {
 	font-size: 150%;
 	font-style: bold;
 }
->>>>>>> refs/heads/GuiTest
