@@ -90,6 +90,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
 import java.util.ArrayList;
@@ -125,6 +127,14 @@ public class Unterhaltungen extends Formular {
 //      new Contact("John", new Date(80, 4, 12), "123 Fourth Avenue"),
 //      new Contact("Joe", new Date(85, 2, 22), "22 Lance Ln"),
 //      new Contact("George", new Date(46, 6, 6), "1600 Pennsylvania Avenue"));
+	
+	
+    ArrayList<Nutzer> nu = new ArrayList<Nutzer>();
+    ArrayList<Nachricht> na = new ArrayList<Nachricht>();
+	
+	private static final List<Unterhaltung> UNTERHALTUNGEN = Arrays.asList(
+	      new Unterhaltung(new ArrayList<Nutzer>(), new ArrayList<Nachricht>()));
+
 
   public void onLoad() {
 	  
@@ -135,16 +145,7 @@ public class Unterhaltungen extends Formular {
     // Create a CellTable.
     CellTable<Unterhaltung> table = new CellTable<Unterhaltung>();
     table.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-
-    // Add a date column to show the birthday.
-    DateCell dateCell = new DateCell();
-    Column<Unterhaltung, Date> dateColumn = new Column<Unterhaltung, Date>(dateCell) {
-      @Override
-      public Date getValue(Unterhaltung object) {
-        return object.getLastMessageTime();
-      }
-    };
-    table.addColumn(dateColumn, "Zeitpunkt der letzten Nachricht");
+    
     
     // Add a text column to show the name.
     TextColumn<Unterhaltung> nameColumn = new TextColumn<Unterhaltung>() {
@@ -164,6 +165,17 @@ public class Unterhaltungen extends Formular {
       }
     };
     table.addColumn(messageColumn, "Letzte Nachricht");
+    
+    
+ // Add a date column to show the birthday.
+    DateCell dateCell = new DateCell();
+    Column<Unterhaltung, Date> dateColumn = new Column<Unterhaltung, Date>(dateCell) {
+      @Override
+      public Date getValue(Unterhaltung object) {
+        return object.getLastMessageTime();
+      }
+    };
+    table.addColumn(dateColumn, "Zeitpunkt der letzten Nachricht");
 
     // Add a selection model to handle user selection.
     final SingleSelectionModel<Unterhaltung> selectionModel = new SingleSelectionModel<Unterhaltung>();
@@ -183,11 +195,10 @@ public class Unterhaltungen extends Formular {
 
     
     // Push the data into the widget.
-    table.setRowData(0, Unterhaltung.UNTERHALTUNGEN);
+    table.setRowData(0, UNTERHALTUNGEN);
 
     // Add it to the panel.
     this.add(table);
     
-    
-  }
+      }
 }

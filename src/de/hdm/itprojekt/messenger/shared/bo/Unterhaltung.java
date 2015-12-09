@@ -10,7 +10,6 @@ import java.util.*;
 public class Unterhaltung extends BusinessObject{
 
 	private static final long serialVersionUID = 1L;
-	public static List<Unterhaltung> UNTERHALTUNGEN = null;
 	
 	/**
 	 * Anlegen des Attributs teilnehmer vom Typ ArrayList, um einer Unterhaltung verschiedene Nutzer als
@@ -32,7 +31,6 @@ public class Unterhaltung extends BusinessObject{
 	public Unterhaltung(ArrayList<Nutzer> teilnehmer, ArrayList<Nachricht> nachrichten){
 		this.teilnehmer = teilnehmer;
 		this.nachrichten = nachrichten;
-		UNTERHALTUNGEN.add(this);
 	}
 	
 	
