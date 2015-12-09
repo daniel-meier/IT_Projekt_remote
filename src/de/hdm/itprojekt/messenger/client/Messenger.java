@@ -46,10 +46,11 @@ public class Messenger implements EntryPoint {
 		
 		unterhaltungenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-		        VerticalPanel unterhaltungen = new Unterhaltungen();
+		        VerticalPanel unterhaltungen = new UnterhaltungenDetails();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(unterhaltungen);
 		      }
 		    });
@@ -69,6 +70,7 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(suchen);
 		      }
 		    });
@@ -84,9 +86,10 @@ public class Messenger implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
 
-				RootPanel.get("window").clear();
-				RootPanel.get("editbuttons").clear();
-				RootPanel.get("window").add(nachrichtSchreiben);
+				  RootPanel.get("window").clear();
+				    RootPanel.get("editbuttons").clear();
+				    RootPanel.get("headline").clear();
+			        RootPanel.get("window").add(nachrichtSchreiben);
 			}
 		
 		});
@@ -112,26 +115,12 @@ public class Messenger implements EntryPoint {
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(impressum);
 		        
 		      }
 		    });	
-		/**
-		 * Button
-		 */
-		final Button kontaktButton = new Button("Kontakt");
-		kontaktButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(kontaktButton);
 		
-		kontaktButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-		        VerticalPanel kontakt = new Kontakt();
-		        
-		        RootPanel.get("window").clear();
-			    RootPanel.get("editbuttons").clear();
-		        RootPanel.get("window").add(kontakt);
-		      }
-		    });	
 		
 		/**
 		 * Button
@@ -151,7 +140,7 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Anzeigen der Unterhaltungsseite als Startseite
 		 */
-		VerticalPanel unterhaltungen = new Unterhaltungen();
+		VerticalPanel unterhaltungen = new UnterhaltungenDetails();
         RootPanel.get("window").add(unterhaltungen);
 	}
 }
