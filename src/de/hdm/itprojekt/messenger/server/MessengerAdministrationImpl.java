@@ -327,13 +327,13 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 				this.nachrichtMapper.loeschen(na);
 		}
 		
-		Vector<Abonnement> abonnement = this.nutzerAbonnementMapper.getNutzerAbonnement();
+		Vector<NutzerAbonnement> abonnement = this.nutzerAbonnementMapper.getAllNutzerAbonnement();
 		if (abonnement != null) {
 			for (Abonnement a: abonnement)
 			this.loescheNutzerAbonnement(a);
 		}
 		
-		Vector<Abonnement> hashtagAbonnement = this.hashtagAbonnementMapper.getHashtagAbonnement();
+		Vector<HashtagAbonnement> hashtagAbonnement = this.hashtagAbonnementMapper.getAllHashtagAbonnement();
 		if (hashtagAbonnement != null) {
 			for (Abonnement h: hashtagAbonnement)
 			this.loescheHashtagAbonnement(h);
