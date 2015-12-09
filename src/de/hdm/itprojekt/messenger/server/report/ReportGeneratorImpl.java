@@ -8,7 +8,6 @@ import de.hdm.itprojekt.messenger.shared.ReportGenerator;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
 import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
 import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
 import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
@@ -17,65 +16,37 @@ import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
 import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 
 /**
- * Implementierungsklasse des ReportGenerators Interface
+ * Diese Klasse ist die Implementierungsklasse von ReportGenerator
+ * Enthalten sind alle Methoden die von der GUI benoetigt werden.
+ * @author Sarah Weimer
  *
  */
-public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
+public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator{
 
 	private static final long serialVersionUID = 1L;
 	
-	public ReportGeneratorImpl() throws IllegalArgumentException{
+	public ReportGeneratorImpl() throws IllegalArgumentException {
 		
 	}
 	
-	/**
-	 * Initialisierung des Objekts
-	 * 
-	 * @throws IllegalArgumentException
-	 * void
-	 */
-	public void init() throws IllegalArgumentException{
-		
-	}
-	
-	/**
-	 * Setzen des zugeordneten Nutzer
-	 * 
-	 * @param nutzer
-	 * @throws IllegalArgumentException
-	 * void
-	 */
-	@Override
-	public void setNutzer(Nutzer nutzer) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void init() throws IllegalArgumentException {
 
+	}
+	
 	/**
 	 * Erstellen eines NachrichtByNutzerReport-Reports. 
-	 * Dieser Report-Typ stellt sämtliche Nachrichten nach Nutzer dar.
-	 * 
-	 * @param nutzer
-	 * @return
-	 * @throws IllegalArgumentException
-	 * NachrichtByNutzerReport
+	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Nutzers.
 	 */
 	@Override
-	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer) 
+	public NachrichtByNutzerReport erstelleNachrichtByNutzerReport(Nutzer nutzer)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * Erstellen eines NachrichtByNutzerZeitraumReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Nachrichten nach Nutzer in einem bestimmten Zeitraum dar.
-	 * 
-	 * @param nutzer
-	 * @param date
-	 * @return
-	 * @throws IllegalArgumentException
-	 * NachrichtByNutzerZeitraumReport
+	 * Erstellen eines NachrichtByNutzerZeitraum-Reports.
+	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Nutzers und eines Zeitraums.
 	 */
 	@Override
 	public NachrichtByNutzerZeitraumReport erstelleNachrichtByNutzerZeitraumReport(
@@ -85,13 +56,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 
 	/**
-	 * Erstellen eines AbonnementByHashtagReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Abonnements eines bestimmten Hashtags dar.
-	 * 
-	 * @param hashtag
-	 * @return
-	 * @throws IllegalArgumentException
-	 * AbonnementByHashtagReport
+	 * Erstellen eines AbonnementByHashtag-Reports.
+	 * Darstellen saemtlicher Abonnements nach der Angabe eines Hashtags.
 	 */
 	@Override
 	public AbonnementByHashtagReport erstelleAbonnementByHashtagReport(
@@ -101,28 +67,19 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 
 	/**
-	 * Erstellen eines AlleHashtagAbonemmentReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Hashtag Abonnements aller Nutzer dar.
-	 * 
-	 * @return
-	 * @throws IllegalArgumentException
-	 * AllHashtagAbonnementReport
+	 * Erstellen eines HashtagAbonnement-Reports.
+	 * Darstellen saemtlicher Hashtag-Abonnements.
 	 */
 	@Override
-	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport() 
+	public AllHashtagAbonnementReport erstelleAlleHashtagAbonemmentReport()
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * Erstellen eines AbonnementByNutzerReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Abonnements von Nutzern eines Nutzers dar.
-	 * 
-	 * @param nutzer
-	 * @return
-	 * @throws IllegalArgumentException
-	 * AbonnementsByNutzerReport
+	 * Erstellen eines AbonnementByNutzer-Reports.
+	 * Darstellen saemtlicher Abonnements nach Angabe eines Nutzers.
 	 */
 	@Override
 	public AbonnementsByNutzerReport erstelleAbonnementByNutzerReport(
@@ -131,50 +88,30 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return null;
 	}
 
-	/**
-	 * Erstellen eines AbonnementsByNutzerHashtagReport-Reports.
-	 * ???
-	 * 
-	 * @param nutzer
-	 * @param hashtag
-	 * @return
-	 * @throws IllegalArgumentException
-	 * AbonnementsByNutzerHashtagReport
-	 */
-	@Override
-	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(
+/**	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(
 			Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	} */
 
 	/**
-	 * Erstellen eines NachrichtByZeitraumReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Nachrichten in einem bestimmten Zeitraum dar.
-	 * 
-	 * @param date
-	 * @return
-	 * @throws IllegalArgumentException
-	 * NachrichtByZeitraumReport
+	 * Erstellen eines NachrichtByZeitraum-Reports.
+	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Zeitraums
 	 */
 	@Override
-	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date) 
+	public NachrichtByZeitraumReport erstelleNachrichtByZeitraumReport(Date date)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * Erstellen eines AlleNutzerAbonnementsReport-Reports.
-	 * Dieser Report-Typ stellt sämtliche Nutzer Abonnements aller Nutzer dar.
-	 * 
-	 * @return
-	 * @throws IllegalArgumentException
-	 * AllNutzerAbonnementsReport
+	 * Erstellen eines AllNutzerAbonnements-Reports.
+	 * Darstellen saemtlicher Abonnements eines Nutzers.
 	 */
 	@Override
-	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport()  
-			throws IllegalArgumentException{
+	public AllNutzerAbonnementsReport erstelleAlleNutzerAbonnementsReport()
+			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}

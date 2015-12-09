@@ -19,7 +19,7 @@ public interface ReportGeneratorAsync {
 
 	void init(AsyncCallback<Void> callback);
 
-	void setNutzer(Nutzer nutzer, AsyncCallback<Void> callback);
+	//void setNutzer(Nutzer nutzer, AsyncCallback<Void> callback);
 
 	void erstelleNachrichtByNutzerReport(Nutzer nutzer,
 			AsyncCallback<NachrichtByNutzerReport> callback);
@@ -36,9 +36,9 @@ public interface ReportGeneratorAsync {
 	void erstelleAbonnementByNutzerReport(Nutzer nutzer,
 			AsyncCallback<AbonnementsByNutzerReport> callback);
 
-	void erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer,
-			Hashtag hashtag,
-			AsyncCallback<AbonnementsByNutzerHashtagReport> callback);
+	//void erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer,
+		//	Hashtag hashtag,
+			//AsyncCallback<AbonnementsByNutzerHashtagReport> callback);
 
 	void erstelleNachrichtByZeitraumReport(Date date,
 			AsyncCallback<NachrichtByZeitraumReport> callback);

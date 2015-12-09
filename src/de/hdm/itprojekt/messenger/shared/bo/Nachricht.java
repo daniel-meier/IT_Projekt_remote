@@ -19,6 +19,9 @@ public class Nachricht extends BusinessObject{
 	private String text;
 	private Nutzer sender;
 	private ArrayList<Nutzer> empfaenger;
+	private int hashtagID;
+	private int unterhaltungsID;
+	private int nutzerID;
 	
 	/**
 	 * Konstruktor
@@ -82,4 +85,56 @@ public class Nachricht extends BusinessObject{
 			//keinen Empfaenger setzen 
 		}
 	}
+
+	/**
+	 * Auslesen der HashtagID
+	 * @return hashtagID
+	 */
+	public int getHashtagID() {
+		return hashtagID;
+	}
+	
+	/**
+	 * Setzen der HashtagID
+	 * @param hashtagID
+	 */
+	public void setHashtagID(int hashtagID) {
+		// TODO Auto-generated method stub
+		this.hashtagID = hashtagID;
+	}
+
+	/**
+	 * Auslesen der UnterhaltungsID
+	 * @return unterhaltungsID
+	 */
+	public int getUnterhaltungsID() {
+		return unterhaltungsID;
+	}
+
+	/**
+	 * Setzen der UnterhaltungsID
+	 * @param unterhaltungsID
+	 */
+	public void setUnterhaltungsID(int unterhaltungsID) {
+		// TODO Auto-generated method stub
+		this.unterhaltungsID = unterhaltungsID;
+	}
+
+	/**
+	 * Auslesen der NutzerID
+	 * @return nutzerID
+	 */
+	public int getNutzerID() {
+		return nutzerID;
+	}
+	
+	/**
+	 * Setzen der NutzerID
+	 * @param nutzerID
+	 */
+	public void setNutzerID(int nutzerID) {
+		// TODO Auto-generated method stub
+		this.nutzerID = nutzerID;
+	}
+
 }

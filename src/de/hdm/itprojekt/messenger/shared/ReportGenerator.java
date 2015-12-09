@@ -34,7 +34,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * void
 	 */
-	public void setNutzer (Nutzer nutzer) throws IllegalArgumentException;
+	//public void setNutzer (Nutzer n) throws IllegalArgumentException;
 	
 
 	/**
@@ -107,7 +107,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AbonnementsByNutzerHashtagReport
 	 */
-	public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException;
+	//public AbonnementsByNutzerHashtagReport erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException;
 	
 	
 	/**
