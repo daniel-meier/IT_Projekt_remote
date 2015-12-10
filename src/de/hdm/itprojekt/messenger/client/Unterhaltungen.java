@@ -184,7 +184,7 @@ public class Unterhaltungen extends Formular {
       public void onSelectionChange(SelectionChangeEvent event) {
     	Unterhaltung selected = selectionModel.getSelectedObject();
         if (selected != null) {
-//          Window.alert("You selected: " + selected.name);
+          Window.alert("You selected: " + "test");
         }
       }
     });
