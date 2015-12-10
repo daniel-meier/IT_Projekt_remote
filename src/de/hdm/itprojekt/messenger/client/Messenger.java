@@ -102,6 +102,18 @@ public class Messenger implements EntryPoint {
 		reportGeneratorButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(reportGeneratorButton);
 		
+//		reportGeneratorButton.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//		        VerticalPanel report = new Report();
+//		        
+//		        RootPanel.get("window").clear();
+//			    RootPanel.get("editbuttons").clear();
+//			    RootPanel.get("headline").clear();
+//		        RootPanel.get("window").add(report);
+//		        
+//		      }
+//		    });	
+		
 		/**
 		 * Button
 		 */

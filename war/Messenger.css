@@ -5,6 +5,12 @@ div#header {
 	padding-top: 25px;
 }
 
+div#reportHeader {
+	background: red; 
+	heigt: 100px;
+	padding-top: 25px;
+}
+
 h1{
 	font-family: Arial;
 	font-style: bold;
