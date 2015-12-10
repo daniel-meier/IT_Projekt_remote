@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
-import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 
 
@@ -27,9 +26,35 @@ public class NutzerAbonnementMapper extends DBConnection {
 	 * Methode um einen Nutzer zu abonnieren
 	 * @return
 	 */
-	public NutzerAbonnement erstellen(Nutzer nutzer) {
-		return null;
-		
+	public NutzerAbonnement erstellen(NutzerAbonnement a) {
+		//Aufbau der DBVerbindung
+		Connection con = DBConnection.connection();
+
+		try{
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+			          + "FROM nutzerAbonnement ");
+			 // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
+		      if (rs.next()) {
+		        /*
+		         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+		         * Primaerschluessel.
+		         */
+		        a.setID(rs.getInt("maxid") + 1);
+
+		        stmt = con.createStatement();
+
+		        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
+		        stmt.executeUpdate("INSERT INTO nutzerAbonnement (id, abonnierterNutzerID, erstellungszeitpunkt) "
+		            + "VALUES (" + a.getID() + ",'"
+		            + a.getAbonnierterNutzerID() + "''" + a.getErstellungszeitpunkt() + "')");
+		      }
+		    }
+		    catch (SQLException e) {
+		      e.printStackTrace();
+		    }
+			return a;
 	}
 	
 	/**

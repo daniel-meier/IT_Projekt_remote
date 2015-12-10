@@ -25,9 +25,39 @@ public class HashtagAbonnementMapper extends DBConnection {
 	 * Methode um ein Hashtag zu abonnieren
 	 * @return
 	 */
-	public HashtagAbonnement erstellen(String hashtag) {
-		return null;
-		
+	public HashtagAbonnement erstellen(HashtagAbonnement a) {
+		Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      /*
+	       * Zunaechst schauen wir nach, welches der momentan hoechste
+	       * Primaerschluesselwert ist.
+	       */
+	      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
+	          + "FROM hashtagAbonnement ");
+
+	      // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
+	      if (rs.next()) {
+	        /*
+	         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+	         * Primaerschluessel.
+	         */
+	        a.setID(rs.getInt("maxid") + 1);
+
+	        stmt = con.createStatement();
+
+	        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
+	        stmt.executeUpdate("INSERT INTO hashtagAbonnement (id, abonnierterHashtagID, erstellungszeitpunkt) "
+	            + "VALUES (" + a.getID() + ",'"
+	            + a.getAbonnierterHashtagID() + "''" + a.getErstellungszeitpunkt() + "')");
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+		return a;
 	}
 	
 	/**
