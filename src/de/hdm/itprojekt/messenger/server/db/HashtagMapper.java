@@ -131,7 +131,18 @@ private static HashtagMapper hashtagMapper = null;
 	 */
 	public void loeschen (Hashtag hashtag) {
 		
-	}
+		 Connection con = DBConnection.connection();
+
+		    try {
+		      Statement stmt = con.createStatement();
+
+		      stmt.executeUpdate("DELETE FROM hashtag " + "WHERE id=" + hashtag.getID());
+		    }
+		    catch (SQLException e) {
+		      e.printStackTrace();
+		    }
+		  }
+		
 	
 	/** Suchen eines Hashtag Objekts nach seinem Namen
 	 * 
@@ -148,8 +159,34 @@ private static HashtagMapper hashtagMapper = null;
 	 * @return
 	 */
 	public Vector<Hashtag> getAllHashtags () {
-		return null;
 		
-	}
+		Connection con = DBConnection.connection();
+	    // Ergebnisvektor vorbereiten
+	    Vector<Hashtag> result = new Vector<Hashtag>();
 
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT id, hashtagtext"
+	          + "FROM hashtag " + "ORDER BY id");
+
+	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+	      // erstellt.
+	      while (rs.next()) {
+	        Hashtag h = new Hashtag();
+	        h.setID(rs.getInt("id"));
+	        h.setHashtagtext(rs.getString("hashtag"));
+	    
+
+	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(h);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurückgeben
+	    return result;
+}
 }
