@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
@@ -25,8 +26,8 @@ public interface ReportGeneratorAsync {
 
 	//void setNutzer(Nutzer nutzer, AsyncCallback<Void> callback);
 
-	void erstelleNachrichtByNutzerReport(Nutzer nutzer,
-			AsyncCallback<Vector<Nutzer>> callback);
+	void erstelleNachrichtByNutzerReport(int id,
+			AsyncCallback<Vector<Nachricht>> callback);
 
 	void erstelleNachrichtByNutzerZeitraumReport(String nutzer, String von,
 			String bis, AsyncCallback<Vector<Nachricht>> callback);
@@ -40,9 +41,8 @@ public interface ReportGeneratorAsync {
 	void erstelleAbonnementByNutzerReport(String nachname,
 			AsyncCallback<Vector<NutzerAbonnement>> callback);
 
-	void erstelleAbonnementByNutzerHashtagReport(Nutzer nutzer,
-			Hashtag hashtag,
-			AsyncCallback<AbonnementsByNutzerHashtagReport> callback);
+	void erstelleAbonnementByNutzerHashtagReport(Abonnement abonnement,
+			AsyncCallback<Vector<Abonnement>> callback);
 
 	void erstelleNachrichtByZeitraumReport(Date date,
 			AsyncCallback<Vector<Nachricht>> callback);

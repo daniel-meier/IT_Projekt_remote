@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
-import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 
 public class HashtagAbonnementMapper extends DBConnection {
@@ -26,17 +25,34 @@ public class HashtagAbonnementMapper extends DBConnection {
 	 * Methode um ein Hashtag zu abonnieren
 	 * @return
 	 */
-	public Hashtag erstellen(String hashtag) {
+	public HashtagAbonnement erstellen(String hashtag) {
 		return null;
 		
+	}
+	
+	/**
+	 * Methode um ein Hashtag Abonnement zu bearbeiten
+	 * @return
+	 */
+	public HashtagAbonnement bearbeiten() {
+		return null;
 	}
 	
 	/**
 	 * HashtagAbonnement loeschen
 	 * @param Hashtag
 	 */
-	public void loeschen(Abonnement abonnement) {
-		
+	public void loeschen(Abonnement hashtagAbonnement) {
+		Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      stmt.executeUpdate("DELETE FROM hashtagAbonnement " + "WHERE id=" + hashtagAbonnement.getID());
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
 	}
 
 	/**

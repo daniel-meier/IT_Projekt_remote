@@ -33,12 +33,29 @@ public class NutzerAbonnementMapper extends DBConnection {
 	}
 	
 	/**
+	 * Methode um ein NutzerAbonnement zu bearbeiten
+	 * @return
+	 */
+	public NutzerAbonnement bearbeiten() {
+		return null;
+	}
+	
+	/**
 	 * NutzerAbonnement loeschen
 	 * @param Hashtag
 	 */
 	public void loeschen(Abonnement nutzerAbonnement) {
 		// TODO Auto-generated method stub
-		
+		Connection con = DBConnection.connection();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      stmt.executeUpdate("DELETE FROM nutzerAbonnement " + "WHERE id=" + nutzerAbonnement.getID());
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
 	}
 
 	/**

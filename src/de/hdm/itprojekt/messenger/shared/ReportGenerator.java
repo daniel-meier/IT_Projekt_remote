@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
@@ -42,7 +43,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByNutzerReport
 	 */
-	public Vector<Nutzer> erstelleNachrichtByNutzerReport(Nutzer nutzer) throws IllegalArgumentException;
+	public Vector<Nachricht> erstelleNachrichtByNutzerReport(int id) 
+			throws IllegalArgumentException;
 	
 
 	/**
@@ -55,8 +57,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByNutzerZeitraumReport
 	 */
-	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(String nutzer, String von, String bis) 
-			throws IllegalArgumentException;
+	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(String nutzer, 
+			String von, String bis) throws IllegalArgumentException;
 	
 	
 	/**
@@ -80,7 +82,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AllHashtagAbonnementReport
 	 */
-	public Vector<HashtagAbonnement> erstelleAlleHashtagAbonemmentReport() throws IllegalArgumentException;
+	public Vector<HashtagAbonnement> erstelleAlleHashtagAbonemmentReport() 
+			throws IllegalArgumentException;
 	
 	
 	/**
@@ -92,21 +95,18 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AbonnementsByNutzerReport
 	 */
-	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(String nachname) throws IllegalArgumentException;
-	
+	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(String nachname) 
+			throws IllegalArgumentException;
 	
 	/**
-	 * Erstellen eines AbonnementsByNutzerHashtagReport-Reports.
-	 * Dieser Report-Typ stellt saemtliche Abonnements dar.
-	 * 
-	 * @param nutzer
-	 * @param hashtag
+	 * Erstellen eines AbonnementByNutzerHashtag-Reports.
+	 * Dieser Report-Typ stellt saemtliche Abonnements eines Nutzers dar.
+	 * @param abonnement
 	 * @return
 	 * @throws IllegalArgumentException
-	 * AbonnementsByNutzerHashtagReport
 	 */
-	public AbonnementsByNutzerHashtagReport erstelleAbonnementByNutzerHashtagReport
-		(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException;
+	public Vector<Abonnement> erstelleAbonnementByNutzerHashtagReport(
+			Abonnement abonnement) throws IllegalArgumentException;
 	
 	
 	/**
@@ -130,7 +130,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AllNutzerAbonnementsReport
 	 */
-	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport() throws IllegalArgumentException;
-
+	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport() 
+			throws IllegalArgumentException;
 
 }

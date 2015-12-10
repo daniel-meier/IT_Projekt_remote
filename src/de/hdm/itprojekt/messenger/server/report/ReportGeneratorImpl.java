@@ -6,12 +6,10 @@ import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itprojekt.messenger.shared.ReportGenerator;
-import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
-import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
-import de.hdm.itprojekt.messenger.shared.report.*;
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.server.db.*;
 
 /**
@@ -27,6 +25,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	private NutzerAbonnementMapper nutzerAbonnementMapper;
 	private NachrichtMapper nachrichtMapper;
 	private HashtagAbonnementMapper hashtagAbonnementMapper;
+	private AbonnementMapper abonnementMapper;
 	
 	public ReportGeneratorImpl() throws IllegalArgumentException {
 		
@@ -44,11 +43,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Darstellen saemtlicher Nachrichten nach der Angabe eines Nutzers.
 	 */
 	@Override
-	public Vector<Nutzer> erstelleNachrichtByNutzerReport(Nutzer nutzer)
+	public Vector<Nachricht> erstelleNachrichtByNutzerReport(int id)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		//return this.nachrichtMapper.findByNutzer(id);
-		return null;
+		return this.nachrichtMapper.findByNutzer(id);
 	}
 
 	/**
@@ -100,12 +98,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Erstellen eines AbonnementByNutzerHashtag-Reports
 	 * Darstellen aller Abonnements.
 	 */
-	public AbonnementsByNutzerHashtagReport erstelleAbonnementByNutzerHashtagReport
-		(Nutzer nutzer, Hashtag hashtag) throws IllegalArgumentException {
+	public Vector<Abonnement> erstelleAbonnementByNutzerHashtagReport
+		(Abonnement abonnement) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		//return this.hashtagAbonnementMapper.getAllHashtagAbonnement();
-		//return this.nutzerAbonnementMapper.getAllNutzerAbonnement();
-		return null;
+		return this.abonnementMapper.getAllAbonnement();
 	} 
 
 	/**

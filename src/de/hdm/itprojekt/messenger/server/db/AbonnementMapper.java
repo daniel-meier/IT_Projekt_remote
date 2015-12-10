@@ -1,5 +1,14 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
+
+
 public class AbonnementMapper extends DBConnection {
 
 private static AbonnementMapper abonnementMapper = null;
@@ -18,57 +27,42 @@ private static AbonnementMapper abonnementMapper = null;
 	 * @return
 	 */
 	public Abonnement findbyID (int id) {
+		return null;
 		
 	}
 	
-	/** Einfügen eines Abonnement Objekts in die Datenbank
-	 * 
-	 * @param Abonnement
+	
+	/** 
+	 * Auslesen aller Abonnements
 	 * @return
 	 */
-	public Abonnement einfuegen (abonnement Abonnement) {
-		
-	}
-	
-	/** Bearbeiten eines Abonnement Objekts in der Datenbank
-	 * 
-	 * @param Abonnement
-	 * @return
-	 */
-	public Abonnement bearbeiten (abonnement Abonnement) {
-		
-	}
-	
-	/** Löschen eines Abonnement Objekts aus der Datenbank.
-	 * 
-	 * @param Abonnement
-	 */
-	public void loeschen (abonnement Abonnement) {
-		
-	}
-	
-	/** Auslesen aller Nutzer Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Nutzer> getNutzerAbo (nutzer Nutzer) {
-		
-	}
-	
-	/** Auslesen aller Hashtag Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Hashtag> getHashtagAbo (hashtag Hashtag) {
-		
-	}
-	
-	/** Auslesen aller Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Abonnement> getAllAbo () {
-		
+	public Vector<Abonnement> getAllAbonnement() {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+	    Vector<Abonnement> result = new Vector<Abonnement>();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM abonnement" 
+	          + "' ORDER BY name");
+
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
+	      while (rs.next()) {
+	        Abonnement a = new Abonnement();
+	        a.setID(rs.getInt("id"));
+	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(a);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurueckgeben
+	    return result;
 	}
 	
 }
