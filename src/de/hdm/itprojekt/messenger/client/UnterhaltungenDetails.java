@@ -170,7 +170,7 @@ public class UnterhaltungenDetails extends Formular {
 	              public void onClick(ClickEvent event) {
 	            	  unterhaltungLoeschenDialogBox.hide();
 	            	  
-	            	  VerticalPanel unterhaltungen = new Unterhaltungen();
+	            	  HorizontalPanel unterhaltungen = new Unterhaltungen();
 	            	  RootPanel.get("window").clear();
 	            	  RootPanel.get("editbuttons").clear();
 	            	  RootPanel.get("headline").clear();
@@ -225,7 +225,7 @@ public class UnterhaltungenDetails extends Formular {
 		final Button zurückButton = new Button("zurück", new ClickHandler() {
             public void onClick(ClickEvent event) {
             	
-		        VerticalPanel unterhaltungen = new Unterhaltungen();
+		        HorizontalPanel unterhaltungen = new Unterhaltungen();
 
             	RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
