@@ -13,43 +13,45 @@ public class Impressum extends Formular {
 		
 		setHeadline("Impressum");
 
-        
+        VerticalPanel impressumPanel = new VerticalPanel();
+        this.add(impressumPanel);
+		
 		Label gesetz = new Label("Angaben gemäß § 5 Telemediengesetz (TMG)");
 		gesetz.setStylePrimaryName("labelGesetz");
-		this.add(gesetz);      
+		impressumPanel.add(gesetz);      
 		
 		
         Label hdm = new Label("Hochschule der Medien");
-        this.add(hdm);
+        impressumPanel.add(hdm);
 		
         Label strasse = new Label("Nobelstr. 10");
-        this.add(strasse);
+        impressumPanel.add(strasse);
         
         Label plz = new Label("70569 Stuttgart");
-        this.add(plz);
+        impressumPanel.add(plz);
         
         Grid impressumGrid = new Grid(7, 3);
         impressumGrid.setStyleName("impressumGrid");
         
         Label name = new Label("NAME");
         name.setStyleName("labelName");
-        this.add(name);
+        impressumPanel.add(name);
         
         Label kontakt = new Label("KONTAKT");
         kontakt.setStyleName("labelKontakt");
-        this.add(kontakt);
+        impressumPanel.add(kontakt);
         
         Label abteilung = new Label("ABTEILUNG");
         abteilung.setStyleName("labelAbteilung");
-        this.add(abteilung);
+        impressumPanel.add(abteilung);
         
         Label chris = new Label("Christian Reichardt");
         chris.setStyleName("labelChris");
-        this.add(chris);
+        impressumPanel.add(chris);
         
         Label eMailDani = new Label ("dm077@hdm-stuttgart.de");
         eMailDani.setStyleName("labelDani");
-        this.add(eMailDani);
+        impressumPanel.add(eMailDani);
           
         impressumGrid.setWidget(0, 0, name);
         impressumGrid.setWidget(0, 1, kontakt);
@@ -73,7 +75,7 @@ public class Impressum extends Formular {
         impressumGrid.setWidget(6, 1, new Label("th098@hdm-stuttgart.de"));
         impressumGrid.setWidget(6, 2, new Label("Datenbank"));
         
-        this.add(impressumGrid);
+        impressumPanel.add(impressumGrid);
         
 	}
 
