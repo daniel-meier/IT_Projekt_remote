@@ -6,12 +6,14 @@ import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 
 public class HashtagMapper extends DBConnection{
 	
-	public HashtagMapper () {
+private static HashtagMapper hashtagMapper = null;
+	
+	protected HashtagMapper () {
 		
 	}
 	
-	public HashtagMapper hashtagMapper () {
-		
+	public static HashtagMapper getHashtagMapper() {
+		return hashtagMapper;
 	}
 	
 	/** Suche eines Hashtags nach seiner eindeutigen Nummer
@@ -20,6 +22,7 @@ public class HashtagMapper extends DBConnection{
 	 * @return
 	 */
 	public Hashtag findbyID (int id) {
+		return null;
 		
 	}
 	
@@ -28,7 +31,8 @@ public class HashtagMapper extends DBConnection{
 	 * @param Hashtag
 	 * @return
 	 */
-	public Hashtag einfuegen (hashtag Hashtag) {
+	public Hashtag einfuegen (Hashtag hashtag) {
+		return hashtag;
 		
 	}
 	
@@ -37,7 +41,8 @@ public class HashtagMapper extends DBConnection{
 	 * @param Hashtag
 	 * @return
 	 */
-	public Hashtag bearbeiten (hashtag Hashtag) {
+	public Hashtag bearbeiten (Hashtag hashtag) {
+		return hashtag;
 		
 	}
 	
@@ -45,7 +50,7 @@ public class HashtagMapper extends DBConnection{
 	 * 
 	 * @param Hashtag
 	 */
-	public void loeschen (hashtag Hashtag) {
+	public void loeschen (Hashtag hashtag) {
 		
 	}
 	
@@ -64,6 +69,7 @@ public class HashtagMapper extends DBConnection{
 	 * @return
 	 */
 	public Vector<Hashtag> getAllHashtags () {
+		return null;
 		
 	}
 

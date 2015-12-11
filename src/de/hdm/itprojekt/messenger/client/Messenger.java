@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -24,7 +25,7 @@ public class Messenger implements EntryPoint {
 	
 	public void onModuleLoad() {
 		/**
-		 * Roter Balken mit Überschrift
+		 * Roter Balken mit �berschrift
 		 */
 		HorizontalPanel messengerPanel = new HorizontalPanel();	
 		RootPanel.get("header").add(messengerPanel);
@@ -39,18 +40,18 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Button
 		 */
-		final Button unterhaltungenButton = new Button("Unterhaltungen");
-		unterhaltungenButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(unterhaltungenButton);
+		final Button nachrichtenButton = new Button("Nachrichten");
+		nachrichtenButton.setStylePrimaryName("messenger-menubutton");
+		navPanel.add(nachrichtenButton);
 		
-		unterhaltungenButton.addClickHandler(new ClickHandler() {
+		nachrichtenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-		        VerticalPanel unterhaltungen = new UnterhaltungenDetails();
+		        HorizontalPanel nachrichten = new UnterhaltungenDetails();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
 			    RootPanel.get("headline").clear();
-		        RootPanel.get("window").add(unterhaltungen);
+		        RootPanel.get("window").add(nachrichten);
 		      }
 		    });
 		
@@ -58,41 +59,42 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Button
 		 */
-		final Button suchenButton = new Button("Nutzer und Hashtag suchen");
-		suchenButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(suchenButton);
+		final Button aboverwaltungButton = new Button("Aboverwaltung");
+		aboverwaltungButton.setStylePrimaryName("messenger-menubutton");
+		navPanel.add(aboverwaltungButton);
 		
-		suchenButton.addClickHandler(new ClickHandler() {
+		aboverwaltungButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 
-		        VerticalPanel suchen = new Suchen();
+				HorizontalPanel aboverwaltung = new AboVerwaltung();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
 			    RootPanel.get("headline").clear();
-		        RootPanel.get("window").add(suchen);
+		        RootPanel.get("window").add(aboverwaltung);
 		      }
 		    });
-		/**
-		 * Button
-		 */
-		final Button nachrichtSchreibenButton = new Button("Nachricht schreiben");
-		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(nachrichtSchreibenButton);
-		
-		
-		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				VerticalPanel nachrichtSchreiben = new NachrichtSchreiben();
 
-
-				RootPanel.get("window").clear();
-				RootPanel.get("editbuttons").clear();
-				RootPanel.get("headline").clear();
-			    RootPanel.get("window").add(nachrichtSchreiben);
-			}
 		
-		});
+//		/**
+//		 * Button
+//		 */
+//		final Button nachrichtSchreibenButton = new Button("Nachricht schreiben");
+//		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
+//		navPanel.add(nachrichtSchreibenButton);
+//		
+//		
+//		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//				HorizontalPanel nachrichtSchreiben = new NachrichtSchreiben();
+//
+//				  RootPanel.get("window").clear();
+//				    RootPanel.get("editbuttons").clear();
+//				    RootPanel.get("headline").clear();
+//			        RootPanel.get("window").add(nachrichtSchreiben);
+//			}
+//		
+//		});
 		
 		
 		/**
@@ -101,6 +103,18 @@ public class Messenger implements EntryPoint {
 		final Button reportGeneratorButton = new Button("Report Generator");
 		reportGeneratorButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(reportGeneratorButton);
+		
+//		reportGeneratorButton.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//		        VerticalPanel report = new Report();
+//		        
+//		        RootPanel.get("window").clear();
+//			    RootPanel.get("editbuttons").clear();
+//			    RootPanel.get("headline").clear();
+//		        RootPanel.get("window").add(report);
+//		        
+//		      }
+//		    });	
 		
 		/**
 		 * Button
@@ -111,35 +125,36 @@ public class Messenger implements EntryPoint {
 		
 		impressumButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-		        VerticalPanel impressum = new Impressum();
+				HorizontalPanel impressum = new Impressum();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
 			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(impressum);
+		        
 		      }
 		    });	
 		
 		
-		/**
-		 * Button
-		 */
-		final Button logoutButton = new Button("Logout",
-				new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				Window.alert("Logout");
-			}
-		}
-      );
-		logoutButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(logoutButton);
+//		/**
+//		 * Button
+//		 */
+//		final Button logoutButton = new Button("Logout",
+//				new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//				Window.alert("Logout");
+//			}
+//		}
+//      );
+//		logoutButton.setStylePrimaryName("messenger-menubutton");
+//		navPanel.add(logoutButton);
 		        
 		
 		
 		/**
 		 * Anzeigen der Unterhaltungsseite als Startseite
 		 */
-		VerticalPanel unterhaltungen = new UnterhaltungenDetails();
+		HorizontalPanel unterhaltungen = new UnterhaltungenDetails();
         RootPanel.get("window").add(unterhaltungen);
 	}
 }

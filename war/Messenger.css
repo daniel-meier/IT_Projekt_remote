@@ -5,6 +5,12 @@ div#header {
 	padding-top: 25px;
 }
 
+div#reportHeader {
+	background: red; 
+	heigt: 100px;
+	padding-top: 25px;
+}
+
 h1{
 	font-family: Arial;
 	font-style: bold;
@@ -40,10 +46,12 @@ div#headline {
 .edit-button {
 	font-size: 100%;
 	font-weight: none;
+	color: white;
 	width: 100%;
 	margin-bottom: 10pt;
 	margin-top: 10pt;
 /* 	margin-left: 15pt; */
+	background: red;
 }
 
 .label1 {
@@ -67,8 +75,62 @@ div#headline {
 	margin-top: 16pt;
 }
 
+.label1 {
+	color: black;
+	font-size: 25pt;
+	}
+
+div#impressum {
+	float: center;
+	margin-top: 15pt;
+	font-size: 100%;
+}
+
+.labelGesetz {
+	margin-top: 15pt;
+}
+
+.impressumGrid {
+	padding-top: 15pt;
+}
+
+.labelName {
+	font-size: 12pt;
+}
+
+.labelKontakt {
+	font-size: 12pt;
+}
+
+.labelAbteilung {
+	font-size: 12pt;
+}
+
+.labelChris {
+	padding-right: 15pt;
+}
+
+.labelDani {
+	padding-right: 15pt;
+}
+
+.inhalt{
+	font-size: 100%;
+	font-weight: none;
+	width: 100%;
+	margin-bottom: 1em;
+	margin-top: 15pt;
+}
+
 
 .headline {
 	font-size: 150%;
 	font-style: bold;
+}
+
+.CellList1 {
+	border-style: solid;
+	border-width: 1px;
+	padding: 6px;
+	margin-right: 20px;
 }
