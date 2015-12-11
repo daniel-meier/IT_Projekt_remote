@@ -4,7 +4,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
-public class Formular extends VerticalPanel {
+public class Formular extends HorizontalPanel {
 
 	public void onLoad(){
 		
