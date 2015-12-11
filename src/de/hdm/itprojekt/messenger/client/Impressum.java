@@ -12,19 +12,55 @@ public class Impressum extends Formular {
 		super.onLoad();
 		
 		setHeadline("Impressum");
+
+        
+		Label gesetz = new Label("Angaben gemäß § 5 Telemediengesetz (TMG)");
+		gesetz.setStylePrimaryName("labelGesetz");
+		this.add(gesetz);      
+		
+		
+        Label hdm = new Label("Hochschule der Medien");
+        this.add(hdm);
+		
+        Label strasse = new Label("Nobelstr. 10");
+        this.add(strasse);
+        
+        Label plz = new Label("70569 Stuttgart");
+        this.add(plz);
         
         Grid impressumGrid = new Grid(7, 3);
+        impressumGrid.setStyleName("impressumGrid");
+        
+        Label name = new Label("NAME");
+        name.setStyleName("labelName");
+        this.add(name);
+        
+        Label kontakt = new Label("KONTAKT");
+        kontakt.setStyleName("labelKontakt");
+        this.add(kontakt);
+        
+        Label abteilung = new Label("ABTEILUNG");
+        abteilung.setStyleName("labelAbteilung");
+        this.add(abteilung);
+        
+        Label chris = new Label("Christian Reichardt");
+        chris.setStyleName("labelChris");
+        this.add(chris);
+        
+        Label eMailDani = new Label ("dm077@hdm-stuttgart.de");
+        eMailDani.setStyleName("labelDani");
+        this.add(eMailDani);
           
-        impressumGrid.setWidget(0, 0, new Label("Name"));
-        impressumGrid.setWidget(0, 1, new Label("Kontakt"));
-        impressumGrid.setWidget(0, 2, new Label("Abteilung"));
+        impressumGrid.setWidget(0, 0, name);
+        impressumGrid.setWidget(0, 1, kontakt);
+        impressumGrid.setWidget(0, 2, abteilung);
         impressumGrid.setWidget(1, 0, new Label("Kim Ishola"));
         impressumGrid.setWidget(1, 1, new Label("ki004@hdm-stuttgart.de"));
         impressumGrid.setWidget(1, 2, new Label("GUI"));
         impressumGrid.setWidget(2, 0, new Label("Daniel Meier"));
-        impressumGrid.setWidget(2, 1, new Label("dm077@hdm-stuttgart.de"));
+        impressumGrid.setWidget(2, 1, eMailDani);
         impressumGrid.setWidget(2, 2, new Label("GUI"));
-        impressumGrid.setWidget(3, 0, new Label("Christian Reichardt"));
+        impressumGrid.setWidget(3, 0, chris);
         impressumGrid.setWidget(3, 1, new Label("cr076@hdm-stuttgart.de"));
         impressumGrid.setWidget(3, 2, new Label("GUI"));
         impressumGrid.setWidget(4, 0, new Label("Joel Siffermann"));

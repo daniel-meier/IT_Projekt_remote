@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -24,7 +25,7 @@ public class Messenger implements EntryPoint {
 	
 	public void onModuleLoad() {
 		/**
-		 * Roter Balken mit Überschrift
+		 * Roter Balken mit �berschrift
 		 */
 		HorizontalPanel messengerPanel = new HorizontalPanel();	
 		RootPanel.get("header").add(messengerPanel);
@@ -101,6 +102,18 @@ public class Messenger implements EntryPoint {
 		reportGeneratorButton.setStylePrimaryName("messenger-menubutton");
 		navPanel.add(reportGeneratorButton);
 		
+//		reportGeneratorButton.addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//		        VerticalPanel report = new Report();
+//		        
+//		        RootPanel.get("window").clear();
+//			    RootPanel.get("editbuttons").clear();
+//			    RootPanel.get("headline").clear();
+//		        RootPanel.get("window").add(report);
+//		        
+//		      }
+//		    });	
+		
 		/**
 		 * Button
 		 */
@@ -116,6 +129,7 @@ public class Messenger implements EntryPoint {
 			    RootPanel.get("editbuttons").clear();
 			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(impressum);
+		        
 		      }
 		    });	
 		
