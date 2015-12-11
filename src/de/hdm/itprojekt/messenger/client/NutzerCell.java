@@ -14,7 +14,7 @@ public class NutzerCell extends AbstractCell<Nutzer>{
 		if (value == null) {
 	      return;
 	    }
-
+		
 	    sb.appendEscaped(value.getVorname());
 	    sb.appendEscaped(" ");
 	    sb.appendEscaped(value.getNachname());

@@ -40,18 +40,18 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Button
 		 */
-		final Button nachrichtButton = new Button("Nachricht");
-		nachrichtButton.setStylePrimaryName("messenger-menubutton");
-		navPanel.add(nachrichtButton);
+		final Button nachrichtenButton = new Button("Nachrichten");
+		nachrichtenButton.setStylePrimaryName("messenger-menubutton");
+		navPanel.add(nachrichtenButton);
 		
-		nachrichtButton.addClickHandler(new ClickHandler() {
+		nachrichtenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-		        HorizontalPanel nachricht = new UnterhaltungenDetails();
+		        HorizontalPanel nachrichten = new UnterhaltungenDetails();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
 			    RootPanel.get("headline").clear();
-		        RootPanel.get("window").add(nachricht);
+		        RootPanel.get("window").add(nachrichten);
 		      }
 		    });
 		
