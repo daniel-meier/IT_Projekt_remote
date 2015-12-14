@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 
 
 public class AbonnementMapper extends DBConnection {
@@ -27,8 +28,37 @@ private static AbonnementMapper abonnementMapper = null;
 	 * @return
 	 */
 	public Abonnement findbyID (int id) {
-		return null;
 		
+		 // DB-Verbindung holen
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      // Leeres SQL-Statement (JDBC) anlegen
+	      Statement stmt = con.createStatement();
+
+	      // Statement ausfüllen und als Query an die DB schicken
+	      ResultSet rs = stmt
+	          .executeQuery("SELECT id, erstellungszeitpunkt, FROM abonnement "
+	              + "WHERE id=" + id + " ORDER BY id");
+
+	      /*
+	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
+	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       */
+	      if (rs.next()) {
+	        // Ergebnis-Tupel in Objekt umwandeln
+	        Abonnement a = new Abonnement();
+	        a.setID(rs.getInt("id"));
+	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	     
+	        return a;
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+		return null;
 	}
 	
 	
