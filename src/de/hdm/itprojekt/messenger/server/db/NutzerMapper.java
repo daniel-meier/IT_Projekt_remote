@@ -58,9 +58,7 @@ public class NutzerMapper extends DBConnection{
 	      e.printStackTrace();
 	      return null;
 	    }
-
-	    return null;
-	  }
+	}
 
 	/**
 	   * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
@@ -234,9 +232,9 @@ public class NutzerMapper extends DBConnection{
 	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schl¸ssel entspricht, null bei 
 	 *  nicht vohandenem DB-Tupel.
 	 */
-	}
 
-/**
+
+
 	public Nutzer findNutzerByName(String name) {
 		
 		//DB-Verbindung holen
@@ -251,9 +249,10 @@ public class NutzerMapper extends DBConnection{
 							+ "FROM nutzer "
 							+ "WHERE Vorname, Nachname=" + eingabe );
 					
-					/*
-					 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+					
+					// Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
 					 
+					
 					if (rs.next()) {
 						//Ergebnis-Tupel in Objekt umwandeln
 						Nutzer n = new Nutzer();
@@ -261,7 +260,7 @@ public class NutzerMapper extends DBConnection{
 						n.setVorname(rs.getString ("Vorname"));
 						n.setNachname(rs.getString ("Nachname"));
 						n.setEmail(rs.getString ("Email"));
-						n.setErstellungsdatum(rs.getDate("erstellungsdatum"));
+						n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunktdatum"));
 						
 				
 						return n;
@@ -274,17 +273,18 @@ public class NutzerMapper extends DBConnection{
 				}
 				return null;
 	}
-	*/
-	  
-	  //fuer Tino
-	/**
+	
 	public Partlist findByName(String searchWord, int maxResults,
 				boolean onlyModules, boolean onlyProducts)
 				throws IllegalArgumentException, SQLException {
+		
+	}
 			// DB-Verbindung holen
+	
 			Connection con = DBConnection.connection();
 			Partlist result = new Partlist();
 			String whereQuery = "";
+			
 			if (!searchWord.isEmpty()) {
 				String[] words = searchWord.split(" ");
 				for (String word : words) {
@@ -298,6 +298,7 @@ public class NutzerMapper extends DBConnection{
 									+ fuzzyWord + "%' OR ";
 						}
 					} else {
+						
 						// Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben
 						// haben
 						whereQuery += "name LIKE '%" + word + "%' OR ";
@@ -321,6 +322,7 @@ public class NutzerMapper extends DBConnection{
 
 					// Für jeden Eintrag im Suchergebnis wird nun ein Element-Objekt
 					// erstellt.
+					
 					while (rs.next()) {
 						int elementId = rs.getInt("element_id");
 						Element elementFromCache = cachePartlist
@@ -397,6 +399,6 @@ public class NutzerMapper extends DBConnection{
 
 			return result;
 		}
-	*/
+	
 
 
