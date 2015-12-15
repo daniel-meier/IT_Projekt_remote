@@ -68,17 +68,46 @@ public class AboVerwaltung extends Formular {
 		NutzerAboLoeschenButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(NutzerAboLoeschenButton);
 		
+		NutzerAboLoeschenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//Hier Applikationslogik zum Löschen eines Nutzerabos einfügen
+			}
+		});
+		
+		
 		final Button HashtagAboLoeschenButton = new Button("Gewähltes Hashtagabo löschen");
 		HashtagAboLoeschenButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(HashtagAboLoeschenButton);
+		
+		HashtagAboLoeschenButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//Hier Applikationslogik zum Löschen eines Hashtagabos einfügen
+			}
+		});
+		
 		
 		final Button nutzerAboButton = new Button("Neuen Nutzer abonnieren");
 		nutzerAboButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(nutzerAboButton);
 		
+		nutzerAboButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				nutzerAboDialogBox.center();
+				nutzerAboDialogBox.show();
+			}
+		});
+		
+		
 		final Button hashtagAboButton = new Button("Neues Hashtag abonnieren");
 		hashtagAboButton.setStylePrimaryName("edit-button");
 		buttonPanel.add(hashtagAboButton);
+		
+		hashtagAboButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				hashtagAboDialogBox.center();
+				hashtagAboDialogBox.show();
+			}
+		});
 		
 		
 		
