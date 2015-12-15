@@ -8,6 +8,7 @@ import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
 public interface MessengerAdministration {
@@ -20,7 +21,7 @@ public interface MessengerAdministration {
 	/** 
 	 * Erstelle ein HahstagAbonnement
 	 */
-	public HashtagAbonnement erstelleHashtagAbonnement (String hashtag);
+	public HashtagAbonnement erstelleHashtagAbonnement (HashtagAbonnement String);
 	
 	/** 
 	 * Eine Nachricht bearbeiten 
@@ -107,7 +108,7 @@ public interface MessengerAdministration {
 	/**
 	 * NutzerAbonnement erstellen
 	 */
-	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer);
+	public Abonnement erstelleNutzerAbonnement(NutzerAbonnement String);
 	
 	/**
 	 * Hashtag erstellen
@@ -133,7 +134,6 @@ public interface MessengerAdministration {
 	 * Hashtag nach ID ausgeben
 	 */
 	public Hashtag getHashtagByID(int id);
-
 
 }
 

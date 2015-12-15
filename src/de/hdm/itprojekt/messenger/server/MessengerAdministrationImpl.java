@@ -112,13 +112,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Methode um ein Hashtag zu abonnieren
 	 * @param hashtag
+	 * @param String 
 	 * @return null
 	 */
 	@Override
-	public HashtagAbonnement erstelleHashtagAbonnement(String hashtag) 
+	public HashtagAbonnement erstelleHashtagAbonnement(HashtagAbonnement String) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return this.hashtagAbonnementMapper.erstellen(hashtag);
+		return this.hashtagAbonnementMapper.erstellen(String);
 	}
 
 	/**
@@ -298,9 +299,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return Abonnement
 	 */
 	@Override
-	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer) throws IllegalArgumentException{
+	public Abonnement erstelleNutzerAbonnement(NutzerAbonnement String) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return this.nutzerAbonnementMapper.erstellen(nutzer);
+		return this.nutzerAbonnementMapper.erstellen(String);
 	}
 	
 	/**

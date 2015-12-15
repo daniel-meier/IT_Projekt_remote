@@ -235,7 +235,7 @@ public class NutzerMapper extends DBConnection{
 
 
 
-	public Nutzer findNutzerByName(String name) {
+	/** public Nutzer findNutzerByName(String name) {
 		
 		//DB-Verbindung holen
 				Connection con = DBConnection.connection();
@@ -247,7 +247,7 @@ public class NutzerMapper extends DBConnection{
 					//Statement ausf¸llen und als Query an die B schicken
 					ResultSet rs = stmt.executeQuery("SELECT ID, id, vorname, nachname, email, erstellungsdatum "
 							+ "FROM nutzer "
-							+ "WHERE Vorname, Nachname=" + eingabe );
+							+ "WHERE Vorname, Nachname=" + eingabe);
 					
 					
 					// Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
@@ -272,9 +272,9 @@ public class NutzerMapper extends DBConnection{
 					
 				}
 				return null;
-	}
+	} */
 	
-	public Partlist findByName(String searchWord, int maxResults,
+	public Partlist findNutzerByName(String searchWord, int maxResults,
 				boolean onlyModules, boolean onlyProducts)
 				throws IllegalArgumentException, SQLException {
 		
@@ -292,19 +292,14 @@ public class NutzerMapper extends DBConnection{
 						Vector<String> fuzzySearchWords = getLevenshtein1(word);
 						for (String fuzzyWord : fuzzySearchWords) {
 							whereQuery += "name LIKE '%" + fuzzyWord + "%' OR ";
-							whereQuery += "description LIKE '%" + fuzzyWord
-									+ "%' OR ";
-							whereQuery += "material_description LIKE '%"
-									+ fuzzyWord + "%' OR ";
+							
 						}
 					} else {
 						
 						// Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben
 						// haben
 						whereQuery += "name LIKE '%" + word + "%' OR ";
-						whereQuery += "description LIKE '%" + word + "%' OR ";
-						whereQuery += "material_description LIKE '%" + word
-								+ "%' OR ";
+						
 					}
 				}
 				if (whereQuery.length() > 5) {
@@ -320,16 +315,13 @@ public class NutzerMapper extends DBConnection{
 					 // Query an die DB schicken
 					ResultSet rs = stmt.executeQuery(sqlQuery);
 
-					// Für jeden Eintrag im Suchergebnis wird nun ein Element-Objekt
+					// Für jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt
 					// erstellt.
 					
 					while (rs.next()) {
 						int elementId = rs.getInt("element_id");
-						Element elementFromCache = cachePartlist
-								.getElementById(elementId);
-						if (elementFromCache != null
-								&& !(elementFromCache instanceof Module)
-								&& !onlyProducts && !onlyModules) {
+						Element elementFromCache = cachePartlist.getElementById(elementId);
+						if (elementFromCache != null) {
 							result.add(elementFromCache, 1);
 							continue;
 						}
