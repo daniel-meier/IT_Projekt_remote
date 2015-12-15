@@ -339,6 +339,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 			this.loescheHashtagAbonnement(h);
 		}
 		
+		
 		this.nutzerMapper.loescheNutzer(n);
 	}
 	
