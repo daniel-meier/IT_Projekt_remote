@@ -226,6 +226,7 @@ public class NachrichtSchreiben extends Formular{
 			nachrichtText.setCharacterWidth(65);
 			nachrichtText.setVisibleLines(10);
 			nachrichtSchreiben.add(nachrichtText);
+			nachrichtText.setText("Hier Nachricht eingeben...");
 		    
 		    
 		    		
