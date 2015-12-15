@@ -28,7 +28,7 @@ public class UnterhaltungenDetails extends Formular {
 	    hinzufuegenDialogBox.setText("Geben Sie einen Namen zum Hinzufügen eines Teilnehmers ein!");
 
 	    /**
-	     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+	     * Horizontales Panel, das anschließend der Dialogbox hinzugefügt wird 
 	     */
 	    HorizontalPanel hinzufuegenDialogContents = new HorizontalPanel();
 	    hinzufuegenDialogContents.setSpacing(40);
@@ -41,7 +41,7 @@ public class UnterhaltungenDetails extends Formular {
 	    hinzufuegenOracle.add("Test");
 	    
 	    /**
-	     * SuggestBox, die anschließend dem Panel hinzufuegenDialogBox hinzugefügt wird
+	     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
 	     */
 	    final SuggestBox hinzufuegenSuggestBox = new SuggestBox(hinzufuegenOracle);
 	    hinzufuegenDialogContents.add(hinzufuegenSuggestBox);
