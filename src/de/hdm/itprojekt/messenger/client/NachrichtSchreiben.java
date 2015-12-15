@@ -201,6 +201,8 @@ public class NachrichtSchreiben extends Formular{
 			
 			TextBox empfaengerTextbox = new TextBox();
 			empfaengerTextbox.setEnabled(false);
+			empfaengerTextbox.setWidth("399px");
+			empfaengerTextbox.setText("Hinzugefügte Empfänger");
 			nachrichtSchreiben.add(empfaengerTextbox);
 			
 			
@@ -211,6 +213,8 @@ public class NachrichtSchreiben extends Formular{
 			
 			TextBox hashtagsTextbox = new TextBox();
 			hashtagsTextbox.setEnabled(false);
+			hashtagsTextbox.setWidth("399px");
+			hashtagsTextbox.setText("Hinzugefügte Hashtags");
 			nachrichtSchreiben.add(hashtagsTextbox);
 			
 			
