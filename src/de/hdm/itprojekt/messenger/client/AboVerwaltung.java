@@ -59,9 +59,7 @@ public class AboVerwaltung extends Formular {
 		setHeadline("Aboverwaltung");
 		HorizontalPanel buttonPanel = getButtonPanel();
 		
-		
-		
-		
+
 		
 		
 		/**

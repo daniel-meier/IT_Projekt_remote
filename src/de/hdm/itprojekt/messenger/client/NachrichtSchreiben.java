@@ -13,7 +13,13 @@ public class NachrichtSchreiben extends Formular{
 			HorizontalPanel buttonPanel = getButtonPanel();
 		
 		
-			
+
+			/**
+			 * Anlegen eines Vertikalen Panels
+			 */
+					VerticalPanel nachrichtSchreiben = new VerticalPanel();
+					this.add(nachrichtSchreiben);
+					
 			
 			
 			
@@ -189,33 +195,33 @@ public class NachrichtSchreiben extends Formular{
 			});
 			
 			
-//			/**
-//			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
-//			 */
-//			
-//			TextBox empfaengerTextbox = new TextBox();
-//			empfaengerTextbox.setEnabled(false);
-//			this.add(empfaengerTextbox);
-//			
-//			
-//			
-//			/**
-//			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
-//			 */
-//			
-//			TextBox hashtagsTextbox = new TextBox();
-//			hashtagsTextbox.setEnabled(false);
-//			this.add(hashtagsTextbox);
+			/**
+			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
+			 */
+			
+			TextBox empfaengerTextbox = new TextBox();
+			empfaengerTextbox.setEnabled(false);
+			nachrichtSchreiben.add(empfaengerTextbox);
+			
+			
+			
+			/**
+			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
+			 */
+			
+			TextBox hashtagsTextbox = new TextBox();
+			hashtagsTextbox.setEnabled(false);
+			nachrichtSchreiben.add(hashtagsTextbox);
 			
 			
 			
 			/**
 			 * TextArea, um eine Nachricht zu schreiben
 			 */
-			TextArea nachrichtSchreiben = new TextArea();
-		    nachrichtSchreiben.setCharacterWidth(65);
-		    nachrichtSchreiben.setVisibleLines(10);
-		    this.add(nachrichtSchreiben);
+			TextArea nachrichtText = new TextArea();
+			nachrichtText.setCharacterWidth(65);
+			nachrichtText.setVisibleLines(10);
+			nachrichtSchreiben.add(nachrichtText);
 		    
 		    
 		    		
