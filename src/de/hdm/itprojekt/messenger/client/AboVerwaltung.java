@@ -260,6 +260,12 @@ public class AboVerwaltung extends Formular {
 		
 		
 		
+		/**
+		 * Anlegen der Cell Lists
+		 */
+		
+		
+		
 		
 		ProvidesKey<Nutzer> NutzerKeyProvider = new ProvidesKey<Nutzer>() {
 			public Object getKey(Nutzer item) {
