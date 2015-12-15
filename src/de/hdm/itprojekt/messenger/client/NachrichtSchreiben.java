@@ -218,40 +218,7 @@ public class NachrichtSchreiben extends Formular{
 		    this.add(nachrichtSchreiben);
 		    
 		    
-		    
-		    
-		    
-//			/**
-//			 * Oracle, dass die vorzuschlagenden Wörter der suggestBox enthält
-//			 */
-//			MultiWordSuggestOracle hinzufuegenOracle = new MultiWordSuggestOracle ();
-//			hinzufuegenOracle.add("Meier");
-//			hinzufuegenOracle.add("Meler");
-//			
-//			/**
-//			 * SuggestBox, die anschließend dem Panel hingefügt wird
-//			 */
-//			final SuggestBox hinzufuegenSuggestBox = new SuggestBox(hinzufuegenOracle);
-//			buttonPanel.add(hinzufuegenSuggestBox);
-			
-
-		    
-//			/**
-//			 * Oracle, dass die vorzuschlagenden Hashtags der suggestBox enthält
-//			 */
-//			MultiWordSuggestOracle hinzufuegenHashtagOracle = new MultiWordSuggestOracle ();
-//			hinzufuegenHashtagOracle.add("#0711");
-//			hinzufuegenHashtagOracle.add("#Stuttgart");
-//			hinzufuegenHashtagOracle.add("#Hochschule der Medien");
-//			hinzufuegenHashtagOracle.add("#Ich Liebe das IT-Projekt");
-//			
-//			/**
-//			 * SuggestBox, die anschließend dem Panel hingefügt wird
-//			 */
-//			final SuggestBox hinzufuegenHashtagSuggestBox = new SuggestBox(hinzufuegenHashtagOracle);
-//			buttonPanel.add(hinzufuegenHashtagSuggestBox);
-			
-			
+		    		
 		
 
 }
