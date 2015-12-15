@@ -46,7 +46,7 @@ public class Messenger implements EntryPoint {
 		
 		nachrichtenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-		        HorizontalPanel nachrichten = new UnterhaltungenDetails();
+		        HorizontalPanel nachrichten = new Nachrichten();
 		        
 		        RootPanel.get("window").clear();
 			    RootPanel.get("editbuttons").clear();
@@ -152,8 +152,8 @@ public class Messenger implements EntryPoint {
 		/**
 		 * Anzeigen der Unterhaltungsseite als Startseite
 		 */
-		HorizontalPanel unterhaltungen = new UnterhaltungenDetails();
-        RootPanel.get("window").add(unterhaltungen);
+		HorizontalPanel nachrichten = new Nachrichten();
+        RootPanel.get("window").add(nachrichten);
 	}
 }
 
