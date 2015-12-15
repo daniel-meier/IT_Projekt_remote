@@ -54,6 +54,23 @@ public class NachrichtSchreiben extends Formular{
 			});
 			
 			
+//			/**
+//			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
+//			 */
+//			
+//			TextBox empfaengerTextbox = new TextBox();
+//			empfaengerTextbox.setEnabled(false);
+//			this.add(empfaengerTextbox);
+//			
+//			
+//			
+//			/**
+//			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
+//			 */
+//			
+//			TextBox hashtagsTextbox = new TextBox();
+//			hashtagsTextbox.setEnabled(false);
+//			this.add(hashtagsTextbox);
 			
 			
 			
