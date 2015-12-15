@@ -35,5 +35,13 @@ public class Hashtag extends BusinessObject {
 	public void setName (String name){
 		this.name = name;
 	}
+	public void setHashtagtext(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public String getHashtagtext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

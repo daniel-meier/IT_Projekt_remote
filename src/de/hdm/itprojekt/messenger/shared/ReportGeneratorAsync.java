@@ -1,11 +1,16 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.Date;
+import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
 import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
 import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
@@ -21,29 +26,28 @@ public interface ReportGeneratorAsync {
 
 	//void setNutzer(Nutzer nutzer, AsyncCallback<Void> callback);
 
-	void erstelleNachrichtByNutzerReport(Nutzer nutzer,
-			AsyncCallback<NachrichtByNutzerReport> callback);
+	void erstelleNachrichtByNutzerReport(int id,
+			AsyncCallback<Vector<Nachricht>> callback);
 
-	void erstelleNachrichtByNutzerZeitraumReport(Nutzer nutzer, Date date,
-			AsyncCallback<NachrichtByNutzerZeitraumReport> callback);
+	void erstelleNachrichtByNutzerZeitraumReport(String nutzer, String von,
+			String bis, AsyncCallback<Vector<Nachricht>> callback);
 
-	void erstelleAbonnementByHashtagReport(Hashtag hashtag,
-			AsyncCallback<AbonnementByHashtagReport> callback);
+	void erstelleAbonnementByHashtagReport(String name,
+			AsyncCallback<Vector<HashtagAbonnement>> callback);
 
 	void erstelleAlleHashtagAbonemmentReport(
-			AsyncCallback<AllHashtagAbonnementReport> callback);
+			AsyncCallback<Vector<HashtagAbonnement>> callback);
 
-	void erstelleAbonnementByNutzerReport(Nutzer nutzer,
-			AsyncCallback<AbonnementsByNutzerReport> callback);
+	void erstelleAbonnementByNutzerReport(String nachname,
+			AsyncCallback<Vector<NutzerAbonnement>> callback);
 
-	//void erstelleAbonnementsByNutzerHashtagReport(Nutzer nutzer,
-		//	Hashtag hashtag,
-			//AsyncCallback<AbonnementsByNutzerHashtagReport> callback);
+	void erstelleAbonnementByNutzerHashtagReport(Abonnement abonnement,
+			AsyncCallback<Vector<Abonnement>> callback);
 
 	void erstelleNachrichtByZeitraumReport(Date date,
-			AsyncCallback<NachrichtByZeitraumReport> callback);
+			AsyncCallback<Vector<Nachricht>> callback);
 
 	void erstelleAlleNutzerAbonnementsReport(
-			AsyncCallback<AllNutzerAbonnementsReport> callback);
+			AsyncCallback<Vector<NutzerAbonnement>> callback);
 
 }

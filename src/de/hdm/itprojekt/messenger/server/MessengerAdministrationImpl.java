@@ -115,7 +115,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Hashtag erstelleHashtagAbonnement(String hashtag) 
+	public HashtagAbonnement erstelleHashtagAbonnement(String hashtag) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.hashtagAbonnementMapper.erstellen(hashtag);
@@ -220,8 +220,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return this.nutzerMapper.findNutzerByID(id);
 	}
 	
-	/**Eine Unterhaltung erstellen
-	 * 
+	/**
+	 * Eine Unterhaltung erstellen
 	 * @return Unterhaltung
 	 */
 	@Override
@@ -232,8 +232,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return u;
 	}
 	
-	/**NutzerAbonnement loeschen
-	 * 
+	/**
+	 * NutzerAbonnement loeschen
 	 * @param abonnement
 	 */
 	@Override
@@ -242,8 +242,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		this.nutzerAbonnementMapper.loeschen(nutzerAbonnement);
 	}
 	
-	/**Nutzer anlegen
-	 * 
+	/**
+	 * Nutzer anlegen
 	 * @param email
 	 * @param vorname
 	 * @param nachname
@@ -262,8 +262,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 	
-	/**Unterhaltung nach ID ausgeben
-	 * 
+	/**
+	 * Unterhaltung nach ID ausgeben
 	 * @param id
 	 * @return Unterhaltung
 	 */
@@ -272,8 +272,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return this.unterhaltungMapper.findByID(id);
 	}
 	
-	/**Nachricht erstellen
-	 * 
+	/**
+	 * Nachricht erstellen
 	 * @param nachricht
 	 * @return Nachricht
 	 */
@@ -283,8 +283,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return this.nachrichtMapper.einfuegen(n);
 	}
 	
-	/**Nachricht loeschen
-	 * 
+	/**
+	 * Nachricht loeschen
 	 * @param nachricht
 	 */
 	@Override
@@ -292,8 +292,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		this.nachrichtMapper.loeschen(nachricht);
 	}
 	
-	/**NutzerAbonnement erstellen
-	 * 
+	/**
+	 * NutzerAbonnement erstellen
 	 * @param nutzer
 	 * @return Abonnement
 	 */
@@ -303,8 +303,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		return this.nutzerAbonnementMapper.erstellen(nutzer);
 	}
 	
-	/**Hashtag erstellen
-	 * 
+	/**
+	 * Hashtag erstellen
 	 * @param hashtag
 	 * @return Hashtag
 	 */
@@ -327,13 +327,13 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 				this.nachrichtMapper.loeschen(na);
 		}
 		
-		Vector<Abonnement> abonnement = this.nutzerAbonnementMapper.getNutzerAbonnement();
+		Vector<NutzerAbonnement> abonnement = this.nutzerAbonnementMapper.getAllNutzerAbonnement();
 		if (abonnement != null) {
 			for (Abonnement a: abonnement)
 			this.loescheNutzerAbonnement(a);
 		}
 		
-		Vector<Abonnement> hashtagAbonnement = this.hashtagAbonnementMapper.getHashtagAbonnement();
+		Vector<HashtagAbonnement> hashtagAbonnement = this.hashtagAbonnementMapper.getAllHashtagAbonnement();
 		if (hashtagAbonnement != null) {
 			for (Abonnement h: hashtagAbonnement)
 			this.loescheHashtagAbonnement(h);

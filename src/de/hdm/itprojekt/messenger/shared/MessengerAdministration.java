@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
@@ -19,7 +20,7 @@ public interface MessengerAdministration {
 	/** 
 	 * Erstelle ein HahstagAbonnement
 	 */
-	public Hashtag erstelleHashtagAbonnement (String hashtag);
+	public HashtagAbonnement erstelleHashtagAbonnement (String hashtag);
 	
 	/** 
 	 * Eine Nachricht bearbeiten 

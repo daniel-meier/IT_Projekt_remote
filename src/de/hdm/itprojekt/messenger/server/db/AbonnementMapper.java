@@ -1,5 +1,15 @@
 package de.hdm.itprojekt.messenger.server.db;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+
+
 public class AbonnementMapper extends DBConnection {
 
 private static AbonnementMapper abonnementMapper = null;
@@ -19,56 +29,70 @@ private static AbonnementMapper abonnementMapper = null;
 	 */
 	public Abonnement findbyID (int id) {
 		
+		 // DB-Verbindung holen
+	    Connection con = DBConnection.connection();
+
+	    try {
+	      // Leeres SQL-Statement (JDBC) anlegen
+	      Statement stmt = con.createStatement();
+
+	      // Statement ausfüllen und als Query an die DB schicken
+	      ResultSet rs = stmt
+	          .executeQuery("SELECT id, erstellungszeitpunkt, FROM abonnement "
+	              + "WHERE id=" + id + " ORDER BY id");
+
+	      /*
+	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
+	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       */
+	      if (rs.next()) {
+	        // Ergebnis-Tupel in Objekt umwandeln
+	        Abonnement a = new Abonnement();
+	        a.setID(rs.getInt("id"));
+	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	     
+	        return a;
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+		return null;
 	}
 	
-	/** Einf�gen eines Abonnement Objekts in die Datenbank
-	 * 
-	 * @param Abonnement
+	
+	/** 
+	 * Auslesen aller Abonnements
 	 * @return
 	 */
-	public Abonnement einfuegen (abonnement Abonnement) {
-		
-	}
-	
-	/** Bearbeiten eines Abonnement Objekts in der Datenbank
-	 * 
-	 * @param Abonnement
-	 * @return
-	 */
-	public Abonnement bearbeiten (abonnement Abonnement) {
-		
-	}
-	
-	/** L�schen eines Abonnement Objekts aus der Datenbank.
-	 * 
-	 * @param Abonnement
-	 */
-	public void loeschen (abonnement Abonnement) {
-		
-	}
-	
-	/** Auslesen aller Nutzer Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Nutzer> getNutzerAbo (nutzer Nutzer) {
-		
-	}
-	
-	/** Auslesen aller Hashtag Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Hashtag> getHashtagAbo (hashtag Hashtag) {
-		
-	}
-	
-	/** Auslesen aller Abonnements
-	 * 
-	 * @return
-	 */
-	public Vector<Abonnement> getAllAbo () {
-		
+	public Vector<Abonnement> getAllAbonnement() {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+	    Vector<Abonnement> result = new Vector<Abonnement>();
+
+	    try {
+	      Statement stmt = con.createStatement();
+
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM abonnement" 
+	          + "' ORDER BY name");
+
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
+	      while (rs.next()) {
+	        Abonnement a = new Abonnement();
+	        a.setID(rs.getInt("id"));
+	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
+	        result.addElement(a);
+	      }
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+
+	    // Ergebnisvektor zurueckgeben
+	    return result;
 	}
 	
 }
