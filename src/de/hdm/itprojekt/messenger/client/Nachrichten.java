@@ -47,6 +47,8 @@ public class Nachrichten extends Formular {
 		     */
 		    MultiWordSuggestOracle hinzufuegenOracle = new MultiWordSuggestOracle();
 		    hinzufuegenOracle.add("Test");
+		    hinzufuegenOracle.add("Meier");
+		    hinzufuegenOracle.add("Meler");
 		    
 		    /**
 		     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
@@ -107,6 +109,8 @@ public class Nachrichten extends Formular {
 		     */
 		    MultiWordSuggestOracle loeschenOracle = new MultiWordSuggestOracle();
 		    loeschenOracle.add("Test");
+		    loeschenOracle.add("Meier");
+		    loeschenOracle.add("Meler");
 		    
 		    /**
 		     * SuggestBox, die anschließend dem Panel loeschenDialogBox hinzugefügt wird

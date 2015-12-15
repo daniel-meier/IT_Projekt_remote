@@ -12,6 +12,7 @@ import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagin
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -63,6 +64,150 @@ public class AboVerwaltung extends Formular {
 		
 		
 		
+		/**
+		   * Anlegen der Dialogboxen
+		   */
+			  
+			  	/**
+			     * DialoxBox für einen Nutzer, welcher abonniert werden soll 
+			     */
+				final DialogBox nutzerAboDialogBox = new DialogBox();
+				nutzerAboDialogBox.setGlassEnabled(true);
+			    nutzerAboDialogBox.setAnimationEnabled(true);
+			    nutzerAboDialogBox.setText("Geben Sie einen Namen zum Abonnieren eines Nutzers ein!");
+
+			    /**
+			     * Horizontales Panel, das anschließend der Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel nutzerAboDialogContents = new HorizontalPanel();
+			    nutzerAboDialogContents.setSpacing(40);
+			    nutzerAboDialogBox.setWidget(nutzerAboDialogContents);
+			    
+			    /**
+			     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+			     */
+			    MultiWordSuggestOracle nutzerAboOracle = new MultiWordSuggestOracle();
+			    nutzerAboOracle.add("Test");
+			    nutzerAboOracle.add("Meier");
+			    nutzerAboOracle.add("Meler");
+
+			    
+			    /**
+			     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
+			     */
+			    final SuggestBox nutzerAboSuggestBox = new SuggestBox(nutzerAboOracle);
+			    nutzerAboDialogContents.add(nutzerAboSuggestBox);
+			    
+			    /**
+			     * Button, zum hinzufügen des gewählten Nutzers 
+			     */
+			    Button nutzerAbonnierenButton = new Button("Abonnieren", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  nutzerAboDialogBox.hide();
+			                //Hier Applikationslogik für Abonnieren des Nutzers einfügen!!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen 
+			     */
+			    Button keinNutzerAbonnierenButton = new Button("Abbrechen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  nutzerAboDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen des Buttons zum nutzerAboDialogContents Panel
+			     */
+			    nutzerAboDialogContents.add(nutzerAbonnierenButton);
+			    nutzerAboDialogContents.add(keinNutzerAbonnierenButton);
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    /**
+			     * DialoxBox für einen Hashtag, welcher abonniert werden soll 
+			     */
+				final DialogBox hashtagAboDialogBox = new DialogBox();
+				hashtagAboDialogBox.setGlassEnabled(true);
+			    hashtagAboDialogBox.setAnimationEnabled(true);
+			    hashtagAboDialogBox.setText("Geben Sie einen Namen zum Abonnieren eines Hashtags ein!");
+
+			    /**
+			     * Horizontales Panel, das anschließend der Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel hashtagAboDialogContents = new HorizontalPanel();
+			    hashtagAboDialogContents.setSpacing(40);
+			    hashtagAboDialogBox.setWidget(hashtagAboDialogContents);
+			    
+			    /**
+			     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+			     */
+			    MultiWordSuggestOracle hashtagAboOracle = new MultiWordSuggestOracle();
+			    hashtagAboOracle.add("#0711");
+			    hashtagAboOracle.add("#Stuttgart");
+			    hashtagAboOracle.add("#Hochschule der Medien");
+			    hashtagAboOracle.add("#Ich Liebe das IT-Projekt");
+
+			    
+			    /**
+			     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
+			     */
+			    final SuggestBox hashtagAboSuggestBox = new SuggestBox(hashtagAboOracle);
+			    hashtagAboDialogContents.add(hashtagAboSuggestBox);
+			    
+			    /**
+			     * Button, zum hinzufügen des gewählten Nutzers 
+			     */
+			    Button hashtagAbonnierenButton = new Button("Abonnieren", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagAboDialogBox.hide();
+			                //Hier Applikationslogik für Abonnieren des Nutzers einfügen!!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen 
+			     */
+			    Button keinHashtagAbonnierenButton = new Button("Abbrechen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagAboDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen des Buttons zum hashtagAboDialogContents Panel
+			     */
+			    hashtagAboDialogContents.add(hashtagAbonnierenButton);
+			    hashtagAboDialogContents.add(keinHashtagAbonnierenButton);
+			    
+			    
+			    
+			    
+			    
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
+		 * Anlegen der Edit-Buttons
+		 */
 		
 		final Button NutzerAboLoeschenButton = new Button("Gewähltes Nutzerabo löschen");
 		NutzerAboLoeschenButton.setStylePrimaryName("edit-button");
