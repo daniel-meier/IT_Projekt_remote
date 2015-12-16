@@ -137,3 +137,18 @@ div#impressum {
 	margin-right: 20px;
 }
 
+.unterhaltungPanel{
+	border-style: solid;
+	border-color: grey;
+	border-width: 1px;
+	padding: 6px;
+	margin-left: 20px;
+}
+
+.antwortButton {
+	font-size: 100%;
+	font-weight: none;
+	color: white;
+	width: 100%;
+	background: red;
+}

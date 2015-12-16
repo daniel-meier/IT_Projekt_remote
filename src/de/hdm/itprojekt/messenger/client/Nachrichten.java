@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -287,6 +289,35 @@ public class Nachrichten extends Formular {
 			  
 			   Label platzhalter1 = new Label("Hier wird später CellList mit Unterhalltungen sein");
 			   this.add(platzhalter1);
+			   
+			   
+			   
+			   VerticalPanel unterhaltung = new VerticalPanel();
+			   this.add(unterhaltung);
+			   
+			   Label unterhaltungsTitel = new Label("Unterhaltung mit" + "");
+			   unterhaltungsTitel.setStyleName("headline");
+			   unterhaltung.add(unterhaltungsTitel);
+			   unterhaltung.setStyleName("unterhaltungPanel");
+			   
+			   Label platzhalter2 = new Label("An dieser Stelle ist später eine CellList mit dem Nachrichtenverlauf");
+			   unterhaltung.add(platzhalter2);
+			   
+			   HorizontalPanel antwortPanel = new HorizontalPanel();
+			   unterhaltung.add(antwortPanel);
+			   
+			   TextArea antwortText = new TextArea();
+			   antwortText.setCharacterWidth(40);
+			   antwortText.setVisibleLines(3);
+			   antwortText.setText("Antwort eingeben...");
+			   antwortPanel.add(antwortText);
+			   
+			   Button antwortButton = new Button("Antwort senden");
+			   antwortButton.setStyleName("antwortButton");
+			   antwortButton.setHeight("65px");
+			   antwortPanel.add(antwortButton);
+
+			   
 			  
 			  
 			  
