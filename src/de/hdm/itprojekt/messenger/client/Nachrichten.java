@@ -27,16 +27,6 @@ public class Nachrichten extends Formular {
 
 	
 	
-	private static final List<Unterhaltung> TESTUNTERHALTUNG = Arrays.asList(
-			new Unterhaltung (),
-			new Unterhaltung (),
-			new Unterhaltung (),
-			new Unterhaltung (),
-			new Unterhaltung ()
-		);
-	
-	
-	
 	public void onLoad() {
 		  
 		  super.onLoad();  
