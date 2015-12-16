@@ -4,9 +4,13 @@ package de.hdm.itprojekt.messenger.client;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.xml.bind.Binder;
+
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagingPolicy;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
@@ -59,6 +63,9 @@ public class AboVerwaltung extends Formular {
 		setHeadline("Aboverwaltung");
 		HorizontalPanel buttonPanel = getButtonPanel();
 		
+		
+		    
+		    
 
 		
 		
@@ -277,6 +284,9 @@ public class AboVerwaltung extends Formular {
 	    // Use the cell in a CellList.
 	    CellList<Nutzer> NutzerCellList = new CellList<Nutzer>(nutzerCell, NutzerKeyProvider);
 	    
+	    // Set the width of the CellList.
+	    NutzerCellList.setWidth("230px");
+	    	    	    
 	    //Stylen der CellList
 	    NutzerCellList.setStylePrimaryName("CellList1");
 
@@ -299,12 +309,10 @@ public class AboVerwaltung extends Formular {
 	    NutzerSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 	      public void onSelectionChange(SelectionChangeEvent event) {
 //	        contactForm.setContact(selectionModel.getSelectedObject());
-	    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().getVorname());
+//	    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().getVorname());
 	      }
 	    });
-	    
-		
-	    
+
 	    
 	    
 	    
@@ -321,6 +329,9 @@ public class AboVerwaltung extends Formular {
 
 	    // Use the cell in a CellList.
 	    CellList<Hashtag> HashtagCellList = new CellList<Hashtag>(HashtagCell, HashtagKeyProvider);
+	    
+	    // Set the width of the CellList.
+	    HashtagCellList.setWidth("230px");
 	    
 	    //Stylen der CellList
 	    HashtagCellList.setStylePrimaryName("CellList1");
@@ -344,7 +355,7 @@ public class AboVerwaltung extends Formular {
 	    HashtagSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 	      public void onSelectionChange(SelectionChangeEvent event) {
 //	        contactForm.setContact(selectionModel.getSelectedObject());
-	    	Window.alert("Du hast gewählt: " + HashtagSelectionModel.getSelectedObject().getName());
+//	    	Window.alert("Du hast gewählt: " + HashtagSelectionModel.getSelectedObject().getName());
 	      }
 	    });
 	    

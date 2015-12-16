@@ -14,9 +14,11 @@ public class HashtagCell extends AbstractCell<Hashtag>{
 		if (value == null) {
 	      return;
 	    }
-
+		
+	    sb.appendHtmlConstant("<table><tr><td>");
 	    sb.appendEscaped(value.getName());
-	    
+	    sb.appendHtmlConstant("</td></tr></table>");
+
 	    }		
 
 }

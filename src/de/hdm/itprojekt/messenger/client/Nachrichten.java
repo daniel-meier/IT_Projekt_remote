@@ -20,6 +20,8 @@ public class Nachrichten extends Formular {
 		  
 		  
 		  
+		  
+		  
 	
 		  
 		  
