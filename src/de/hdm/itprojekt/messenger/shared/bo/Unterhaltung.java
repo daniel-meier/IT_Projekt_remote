@@ -28,6 +28,15 @@ public class Unterhaltung extends BusinessObject{
 	/**
 	 * Konstruktor 
 	 */
+	
+	public Unterhaltung(){
+
+	}
+	
+	
+	/**
+	 * Konstruktor 
+	 */
 	public Unterhaltung(ArrayList<Nutzer> teilnehmer, ArrayList<Nachricht> nachrichten){
 		this.teilnehmer = teilnehmer;
 		this.nachrichten = nachrichten;
@@ -62,17 +71,17 @@ public class Unterhaltung extends BusinessObject{
 	}
 	
 	
-	
-	public String getLastMessage(){
-		return "Testnachricht";
-	};
-	
-	public Date getLastMessageTime(){
-		return new Date(80, 4, 12);
-	}
-	
-	public String getNamesAsString(){
-		return "Name1, Name2";
-	}
+//	
+//	public String getLastMessage(){
+//		return "Testnachricht";
+//	};
+//	
+//	public Date getLastMessageTime(){
+//		return new Date(80, 4, 12);
+//	}
+//	
+//	public String getNamesAsString(){
+//		return "Name1, Name2";
+//	}
 	
 }
