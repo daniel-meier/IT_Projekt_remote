@@ -29,34 +29,7 @@ public class NutzerCell extends AbstractCell<Nutzer>{
 		  sb.appendHtmlConstant("</email>");
 	      sb.appendHtmlConstant("</div>");
 
-	      /*
-		  sb.appendHtmlConstant("<table><tr><td>");
-	      sb.appendEscaped(value.getVorname());
-	      sb.appendEscaped(" ");
-		  sb.appendEscaped(value.getNachname());
-		  sb.appendHtmlConstant("</br>");
-		  sb.appendHtmlConstant("<email style='font-size:90%; margin-left: 20px;'>");
-		  sb.appendEscaped(value.getEmail());
-		  sb.appendHtmlConstant("</email>");
-	      sb.appendHtmlConstant("</td></tr></table>");
-*/		
 
-//	      sb.appendHtmlConstant("<table>");
-//	      sb.appendEscaped(value.getVorname());
-//	      sb.appendEscaped(" ");
-//		  sb.appendEscaped(value.getNachname());
-//	      sb.appendHtmlConstant("</td></tr><tr><td style='font-size:90%; border-bottom: thin solid grey;'>");
-//	      sb.appendEscaped(value.getEmail());
-//	      sb.appendHtmlConstant("</td></tr></table>");
-		
-		
-//	    sb.appendEscaped(value.getVorname());
-//	    sb.appendEscaped(" ");
-//	    sb.appendEscaped(value.getNachname());
-//	    sb.appendHtmlConstant("</br>");
-//	    sb.appendHtmlConstant("<email style='font-size:90%; margin-left: 20px;'>");
-//	    sb.appendEscaped(value.getEmail());
-//	    sb.appendHtmlConstant("</email>");
 	    }		
 
 
