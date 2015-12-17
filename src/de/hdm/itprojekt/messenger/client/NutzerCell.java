@@ -20,7 +20,16 @@ public class NutzerCell extends AbstractCell<Nutzer>{
 	    }
 	
 
+		  sb.appendHtmlConstant("<div>");
+	      sb.appendEscaped(value.getVorname() + " " + value.getNachname());
+		  sb.appendHtmlConstant("</div>");
+		  sb.appendHtmlConstant("<div style=\"border-bottom: 1px solid #dddddd;\">");
+		  sb.appendHtmlConstant("<email style='font-size:90%; padding-left: 20px;'>");
+		  sb.appendEscaped(value.getEmail());
+		  sb.appendHtmlConstant("</email>");
+	      sb.appendHtmlConstant("</div>");
 
+	      /*
 		  sb.appendHtmlConstant("<table><tr><td>");
 	      sb.appendEscaped(value.getVorname());
 	      sb.appendEscaped(" ");
@@ -30,7 +39,7 @@ public class NutzerCell extends AbstractCell<Nutzer>{
 		  sb.appendEscaped(value.getEmail());
 		  sb.appendHtmlConstant("</email>");
 	      sb.appendHtmlConstant("</td></tr></table>");
-		
+*/		
 
 //	      sb.appendHtmlConstant("<table>");
 //	      sb.appendEscaped(value.getVorname());
