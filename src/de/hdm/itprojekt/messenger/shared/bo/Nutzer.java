@@ -38,6 +38,15 @@ public class Nutzer extends BusinessObject{
 	}
 	
 	/**
+	 *  Test Konstruktor für Gui Entwicklung
+	 */
+	public Nutzer (String vorname, String nachname, String email) {
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.email = email;
+	}
+	
+	/**
 	 * 
 	 * @return loggedIn
 	 */

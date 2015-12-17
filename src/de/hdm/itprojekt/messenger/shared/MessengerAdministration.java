@@ -1,136 +1,140 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
 public interface MessengerAdministration {
 	
-	/** Methode zum einloggen 
-	 * 
+	/**  
+	 * Methode zum einloggen
 	 */
 	public void login ();
 	
-	/** Erstelle ein HahstagAbonnement
-	 * 
+	/** 
+	 * Erstelle ein HahstagAbonnement
 	 */
-	public Hashtag erstelleHashtagAbonnement (String hashtag);
+	public HashtagAbonnement erstelleHashtagAbonnement (HashtagAbonnement String);
 	
-	/** Eine Nachricht bearbeiten 
-	 * 
+	/** 
+	 * Eine Nachricht bearbeiten 
 	 */
-	public Nachricht bearbeiteNachricht(String text);
+	public Nachricht bearbeiteNachricht(Nachricht nachricht);
 	
-	/** Einen Teilnehmer hinzufügen
-	 * 
+	/** 
+	 * Einen Teilnehmer hinzufuegen
 	 */
-	public Nachricht teilnehmerHinzufuegen (ArrayList<Nutzer> teilnehmer);
+	public Nachricht teilnehmerHinzufuegen (Vector<Nutzer> teilnehmer);
 	
 
-	/** Einen Teilnehmer entfernen
-	 * 
+	/** 
+	 * Einen Teilnehmer entfernen
 	 */
-	public void teilnehmerEntfernen (ArrayList<Nutzer> teilnehmer);
+	public void teilnehmerEntfernen (Vector<Nutzer> teilnehmer);
 	
-	/** Eine Unterhaltung löschen 
-	 * 
+	/**  
+	 * Eine Unterhaltung loeschen
 	 */
 	public void loescheUnterhaltung(Unterhaltung unterhaltung);
 	
-	/** Ein HashtagAbonnement löschen 
-	 * 
+	/** 
+	 * Ein HashtagAbonnement loeschen 
 	 */
 	public void loescheHashtagAbonnement(Abonnement abonnement);
 	
-	/** Ein init anlegen
-	 * 
+	/** 
+	 * Ein init anlegen
 	 */
 	public void init();
 	
-	/** Einen Nutzer beim Namen ausgeben lassen 
-	 * 
+	/**  
+	 * Einen Nutzer beim Namen ausgeben lassen
 	 */
-	public Nutzer getNutzerByName (String name);
+	public Vector<Nutzer> getNutzerByName (String name);
 	
-	/** Ausloggen
-	 * 
+	/** 
+	 * Ausloggen
 	 */
 	public void logout();
 	
-	/** Einen Hashtag beim Namen ausgeben lassen 
-	 * 
+	/**  
+	 * Einen Hashtag beim Namen ausgeben lassen
 	 */
-	public Hashtag getHashtagByName (String name);
+	public Vector<Hashtag> getHashtagByName (String name);
 	
-	/** Einen Nutzer bei der ID ausgeben lassen
-	 *  
+	/** 
+	 *  Einen Nutzer bei der ID ausgeben lassen
 	 */
 	public Nutzer getNutzerByID (int id);
 	
-	/**Eine Unterhaltung erstellen
-	 * 
+	/**
+	 * Eine Unterhaltung erstellen
 	 */
 	public Unterhaltung erstelleUnterhaltung(ArrayList<Nutzer> teilnehmer);
 	
-	/**NutzerAbonnement loeschen
-	 * 
+	/**
+	 * NutzerAbonnement loeschen
 	 */
 	public void loescheNutzerAbonnement(Abonnement abonnement);
 	
-	/**Nutzer anlegen
-	 *
+	/**
+	 * Nutzer anlegen
 	 */
 	public Nutzer nutzerAnlegen(String email, String vorname, String nachname);
 	
 	
-	/**Unterhaltung nach ID ausgeben
-	 * 
+	/**
+	 * Unterhaltung nach ID ausgeben
 	 */
 	public Unterhaltung getUnterhaltungByID(int id);
 	
-	/**Nachricht erstellen
-	 * 
+	/**
+	 * Nachricht erstellen
 	 */
-	public Nachricht erstelleNachricht(String nachricht);
+	public Nachricht erstelleNachricht(Nachricht nachricht);
 	
-	/**Nachricht loeschen
-	 * 
+	/**
+	 * Nachricht loeschen
 	 */
 	public void loescheNachricht(Nachricht nachricht);
 	
-	/**NutzerAbonnement erstellen
-	 * 
+	/**
+	 * NutzerAbonnement erstellen
 	 */
-	public Abonnement erstelleNutzerAbonnement(Nutzer nutzer);
+	public Abonnement erstelleNutzerAbonnement(NutzerAbonnement String);
 	
-	/**Hashtag erstellen
-	 * 
+	/**
+	 * Hashtag erstellen
 	 */
-	public Hashtag erstelleHashtag(String hashtag);
+	public Hashtag erstelleHashtag(Hashtag hashtag);
 	
-	/**Nutzer loeschen
-	 * 
+	/**
+	 * Nutzer loeschen
 	 */
 	public void loescheNutzer(Nutzer nutzer);
 	
-	/**Hashtag loeschen
-	 * 
+	/**
+	 * Hashtag loeschen
 	 */
 	public void loescheHashtag(Hashtag hashtag);
 	
-	/**Alle Nutzer ausgeben
-	 * 
+	/**
+	 * Alle Nutzer ausgeben
 	 */
-	public Nutzer getAllNutzer();
+	public Vector<Nutzer> getAllNutzer();
 	
-	/**Hashtag nach ID ausgeben
-	 * 
+	/**
+	 * Hashtag nach ID ausgeben
 	 */
 	public Hashtag getHashtagByID(int id);
+
 }
 
 
