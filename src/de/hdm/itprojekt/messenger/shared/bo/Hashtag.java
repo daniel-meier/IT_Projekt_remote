@@ -21,6 +21,14 @@ public class Hashtag extends BusinessObject {
 	public Hashtag(){
 		
 	}
+	
+	/**
+	 * Test Konstruktor für GUI Entwicklung
+	 */
+	public Hashtag(String name){
+		this.name = name;
+	}
+	
 	/**
 	 * Auslesen des Namens
 	 */
