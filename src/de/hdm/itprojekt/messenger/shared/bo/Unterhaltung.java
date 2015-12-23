@@ -32,7 +32,14 @@ public class Unterhaltung extends BusinessObject{
 	public Unterhaltung(){
 
 	}
+
+	/**
+	 * Test Konstruktor für GUI Entwicklung
+	 */
 	
+	public Unterhaltung(int zahl){
+		setID(zahl);
+	}
 	
 	/**
 	 * Konstruktor 
