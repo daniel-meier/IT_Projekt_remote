@@ -39,7 +39,7 @@ public class Formular extends HorizontalPanel {
 		 * Horizontal Panel für Edit-Buttons
 		 */
 		buttonPanel = new HorizontalPanel();
-		RootPanel.get("editbuttons").add(buttonPanel);
+		RootPanel.get("input").add(buttonPanel);
 	
 		return buttonPanel;
 	}

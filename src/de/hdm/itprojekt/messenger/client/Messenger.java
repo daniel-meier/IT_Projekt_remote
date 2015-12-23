@@ -50,7 +50,7 @@ public class Messenger implements EntryPoint {
 		        HorizontalPanel nachrichten = new Nachrichten();
 		        
 		        RootPanel.get("window").clear();
-			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("input").clear();
 			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(nachrichten);
 		      }
@@ -70,7 +70,7 @@ public class Messenger implements EntryPoint {
 				HorizontalPanel aboverwaltung = new AboVerwaltung();
 		        
 		        RootPanel.get("window").clear();
-			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("input").clear();
 			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(aboverwaltung);
 		      }
@@ -88,7 +88,7 @@ public class Messenger implements EntryPoint {
 //				HorizontalPanel nachrichtSchreiben = new NachrichtSchreiben();
 //
 //				  RootPanel.get("window").clear();
-//				    RootPanel.get("editbuttons").clear();
+//				    RootPanel.get("input").clear();
 //				    RootPanel.get("headline").clear();
 //			        RootPanel.get("window").add(nachrichtSchreiben);
 //			}
@@ -108,7 +108,7 @@ public class Messenger implements EntryPoint {
 //		        VerticalPanel report = new Report();
 //		        
 //		        RootPanel.get("window").clear();
-//			    RootPanel.get("editbuttons").clear();
+//			    RootPanel.get("input").clear();
 //			    RootPanel.get("headline").clear();
 //		        RootPanel.get("window").add(report);
 //		        
@@ -127,7 +127,7 @@ public class Messenger implements EntryPoint {
 				HorizontalPanel impressum = new Impressum();
 		        
 		        RootPanel.get("window").clear();
-			    RootPanel.get("editbuttons").clear();
+			    RootPanel.get("input").clear();
 			    RootPanel.get("headline").clear();
 		        RootPanel.get("window").add(impressum);
 		        

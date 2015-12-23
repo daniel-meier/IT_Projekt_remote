@@ -246,7 +246,7 @@ public class Nachrichten extends Formular {
 						HorizontalPanel nachrichtSchreiben = new NachrichtSchreiben();
 		
 						RootPanel.get("window").clear();
-						RootPanel.get("editbuttons").clear();
+						RootPanel.get("input").clear();
 						RootPanel.get("headline").clear();
 					    RootPanel.get("window").add(nachrichtSchreiben);
 					}
