@@ -96,6 +96,11 @@ public interface MessengerAdministration {
 	public Unterhaltung getUnterhaltungByID(int id);
 	
 	/**
+	 * Nachricht senden
+	 */
+	public Nachricht nachrichtSenden(String text);
+	
+	/**
 	 * Nachricht erstellen
 	 */
 	public Nachricht erstelleNachricht(Nachricht nachricht);
