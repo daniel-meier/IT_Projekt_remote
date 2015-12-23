@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.messenger.client;
 
 
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;

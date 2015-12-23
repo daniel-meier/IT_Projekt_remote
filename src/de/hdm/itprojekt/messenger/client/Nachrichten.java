@@ -22,21 +22,34 @@ import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
+import de.hdm.itprojekt.messenger.client.UnterhaltungCell;
+import de.hdm.itprojekt.messenger.client.NachrichtCell;
 
 public class Nachrichten extends Formular {
 
 	
 	
+	private static final List<Unterhaltung> UNTERHALTUNGEN = Arrays.asList(
+				new Unterhaltung (1),
+				new Unterhaltung (2)
+			);
+		
+	private static final List<Nachricht> NACHRICHTEN = Arrays.asList(
+				new Nachricht (),
+				new Nachricht ()
+			);
+	
+	  
+	  
 	public void onLoad() {
 		  
 		  super.onLoad();  
 		  setHeadline("Unterhaltungen/Nachrichten");
 		  HorizontalPanel buttonPanel = getButtonPanel();
-		  
-		  
-		  
 	
 		  
 		  
@@ -279,18 +292,53 @@ public class Nachrichten extends Formular {
 			  });
 			  
 			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			   Label platzhalter1 = new Label("Hier wird später CellList mit Unterhalltungen sein");
-			   this.add(platzhalter1);
-			   
-			   
+			
+			  /**
+				 * Anlegen der UnterhaltungCell Lists
+				 */
+				
+				ProvidesKey<Unterhaltung> UnterhaltungKeyProvider = new ProvidesKey<Unterhaltung>() {
+					public Object getKey(Unterhaltung item) {
+						return (item == null) ? null : item.getID();
+					}
+				};
+				
+			    // Create a cell to render each value.
+			    UnterhaltungCell unterhaltungCell = new UnterhaltungCell();	    
+
+			    // Use the cell in a CellList.
+			    CellList<Unterhaltung> UnterhaltungCellList = new CellList<Unterhaltung>(unterhaltungCell, UnterhaltungKeyProvider);
+			    
+			    // Set the width of the CellList.
+			    UnterhaltungCellList.setWidth("230px");
+			    	    	    
+			    //Stylen der CellList
+			    UnterhaltungCellList.setStylePrimaryName("CellList1");
+
+			    // Push the data into the widget.
+			    UnterhaltungCellList.setRowData(0, UNTERHALTUNGEN);
+
+			    // Add it to the root panel.
+			    this.add(UnterhaltungCellList);	    
+			    
+			    // Set a key provider that provides a unique key for each contact. If key is
+			    // used to identify contacts when fields (such as the name and address)
+			    // change.
+			    UnterhaltungCellList.setPageSize(30);
+			    UnterhaltungCellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.INCREASE_RANGE);
+			    UnterhaltungCellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.BOUND_TO_SELECTION);
+
+			    // Add a selection model so we can select cells.
+			    final SingleSelectionModel<Unterhaltung> UnterhaltungSelectionModel = new SingleSelectionModel<Unterhaltung>(UnterhaltungKeyProvider);
+			    UnterhaltungCellList.setSelectionModel(UnterhaltungSelectionModel);
+			    UnterhaltungSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+			      public void onSelectionChange(SelectionChangeEvent event) {
+//			        contactForm.setContact(selectionModel.getSelectedObject());
+//			    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().xxx);
+			      }
+			    });
+			    
+			    
 			   
 			   VerticalPanel unterhaltung = new VerticalPanel();
 			   this.add(unterhaltung);
@@ -300,8 +348,52 @@ public class Nachrichten extends Formular {
 			   unterhaltung.add(unterhaltungsTitel);
 			   unterhaltung.setStyleName("unterhaltungPanel");
 			   
-			   Label platzhalter2 = new Label("An dieser Stelle ist später eine CellList mit dem Nachrichtenverlauf");
-			   unterhaltung.add(platzhalter2);
+			   /**
+				 * Anlegen der NachrichtCell Lists
+				 */
+			   
+//				ProvidesKey<Nachricht> NachrichtKeyProvider = new ProvidesKey<Nachricht>() {
+//					public Object getKey(Nachricht item) {
+//						return (item == null) ? null : item.getID();
+//					}
+//				};
+				
+			    // Create a cell to render each value.
+			    NachrichtCell nachrichtCell = new NachrichtCell();	    
+
+			    // Use the cell in a CellList.
+			    CellList<Nachricht> NachrichtCellList = new CellList<Nachricht>(nachrichtCell);
+			    
+			    // Set the width of the CellList.
+			    NachrichtCellList.setWidth("363px");
+			    	    	    
+			    //Stylen der CellList
+			    NachrichtCellList.setStylePrimaryName("CellList1");
+
+			    // Push the data into the widget.
+			    NachrichtCellList.setRowData(0, NACHRICHTEN);
+
+			    // Add it to the root panel.
+			    unterhaltung.add(NachrichtCellList);	    
+			    
+//			    // Set a key provider that provides a unique key for each contact. If key is
+//			    // used to identify contacts when fields (such as the name and address)
+//			    // change.
+//			    NachrichtCellList.setPageSize(30);
+//			    NachrichtCellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.INCREASE_RANGE);
+//			    NachrichtCellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.BOUND_TO_SELECTION);
+
+//			    // Add a selection model so we can select cells.
+//			    final SingleSelectionModel<Nachricht> NachrichtSelectionModel = new SingleSelectionModel<Nachricht>(NachrichtKeyProvider);
+//			    NachrichtCellList.setSelectionModel(NachrichtSelectionModel);
+//			    NachrichtSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+//			      public void onSelectionChange(SelectionChangeEvent event) {
+//				        contactForm.setContact(selectionModel.getSelectedObject());
+//				    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().getVorname());
+//			      }
+//			    });
+
+			   
 			   
 			   HorizontalPanel antwortPanel = new HorizontalPanel();
 			   unterhaltung.add(antwortPanel);
