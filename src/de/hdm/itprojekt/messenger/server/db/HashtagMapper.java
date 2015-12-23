@@ -150,7 +150,25 @@ private static HashtagMapper hashtagMapper = null;
 	 * @return
 	 */
 	public Vector<Hashtag> findByName (String name) {
-		return null;
+		Connection con = DBConnection.connection();
+		Vector<Hashtag> result = new Vector<Hashtag>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM hashtag"
+					+ "ORDER BY name DESC");
+			while (rs.next()){
+				Hashtag h = new Hashtag();
+				h.setID(rs.getInt("id"));
+				h.setName(rs.getString("Name"));
+				
+				result.addElement(h);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 		
 	}
 	
