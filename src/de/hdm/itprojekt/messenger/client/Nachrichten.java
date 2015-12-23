@@ -335,6 +335,8 @@ public class Nachrichten extends Formular {
 			      public void onSelectionChange(SelectionChangeEvent event) {
 //			        contactForm.setContact(selectionModel.getSelectedObject());
 //			    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().xxx);
+//			        contactForm.setContact(selectionModel.getSelectedObject());
+
 			      }
 			    });
 			    
