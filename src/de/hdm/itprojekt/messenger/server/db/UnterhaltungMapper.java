@@ -123,7 +123,7 @@ public class UnterhaltungMapper extends DBConnection{
 		try {
 			//Leeeres SQL-Statement (JDBC) anlegen
 			Statement stmt = con.createStatement();
-			
+			//TODO getText?
 			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
 								
 		}
@@ -160,26 +160,85 @@ public class UnterhaltungMapper extends DBConnection{
 	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
 	 * @return
 	 */
-	public void teilnehmerLoeschen(Vector<Nutzer> teilnehmer) {
-		
+	public void teilnehmerLoeschen(Nutzer teilnehmer) {
+		Connection con = DBConnection.connection();
+		try{
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + teilnehmer.getID());
+		}
+		catch (SQLException e2){
+			e2.printStackTrace();
+		}
 	}
 		
+	/**
+	 * Einen Teilnehmer zu einer Unterhaltung hinzufügen
+	 * @param nutzername
+	 */
+	public Unterhaltung teilnehmerHinzufuegen(String nutzername){
+		Connection con = DBConnection.connection();
+		try{
+			Statement stmt = con.createStatement();
+			//TODO Nutzer prüfen ob der in der Unterhaltung ist
+			ResultSet rs = stmt.executeQuery("SELECT ");
+			if(rs.next()){
+				stmt = con.createStatement();
+				//TODO Insert Statement
+				stmt.executeUpdate("INSERT INTO");
+			}
+		}
+		catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		return null;
+	}
 	
 	/** Auslesen aller Unterhaltungen
 	 * 
 	 * @return
 	 */
 	public Vector<Unterhaltung> getUnterhaltung() {
-		return null;
+		Connection con = DBConnection.connection();
+		Vector<Unterhaltung> result = new Vector<Unterhaltung>();
+		try{
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM unterhaltung");
+			while (rs.next()){
+				Unterhaltung u = new Unterhaltung();
+				u.setID(rs.getInt("ID"));
+				u.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				result.addElement(u);
+			}
+		}
+		catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		return result;
 	}
 	
 	/** Auslesen aller Teilnehmer einer Unterhaltung
 	 * 
 	 * @return
 	 */
-	public Unterhaltung getTeilnehmer(Vector<Nutzer> teilnehmer) {
-		return null;
-		
+	public Unterhaltung getTeilnehmer(ArrayList<Nutzer> teilnehmer) {
+		Connection con = DBConnection.connection();
+		Unterhaltung result = new Unterhaltung();
+		try{
+			Statement stmt = con.createStatement();
+			//TODO Query die UnterhaltungsTeilnehmer ausliest
+			ResultSet rs = stmt.executeQuery("");
+			while (rs.next()){
+				Nutzer n = new Nutzer();
+		        n.setID(rs.getInt("id"));
+		        n.setVorname(rs.getString("vorname"));
+		        n.setNachname(rs.getString("nachname"));
+		        result.addTeilnehmer(n);
+			}
+		}
+		catch (SQLException e2){
+			e2.printStackTrace();
+		}
+		return result;
 	}
 	
 	
