@@ -23,7 +23,10 @@ public class Unterhaltung extends BusinessObject{
 	 */
 	private ArrayList<Nachricht> nachrichten = null;
 	
-	
+	/**
+	 * Dient zur Prüfung eine Unterhaltung ob sie zwischen 2 (also Private) oder mehreren Personen besteht
+	 */
+	private boolean isPrivate = true;
 	
 	/**
 	 * Konstruktor 
@@ -51,7 +54,7 @@ public class Unterhaltung extends BusinessObject{
 	 * 		Nutzer der hinzugefuegt werden soll.
 	 */
 	public void addTeilnehmer(Nutzer t){
-		if (t != null) {
+		if (t != null && isPrivate == false) {
 			teilnehmer.add(t);	}
 	}
 	

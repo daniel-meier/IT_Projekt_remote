@@ -153,7 +153,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	@Override
 	public void teilnehmerEntfernen(Vector<Nutzer> teilnehmer) 
 			throws IllegalArgumentException{
-		// TODO Auto-generated method stub
+		// TODO Prüfung ob es ein Gruppenchat ist
 		this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
 	}
 
@@ -377,6 +377,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 		return this.hashtagMapper.findbyID(id);
 		
+	}
+	
+	public Unterhaltung teilnehmerHinzufuegen(String nutzername) throws IllegalArgumentException{
+		return this.unterhaltungMapper.teilnehmerHinzufuegen(nutzername);
 	}
 
 }
