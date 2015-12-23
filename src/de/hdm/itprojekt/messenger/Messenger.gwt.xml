@@ -21,7 +21,6 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.hdm.itprojekt.messenger.client.Messenger'/>
-<!--   <entry-point class='de.hdm.itprojekt.messenger.client.report.ReportGenerator'/> -->
   
 
 
