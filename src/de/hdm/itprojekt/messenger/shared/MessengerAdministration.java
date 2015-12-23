@@ -37,7 +37,7 @@ public interface MessengerAdministration {
 	/** 
 	 * Einen Teilnehmer entfernen
 	 */
-	public void teilnehmerEntfernen (Vector<Nutzer> teilnehmer);
+	public void teilnehmerEntfernen (Nutzer teilnehmer);
 	
 	/**  
 	 * Eine Unterhaltung loeschen
@@ -98,7 +98,7 @@ public interface MessengerAdministration {
 	/**
 	 * Nachricht senden
 	 */
-	public Nachricht nachrichtSenden(String text);
+	public Nachricht nachrichtSenden(Nachricht nachricht);
 	
 	/**
 	 * Nachricht erstellen

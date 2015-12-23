@@ -151,7 +151,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param teilnehmer
 	 */
 	@Override
-	public void teilnehmerEntfernen(Vector<Nutzer> teilnehmer) 
+	public void teilnehmerEntfernen(Nutzer teilnehmer) 
 			throws IllegalArgumentException{
 		// TODO Prüfung ob es ein Gruppenchat ist
 		this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
@@ -238,7 +238,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param abonnement
 	 */
 	@Override
-	public void loescheNutzerAbonnement(Abonnement nutzerAbonnement){
+	public void loescheNutzerAbonnement(Abonnement nutzerAbonnement) 
+			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		this.nutzerAbonnementMapper.loeschen(nutzerAbonnement);
 	}
@@ -289,8 +290,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param text
 	 * @return
 	 */
-	public Nachricht nachrichtSenden(String text) throws IllegalArgumentException{
-		return this.nachrichtMapper.senden(text);	
+	public Nachricht nachrichtSenden(Nachricht nachricht) throws IllegalArgumentException{
+		return this.nachrichtMapper.senden(nachricht);	
 	}
 	
 	/**
@@ -391,5 +392,6 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Unterhaltung teilnehmerHinzufuegen(String nutzername) throws IllegalArgumentException{
 		return this.unterhaltungMapper.teilnehmerHinzufuegen(nutzername);
 	}
+
 
 }

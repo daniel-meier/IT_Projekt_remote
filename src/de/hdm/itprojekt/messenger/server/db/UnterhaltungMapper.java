@@ -201,7 +201,7 @@ public class UnterhaltungMapper extends DBConnection{
 	public Vector<Unterhaltung> getUnterhaltung() {
 		Connection con = DBConnection.connection();
 		Vector<Unterhaltung> result = new Vector<Unterhaltung>();
-<<<<<<< HEAD
+
 		try{
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM unterhaltung");
@@ -235,6 +235,7 @@ public class UnterhaltungMapper extends DBConnection{
 		        n.setID(rs.getInt("id"));
 		        n.setVorname(rs.getString("vorname"));
 		        n.setNachname(rs.getString("nachname"));
+		        
 		        result.addTeilnehmer(n);
 			}
 		}

@@ -56,8 +56,8 @@ public class NutzerMapper extends DBConnection{
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
-	      return null;
 	    }
+	    return null;
 	}
 
 	/**
@@ -235,46 +235,40 @@ public class NutzerMapper extends DBConnection{
 
 
 
-	/** public Nutzer findNutzerByName(String name) {
-		
-		//DB-Verbindung holen
-				Connection con = DBConnection.connection();
+	 public Nutzer findNutzerByName(String name) {
+		 	//DB-Verbindung holen
+			Connection con = DBConnection.connection();
 				
-				try {
-					//Leeeres SQL-Statement (JDBC) anlegen
-					Statement stmt = con.createStatement();
+			try {
+				//Leeeres SQL-Statement (JDBC) anlegen
+				Statement stmt = con.createStatement();
 					
-					//Statement ausf¸llen und als Query an die B schicken
-					ResultSet rs = stmt.executeQuery("SELECT ID, id, vorname, nachname, email, erstellungsdatum "
-							+ "FROM nutzer "
-							+ "WHERE Vorname, Nachname=" + eingabe);
+				//Statement ausfuellen und als Query an die DB schicken
+				ResultSet rs = stmt.executeQuery("SELECT * FROM nutzer "
+						+ "WHERE Vorname, Nachname='" + name + "'");
 					
-					
-					// Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+				// Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. 
+				// pruef, ob ein ergebnis vorliegt.
 					 
-					
-					if (rs.next()) {
-						//Ergebnis-Tupel in Objekt umwandeln
-						Nutzer n = new Nutzer();
-						n.setID(rs.getInt("ID"));
-						n.setVorname(rs.getString ("Vorname"));
-						n.setNachname(rs.getString ("Nachname"));
-						n.setEmail(rs.getString ("Email"));
-						n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunktdatum"));
+				if (rs.next()) {
+					//Ergebnis-Tupel in Objekt umwandeln
+					Nutzer n = new Nutzer();
+					n.setID(rs.getInt("ID"));
+					n.setVorname(rs.getString ("Vorname"));
+					n.setNachname(rs.getString ("Nachname"));
+					n.setEmail(rs.getString ("Email"));
+					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 						
-				
-						return n;
-					}
+					return n;
 				}
+			}
 				catch (SQLException e2) {
-					e2.printStackTrace();
-					return null;
-					
+					e2.printStackTrace();					
 				}
-				return null;
-	} */
+			return null;
+	} 
 	
-	public Partlist findNutzerByName(String searchWord, int maxResults,
+	/**public Partlist findNutzerByName(String searchWord, int maxResults,
 				boolean onlyModules, boolean onlyProducts)
 				throws IllegalArgumentException, SQLException {
 		
@@ -390,7 +384,6 @@ public class NutzerMapper extends DBConnection{
 			}
 
 			return result;
-		}
-	
-
+		} */
+	}
 
