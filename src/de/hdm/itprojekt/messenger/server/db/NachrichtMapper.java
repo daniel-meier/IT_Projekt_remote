@@ -8,7 +8,6 @@ import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
 
 
 
@@ -178,7 +177,7 @@ public class NachrichtMapper extends DBConnection {
 	 * @param nachricht auf der DB zu loeschende "objekt"
 	 */
 	public void loeschen (Nachricht n) {
-			Connection con =DBConnection.connection();
+			Connection con = DBConnection.connection();
 			
 			try {
 				Statement stmt = con.createStatement();
@@ -193,8 +192,8 @@ public class NachrichtMapper extends DBConnection {
 		
 		
 	
-	/** Auslesen aller Nachrichten
-	 * 
+	/** 
+	 * Auslesen aller Nachrichten
 	 * @return
 	 */
 	public Vector<Nachricht> getNachricht () {
@@ -202,9 +201,34 @@ public class NachrichtMapper extends DBConnection {
 		
 	}
 	
-	//Wichtig!! getNachrichtByNutzer Methode
+	/**
+	 * Auslesen aller Nachrichten nach Nutzer
+	 * @param n
+	 * @return nachrichtListe
+	 */
 	public Vector<Nachricht> getNachrichtByNutzer(Nutzer n){
-		return null;
+		Connection con = DBConnection.connection();
+		Vector<Nachricht> nachrichtListe = new Vector<Nachricht>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nachricht WHERE NutzerID =" 
+					+ n.getID() + "ORDER BY Erstellungszeitpunkt DESC");
+			while (rs.next()) {
+				Nachricht na = new Nachricht();
+				na.setID(rs.getInt("id"));
+				na.setText(rs.getString ("text"));
+				na.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				na.setNutzerID(rs.getInt("nutzerID"));
+				
+				nachrichtListe.addElement(na);
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		return nachrichtListe;
 		
 	}
 	/**
@@ -213,6 +237,27 @@ public class NachrichtMapper extends DBConnection {
 	 * @return
 	 */
 	public Nachricht getTeilnehmer(Vector<Nutzer> teilnehmer) {
+		//TODO
+		Connection con = DBConnection.connection();
+		Vector<Nutzer> result = new Vector<Nutzer>();
+		
+		try{
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("");
+			while (rs.next()){
+				Nutzer t = new Nutzer();
+				t.setID(rs.getInt("id"));
+				t.setVorname(rs.getString("vorname"));
+				t.setNachname(rs.getString("nachname"));
+				t.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				
+				result.add(t);
+			}
+		}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+		
 		return null;
 		
 	}
@@ -266,8 +311,50 @@ public class NachrichtMapper extends DBConnection {
 	 * Auslesen aller Nachrichten nach Angabe eines Zeitraumes
 	 * @return
 	 */
-	public Vector<Nachricht> getNachrichtByZeitraum() {
+	public Vector<Nachricht> getNachrichtByZeitraum(String von, String bis) {
 		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+		Vector<Nachricht> result = new Vector<Nachricht>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM nachricht WHERE erstellungszeitpunkt BETWEEN'"
+					+ von + "' AND '" + bis + "'" + "ORDER BY Datum");
+			
+			if (rs.next()) {
+				Nachricht n = new Nachricht();
+				n.setID(rs.getInt("id"));
+				n.setText(rs.getString("text"));
+				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				n.setNutzerID(rs.getInt("nutzerID"));
+				
+				result.addElement(n);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	/**
+	 * Senden einer Nachricht
+	 * @param text
+	 * @return
+	 */
+	public Nachricht senden(Nachricht n) {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("SELECT * FROM nachricht" + "WHERE id=" + n.getID());
+		}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	
