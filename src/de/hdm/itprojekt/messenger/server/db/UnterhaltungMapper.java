@@ -24,8 +24,8 @@ public class UnterhaltungMapper extends DBConnection{
 		return unterhaltungMapper;
 	}
 	
-	/** Suche einer Unterhaltung nach seiner eindeutigen Nummer
-	 *  
+	/** 
+	 *  Suche einer Unterhaltung nach seiner eindeutigen Nummer
 	 * @param id Primaerschluesselattribut
 	 * @return
 	 */
@@ -62,8 +62,8 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 
 		
-	/** Einf�gen eines Unterhaltungs Objekts in die Datenbank
-	 * 
+	/** 
+	 * Einfuegen eines Unterhaltungs Objekts in die Datenbank
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
@@ -112,8 +112,8 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 		
 	
-	/** Bearbeiten eines Unterhaltungs Objekts in der Datenbank
-	 * 
+	/** 
+	 * Bearbeiten eines Unterhaltungs Objekts in der Datenbank
 	 * @param UnterhaltungMapper
 	 * @return
 	 */
@@ -124,7 +124,8 @@ public class UnterhaltungMapper extends DBConnection{
 			//Leeeres SQL-Statement (JDBC) anlegen
 			Statement stmt = con.createStatement();
 			//TODO getText?
-			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" + unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
+			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" 
+					+ unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -137,13 +138,13 @@ public class UnterhaltungMapper extends DBConnection{
 		
 		
 	
-	/** L�schen eines Unterhaltungs Objekts aus der Datenbank
-	 * 
+	/** 
+	 * Loeschen eines Unterhaltungs Objekts aus der Datenbank
 	 * @param Unterhaltung
 	 */
 	public void loeschen (Unterhaltung Unterhaltung){
 		
-	Connection con =DBConnection.connection();
+	Connection con = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
@@ -193,20 +194,22 @@ public class UnterhaltungMapper extends DBConnection{
 		return null;
 	}
 	
-	/** Auslesen aller Unterhaltungen
-	 * 
+	/** 
+	 * Auslesen aller Unterhaltungen
 	 * @return
 	 */
 	public Vector<Unterhaltung> getUnterhaltung() {
 		Connection con = DBConnection.connection();
 		Vector<Unterhaltung> result = new Vector<Unterhaltung>();
+<<<<<<< HEAD
 		try{
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM unterhaltung");
 			while (rs.next()){
 				Unterhaltung u = new Unterhaltung();
-				u.setID(rs.getInt("ID"));
-				u.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				u.setID(rs.getInt("id"));
+				u.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				
 				result.addElement(u);
 			}
 		}
@@ -216,8 +219,8 @@ public class UnterhaltungMapper extends DBConnection{
 		return result;
 	}
 	
-	/** Auslesen aller Teilnehmer einer Unterhaltung
-	 * 
+	/** 
+	 * Auslesen aller Teilnehmer einer Unterhaltung
 	 * @return
 	 */
 	public Unterhaltung getTeilnehmer(ArrayList<Nutzer> teilnehmer) {
@@ -241,7 +244,5 @@ public class UnterhaltungMapper extends DBConnection{
 		return result;
 	}
 	
-	
-
 
 }
