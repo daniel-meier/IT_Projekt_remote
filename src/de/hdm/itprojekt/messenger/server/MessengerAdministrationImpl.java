@@ -50,12 +50,12 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	}
 	
 	/**Initialisierungsmethode.
-	 * Diese Methode muss für jede Instanz von MessengerAdministrationImpl aufgerufen werden.
+	 * Diese Methode muss fï¿½r jede Instanz von MessengerAdministrationImpl aufgerufen werden.
 	 * @throws IllegalArgumentException
 	 */
 	public void init() throws IllegalArgumentException {
 		 /*
-	     * Ganz wesentlich ist, dass die MessengerAdministration einen vollständigen Satz
+	     * Ganz wesentlich ist, dass die MessengerAdministration einen vollstï¿½ndigen Satz
 	     * von Mappern besitzt, mit deren Hilfe sie dann mit der Datenbank
 	     * kommunizieren kann.
 	     */
@@ -76,7 +76,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	
 	/*
 	 * *********************************************************
-	 * ABSCHNITT, Beginn: Methoden für Customer-Objekte
+	 * ABSCHNITT, Beginn: Methoden fï¿½r Customer-Objekte
 	 * *********************************************************
 	 */
 	
@@ -157,7 +157,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	}
 
 	/**
-	 * Methode um einen oder mehrere Nutzer als Empfänger einer Nachricht hinzuzufügen
+	 * Methode um einen oder mehrere Nutzer als Empfï¿½nger einer Nachricht hinzuzufï¿½gen
 	 * @param teilnehmer
 	 * @return null
 	 */
@@ -171,13 +171,15 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Methode um einen oder mehrere Nutzer aus einer Unterhaltung zu entfernen
 	 * @param teilnehmer
-	 */
+	 
 	@Override
 	public void teilnehmerEntfernen(Nutzer teilnehmer) 
 			throws IllegalArgumentException{
-		// TODO Prüfung ob es ein Gruppenchat ist
+		// TODO Prï¿½fung ob es ein Gruppenchat ist
 		this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
 	}
+*/
+
 
 	/**
 	 * Methode um eine Unterhaltung zu loeschen
@@ -411,8 +413,8 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 	}
 	
-	public Unterhaltung teilnehmerHinzufuegen(String nutzername) throws IllegalArgumentException{
-		return this.unterhaltungMapper.teilnehmerHinzufuegen(nutzername);
+	public Unterhaltung teilnehmerHinzufuegen(int UnterhaltungsID, int NutzerID) throws IllegalArgumentException{
+		return this.unterhaltungMapper.teilnehmerHinzufuegen( UnterhaltungsID, NutzerID);
 	}
 
 }

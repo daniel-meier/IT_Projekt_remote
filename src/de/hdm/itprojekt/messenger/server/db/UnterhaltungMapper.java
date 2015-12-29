@@ -92,7 +92,7 @@ public class UnterhaltungMapper extends DBConnection{
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
 			stmt.executeUpdate("INSERT INTO unterhaltung (unterhaltungsID, Erstellzeitpunkt" + "VALUES ("
-			+ Unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
+			+ unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
 				
 				}
 			}
@@ -125,7 +125,7 @@ public class UnterhaltungMapper extends DBConnection{
 			Statement stmt = con.createStatement();
 			//TODO getText?
 			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" 
-					+ unterhaltung.getText() + "' " + "WHERE id=" + Unterhaltung.getID());
+					+ unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -141,6 +141,7 @@ public class UnterhaltungMapper extends DBConnection{
 	/** 
 	 * Loeschen eines Unterhaltungs Objekts aus der Datenbank
 	 * @param Unterhaltung
+	 * */
 	 
 	public void loeschen (Unterhaltung Unterhaltung){
 		
@@ -158,22 +159,24 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 	
 	
-	 */
+
 	/**
 	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
 	 * @return
-	 */
+	
 	public void teilnehmerLoeschen(Nutzer teilnehmer) {
 		Connection con = DBConnection.connection();
 		try{
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + Nutzer.getID());
+			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + nutzer.getID());
 		}
 		catch (SQLException e2){
 			e2.printStackTrace();
 		}
 	}
-		
+	
+	
+		*/
 	/**
 	 * Einen Teilnehmer zu einer Unterhaltung hinzuf�gen
 	 * @param nutzername
@@ -189,7 +192,7 @@ public class UnterhaltungMapper extends DBConnection{
 				stmt = con.createStatement();
 				//TODO Insert Statement
 				stmt.executeUpdate("INSERT INTO unterhaltung (NutzerId, UnterhaltungId) VALUES ("
-				+ Nutzer.getID() + "," + Unterhaltung.getID() + "," );
+				+ nutzer.getID() + "," + unterhaltung.getID() + "," );
 			}
 		}
 		catch (SQLException e2){
