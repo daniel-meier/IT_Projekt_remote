@@ -181,7 +181,7 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + Nutzer.getID());
+	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + nutzer.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();

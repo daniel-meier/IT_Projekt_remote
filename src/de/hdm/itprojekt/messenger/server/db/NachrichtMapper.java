@@ -282,6 +282,25 @@ public class NachrichtMapper extends DBConnection {
 	return null;
 	}
 	
+	
+	
+	
+	
+	public Nachricht nachrichtEinerUnterhaltungZuordnen(int NachrichtID, int UnterhaltungsID) {
+		
+		Connection con = DBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate( "INSERT INTO Unterhaltungsnachricht (`nachrichtid`, `unterhaltungsid`) VALUES ('" + NachrichtID + "', '" + UnterhaltungsID
+					+ "')");
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 
 	/**
 	 * Suche eine Nachricht Objekt nach Nutzer und Zeitraum

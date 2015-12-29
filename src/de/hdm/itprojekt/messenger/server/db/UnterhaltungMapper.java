@@ -202,6 +202,42 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 	
 	
+
+	public Unterhaltung NachrichtenIdZuUnterhaltungId (int unterhaltungsId) {
+		Unterhaltung u = new Unterhaltung();
+		Vector<Nachricht> Nachricht = new Vector<Nachricht>();
+		Connection con = DBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltungsnachricht INNER JOIN Unterhaltung ON UnterhaltungsId.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtId = Nachricht.Id WHERE Unterhaltungsnachricht.UnterhaltungId = '"
+					ORDER BY Nachricht.ErstellungsDatum DESC);
+			ResultSet rs = state.executeQuery(sql);
+			while (rs.next()) {
+				u.setId(rs.getInt("Unterhaltungsnachricht.UnterhaltungId"));
+				Nachricht nA = new Nachricht();
+				nA.setId(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
+				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
+				nA.setErstellungsDatum(rs
+						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setText(rs.getString("Nachricht.Text"));
+				meineNachrichten.add(nA);
+
+			}
+			u.setAlleNachrichten(meineNachrichten);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private String getNutzerID() {
 		// TODO Auto-generated method stub
