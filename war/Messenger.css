@@ -32,7 +32,7 @@ h1{
 	font-size: 130%;
 	font-weight: bold;
 	width: 100%;
-	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 div#navigation {
@@ -61,6 +61,19 @@ div#headline {
 /* 	margin-left: 15pt; */
 	background: red;
 }
+
+.reportEdit-Button{
+	font-size: 100%;
+	font-weight: none;
+	color: white;
+	width: 100%;
+	margin-bottom: 10pt;
+	margin-top: 3em;
+/* 	margin-left: 15pt; */
+	background: red;
+}
+
+
 
 .label1 {
 	font-size: 150%;
@@ -121,6 +134,31 @@ div#impressum {
 .labelDani {
 	padding-right: 15pt;
 }
+
+.labelReportLabel {
+	font-size: 150%;
+	font-weight: bold;
+	width: 100%;
+	margin-top: 2em;
+}
+
+.labelReportLabel2 {
+	font-size: 150%;
+	font-weight: bold;
+	width: 100%;
+	margin-top: 2em;
+	margin-left: 20pt;
+}
+
+.labelReportLabel3 {
+	font-size: 150%;
+	font-weight: bold;
+	width: 100%;
+	margin-top: 2em;
+	margin-right: 20pt;
+}
+
+
 
 .inhalt{
 	font-size: 100%;
