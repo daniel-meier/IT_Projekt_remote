@@ -210,21 +210,18 @@ public class UnterhaltungMapper extends DBConnection{
 		try {
 			Statement stmt = con.createStatement();
 			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltungsnachricht INNER JOIN Unterhaltung ON UnterhaltungsId.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtId = Nachricht.Id WHERE Unterhaltungsnachricht.UnterhaltungId = '"
-					ORDER BY Nachricht.ErstellungsDatum DESC);
-			ResultSet rs = state.executeQuery(sql);
-			while (rs.next()) {
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltungsnachricht INNER JOIN Unterhaltung ON UnterhaltungsId.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtId = Nachricht.Id WHERE Unterhaltungsnachricht.UnterhaltungId = '");
+		
+			if(rs.next()){
 				u.setId(rs.getInt("Unterhaltungsnachricht.UnterhaltungId"));
+				
 				Nachricht nA = new Nachricht();
 				nA.setId(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
-				nA.setSenderId(rs.getInt("Nachricht.AutorId"));
-				nA.setErstellungsDatum(rs
-						.getTimestamp("Nachricht.ErstellungsDatum"));
+				nA.setNutzerId(rs.getInt("Nachricht.AutorId"));
+				nA.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 				nA.setText(rs.getString("Nachricht.Text"));
-				meineNachrichten.add(nA);
 
 			}
-			u.setAlleNachrichten();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
