@@ -7,6 +7,7 @@ package de.hdm.itprojekt.messenger.server;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import com.google.api.server.spi.auth.common.User;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itprojekt.messenger.server.db.*;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
@@ -81,14 +83,34 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Methode um sich in das System einloggen 
 	 */
-	
 
 	@Override
 	public void login() {
 		// TODO Auto-generated method stub
 		
 	}
+/**
 	@Override
+	public LoginInfo login(String requestUri) {
+		// TODO Auto-generated method stub
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		LoginInfo loginInfo = new LoginInfo();
+		
+		if (user != null) {
+			loginInfo.setLoggedIn(true);
+			loginInfo.setEmailAdresse(user.getEmail());
+			loginInfo.setVorname(user.getVorname());
+			loginInfo.setNachname(user.getNachname());
+			loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
+		} else {
+			loginInfo.setLoggedIn(false);
+			loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
+		}
+		return loginInfo;
+		
+	} */
+/**	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         UserService userService = UserServiceFactory.getUserService();
@@ -107,7 +129,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
                                      userService.createLoginURL(thisURL) +
                                      "\">einloggen</a>.</p>");
         }
-    }
+    } */
 	
 	/**
 	 * Methode um ein Hashtag zu abonnieren
@@ -392,6 +414,5 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Unterhaltung teilnehmerHinzufuegen(String nutzername) throws IllegalArgumentException{
 		return this.unterhaltungMapper.teilnehmerHinzufuegen(nutzername);
 	}
-
 
 }

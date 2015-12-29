@@ -112,7 +112,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	public Vector<Nachricht> erstelleNachrichtByZeitraumReport(Date date)
 			throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return this.nachrichtMapper.getNachrichtByZeitraum();
+		return this.nachrichtMapper.getNachrichtByZeitraum(null, null);
 	}
 
 	/**
