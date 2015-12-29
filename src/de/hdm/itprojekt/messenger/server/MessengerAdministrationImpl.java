@@ -7,8 +7,6 @@ package de.hdm.itprojekt.messenger.server;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import com.google.api.server.spi.auth.common.User;
-import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.io.IOException;
@@ -16,10 +14,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itprojekt.messenger.server.db.*;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
@@ -89,47 +83,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		
 	}
-/**
-	@Override
-	public LoginInfo login(String requestUri) {
-		// TODO Auto-generated method stub
-		UserService userService = UserServiceFactory.getUserService();
-		User user = userService.getCurrentUser();
-		LoginInfo loginInfo = new LoginInfo();
-		
-		if (user != null) {
-			loginInfo.setLoggedIn(true);
-			loginInfo.setEmailAdresse(user.getEmail());
-			loginInfo.setVorname(user.getVorname());
-			loginInfo.setNachname(user.getNachname());
-			loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
-		} else {
-			loginInfo.setLoggedIn(false);
-			loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
-		}
-		return loginInfo;
-		
-	} */
-/**	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
-        UserService userService = UserServiceFactory.getUserService();
 
-        String thisURL = req.getRequestURI();
-
-        resp.setContentType("text/html");
-        if (req.getUserPrincipal() != null) {
-            resp.getWriter().println("<p>Hallo, " +
-                                     req.getUserPrincipal().getName() +
-                                     "!  Du kannst <a href=\"" +
-                                     userService.createLogoutURL(thisURL) +
-                                     "\">ausloggen</a>.</p>");
-        } else {
-            resp.getWriter().println("<p>Bitte <a href=\"" +
-                                     userService.createLoginURL(thisURL) +
-                                     "\">einloggen</a>.</p>");
-        }
-    } */
 	
 	/**
 	 * Methode um ein Hashtag zu abonnieren
@@ -142,6 +96,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.hashtagAbonnementMapper.erstellen(String);
+	}
+	
+	/**
+	 * Methode um einen Hashtag nach seinem Namen zu suchen
+	 * @return
+	 */
+	public Vector<Hashtag> findHashtagByName(String name) throws IllegalArgumentException{
+		return this.hashtagMapper.findByName(name);
 	}
 
 	/**
@@ -171,14 +133,14 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Methode um einen oder mehrere Nutzer aus einer Unterhaltung zu entfernen
 	 * @param teilnehmer
-	 
+	 */
 	@Override
 	public void teilnehmerEntfernen(Nutzer teilnehmer) 
 			throws IllegalArgumentException{
 		// TODO Pr�fung ob es ein Gruppenchat ist
-		this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
+		//this.unterhaltungMapper.teilnehmerLoeschen(teilnehmer);
 	}
-*/
+
 
 
 	/**
@@ -213,6 +175,15 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		// TODO Auto-generated method stub
 		return this.nutzerMapper.findByNachname(name);
 	}
+	
+	/**
+	 * Methode zum auslesen eines Nutzers nach seiner Email
+	 * @param email
+	 * @return
+	 */
+	public Vector<Nutzer> getNutzerByEmail(String email) throws IllegalArgumentException{
+		return this.nutzerMapper.findByEmail(email);
+	}
 
 	/**
 	 * Methode um sich aus dem System auszuloggen 
@@ -243,6 +214,15 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Nutzer getNutzerByID(int id) throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.nutzerMapper.findNutzerByID(id);
+	}
+	
+	/**
+	 * Methode zum auslesen aller Nutzer nach ihrem Namen
+	 * @param name
+	 * @return
+	 */
+	public Nutzer findNutzerByName(String name) throws IllegalArgumentException{
+		return this.nutzerMapper.findNutzerByName(name);
 	}
 	
 	/**
