@@ -39,7 +39,7 @@ public class DBConnection {
 	 * mitgegeben, um bei einer Ver‰nderung dieser URL nicht die gesamte 
 	 * Software neu komiieren zu m¸ssen.
 	 */
-	private static String url ="";
+	private static String url ="jdbc:mysql://“guest-8d46b58e.on.site.uni-stuttgart.net“/“IT-Projekt“?user=”root”&password=”root;";
 	/**
 	 * Diese statische Methode kann aufgerufen werden durch 
 	 * <code>DB_COnnection.connection()</code>. Sie erstellt die
