@@ -3,6 +3,7 @@ package de.hdm.itprojekt.messenger.client;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import javax.xml.bind.Binder;
 
@@ -15,6 +16,7 @@ import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagingPolicy;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
@@ -32,6 +34,8 @@ import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
+import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
+import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
@@ -41,6 +45,26 @@ import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
  */
 public class AboVerwaltung extends Formular {
 
+	public void Test (){
+		MessengerAdministrationAsync x = GWT.create(MessengerAdministration.class);
+		x.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	};
+	
+	
 	
 	private static final List<Nutzer> TESTNUTZER = Arrays.asList(
 			new Nutzer ("Daniel", "Meier", "dm077@hdm-stuttgart.de"), 
