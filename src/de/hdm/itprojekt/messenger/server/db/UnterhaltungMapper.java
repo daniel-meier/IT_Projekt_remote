@@ -191,14 +191,45 @@ public class UnterhaltungMapper extends DBConnection{
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerId, UnterhaltungId) VALUES ("
-				+ nutzer.getID() + "," + unterhaltung.getID() + "," );
+				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerID, UnterhaltungsID) VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
 			}
 		}
 		catch (SQLException e2){
 			e2.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+
+	private String getUnterhaltungsID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Unterhaltung NachrichtenIdZuUnterhaltungId (int unterhaltungsId) {
+		Unterhaltung u = new Unterhaltung();
+		Vector<Nachricht> Nachricht = new Vector<Nachricht>();
+		Connection con = DBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltungsnachricht INNER JOIN Unterhaltung ON UnterhaltungsId.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtId = Nachricht.Id WHERE Unterhaltungsnachricht.UnterhaltungId = '");
+		
+			if(rs.next()){
+				u.setId(rs.getInt("Unterhaltungsnachricht.UnterhaltungId"));
+				
+				Nachricht nA = new Nachricht();
+				nA.setID(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
+				nA.setSenderID(rs.getInt("Nachricht.SenderId"));
+				nA.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				nA.setText(rs.getString("Nachricht.Text"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
 	}
 	
 	

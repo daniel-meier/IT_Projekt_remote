@@ -137,4 +137,22 @@ public class Nachricht extends BusinessObject{
 		this.nutzerID = nutzerID;
 	}
 
+
+	public void setSenderID(int int1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public String getSenderID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public String getEmpfaegerID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

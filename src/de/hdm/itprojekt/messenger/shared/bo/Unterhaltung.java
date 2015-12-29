@@ -85,6 +85,11 @@ public class Unterhaltung extends BusinessObject{
 		return null;
 	}
 
+	public void setId(int int1) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 //	
 //	public String getLastMessage(){
