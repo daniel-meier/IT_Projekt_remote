@@ -191,8 +191,7 @@ public class UnterhaltungMapper extends DBConnection{
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerId, UnterhaltungId) VALUES ("
-				+ nutzer.getID() + "," + unterhaltung.getID() + "," );
+				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerID, UnterhaltungsID "VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
 			}
 		}
 		catch (SQLException e2){
@@ -216,8 +215,8 @@ public class UnterhaltungMapper extends DBConnection{
 				u.setId(rs.getInt("Unterhaltungsnachricht.UnterhaltungId"));
 				
 				Nachricht nA = new Nachricht();
-				nA.setId(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
-				nA.setNutzerId(rs.getInt("Nachricht.AutorId"));
+				nA.setID(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
+				nA.setSenderID(rs.getInt("Nachricht.SenderId"));
 				nA.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 				nA.setText(rs.getString("Nachricht.Text"));
 
@@ -227,12 +226,6 @@ public class UnterhaltungMapper extends DBConnection{
 		}
 		return u;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
