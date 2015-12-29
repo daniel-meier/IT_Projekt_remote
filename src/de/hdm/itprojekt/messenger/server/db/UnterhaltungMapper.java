@@ -224,7 +224,7 @@ public class UnterhaltungMapper extends DBConnection{
 				meineNachrichten.add(nA);
 
 			}
-			u.setAlleNachrichten(meineNachrichten);
+			u.setAlleNachrichten();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
