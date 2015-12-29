@@ -133,9 +133,9 @@ public class NutzerMapper extends DBConnection{
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt) "
+	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt, googleid) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
-	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "')");
+	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() + "','" n.getGoogleID() +"')");
 	      }
 	    }
 	    catch (SQLException e) {
@@ -181,7 +181,7 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + nutzer.getID());
+	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + Nutzer.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -268,7 +268,8 @@ public class NutzerMapper extends DBConnection{
 			return null;
 	} 
 	
-	/**public Partlist findNutzerByName(String searchWord, int maxResults,
+	 /**
+	public Nutzer findNutzerByName(String searchWord, int maxResults,
 				boolean onlyModules, boolean onlyProducts)
 				throws IllegalArgumentException, SQLException {
 		
@@ -276,7 +277,7 @@ public class NutzerMapper extends DBConnection{
 			// DB-Verbindung holen
 	
 			Connection con = DBConnection.connection();
-			Partlist result = new Partlist();
+			Nutzer result = new Nutzer();
 			String whereQuery = "";
 			
 			if (!searchWord.isEmpty()) {
@@ -304,7 +305,7 @@ public class NutzerMapper extends DBConnection{
 					// Leeres SQL-Statement (JDBC) anlegen
 					Statement stmt = con.createStatement();
 					// Statement ausfuellen
-					String sqlQuery = "SELECT * FROM element WHERE " + whereQuery
+					String sqlQuery = "SELECT * FROM nutzer WHERE " + whereQuery
 							+ " ORDER BY name LIMIT " + maxResults;
 					 // Query an die DB schicken
 					ResultSet rs = stmt.executeQuery(sqlQuery);
@@ -313,24 +314,21 @@ public class NutzerMapper extends DBConnection{
 					// erstellt.
 					
 					while (rs.next()) {
-						int elementId = rs.getInt("element_id");
-						Element elementFromCache = cachePartlist.getElementById(elementId);
+						int nutzerId = rs.getInt("nutzerid");
+						Nutzer elementFromCache = cachePartlist.getElementById(elementId);
 						if (elementFromCache != null) {
 							result.add(elementFromCache, 1);
 							continue;
 						}
 
-						Product p = ProductMapper.getProductMapper().findByElement(
+						Nutzer p = NutzerMapper.getNutzerMapper().findByElement(
 								elementId);
 
 						if (p != null) {
 							result.add(p, 1);
 						} else if (!onlyProducts) {
 
-							// Zuerst nachschauen ob es sich bei dem Element um ein
-							// Modul handelt.
-							Module m = ModuleMapper.getModuleMapper()
-									.findByElement(elementId);
+
 
 							// Wenn es sich um ein Modul handelt, dieses hinzufügen
 							// ansonsten, das Element als

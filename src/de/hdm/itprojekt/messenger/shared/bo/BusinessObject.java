@@ -8,7 +8,7 @@ public abstract class BusinessObject implements Serializable {
 	 * Anlegen der Attribute
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id = 0;
+	private static int id = 0;
 	private Date erstellungszeitpunkt;
 	
 	/**
@@ -22,8 +22,8 @@ public abstract class BusinessObject implements Serializable {
 	 * Auslesen der ID
 	 * @return id
 	 */
-	public int getID(){
-		return this.id;
+	public static int getID(){
+		return id;
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public abstract class BusinessObject implements Serializable {
 			}
 			catch (IllegalArgumentException e) {
 				/**
-				 * Bei einem Fehler false zurückgeben.
+				 * Bei einem Fehler false zurï¿½ckgeben.
 				 */
 				System.out.println(e.getMessage());
 			}

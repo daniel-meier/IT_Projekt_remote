@@ -24,7 +24,7 @@ public class Unterhaltung extends BusinessObject{
 	private ArrayList<Nachricht> nachrichten = null;
 	
 	/**
-	 * Dient zur Prüfung eine Unterhaltung ob sie zwischen 2 (also Private) oder mehreren Personen besteht
+	 * Dient zur Prï¿½fung eine Unterhaltung ob sie zwischen 2 (also Private) oder mehreren Personen besteht
 	 */
 	private boolean isPrivate = true;
 	
@@ -79,7 +79,12 @@ public class Unterhaltung extends BusinessObject{
 		}
 		return result;
 	}
-	
+
+	public String getText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 //	
 //	public String getLastMessage(){

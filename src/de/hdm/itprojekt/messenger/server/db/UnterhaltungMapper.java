@@ -92,7 +92,7 @@ public class UnterhaltungMapper extends DBConnection{
 			
 			//Jetzt erst erfolgt die tatsâ€°chliche EinfÂ¸geoperation
 			stmt.executeUpdate("INSERT INTO unterhaltung (unterhaltungsID, Erstellzeitpunkt" + "VALUES ("
-			+ unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
+			+ Unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
 				
 				}
 			}
@@ -125,7 +125,7 @@ public class UnterhaltungMapper extends DBConnection{
 			Statement stmt = con.createStatement();
 			//TODO getText?
 			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" 
-					+ unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
+					+ unterhaltung.getText() + "' " + "WHERE id=" + Unterhaltung.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -141,7 +141,7 @@ public class UnterhaltungMapper extends DBConnection{
 	/** 
 	 * Loeschen eines Unterhaltungs Objekts aus der Datenbank
 	 * @param Unterhaltung
-	 */
+	 
 	public void loeschen (Unterhaltung Unterhaltung){
 		
 	Connection con = DBConnection.connection();
@@ -157,6 +157,8 @@ public class UnterhaltungMapper extends DBConnection{
 		}
 	}
 	
+	
+	 */
 	/**
 	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
 	 * @return
@@ -165,7 +167,7 @@ public class UnterhaltungMapper extends DBConnection{
 		Connection con = DBConnection.connection();
 		try{
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + teilnehmer.getID());
+			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + Nutzer.getID());
 		}
 		catch (SQLException e2){
 			e2.printStackTrace();
@@ -173,19 +175,21 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 		
 	/**
-	 * Einen Teilnehmer zu einer Unterhaltung hinzufügen
+	 * Einen Teilnehmer zu einer Unterhaltung hinzufï¿½gen
 	 * @param nutzername
 	 */
-	public Unterhaltung teilnehmerHinzufuegen(String nutzername){
+	public Unterhaltung teilnehmerHinzufuegen(int UnterhaltungsID, int NutzerID){
 		Connection con = DBConnection.connection();
 		try{
 			Statement stmt = con.createStatement();
-			//TODO Nutzer prüfen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT ");
+			//TODO Nutzer prï¿½fen ob der in der Unterhaltung ist
+			ResultSet rs = stmt.executeQuery("SELECT FROM unterhaltung "+ "WHERE NutzerId=" + getNutzerID());
+		
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO");
+				stmt.executeUpdate("INSERT INTO unterhaltung (NutzerId, UnterhaltungId) VALUES ("
+				+ Nutzer.getID() + "," + Unterhaltung.getID() + "," );
 			}
 		}
 		catch (SQLException e2){
@@ -194,6 +198,13 @@ public class UnterhaltungMapper extends DBConnection{
 		return null;
 	}
 	
+	
+	
+	private String getNutzerID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/** 
 	 * Auslesen aller Unterhaltungen
 	 * @return
