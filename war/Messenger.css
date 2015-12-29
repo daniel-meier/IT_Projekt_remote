@@ -197,3 +197,8 @@ div#impressum {
 	width: 100%;
 	background: red;
 }
+
+.FlexTable td {
+  border: 1px solid #BBBBBB;
+  padding: 3px;
+}
