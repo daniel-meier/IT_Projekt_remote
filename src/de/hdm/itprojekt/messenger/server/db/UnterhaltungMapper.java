@@ -191,7 +191,7 @@ public class UnterhaltungMapper extends DBConnection{
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerID, UnterhaltungsID "VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
+				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerID, UnterhaltungsID) VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
 			}
 		}
 		catch (SQLException e2){
@@ -201,6 +201,11 @@ public class UnterhaltungMapper extends DBConnection{
 	}
 	
 	
+
+	private String getUnterhaltungsID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public Unterhaltung NachrichtenIdZuUnterhaltungId (int unterhaltungsId) {
 		Unterhaltung u = new Unterhaltung();
