@@ -4,6 +4,9 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
@@ -189,10 +192,53 @@ public class AbonnementInfo extends ReportFormular{
 						}
 				  });
 			  
+				  
 	/**
 	 * Hier muss die FlexTable für die beiden Abos rein!!!
 	 */
 	
+				// Create a Flex Table
+				    final FlexTable flexTable = new FlexTable();
+				    FlexCellFormatter cellFormatter = flexTable.getFlexCellFormatter();
+				    flexTable.addStyleName("FlexTable");
+				    flexTable.setWidth("32em");
+				    flexTable.setCellSpacing(5);
+				    flexTable.setCellPadding(3);
+				    
+				 // Add two rows to start
+				    addRow(flexTable);
+				    addRow(flexTable);
+				    addRow(flexTable);
+				    addRow(flexTable);
+
+				    
+				    
+				 // Add some text
+				    cellFormatter.setHorizontalAlignment(
+				        0, 1, HasHorizontalAlignment.ALIGN_LEFT);
+				    flexTable.setHTML(0, 0, "Nutzer Abo ID");
+				    flexTable.setHTML(0, 1, "Erstellungszeitraum");
+				    flexTable.setHTML(0, 2, "Abonnierender Nutzer");
+				    flexTable.setHTML(0, 3, "Abonnierter Nutzer");
+				  
+				    
+				    this.add(flexTable);
+				  
 }
+	
+	
+	/**
+     * Add a row to the flex table.
+     */
+    private void addRow(FlexTable flexTable) {
+      int numRows = flexTable.getRowCount() + 1;
+      flexTable.setText(numRows, 0, "TEST1");
+      flexTable.setText(numRows, 1, "TEST2");
+      flexTable.setText(numRows, 2, "TEST3");
+      flexTable.setText(numRows, 3, "TEST4");
+//      flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
+    }
+
+
 }
  
