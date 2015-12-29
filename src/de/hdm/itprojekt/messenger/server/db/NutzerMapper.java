@@ -175,13 +175,13 @@ public class NutzerMapper extends DBConnection{
 	   * 
 	   * @param n das aus der DB zu löschende "Objekt"
 	   */
-	  public void loescheNutzer(Nutzer nutzer) {
+	  public void loescheNutzer(Nutzer n) {
 	    Connection con = DBConnection.connection();
 
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + Nutzer.getID());
+	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + n.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -266,6 +266,35 @@ public class NutzerMapper extends DBConnection{
 					e2.printStackTrace();					
 				}
 			return null;
+	}
+
+	/**
+	 * Methode um einen Nutzer nach seiner Email Adresse zu suchen
+	 * @param email
+	 * @return
+	 */
+	 public Vector<Nutzer> findByEmail(String email) {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+		Vector<Nutzer> result = new Vector<Nutzer>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("");
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				n.setID(rs.getInt("id"));
+				n.setVorname(rs.getString("vorname"));
+				n.setNachname(rs.getString("nachname"));
+				n.setEmail(rs.getString("email"));
+				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				
+				return result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	} 
 	
 	 /**
