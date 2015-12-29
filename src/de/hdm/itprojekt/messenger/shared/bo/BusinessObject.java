@@ -8,7 +8,7 @@ public abstract class BusinessObject implements Serializable {
 	 * Anlegen der Attribute
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int id = 0;
+	private int id = 0;
 	private Date erstellungszeitpunkt;
 	
 	/**
@@ -22,7 +22,7 @@ public abstract class BusinessObject implements Serializable {
 	 * Auslesen der ID
 	 * @return id
 	 */
-	public static int getID(){
+	public int getID(){
 		return id;
 	}
 	
