@@ -12,7 +12,6 @@ private static final long serialVersionUID = 1L;
 	private String loginUrl;
 	private String logoutUrl;
 	private String email;
-	private String googleId;
 	private Nutzer user;
 	
 	public boolean isLoggedIn() {
@@ -46,15 +45,7 @@ private static final long serialVersionUID = 1L;
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getGoogleId() {
-		return googleId;
-	}
-	
-	public void setGoogleId(String googleId) {
-		this.googleId = googleId;
-	}
-	
+
 	public Nutzer getUser() {
 		return user;
 	}

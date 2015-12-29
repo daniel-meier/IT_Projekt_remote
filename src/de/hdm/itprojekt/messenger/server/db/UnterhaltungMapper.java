@@ -143,14 +143,14 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param Unterhaltung
 	 * */
 	 
-	public void loeschen (Unterhaltung Unterhaltung){
+	public void loeschen (Unterhaltung unterhaltung){
 		
 	Connection con = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + Unterhaltung.getID());
+			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + unterhaltung.getID());
 			
 		}
 		catch (SQLException e2) {
