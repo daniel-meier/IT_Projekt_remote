@@ -261,6 +261,27 @@ public class NachrichtMapper extends DBConnection {
 		return null;
 		
 	}
+	
+	
+	public Nachricht hashtagEinerNachrichtZuordnen(int HashtagID, int NachrichtID) {
+	
+		Connection con = DBConnection.connection();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT HashtagID , NachrichtID FROM nachricht");
+			if (rs.next()) {
+			stmt = con.createStatement();
+			
+			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
+			stmt.executeUpdate("INSERT INTO NachrichtHashtag (`NachrichtId`, `HashtagId`) VALUES ('" + NachrichtID + "', '" + HashtagID + "')");
+			}	
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+	return null;
+	}
+	
 
 	/**
 	 * Suche eine Nachricht Objekt nach Nutzer und Zeitraum
