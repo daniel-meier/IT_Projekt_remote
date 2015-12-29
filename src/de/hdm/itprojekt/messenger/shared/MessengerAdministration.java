@@ -3,6 +3,9 @@ package de.hdm.itprojekt.messenger.shared;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
@@ -11,7 +14,7 @@ import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
-public interface MessengerAdministration {
+public interface MessengerAdministration extends RemoteService {
 	
 	/**  
 	 * Methode zum einloggen

@@ -10,9 +10,6 @@ public class Nutzer extends BusinessObject{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private boolean loggedIn = false;
-	private String loginUrl;
-	private String logoutUrl;
 	
 	/**
 	 * Vorname des Nutzers
@@ -44,54 +41,6 @@ public class Nutzer extends BusinessObject{
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.email = email;
-	}
-	
-	/**
-	 * 
-	 * @return loggedIn
-	 */
-	public boolean isloggedIn () {
-		return this.loggedIn;		
-	}
-	
-	/**
-	 * Setzen des Loggedin 
-	 * @param loggedIn
-	 */
-	public void setLoggedIn (boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
-	
-	/**
-	 * Auslesen der Login Url
-	 * @return loginUrl
-	 */
-	public String getLoginUrl () {
-		return this.loginUrl;
-	}
-	
-	/**
-	 * Setzen der Login Url
-	 * @param loginUrl
-	 */
-	public void setLoginUrl (String loginUrl) {
-		this.loginUrl = loginUrl;
-	}
-	
-	/**
-	 * Auslesen der Logout Url
-	 * @return logoutUrl
-	 */
-	public String getLogoutUrl () {
-		return this.logoutUrl;
-	}
-	
-	/**
-	 * Setzden der Logout Url
-	 * @param logoutUrl
-	 */
-	public void setLogoutUrl (String logoutUrl) {
-		this.logoutUrl = logoutUrl;
 	}
 	
 	
