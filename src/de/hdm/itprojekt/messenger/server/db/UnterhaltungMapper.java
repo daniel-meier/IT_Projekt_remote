@@ -186,12 +186,12 @@ public class UnterhaltungMapper extends DBConnection{
 		try{
 			Statement stmt = con.createStatement();
 			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT FROM unterhaltung "+ "WHERE NutzerId=" + getNutzerID());
+			ResultSet rs = stmt.executeQuery("SELECT FROM unterhaltungsteilnehmer "+ "WHERE NutzerId=" + getNutzerID());
 		
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO unterhaltung (NutzerId, UnterhaltungId) VALUES ("
+				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerId, UnterhaltungId) VALUES ("
 				+ nutzer.getID() + "," + unterhaltung.getID() + "," );
 			}
 		}
