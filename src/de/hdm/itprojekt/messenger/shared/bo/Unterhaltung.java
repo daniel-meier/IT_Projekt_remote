@@ -90,6 +90,15 @@ public class Unterhaltung extends BusinessObject{
 		
 	}
 
+	public List<Nachricht> addNachricht() {
+		// TODO Auto-generated method stub
+		List<Nachricht> result = new Vector<Nachricht>();
+		for (Nachricht n : this.nachrichten) {
+			result.add(n);
+		}
+		return result;
+	}
+
 	
 //	
 //	public String getLastMessage(){

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
@@ -288,6 +289,34 @@ public class UnterhaltungMapper extends DBConnection{
 			e2.printStackTrace();
 		}
 		return result;
+	}
+
+	
+	/**
+	 * Methode um vorangegangene Nachrichten aus der Datenbank auszulesen
+	 * @return
+	 */
+	public Unterhaltung getNachrichten() {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+		Unterhaltung nachricht = new Unterhaltung();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nachricht");
+			while (rs.next()){
+		        Nachricht na = new Nachricht();
+		        na.setText(rs.getString("text"));
+		        na.setEmpfaenger((Nutzer) rs.getArray("empfaenger"));
+		        na.setSender((Nutzer) rs.getArray("sender"));
+		        na.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+		        
+		        nachricht.addNachricht();
+			}
+		}
+		catch(SQLException e2){
+			e2.printStackTrace();
+		}
+		return nachricht;
 	}
 	
 

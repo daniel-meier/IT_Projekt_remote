@@ -5,6 +5,7 @@ package de.hdm.itprojekt.messenger.server;
  */
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -128,6 +129,26 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
 		return this.nachrichtMapper.getTeilnehmer(teilnehmer);
+	}
+	
+	/**
+	 * Methode um die vorherigen Nachrichten einer Unterhaltung abzurufen
+	 * @param unterhaltung
+	 * @return
+	 */
+	public Unterhaltung getNachrichten (Unterhaltung unterhaltung) 
+			throws IllegalArgumentException {
+		return this.unterhaltungMapper.getNachrichten();
+	}
+	
+	/**
+	 * Methode um einen Teilnehmer in eine Unterhaltung hinzuzufuegen
+	 * @param teilnehmer
+	 * @return
+	 */
+	public Unterhaltung teilnehmerHinzufuegenUnterhaltung(int UnterhaltungsID, int NutzerID) 
+			throws IllegalArgumentException{
+		return this.unterhaltungMapper.teilnehmerHinzufuegen(UnterhaltungsID, NutzerID);
 	}
 
 	/**
