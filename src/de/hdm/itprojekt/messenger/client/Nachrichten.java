@@ -397,18 +397,40 @@ public class Nachrichten extends Formular {
 
 			   
 			   
+			   
+			    HorizontalPanel hashtagHinzufuegenPanel = new HorizontalPanel();
+			    unterhaltung.add(hashtagHinzufuegenPanel);
+			    
+			    TextBox hashtagTextbox = new TextBox();
+				hashtagTextbox.setEnabled(false);
+				hashtagTextbox.setWidth("230px");
+				hashtagTextbox.setText("Hinzugefügte Hashtags");
+				hashtagHinzufuegenPanel.add(hashtagTextbox);
+			    
+			    
+			    Button hashtagHinzufuegenButton = new Button("Hashtag hinzufügen");
+				   hashtagHinzufuegenButton.setStyleName("antwortButton");
+				   hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton);
+				   hashtagHinzufuegenButton.setHeight("30px");
+				   
+				   
+			    
+			    
 			   HorizontalPanel antwortPanel = new HorizontalPanel();
 			   unterhaltung.add(antwortPanel);
 			   
+			  
+			   
 			   TextArea antwortText = new TextArea();
-			   antwortText.setCharacterWidth(40);
-			   antwortText.setVisibleLines(3);
+			   antwortText.setCharacterWidth(36);
+			   antwortText.setVisibleLines(4);
 			   antwortText.setText("Antwort eingeben...");
 			   antwortPanel.add(antwortText);
 			   
 			   Button antwortButton = new Button("Antwort senden");
 			   antwortButton.setStyleName("antwortButton");
-			   antwortButton.setHeight("65px");
+			   antwortButton.setHeight("84px");
+			   antwortButton.setWidth("135px");
 			   antwortPanel.add(antwortButton);
 
 			   
