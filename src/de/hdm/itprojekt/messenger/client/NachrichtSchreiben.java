@@ -168,6 +168,10 @@ public class NachrichtSchreiben extends Formular{
 			});
 			
 			
+			/**
+			 * Button um Hashtags zu einer Nachricht hinzuzufügen 
+			 */
+			
 			final Button hashtagButton = new Button("Hashtag hinzufügen");
 			hashtagButton.setStylePrimaryName("edit-button");
 			buttonPanel.add(hashtagButton);
@@ -179,6 +183,10 @@ public class NachrichtSchreiben extends Formular{
 				}
 			});
 		    
+			
+			/**
+			 * Button um eine Nachricht zu versenden
+			 */
 			
 			final Button sendenButton = new Button("Nachicht senden");
 			sendenButton.setStylePrimaryName("edit-button");
@@ -208,7 +216,7 @@ public class NachrichtSchreiben extends Formular{
 			
 			
 			/**
-			 * Read-only Textbox für Anzeige der hinzugefügten Empfänger
+			 * Read-only Textbox für Anzeige der hinzugefügten Hashtags
 			 */
 			
 			TextBox hashtagsTextbox = new TextBox();
