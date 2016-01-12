@@ -38,6 +38,8 @@ import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
+import de.hdm.itprojekt.messenger.client.NutzerCellList;
+
 
 
 /**
@@ -45,10 +47,9 @@ import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
  */
 public class AboVerwaltung extends Formular {
 	
-//	AboVerwaltung AboVerwaltung = new AboVerwaltung();
-//
+	MessengerAdministrationAsync x = GWT.create(MessengerAdministration.class);
+
 //	public void Test (){
-//		MessengerAdministrationAsync x = GWT.create(MessengerAdministration.class);
 //		x.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
 //
 //			@Override
@@ -61,52 +62,13 @@ public class AboVerwaltung extends Formular {
 //			public void onSuccess(Vector<Nutzer> result) {
 //				// TODO Auto-generated method stub
 //				
-//				ProvidesKey<Nutzer> NutzerKeyProvider = new ProvidesKey<Nutzer>() {
-//					public Object getKey(Nutzer item) {
-//						return (item == null) ? null : item.getEmail();
-//					}
-//				};
-//				
-//			    // Create a cell to render each value.
-//			    NutzerCell nutzerCell = new NutzerCell();	    
-//
-//			    // Use the cell in a CellList.
-//			    CellList<Nutzer> NutzerCellList = new CellList<Nutzer>(nutzerCell, NutzerKeyProvider);
-//			    
-//			    // Set the width of the CellList.
-//			    NutzerCellList.setWidth("230px");
-//			    	    	    
-//			    //Stylen der CellList
-//			    NutzerCellList.setStylePrimaryName("CellList1");
-//
-//			    // Push the data into the widget.
-//			    NutzerCellList.setRowData(0, TESTNUTZER);
-//
-//			    // Add it to the root panel.
-//			    AboVerwaltung.add(NutzerCellList);	    
-//			    
-//			    // Set a key provider that provides a unique key for each contact. If key is
-//			    // used to identify contacts when fields (such as the name and address)
-//			    // change.
-//			    NutzerCellList.setPageSize(30);
-//			    NutzerCellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.INCREASE_RANGE);
-//			    NutzerCellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.BOUND_TO_SELECTION);
-//
-//			    // Add a selection model so we can select cells.
-//			    final SingleSelectionModel<Nutzer> NutzerSelectionModel = new SingleSelectionModel<Nutzer>(NutzerKeyProvider);
-//			    NutzerCellList.setSelectionModel(NutzerSelectionModel);
-//			    NutzerSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-//			      public void onSelectionChange(SelectionChangeEvent event) {
-////			        contactForm.setContact(selectionModel.getSelectedObject());
-////			    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().getVorname());
-//			      }
-//			    });
-//				
+//				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(result);
+//				this.add(nutzerCellList);
 //			}
 //			
 //		});
 //	};
-	
+//	
 	
 	
 	private static final List<Nutzer> TESTNUTZER = Arrays.asList(
@@ -121,9 +83,7 @@ public class AboVerwaltung extends Formular {
 			new Hashtag ("#Kim")
 		);
 	
-	
-	
-	
+		
 
 	public void onLoad() {
 		super.onLoad();
@@ -132,8 +92,8 @@ public class AboVerwaltung extends Formular {
 		
 //		Test();
 		    
-		    
-
+		
+		
 		
 		
 		/**
@@ -337,50 +297,28 @@ public class AboVerwaltung extends Formular {
 		 */
 		
 		
+//		Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
+//		this.add(nutzerCellList);
 		
-		
-		ProvidesKey<Nutzer> NutzerKeyProvider = new ProvidesKey<Nutzer>() {
-			public Object getKey(Nutzer item) {
-				return (item == null) ? null : item.getEmail();
+
+		x.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
 			}
-		};
+
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				// TODO Auto-generated method stub
+				
+				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(result);
+				this.add(nutzerCellList);
+			}
+			
+		});
 		
-	    // Create a cell to render each value.
-	    NutzerCell nutzerCell = new NutzerCell();	    
-
-	    // Use the cell in a CellList.
-	    CellList<Nutzer> NutzerCellList = new CellList<Nutzer>(nutzerCell, NutzerKeyProvider);
-	    
-	    // Set the width of the CellList.
-	    NutzerCellList.setWidth("230px");
-	    	    	    
-	    //Stylen der CellList
-	    NutzerCellList.setStylePrimaryName("CellList1");
-
-	    // Push the data into the widget.
-	    NutzerCellList.setRowData(0, TESTNUTZER);
-
-	    // Add it to the root panel.
-	    this.add(NutzerCellList);	    
-	    
-	    // Set a key provider that provides a unique key for each contact. If key is
-	    // used to identify contacts when fields (such as the name and address)
-	    // change.
-	    NutzerCellList.setPageSize(30);
-	    NutzerCellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.INCREASE_RANGE);
-	    NutzerCellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.BOUND_TO_SELECTION);
-
-	    // Add a selection model so we can select cells.
-	    final SingleSelectionModel<Nutzer> NutzerSelectionModel = new SingleSelectionModel<Nutzer>(NutzerKeyProvider);
-	    NutzerCellList.setSelectionModel(NutzerSelectionModel);
-	    NutzerSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-	      public void onSelectionChange(SelectionChangeEvent event) {
-//	        contactForm.setContact(selectionModel.getSelectedObject());
-//	    	Window.alert("Du hast gewählt: " + NutzerSelectionModel.getSelectedObject().getVorname());
-	      }
-	    });
-
-	    
 	    
 	    
 	    
