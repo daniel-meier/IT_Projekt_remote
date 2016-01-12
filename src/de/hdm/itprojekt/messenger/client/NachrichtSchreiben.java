@@ -167,11 +167,18 @@ public class NachrichtSchreiben extends Formular{
 				}
 			});
 			
+			/**
+			 * Anlegen des Buttons Hashtag hinzufügen 
+			 */
 			
 			final Button hashtagButton = new Button("Hashtag hinzufügen");
 			hashtagButton.setStylePrimaryName("edit-button");
 			buttonPanel.add(hashtagButton);
-			  
+			
+			/**
+			 * ClickHandler für den Button Hashtag hinzufügen
+			 */
+			
 			hashtagButton.addClickHandler(new ClickHandler() {
 				public void onClick(ClickEvent event) {
 					hashtagHinzufuegenDialogBox.center();
@@ -180,10 +187,16 @@ public class NachrichtSchreiben extends Formular{
 			});
 		    
 			
-			final Button sendenButton = new Button("Nachicht senden");
+			/**
+			 * Anlegen des Buttons Nachricht senden
+			 */
+			final Button sendenButton = new Button("Nachricht senden");
 			sendenButton.setStylePrimaryName("edit-button");
 			buttonPanel.add(sendenButton);
-			  
+			
+			/**
+			 * ClickHandler für den Button Nachricht senden  
+			 */
 			sendenButton.addClickHandler(new ClickHandler() {
 				public void onClick(ClickEvent event) {
 					HorizontalPanel nachrichten = new Nachrichten();
