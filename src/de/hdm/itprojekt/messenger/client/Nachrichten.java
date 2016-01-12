@@ -397,17 +397,25 @@ public class Nachrichten extends Formular {
 
 			   
 			   
-			   
+			   /**
+			    * Anlegen eines horizontalen Panels in dem man Hashtags hinzufügen kann und
+			    * in dem die Hashtags angezeigt werden, die hinzugefügt wurden
+			    */
 			    HorizontalPanel hashtagHinzufuegenPanel = new HorizontalPanel();
 			    unterhaltung.add(hashtagHinzufuegenPanel);
 			    
+			    /**
+			     * Anlegen einer Textbox in der die hinzugefügten Hashtags angezeigt werden
+			     */
 			    TextBox hashtagTextbox = new TextBox();
 				hashtagTextbox.setEnabled(false);
 				hashtagTextbox.setWidth("230px");
 				hashtagTextbox.setText("Hinzugefügte Hashtags");
 				hashtagHinzufuegenPanel.add(hashtagTextbox);
 			    
-			    
+			    /**
+			     * Anlegen eines Buttons um Hashtags zu einer Nachricht hinzufügen zu können
+			     */
 			    Button hashtagHinzufuegenButton1 = new Button("Hashtag hinzufügen");
 				hashtagHinzufuegenButton1.setStyleName("antwortButton");
 				hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton1);
@@ -476,7 +484,9 @@ public class Nachrichten extends Formular {
 			    
 			    
 			    
-			    
+			    /**
+			     * ClickHandler für den Button Hashtag hinzufügen
+			     */
 			    hashtagHinzufuegenButton1.addClickHandler(new ClickHandler() {
 					public void onClick(ClickEvent event) {
 						hashtagHinzufuegenDialogBox.center();
@@ -491,18 +501,26 @@ public class Nachrichten extends Formular {
 				
 				
 				
-				
+			   /**
+			    * Anlegen eines horizontalen Panels in dem eine Antwort geschrieben und 
+			    * gesendet werden kann
+			    */
 			   HorizontalPanel antwortPanel = new HorizontalPanel();
 			   unterhaltung.add(antwortPanel);
 			   
 			  
-			   
+			   /**
+			    * Anlegen eines Textfelds in der eine Nachricht geschrieben werden kann
+			    */
 			   TextArea antwortText = new TextArea();
 			   antwortText.setCharacterWidth(36);
 			   antwortText.setVisibleLines(4);
 			   antwortText.setText("Antwort eingeben...");
 			   antwortPanel.add(antwortText);
 			   
+			   /**
+			    * Anlegen eines Buttons um die geschriebene Nachricht zu verschicken
+			    */
 			   Button antwortButton = new Button("Antwort senden");
 			   antwortButton.setStyleName("antwortButton");
 			   antwortButton.setHeight("84px");
