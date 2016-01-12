@@ -408,14 +408,90 @@ public class Nachrichten extends Formular {
 				hashtagHinzufuegenPanel.add(hashtagTextbox);
 			    
 			    
-			    Button hashtagHinzufuegenButton = new Button("Hashtag hinzufügen");
-				   hashtagHinzufuegenButton.setStyleName("antwortButton");
-				   hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton);
-				   hashtagHinzufuegenButton.setHeight("30px");
+			    Button hashtagHinzufuegenButton1 = new Button("Hashtag hinzufügen");
+				hashtagHinzufuegenButton1.setStyleName("antwortButton");
+				hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton1);
+				hashtagHinzufuegenButton1.setHeight("30px");
+				
+				
+				
+				
+			    
+			    /**
+			     * DialoxBox für einen Hashtag, welcher zum Chat hinzugefügt werden soll 
+			     */
+				final DialogBox hashtagHinzufuegenDialogBox = new DialogBox();
+				hashtagHinzufuegenDialogBox.setGlassEnabled(true);
+				hashtagHinzufuegenDialogBox.setAnimationEnabled(true);
+				hashtagHinzufuegenDialogBox.setText("Geben Sie einen Namen zum Hinzufügen eines Hashtags ein!");
+
+			    /**
+			     * Horizontales Panel, das anschließend der Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel hashtagHinzufuegenDialogContents = new HorizontalPanel();
+			    hashtagHinzufuegenDialogContents.setSpacing(40);
+			    hashtagHinzufuegenDialogBox.setWidget(hashtagHinzufuegenDialogContents);
+			    
+			    /**
+			     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+			     */
+			    MultiWordSuggestOracle hashtagHinzufuegenOracle = new MultiWordSuggestOracle();
+			    hashtagHinzufuegenOracle.add("#0711");
+			    hashtagHinzufuegenOracle.add("#Stuttgart");
+			    hashtagHinzufuegenOracle.add("#Hochschule der Medien");
+			    hashtagHinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
+			    
+			    /**
+			     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
+			     */
+			    final SuggestBox hashtagHinzufuegenSuggestBox = new SuggestBox(hashtagHinzufuegenOracle);
+			    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenSuggestBox);
+			    
+			    /**
+			     * Button, zum hinzufügen des gewählten Hashtags 
+			     */
+			    Button hashtagHinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagHinzufuegenDialogBox.hide();
+			                //Hier Applikationslogik für hinzufügen des Hashtags einfügen!!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen 
+			     */
+			    Button hashtagNichtHinzufuegenButton = new Button("Abbrechen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagHinzufuegenDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen des Buttons zum hinzufuegenDialogContents Panel
+			     */
+			    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenButton);
+			    hashtagHinzufuegenDialogContents.add(hashtagNichtHinzufuegenButton);
 				   
-				   
+				
 			    
 			    
+			    
+			    
+			    hashtagHinzufuegenButton1.addClickHandler(new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						hashtagHinzufuegenDialogBox.center();
+						hashtagHinzufuegenDialogBox.show();
+					}
+				});
+			   
+			    
+			   
+				
+				
+				
+				
+				
+				
 			   HorizontalPanel antwortPanel = new HorizontalPanel();
 			   unterhaltung.add(antwortPanel);
 			   
