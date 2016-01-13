@@ -126,10 +126,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @return null
 	 */
 	@Override
-	public Nachricht teilnehmerHinzufuegen(Vector<Nutzer> teilnehmer) 
+	public Vector<Nutzer> teilnehmerHinzufuegen(Nachricht nachricht) 
 			throws IllegalArgumentException{
 		// TODO Auto-generated method stub
-		return this.nachrichtMapper.getTeilnehmer(teilnehmer);
+		return this.nachrichtMapper.getTeilnehmer(nachricht);
 	}
 	
 	/**

@@ -38,7 +38,7 @@ public class NachrichtMapper extends DBConnection {
 
 	      // Statement ausfÃ¼llen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT NachrichtID,Text, Erstellungszeitpunkt, HashtagID, SenderID, EmpfängerID "
+	          .executeQuery("SELECT NachrichtID,Text, Erstellungszeitpunkt, HashtagID, SenderID, Empfï¿½ngerID "
 	              + "WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
 
 	      /*
@@ -136,7 +136,7 @@ public class NachrichtMapper extends DBConnection {
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tatsâ€°chliche EinfÂ¸geoperation
-			stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, Text, Erstellungszeitpunkt, HashtagID, SenderID, EmpfängerID" + "VALUES ("
+			stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, Text, Erstellungszeitpunkt, HashtagID, SenderID, Empfï¿½ngerID" + "VALUES ("
 			+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," + n.getSenderID()+"," + n.getEmpfaegerID() +"," +n.getHashtagID()+ ")");
 				
 				}

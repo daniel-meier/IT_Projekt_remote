@@ -64,7 +64,7 @@ public interface MessengerAdministrationAsync {
 
 	void teilnehmerEntfernen(Nutzer teilnehmer, AsyncCallback<Void> callback);
 
-	void teilnehmerHinzufuegen(Vector<Nutzer> teilnehmer, AsyncCallback<Nachricht> callback);
+	void teilnehmerHinzufuegen(Nachricht nachricht, AsyncCallback<Vector<Nutzer>> callback);
 
 	void getNutzerCollection(AsyncCallback<Collection<String>> callback);
 

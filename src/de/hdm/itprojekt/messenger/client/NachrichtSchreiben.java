@@ -3,6 +3,7 @@ package de.hdm.itprojekt.messenger.client;
 import java.util.Collection;
 
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -54,12 +55,13 @@ public class NachrichtSchreiben extends Formular{
 				     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
 				     */
 				    final MultiWordSuggestOracle empfaengerHinzufuegenOracle = new MultiWordSuggestOracle();
+				    
 				    async.getNutzerCollection(new AsyncCallback<Collection<String>>(){
 
 						@Override
 						public void onFailure(Throwable caught) {
 							// TODO Auto-generated method stub
-							
+							Window.alert("Fick dich");
 						}
 
 						@Override

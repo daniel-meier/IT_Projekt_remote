@@ -35,7 +35,7 @@ public interface MessengerAdministration extends RemoteService {
 	/** 
 	 * Einen Teilnehmer hinzufuegen
 	 */
-	public Nachricht teilnehmerHinzufuegen (Vector<Nutzer> teilnehmer);
+	public Vector<Nutzer> teilnehmerHinzufuegen (Nachricht nachricht);
 	
 
 	/** 
