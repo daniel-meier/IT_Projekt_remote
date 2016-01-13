@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -64,5 +65,7 @@ public interface MessengerAdministrationAsync {
 	void teilnehmerEntfernen(Nutzer teilnehmer, AsyncCallback<Void> callback);
 
 	void teilnehmerHinzufuegen(Vector<Nutzer> teilnehmer, AsyncCallback<Nachricht> callback);
+
+	void getNutzerCollection(AsyncCallback<Collection<String>> callback);
 
 }

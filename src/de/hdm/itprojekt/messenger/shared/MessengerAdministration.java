@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.messenger.shared;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -142,6 +143,11 @@ public interface MessengerAdministration extends RemoteService {
 	 * Hashtag nach ID ausgeben
 	 */
 	public Hashtag getHashtagByID(int id);
+
+	/**
+	 * NutzerCollection ausgeben
+	 */
+	public Collection<String> getNutzerCollection() throws IllegalArgumentException;
 
 }
 
