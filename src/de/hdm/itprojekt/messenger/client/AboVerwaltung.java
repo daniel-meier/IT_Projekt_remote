@@ -139,7 +139,115 @@ public class AboVerwaltung extends Formular {
 		/**
 		   * Anlegen der Dialogboxen
 		   */
-			  
+			 
+		
+				/**
+			     * DialoxBox für eine Bestätigung zum löschen eines Nutzerabos
+			     */
+				final DialogBox nutzerAboLoeschenDialogBox = new DialogBox();
+				nutzerAboLoeschenDialogBox.setGlassEnabled(true);
+				nutzerAboLoeschenDialogBox.setAnimationEnabled(true);
+				nutzerAboLoeschenDialogBox.setText("Wirkich, wirklich, wirklich?");
+				
+				/**
+			     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel nutzerAboLoeschenDialogContents = new HorizontalPanel();
+			    nutzerAboLoeschenDialogContents.setSpacing(40);
+			    nutzerAboLoeschenDialogBox.setWidget(nutzerAboLoeschenDialogContents);
+				
+			    
+			    /**
+			     * Button, zum bestätigen des löschens des nutzerAbo 
+			     */
+			    Button nutzerAboLoeschenButton = new Button("Ja, löschen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  
+			            	  nutzerAboLoeschenDialogBox.hide();		  
+			            	  
+			                //Hier Applikationslogik für löschen der aktiven nutzerAbo !!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen des läschens des nutzerAbo 
+			     */
+			    Button nutzerAboNichtLoeschenButton = new Button("Nein, nicht löschen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  nutzerAboLoeschenDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen der Buttons zum nutzerAboLoeschenDialogContents Panel
+			     */
+			    nutzerAboLoeschenDialogContents.add(nutzerAboLoeschenButton);
+			    nutzerAboLoeschenDialogContents.add(nutzerAboNichtLoeschenButton);
+		
+		
+		
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    /**
+			     * DialoxBox für eine Bestätigung zum löschen eines hashtagabos
+			     */
+				final DialogBox hashtagAboLoeschenDialogBox = new DialogBox();
+				hashtagAboLoeschenDialogBox.setGlassEnabled(true);
+				hashtagAboLoeschenDialogBox.setAnimationEnabled(true);
+				hashtagAboLoeschenDialogBox.setText("Wirkich, wirklich, wirklich?");
+				
+				/**
+			     * Horizontales Panel, dem anschließend die Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel hashtagAboLoeschenDialogContents = new HorizontalPanel();
+			    hashtagAboLoeschenDialogContents.setSpacing(40);
+			    hashtagAboLoeschenDialogBox.setWidget(hashtagAboLoeschenDialogContents);
+				
+			    
+			    /**
+			     * Button, zum bestätigen des löschens des hashtagAbo 
+			     */
+			    Button hashtagAboLoeschenButton = new Button("Ja, löschen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  
+			            	  hashtagAboLoeschenDialogBox.hide();		  
+			            	  
+			                //Hier Applikationslogik für löschen der aktiven hashtagAbo !!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen des läschens des hashtagAbo 
+			     */
+			    Button hashtagAboNichtLoeschenButton = new Button("Nein, nicht löschen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagAboLoeschenDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen der Buttons zum hashtagAboLoeschenDialogContents Panel
+			     */
+			    hashtagAboLoeschenDialogContents.add(hashtagAboLoeschenButton);
+			    hashtagAboLoeschenDialogContents.add(hashtagAboNichtLoeschenButton);
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
 			  	/**
 			     * DialoxBox für einen Nutzer, welcher abonniert werden soll 
 			     */
@@ -288,6 +396,8 @@ public class AboVerwaltung extends Formular {
 		NutzerAboLoeschenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				//Hier Applikationslogik zum Löschen eines Nutzerabos einfügen
+				nutzerAboLoeschenDialogBox.center();
+				nutzerAboLoeschenDialogBox.show();
 			}
 		});
 		
@@ -299,6 +409,8 @@ public class AboVerwaltung extends Formular {
 		HashtagAboLoeschenButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				//Hier Applikationslogik zum Löschen eines Hashtagabos einfügen
+				hashtagAboLoeschenDialogBox.center();
+				hashtagAboLoeschenDialogBox.show();
 			}
 		});
 		
