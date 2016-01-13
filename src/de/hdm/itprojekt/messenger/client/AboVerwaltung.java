@@ -393,26 +393,26 @@ public class AboVerwaltung extends Formular {
 		 */
 		
 		
-//		Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
-//		this.add(nutzerCellList);
+		Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
+		this.add(nutzerCellList);
 		
 
-		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
-
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onSuccess(Vector<Nutzer> result) {
-				// TODO Auto-generated method stub
-				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
-				this.add(nutzerCellList);
-			}
-			
-		});
+//		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void onSuccess(Vector<Nutzer> result) {
+//				// TODO Auto-generated method stub
+//				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
+//				this.add(nutzerCellList);
+//			}
+//			
+//		});
 		
 	    
 	    
