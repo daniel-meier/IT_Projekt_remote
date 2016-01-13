@@ -17,13 +17,17 @@ public class Startseite extends ReportFormular {
 		 */
 		setHeadline("Startseite");
 	
+		/**
+		 * HorizontalPanel 
+		 */
+		HorizontalPanel inputPanel = getInputPanel();
 		
 		/**
 		 * Button
 		 */
 		final Button nachrichtenInfoButton = new Button("Informationen über Nachrichten");
-		nachrichtenInfoButton.setStylePrimaryName("mainbutton");
-		this.add(nachrichtenInfoButton);
+		nachrichtenInfoButton.setStylePrimaryName("report-mainbutton");
+		inputPanel.add(nachrichtenInfoButton);
 		
 		nachrichtenInfoButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -40,8 +44,8 @@ public class Startseite extends ReportFormular {
 		 * Button
 		 */
 		final Button abonnementInfoButton = new Button("Informationen über Abonnements");
-		abonnementInfoButton.setStylePrimaryName("mainbutton");
-		this.add(abonnementInfoButton);
+		abonnementInfoButton.setStylePrimaryName("report-mainbutton");
+		inputPanel.add(abonnementInfoButton);
 		
 		abonnementInfoButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
