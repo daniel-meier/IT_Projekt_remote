@@ -8,6 +8,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.hdm.itprojekt.messenger.shared.ReportGenerator;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.server.db.*;
@@ -55,7 +56,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 	@Override
 	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(
-			String nutzer, String von, String bis) throws IllegalArgumentException {
+			Nutzer nutzer, String von, String bis) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return this.nachrichtMapper.findByNutzerZeitraum(nutzer, von, bis);
 	}

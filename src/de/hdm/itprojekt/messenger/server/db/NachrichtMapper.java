@@ -53,7 +53,7 @@ public class NachrichtMapper extends DBConnection {
 	        n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 	        n.setHashtagID(rs.getInt("HashtagID"));
 	        n.setSenderID(rs.getInt("SenderID"));
-	        n.setEmpfaenger(rs.getInt("Empf�ngerID"));
+	        n.setEmpfaengerID(rs.getInt("EmpfaengerID"));
 	        return n;
 	      }
 	    }
@@ -172,8 +172,8 @@ public class NachrichtMapper extends DBConnection {
 		return n;
 	}
 	
-	/** Loeschen eines Nachrichten Objekts aus der Datenbank
-	 * 
+	/** 
+	 * Loeschen eines Nachrichten Objekts aus der Datenbank
 	 * @param nachricht auf der DB zu loeschende "objekt"
 	 */
 	public void loeschen (Nachricht n) {
@@ -236,14 +236,16 @@ public class NachrichtMapper extends DBConnection {
 	 * @param teilnehmer
 	 * @return
 	 */
-	public Nachricht getTeilnehmer(Vector<Nutzer> teilnehmer) {
+	public Vector<Nutzer> getTeilnehmer(Nachricht nachricht) {
 		//TODO Sinnvoll? Oder Nachricht getSender?
 		Connection con = DBConnection.connection();
 		Vector<Nutzer> result = new Vector<Nutzer>();
 		
 		try{
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT Nachricht.NachrichtID, Nutzer.NutzerID, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Erstellungszeitpunkt FROM Nachricht INNERJOIN Nutzer ON Nachricht.SenderID=Nutzer.NutzerID");
+			ResultSet rs = stmt.executeQuery("SELECT Nachricht.NachrichtID, Nutzer.NutzerID, "
+					+ "Nutzer.Vorname, Nutzer.Nachname, Nutzer.Erstellungszeitpunkt "
+					+ "FROM Nachricht INNERJOIN Nutzer ON Nachricht.SenderID=Nutzer.NutzerID");
 			while (rs.next()){
 				Nutzer t = new Nutzer();
 				t.setID(rs.getInt("Nutzer.NutzerID"));
@@ -262,7 +264,12 @@ public class NachrichtMapper extends DBConnection {
 		
 	}
 	
-	
+	/**
+	 * Methode um einen Hashtag einer Nachricht zuzuordnen 
+	 * @param HashtagID
+	 * @param NachrichtID
+	 * @return
+	 */
 	public Nachricht hashtagEinerNachrichtZuordnen(int HashtagID, int NachrichtID) {
 	
 		Connection con = DBConnection.connection();
@@ -273,7 +280,8 @@ public class NachrichtMapper extends DBConnection {
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO Nachricht (`NachrichtID`, `HashtagID`) VALUES ('" + NachrichtID + "', '" + HashtagID + "')");
+			stmt.executeUpdate("INSERT INTO Nachricht (`NachrichtID`, `HashtagID`) VALUES ('" 
+					+ NachrichtID + "', '" + HashtagID + "')");
 			}	
 		}
 		catch (SQLException e){
@@ -285,14 +293,19 @@ public class NachrichtMapper extends DBConnection {
 	
 	
 	
-	
+	/**
+	 * Methode um eine Nachricht einer Unterhaltung zuzuordnen
+	 * @param NachrichtID
+	 * @param UnterhaltungsID
+	 * @return
+	 */
 	public Nachricht nachrichtEinerUnterhaltungZuordnen(int NachrichtID, int UnterhaltungsID) {
 		
 		Connection con = DBConnection.connection();
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate( "INSERT INTO Unterhaltungsnachricht (`NachrichtID`, `UnterhaltungID`) VALUES ('" + NachrichtID + "', '" + UnterhaltungsID
-					+ "')");
+			stmt.executeUpdate( "INSERT INTO Unterhaltungsnachricht (`NachrichtID`, `UnterhaltungsID`) "
+					+ "VALUES ('" + NachrichtID + "', '" + UnterhaltungsID + "')");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

@@ -22,6 +22,8 @@ public class Nachricht extends BusinessObject{
 	private int hashtagID;
 	private int unterhaltungsID;
 	private int nutzerID;
+	private int senderID;
+	private int empfaengerID;
 	
 	/**
 	 * Konstruktor
@@ -138,9 +140,9 @@ public class Nachricht extends BusinessObject{
 	}
 
 
-	public void setSenderID(int int1) {
+	public void setSenderID(int senderID) {
 		// TODO Auto-generated method stub
-		
+		this.senderID = senderID;
 	}
 
 
@@ -153,6 +155,12 @@ public class Nachricht extends BusinessObject{
 	public String getEmpfaegerID() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public void setEmpfaengerID(int empfaengerID) {
+		// TODO Auto-generated method stub
+		this.empfaengerID = empfaengerID;
 	}
 
 }

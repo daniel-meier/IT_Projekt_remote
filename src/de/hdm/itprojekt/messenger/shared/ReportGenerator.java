@@ -57,7 +57,7 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * NachrichtByNutzerZeitraumReport
 	 */
-	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(String nutzer, 
+	public Vector<Nachricht> erstelleNachrichtByNutzerZeitraumReport(Nutzer nutzer, 
 			String von, String bis) throws IllegalArgumentException;
 	
 	
@@ -132,5 +132,6 @@ public interface ReportGenerator extends RemoteService {
 	 */
 	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport() 
 			throws IllegalArgumentException;
+
 
 }

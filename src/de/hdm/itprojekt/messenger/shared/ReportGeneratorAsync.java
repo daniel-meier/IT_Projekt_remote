@@ -29,7 +29,7 @@ public interface ReportGeneratorAsync {
 	void erstelleNachrichtByNutzerReport(int id,
 			AsyncCallback<Vector<Nachricht>> callback);
 
-	void erstelleNachrichtByNutzerZeitraumReport(String nutzer, String von,
+	void erstelleNachrichtByNutzerZeitraumReport(Nutzer nutzer, String von,
 			String bis, AsyncCallback<Vector<Nachricht>> callback);
 
 	void erstelleAbonnementByHashtagReport(String name,
