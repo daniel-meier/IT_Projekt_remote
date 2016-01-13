@@ -38,8 +38,8 @@ private static AbonnementMapper abonnementMapper = null;
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, erstellungszeitpunkt, FROM abonnement "
-	              + "WHERE id=" + id + " ORDER BY id");
+	          .executeQuery("SELECT AbonnementID, Erstellungszeitpunkt, AbonnentNutzerID FROM Abonnement "
+	              + "WHERE AbonnementID=" + id + " ORDER BY AbonnementID");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -48,9 +48,9 @@ private static AbonnementMapper abonnementMapper = null;
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Abonnement a = new Abonnement();
-	        a.setID(rs.getInt("id"));
-	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-	     
+	        a.setID(rs.getInt("AbonnementID"));
+	        a.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+	     //TODO Abonnent
 	        return a;
 	      }
 	    }
@@ -74,15 +74,15 @@ private static AbonnementMapper abonnementMapper = null;
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM abonnement" 
-	          + "' ORDER BY name");
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM Abonnement" 
+	          + "' ORDER BY AbonnementID");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
 	      while (rs.next()) {
 	        Abonnement a = new Abonnement();
-	        a.setID(rs.getInt("id"));
-	        a.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-
+	        a.setID(rs.getInt("AbonnementID"));
+	        a.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+//TODO Abonnent
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(a);
 	      }
