@@ -1,12 +1,20 @@
 package de.hdm.itprojekt.messenger.client;
 
+import java.util.Collection;
+
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.event.dom.client.ClickHandler;
+
+import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
 
 public class NachrichtSchreiben extends Formular{
 	
 	public void onLoad() {
+		
+			MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
+		
 		
 			super.onLoad();
 			setHeadline("Neue Nachricht schreiben");
@@ -45,7 +53,23 @@ public class NachrichtSchreiben extends Formular{
 				    /**
 				     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
 				     */
-				    MultiWordSuggestOracle empfaengerHinzufuegenOracle = new MultiWordSuggestOracle();
+				    final MultiWordSuggestOracle empfaengerHinzufuegenOracle = new MultiWordSuggestOracle();
+				    async.getNutzerCollection(new AsyncCallback<Collection<String>>(){
+
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void onSuccess(Collection<String> result) {
+							// TODO Auto-generated method stub
+							empfaengerHinzufuegenOracle.addAll(result);
+						}
+				    	
+				    });
+				    
 				    empfaengerHinzufuegenOracle.add("Test");
 				    empfaengerHinzufuegenOracle.add("Meier");
 				    empfaengerHinzufuegenOracle.add("Meler");

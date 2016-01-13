@@ -5,6 +5,7 @@ package de.hdm.itprojekt.messenger.server;
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
@@ -416,6 +417,33 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	
 	public Unterhaltung teilnehmerHinzufuegen(int UnterhaltungsID, int NutzerID) throws IllegalArgumentException{
 		return this.unterhaltungMapper.teilnehmerHinzufuegen( UnterhaltungsID, NutzerID);
+	}
+	
+	/**
+	 * NutzerCollection ausgeben
+	 */
+	@Override
+	public Collection<String> getNutzerCollection() throws IllegalArgumentException{
+		
+		Vector<Nutzer> allNutzer = this.nutzerMapper.getAllNutzer();
+		Collection<String> nutzerCollection = new ArrayList<String>();
+		
+		for(int i = 0; i > allNutzer.size(); i++){
+			
+			String vorname = allNutzer.elementAt(i).getVorname();
+			String nachname = allNutzer.elementAt(i).getNachname();
+			
+			String name = vorname + " " + nachname;
+			
+			nutzerCollection.add(name);	
+			
+		}
+		
+		
+		return nutzerCollection;
+		
+		
+		
 	}
 
 }

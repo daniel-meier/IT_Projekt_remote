@@ -47,7 +47,7 @@ import de.hdm.itprojekt.messenger.client.NutzerCellList;
  */
 public class AboVerwaltung extends Formular {
 	
-	MessengerAdministrationAsync async = GWT.create(MessengerAdministration.class);
+	MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
 
 	
 	
@@ -70,7 +70,6 @@ public class AboVerwaltung extends Formular {
 		setHeadline("Aboverwaltung");
 		final HorizontalPanel buttonPanel = getButtonPanel();
 		
-//		Test();
 		    
 		
 		
