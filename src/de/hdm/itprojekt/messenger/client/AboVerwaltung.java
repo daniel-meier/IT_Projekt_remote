@@ -28,6 +28,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.view.client.ProvidesKey;
@@ -392,9 +393,10 @@ public class AboVerwaltung extends Formular {
 		 */
 		
 		
-		Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
-		this.add(nutzerCellList);
+//		Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
+//		this.add(nutzerCellList);
 		
+		final CellList<Nutzer> nutzerCellList =  new NutzerCellList().erstelleNutzerCellList();
 
 //		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
 //
@@ -407,13 +409,15 @@ public class AboVerwaltung extends Formular {
 //			@Override
 //			public void onSuccess(Vector<Nutzer> result) {
 //				// TODO Auto-generated method stub
-//				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
-//				this.add(nutzerCellList);
+//				nutzerCellList.setRowData(0, TESTNUTZER);
 //			}
 //			
 //		});
 		
-	    
+		nutzerCellList.setRowData(0, TESTNUTZER);
+		
+		this.add(nutzerCellList);
+
 	    
 	    
 	    ProvidesKey<Hashtag> HashtagKeyProvider = new ProvidesKey<Hashtag>() {
