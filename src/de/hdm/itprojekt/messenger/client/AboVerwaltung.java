@@ -47,28 +47,8 @@ import de.hdm.itprojekt.messenger.client.NutzerCellList;
  */
 public class AboVerwaltung extends Formular {
 	
-	MessengerAdministrationAsync x = GWT.create(MessengerAdministration.class);
+	MessengerAdministrationAsync async = GWT.create(MessengerAdministration.class);
 
-//	public void Test (){
-//		x.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//
-//			@Override
-//			public void onSuccess(Vector<Nutzer> result) {
-//				// TODO Auto-generated method stub
-//				
-//				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(result);
-//				this.add(nutzerCellList);
-//			}
-//			
-//		});
-//	};
-//	
 	
 	
 	private static final List<Nutzer> TESTNUTZER = Arrays.asList(
@@ -88,7 +68,7 @@ public class AboVerwaltung extends Formular {
 	public void onLoad() {
 		super.onLoad();
 		setHeadline("Aboverwaltung");
-		HorizontalPanel buttonPanel = getButtonPanel();
+		final HorizontalPanel buttonPanel = getButtonPanel();
 		
 //		Test();
 		    
@@ -122,6 +102,10 @@ public class AboVerwaltung extends Formular {
 			    nutzerAboOracle.add("Test");
 			    nutzerAboOracle.add("Meier");
 			    nutzerAboOracle.add("Meler");
+			    
+
+			    
+			    
 
 			    
 			    /**
@@ -301,7 +285,7 @@ public class AboVerwaltung extends Formular {
 //		this.add(nutzerCellList);
 		
 
-		x.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
+		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -312,14 +296,12 @@ public class AboVerwaltung extends Formular {
 			@Override
 			public void onSuccess(Vector<Nutzer> result) {
 				// TODO Auto-generated method stub
-				
-				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(result);
+				Widget nutzerCellList = new NutzerCellList().erstelleNutzerCellList(TESTNUTZER);
 				this.add(nutzerCellList);
 			}
 			
 		});
 		
-	    
 	    
 	    
 	    
