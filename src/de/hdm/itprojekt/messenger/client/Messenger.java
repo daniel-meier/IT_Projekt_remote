@@ -36,6 +36,7 @@ public class Messenger implements EntryPoint {
 		 * Navigationspanel links
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
+		navPanel.setWidth("150px");
 		RootPanel.get("navigation").add(navPanel);
 
 		/**

@@ -3,6 +3,7 @@ package de.hdm.itprojekt.messenger.client.report;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -28,6 +29,7 @@ public class ReportGenerator implements EntryPoint{
 		 * Navigationspanel links
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
+		navPanel.setWidth("150px");
 		RootPanel.get("navigation").add(navPanel);
 		
 		/**
@@ -78,6 +80,22 @@ public class ReportGenerator implements EntryPoint{
 		        RootPanel.get("window").add(impressum);
 		      }
 		    });
+		
+		/**
+		 * Button zum Ausloggen 
+		 */
+		final Button logoutButton = new Button ("Logout");
+		logoutButton.setStylePrimaryName("report-menubutton");
+		navPanel.add(logoutButton);
+		
+		logoutButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				
+				//Hier Applikationslogik für Logout einfügen
+				
+				Window.alert("Sie haben sich ausgeloggt.");
+		      }
+		    });	
 		
 		
 
