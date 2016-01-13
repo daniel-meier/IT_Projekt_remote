@@ -33,8 +33,8 @@ public class NutzerAbonnementMapper extends DBConnection {
 		try{
 			Statement stmt = con.createStatement();
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-			          + "FROM nutzerAbonnement ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(NutzerAbonnementID) AS maxid "
+			          + "FROM NutzerAbonnement ");
 			 // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 		      if (rs.next()) {
 		        /*
@@ -46,9 +46,9 @@ public class NutzerAbonnementMapper extends DBConnection {
 		        stmt = con.createStatement();
 
 		        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
-		        stmt.executeUpdate("INSERT INTO nutzerAbonnement (id, abonnierterNutzerID, erstellungszeitpunkt) "
+		        stmt.executeUpdate("INSERT INTO NutzerAbonnement (NutzerAbonnement, AbonnierterNutzerID) "
 		            + "VALUES (" + a.getID() + ",'"
-		            + a.getAbonnierterNutzerID() + "''" + a.getErstellungszeitpunkt() + "')");
+		            + a.getAbonnierterNutzerID() + "')");
 		      }
 		    }
 		    catch (SQLException e) {
@@ -62,6 +62,7 @@ public class NutzerAbonnementMapper extends DBConnection {
 	 * @return
 	 */
 	public NutzerAbonnement bearbeiten() {
+		//TODO Was muss die Methode können?
 		return null;
 	}
 	
@@ -70,13 +71,12 @@ public class NutzerAbonnementMapper extends DBConnection {
 	 * @param Hashtag
 	 */
 	public void loeschen(Abonnement nutzerAbonnement) {
-		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
 
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzerAbonnement " + "WHERE id=" + nutzerAbonnement.getID());
+	      stmt.executeUpdate("DELETE FROM NutzerAbonnement " + "WHERE NutzerAbonnementID=" + nutzerAbonnement.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -95,8 +95,8 @@ public class NutzerAbonnementMapper extends DBConnection {
 
 	    try {
 	      Statement stmt = con.createStatement();
-
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM nutzerAbonnement" 
+//TODO
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM NutzerAbonnement" 
 	    		  + "WHERE name LIKE '" + nachname + "' ORDER BY nachname");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
@@ -131,14 +131,14 @@ public class NutzerAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM nutzerAbonnement" 
-	          + "' ORDER BY name");
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM NutzerAbonnement" 
+	          + "' ORDER BY NutzerAbonnementID");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
 	      while (rs.next()) {
 	        NutzerAbonnement h = new NutzerAbonnement();
-	        h.setID(rs.getInt("id"));
-	        h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	        h.setID(rs.getInt("NutzerAbonnementID"));
+	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(h);

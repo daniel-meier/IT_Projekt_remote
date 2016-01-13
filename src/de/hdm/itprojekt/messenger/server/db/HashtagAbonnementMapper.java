@@ -35,8 +35,8 @@ public class HashtagAbonnementMapper extends DBConnection {
 	       * Zunaechst schauen wir nach, welches der momentan hoechste
 	       * Primaerschluesselwert ist.
 	       */
-	      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-	          + "FROM hashtagAbonnement ");
+	      ResultSet rs = stmt.executeQuery("SELECT MAX(HashtagAbonnementID) AS maxid "
+	          + "FROM HashtagAbonnement ");
 
 	      // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 	      if (rs.next()) {
@@ -49,9 +49,9 @@ public class HashtagAbonnementMapper extends DBConnection {
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
-	        stmt.executeUpdate("INSERT INTO hashtagAbonnement (id, abonnierterHashtagID, erstellungszeitpunkt) "
+	        stmt.executeUpdate("INSERT INTO HashtagAbonnement (HashtagAbonnementID, AbonnierteHashtagID) "
 	            + "VALUES (" + a.getID() + ",'"
-	            + a.getAbonnierterHashtagID() + "''" + a.getErstellungszeitpunkt() + "')");
+	            + a.getAbonnierterHashtagID() + "')");
 	      }
 	    }
 	    catch (SQLException e) {
@@ -65,6 +65,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	 * @return
 	 */
 	public HashtagAbonnement bearbeiten() {
+		//TODO Was muss die Methode können?
 		return null;
 	}
 	
@@ -78,7 +79,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM hashtagAbonnement " + "WHERE id=" + hashtagAbonnement.getID());
+	      stmt.executeUpdate("DELETE FROM HashtagAbonnement " + "WHERE HashtagAbonnementID=" + hashtagAbonnement.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -97,15 +98,15 @@ public class HashtagAbonnementMapper extends DBConnection {
 
 	    try {
 	      Statement stmt = con.createStatement();
-
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM hashtagAbonnement" 
+//TODO
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM HashtagAbonnement" 
 	    		  + "WHERE name LIKE '" + name + "' ORDER BY name");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein HashtagAbonnement-Objekt erstellt.
 	      while (rs.next()) {
 	        HashtagAbonnement h = new HashtagAbonnement();
-	        h.setID(rs.getInt("id"));
-	        h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	        h.setID(rs.getInt("HashtagAbonnementID"));
+	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(h);
@@ -131,14 +132,14 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM hashtagAbonnement" 
-	          + "' ORDER BY name");
+	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM HashtagAbonnement" 
+	          + "' ORDER BY HashtagAbonnementID");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein HashtagAbonnement-Objekt erstellt.
 	      while (rs.next()) {
 	        HashtagAbonnement h = new HashtagAbonnement();
-	        h.setID(rs.getInt("id"));
-	        h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+	        h.setID(rs.getInt("HashtagAbonnementID"));
+	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(h);

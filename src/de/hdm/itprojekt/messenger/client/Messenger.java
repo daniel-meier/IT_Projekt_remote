@@ -36,6 +36,7 @@ public class Messenger implements EntryPoint {
 		 * Navigationspanel links
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
+		navPanel.setWidth("150px");
 		RootPanel.get("navigation").add(navPanel);
 
 		/**
@@ -133,6 +134,22 @@ public class Messenger implements EntryPoint {
 		        
 		      }
 		    });	
+		
+		
+		final Button logoutButton = new Button ("Logout");
+		logoutButton.setStylePrimaryName("messenger-menubutton");
+		navPanel.add(logoutButton);
+		
+		logoutButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				
+				//Hier Applikationslogik für Logout einfügen
+				
+				Window.alert("Sie haben sich ausgeloggt.");
+		      }
+		    });	
+		
+		
 		
 		
 //		/**

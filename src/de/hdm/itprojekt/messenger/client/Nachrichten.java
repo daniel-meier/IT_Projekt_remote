@@ -397,36 +397,130 @@ public class Nachrichten extends Formular {
 
 			   
 			   
-			   
+			   /**
+			    * Anlegen eines horizontalen Panels in dem man Hashtags hinzufügen kann und
+			    * in dem die Hashtags angezeigt werden, die hinzugefügt wurden
+			    */
 			    HorizontalPanel hashtagHinzufuegenPanel = new HorizontalPanel();
 			    unterhaltung.add(hashtagHinzufuegenPanel);
 			    
+			    /**
+			     * Anlegen einer Textbox in der die hinzugefügten Hashtags angezeigt werden
+			     */
 			    TextBox hashtagTextbox = new TextBox();
 				hashtagTextbox.setEnabled(false);
 				hashtagTextbox.setWidth("230px");
 				hashtagTextbox.setText("Hinzugefügte Hashtags");
 				hashtagHinzufuegenPanel.add(hashtagTextbox);
 			    
+			    /**
+			     * Anlegen eines Buttons um Hashtags zu einer Nachricht hinzufügen zu können
+			     */
+			    Button hashtagHinzufuegenButton1 = new Button("Hashtag hinzufügen");
+				hashtagHinzufuegenButton1.setStyleName("antwortButton");
+				hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton1);
+				hashtagHinzufuegenButton1.setHeight("30px");
+				
+				
+				
+				
 			    
-			    Button hashtagHinzufuegenButton = new Button("Hashtag hinzufügen");
-				   hashtagHinzufuegenButton.setStyleName("antwortButton");
-				   hashtagHinzufuegenPanel.add(hashtagHinzufuegenButton);
-				   hashtagHinzufuegenButton.setHeight("30px");
+			    /**
+			     * DialoxBox für einen Hashtag, welcher zum Chat hinzugefügt werden soll 
+			     */
+				final DialogBox hashtagHinzufuegenDialogBox = new DialogBox();
+				hashtagHinzufuegenDialogBox.setGlassEnabled(true);
+				hashtagHinzufuegenDialogBox.setAnimationEnabled(true);
+				hashtagHinzufuegenDialogBox.setText("Geben Sie einen Namen zum Hinzufügen eines Hashtags ein!");
+
+			    /**
+			     * Horizontales Panel, das anschließend der Dialogbox hinzugefügt wird 
+			     */
+			    HorizontalPanel hashtagHinzufuegenDialogContents = new HorizontalPanel();
+			    hashtagHinzufuegenDialogContents.setSpacing(40);
+			    hashtagHinzufuegenDialogBox.setWidget(hashtagHinzufuegenDialogContents);
+			    
+			    /**
+			     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
+			     */
+			    MultiWordSuggestOracle hashtagHinzufuegenOracle = new MultiWordSuggestOracle();
+			    hashtagHinzufuegenOracle.add("#0711");
+			    hashtagHinzufuegenOracle.add("#Stuttgart");
+			    hashtagHinzufuegenOracle.add("#Hochschule der Medien");
+			    hashtagHinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
+			    
+			    /**
+			     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
+			     */
+			    final SuggestBox hashtagHinzufuegenSuggestBox = new SuggestBox(hashtagHinzufuegenOracle);
+			    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenSuggestBox);
+			    
+			    /**
+			     * Button, zum hinzufügen des gewählten Hashtags 
+			     */
+			    Button hashtagHinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagHinzufuegenDialogBox.hide();
+			                //Hier Applikationslogik für hinzufügen des Hashtags einfügen!!!
+			              }
+			            });
+			    
+			    /**
+			     * Button, zum abbrechen 
+			     */
+			    Button hashtagNichtHinzufuegenButton = new Button("Abbrechen", new ClickHandler() {
+			              public void onClick(ClickEvent event) {
+			            	  hashtagHinzufuegenDialogBox.hide();
+			              }
+			            });
+			    
+			    /**
+			     * Hinzufügen des Buttons zum hinzufuegenDialogContents Panel
+			     */
+			    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenButton);
+			    hashtagHinzufuegenDialogContents.add(hashtagNichtHinzufuegenButton);
 				   
-				   
+				
 			    
 			    
+			    
+			    /**
+			     * ClickHandler für den Button Hashtag hinzufügen
+			     */
+			    hashtagHinzufuegenButton1.addClickHandler(new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						hashtagHinzufuegenDialogBox.center();
+						hashtagHinzufuegenDialogBox.show();
+					}
+				});
+			   
+			    
+			   
+				
+				
+				
+				
+				
+			   /**
+			    * Anlegen eines horizontalen Panels in dem eine Antwort geschrieben und 
+			    * gesendet werden kann
+			    */
 			   HorizontalPanel antwortPanel = new HorizontalPanel();
 			   unterhaltung.add(antwortPanel);
 			   
 			  
-			   
+			   /**
+			    * Anlegen eines Textfelds in der eine Nachricht geschrieben werden kann
+			    */
 			   TextArea antwortText = new TextArea();
 			   antwortText.setCharacterWidth(36);
 			   antwortText.setVisibleLines(4);
 			   antwortText.setText("Antwort eingeben...");
 			   antwortPanel.add(antwortText);
 			   
+			   /**
+			    * Anlegen eines Buttons um die geschriebene Nachricht zu verschicken
+			    */
 			   Button antwortButton = new Button("Antwort senden");
 			   antwortButton.setStyleName("antwortButton");
 			   antwortButton.setHeight("84px");
