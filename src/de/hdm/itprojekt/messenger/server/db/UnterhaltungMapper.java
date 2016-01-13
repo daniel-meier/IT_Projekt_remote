@@ -40,8 +40,8 @@ public class UnterhaltungMapper extends DBConnection{
 			Statement stmt = con.createStatement();
 			
 			//Statement ausf¸llen und als Query an die B schicken
-			ResultSet rs = stmt.executeQuery("SELECT ID,  Erstellungszeitpunkt FROM unterhaltung "
-					+ "WHERE ID=" + id + " ORDER BY Datum");
+			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungs,  Erstellungszeitpunkt FROM Unterhaltung "
+					+ "WHERE UnterhaltungsID=" + id + " ORDER BY Erstellungszeitpunkt");
 			
 			/*
 			 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
@@ -49,7 +49,7 @@ public class UnterhaltungMapper extends DBConnection{
 			if (rs.next()) {
 				//Ergebnis-Tupel in Objekt umwandeln
 				Unterhaltung u = new Unterhaltung();
-				u.setID(rs.getInt("ID"));
+				u.setID(rs.getInt("UnterhaltungsID"));
 				u.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 				return u;
 			}
@@ -78,8 +78,8 @@ public class UnterhaltungMapper extends DBConnection{
 			 * Zun‰chst schauen wir nach, welches der mmentan hˆchste 
 			 * Prim‰rsch¸sselwert ist.
 			 */
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id AS maxid"
-					+ "FROM unterhaltung ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(UnterhaltungsID) AS maxid"
+					+ "FROM Unterhaltung ");
 			
 			// Wenn wir etwas zur¸ckerhalten, kann dies nur einzeilig sein
 			if (rs.next()) {
@@ -92,7 +92,7 @@ public class UnterhaltungMapper extends DBConnection{
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO unterhaltung (unterhaltungsID, Erstellzeitpunkt" + "VALUES ("
+			stmt.executeUpdate("INSERT INTO Unterhaltung (UnterhaltungsID, Erstellzeitpunkt" + "VALUES ("
 			+ unterhaltung.getID() + "," + unterhaltung.getErstellungszeitpunkt() +"')");
 				
 				}
@@ -125,8 +125,8 @@ public class UnterhaltungMapper extends DBConnection{
 			//Leeeres SQL-Statement (JDBC) anlegen
 			Statement stmt = con.createStatement();
 			//TODO getText?
-			stmt.executeUpdate("UPDATE unterhaltung " + "SET Text= '" 
-					+ unterhaltung.getText() + "' " + "WHERE id=" + unterhaltung.getID());
+			stmt.executeUpdate("UPDATE Unterhaltung " + "SET Text= '" //Haben kein Text
+					+ unterhaltung.getText() + "' " + "WHERE UnterhaltungsID=" + unterhaltung.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -151,7 +151,7 @@ public class UnterhaltungMapper extends DBConnection{
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + unterhaltung.getID());
+			stmt.executeUpdate("DELETE FROM Unterhaltung " + "WHERE UnterhaltungsID=" + unterhaltung.getID());
 			
 		}
 		catch (SQLException e2) {
@@ -187,12 +187,12 @@ public class UnterhaltungMapper extends DBConnection{
 		try{
 			Statement stmt = con.createStatement();
 			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT FROM unterhaltungsteilnehmer "+ "WHERE NutzerId=" + getNutzerID());
+			ResultSet rs = stmt.executeQuery("SELECT FROM Unterhaltungsteilnehmer "+ "WHERE NutzerID=" + getNutzerID());
 		
 			if(rs.next()){
 				stmt = con.createStatement();
 				//TODO Insert Statement
-				stmt.executeUpdate("INSERT INTO unterhaltungsteilnehmer (NutzerID, UnterhaltungsID) VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
+				stmt.executeUpdate("INSERT INTO Unterhaltungsteilnehmer (NutzerID, UnterhaltungsID) VALUES(" + getUnterhaltungsID() + "," + getNutzerID() +"')");
 			}
 		}
 		catch (SQLException e2){
@@ -215,15 +215,15 @@ public class UnterhaltungMapper extends DBConnection{
 		try {
 			Statement stmt = con.createStatement();
 			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltungsnachricht INNER JOIN Unterhaltung ON UnterhaltungsId.UnterhaltungId = Unterhaltung.Id INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtId = Nachricht.Id WHERE Unterhaltungsnachricht.UnterhaltungId = '");
+			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsnachricht.UnterhaltungsID, Nachricht.NachrichtID, Nachricht.SenderID, Nachricht.Text, Nachricht.Erstellungszeitpunkt FROM Unterhaltungsnachricht INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtID = Nachricht.NachrichtID WHERE Unterhaltungsnachricht.UnterhaltungId = '" +u.getID());
 		
 			if(rs.next()){
-				u.setId(rs.getInt("Unterhaltungsnachricht.UnterhaltungId"));
+				u.setID(rs.getInt("Unterhaltungsnachricht.UnterhaltungsID"));
 				
 				Nachricht nA = new Nachricht();
-				nA.setID(rs.getInt("Unterhaltungsnachricht.NachrichtId"));
-				nA.setSenderID(rs.getInt("Nachricht.SenderId"));
-				nA.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				nA.setID(rs.getInt("Nachricht.NachrichtID"));
+				nA.setSenderID(rs.getInt("Nachricht.SenderID"));
+				nA.setErstellungszeitpunkt(rs.getDate("Nachricht.Erstellungszeitpunkt"));
 				nA.setText(rs.getString("Nachricht.Text"));
 
 			}
@@ -250,11 +250,11 @@ public class UnterhaltungMapper extends DBConnection{
 
 		try{
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM unterhaltung");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Unterhaltung");
 			while (rs.next()){
 				Unterhaltung u = new Unterhaltung();
-				u.setID(rs.getInt("id"));
-				u.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				u.setID(rs.getInt("UnterhaltungsID"));
+				u.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 				
 				result.addElement(u);
 			}
@@ -275,12 +275,12 @@ public class UnterhaltungMapper extends DBConnection{
 		try{
 			Statement stmt = con.createStatement();
 			//TODO Query die UnterhaltungsTeilnehmer ausliest
-			ResultSet rs = stmt.executeQuery("");
+			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsteilnehmer.UnterhaltungsID, Nutzer.NutzerID, Nutzer.Vorname, Nutzer.Nachname FROM Unterhaltungsteilnehmer INNERJOIN Nutzer ON Unterhaltungsteilnehmer.NutzerID = Nutzer.NutzerID");
 			while (rs.next()){
 				Nutzer n = new Nutzer();
-		        n.setID(rs.getInt("id"));
-		        n.setVorname(rs.getString("vorname"));
-		        n.setNachname(rs.getString("nachname"));
+		        n.setID(rs.getInt("Nutzer.NutzerID"));
+		        n.setVorname(rs.getString("Nutzer.Vorname"));
+		        n.setNachname(rs.getString("Nutzer.Nachname"));
 		        
 		        result.addTeilnehmer(n);
 			}
@@ -297,7 +297,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @return
 	 */
 	public Unterhaltung getNachrichten() {
-		// TODO Auto-generated method stub
+		// TODO Was soll die Methode tun?
 		Connection con = DBConnection.connection();
 		Unterhaltung nachricht = new Unterhaltung();
 		try {

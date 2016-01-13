@@ -32,12 +32,13 @@ h1{
 	font-size: 130%;
 	font-weight: bold;
 	width: 100%;
-	margin-top: 1em;
+	margin-bottom: 1em;
+
 }
 
 div#navigation {
 	float: left;
-	width: 15%;
+	width: 150px;
 /* 	margin-top: 30px; */
 	padding-top: 15pt;
 	padding-left: 15pt;
@@ -62,13 +63,13 @@ div#headline {
 	background: red;
 }
 
-.reportEdit-Button{
+.report-suchen1-button{
 	font-size: 100%;
 	font-weight: none;
 	color: white;
-	width: 100%;
+	width: 200px;
 	margin-bottom: 10pt;
-	margin-top: 3em;
+	margin-top: 1em; 
 /* 	margin-left: 15pt; */
 	background: red;
 }
@@ -197,4 +198,15 @@ div#impressum {
 .FlexTable td {
   border: 1px solid #BBBBBB;
   padding: 3px;
+}
+
+.report-mainbutton {
+	font-size: 120%;
+	font-weight: none;
+	color: white;
+	width: 180px;
+	height: 70px;
+	margin-bottom: 10pt;
+	margin-top: 10pt;
+	background: red;
 }

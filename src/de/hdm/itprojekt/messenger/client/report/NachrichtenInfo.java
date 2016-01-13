@@ -21,19 +21,19 @@ public class NachrichtenInfo extends ReportFormular{
 		 */
 		setHeadline("Information über Nachricht");
 	
-//		/**
-//		 * Horizontales Panel für Eingaben (Button und SuggestBoxen 
-//		 */
-//		HorizontalPanel inputPanel = getInputPanel();
+
+		/**
+	 * Horizontales Panel für Eingaben (Button und SuggestBoxen 
+	 */
+		HorizontalPanel inputPanel = getInputPanel();
 		
-		VerticalPanel testPanel = new VerticalPanel ();
 		 	
 			/**
 			 * Button
 			 */
 			final Button suchen = new Button("Suchen");
-		    suchen.setStylePrimaryName("edit-button");
-		    this.add(suchen);
+		    suchen.setStylePrimaryName("report-suchen1-button");
+		    inputPanel.add(suchen);
 		    
 		    /**
 			 * Anlegen eines Labels mit dem Namen "Nutzer"
@@ -48,7 +48,7 @@ public class NachrichtenInfo extends ReportFormular{
 			MultiWordSuggestOracle nachNutzerSuchenOracle = new MultiWordSuggestOracle(); 
 			
 		    final SuggestBox suggestBox = new SuggestBox(nachNutzerSuchenOracle);
-		    suggestBox.setWidth("250px");
+		    suggestBox.setWidth("190px");
 		    this.add(suggestBox);
 
 		    /**

@@ -38,8 +38,8 @@ public class NachrichtMapper extends DBConnection {
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, text, erstellungszeitpunkt, hashtagID, senderId,  "
-	              + "WHERE id=" + id + " ORDER BY erstellungszeitpunkt");
+	          .executeQuery("SELECT NachrichtID,Text, Erstellungszeitpunkt, HashtagID, SenderID, Empf�ngerID "
+	              + "WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -48,11 +48,12 @@ public class NachrichtMapper extends DBConnection {
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nachricht n = new Nachricht();
-	        n.setID(rs.getInt("id"));
-	        n.setText(rs.getString("text"));
-	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-	        n.setHashtagID(rs.getInt("hashtagID"));
-	        n.setSenderID(rs.getInt("senderID"));
+	        n.setID(rs.getInt("NachrichtID"));
+	        n.setText(rs.getString("Text"));
+	        n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+	        n.setHashtagID(rs.getInt("HashtagID"));
+	        n.setSenderID(rs.getInt("SenderID"));
+	        n.setEmpfaenger(rs.getInt("Empf�ngerID"));
 	        return n;
 	      }
 	    }
@@ -79,8 +80,8 @@ public class NachrichtMapper extends DBConnection {
 				Statement stmt = con.createStatement();
 				
 				//Statement ausfuellen und als Query an die DB schicken
-				ResultSet rs = stmt.executeQuery("SELECT id, text, erstellungszeitpunkt, senderID FROM nachricht "
-						+ "WHERE ID=" + id + " ORDER BY Datum");
+				ResultSet rs = stmt.executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, SenderID FROM nachricht "
+						+ "WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
 				
 				/*
 				 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
@@ -88,10 +89,10 @@ public class NachrichtMapper extends DBConnection {
 				if (rs.next()) {
 					//Ergebnis-Tupel in Objekt umwandeln
 					Nachricht n = new Nachricht();
-					n.setID(rs.getInt("id"));
-					n.setText(rs.getString ("text"));
-					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-					n.setSenderID(rs.getInt("senderID"));
+					n.setID(rs.getInt("NachrichtID"));
+					n.setText(rs.getString ("Text"));
+					n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+					n.setSenderID(rs.getInt("SenderID"));
 				      
 					// Hinzufuegen des neuen Objekts zum Ergebnisvektor
 			        result.addElement(n);
@@ -121,8 +122,8 @@ public class NachrichtMapper extends DBConnection {
 			 * Zun‰chst schauen wir nach, welches der mmentan hˆchste 
 			 * Prim‰rsch¸sselwert ist.
 			 */
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id AS maxid"
-					+ "FROM nachricht ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(NachrichtID) AS maxid"
+					+ "FROM Nachricht ");
 			
 			// Wenn wir etwas zur¸ckerhalten, kann dies nur einzeilig sein
 			if (rs.next()) {
@@ -135,8 +136,8 @@ public class NachrichtMapper extends DBConnection {
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO nachricht (ID, text, erstellungszeitpunkt, senderId, empfagerId" + "VALUES ("
-			+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," + n.getSenderID()+"," + n.getEmpfaegerID() +"')");
+			stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, Text, Erstellungszeitpunkt, HashtagID, SenderID, Empf�ngerID" + "VALUES ("
+			+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," + n.getSenderID()+"," + n.getEmpfaegerID() +"," +n.getHashtagID()+ ")");
 				
 				}
 			}
@@ -160,7 +161,7 @@ public class NachrichtMapper extends DBConnection {
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("UPDATE nachricht " + "SET text= '" + n.getText() + "' " + "WHERE id=" + n.getID());
+			stmt.executeUpdate("UPDATE Nachricht " + "SET Text= '" + n.getText() + "' " + "WHERE NachrichtID=" + n.getID());
 								
 		}
 		catch (SQLException e2) {
@@ -181,7 +182,7 @@ public class NachrichtMapper extends DBConnection {
 			try {
 				Statement stmt = con.createStatement();
 				
-				stmt.executeUpdate("DELETE FROM nachricht " + "WHERE id=" + n.getID());
+				stmt.executeUpdate("DELETE FROM Nachricht " + "WHERE Nachricht=" + n.getID());
 				
 			}
 			catch (SQLException e2) {
@@ -211,14 +212,14 @@ public class NachrichtMapper extends DBConnection {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Nachricht WHERE NutzerID =" 
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nachricht WHERE SenderID =" 
 					+ n.getID() + "ORDER BY Erstellungszeitpunkt DESC");
 			while (rs.next()) {
 				Nachricht na = new Nachricht();
-				na.setID(rs.getInt("id"));
-				na.setText(rs.getString ("text"));
-				na.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-				na.setNutzerID(rs.getInt("nutzerID"));
+				na.setID(rs.getInt("NachrichtID"));
+				na.setText(rs.getString ("Text"));
+				na.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				na.setNutzerID(rs.getInt("SenderID"));
 				
 				nachrichtListe.addElement(na);
 			}
@@ -236,19 +237,19 @@ public class NachrichtMapper extends DBConnection {
 	 * @return
 	 */
 	public Nachricht getTeilnehmer(Vector<Nutzer> teilnehmer) {
-		//TODO
+		//TODO Sinnvoll? Oder Nachricht getSender?
 		Connection con = DBConnection.connection();
 		Vector<Nutzer> result = new Vector<Nutzer>();
 		
 		try{
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("");
+			ResultSet rs = stmt.executeQuery("SELECT Nachricht.NachrichtID, Nutzer.NutzerID, Nutzer.Vorname, Nutzer.Nachname, Nutzer.Erstellungszeitpunkt FROM Nachricht INNERJOIN Nutzer ON Nachricht.SenderID=Nutzer.NutzerID");
 			while (rs.next()){
 				Nutzer t = new Nutzer();
-				t.setID(rs.getInt("id"));
-				t.setVorname(rs.getString("vorname"));
-				t.setNachname(rs.getString("nachname"));
-				t.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				t.setID(rs.getInt("Nutzer.NutzerID"));
+				t.setVorname(rs.getString("Nutzer.Vorname"));
+				t.setNachname(rs.getString("Nutzer.Nachname"));
+				t.setErstellungszeitpunkt(rs.getDate("Nutzer.Erstellungszeitpunkt"));
 				
 				result.add(t);
 			}
@@ -257,7 +258,7 @@ public class NachrichtMapper extends DBConnection {
 				e.printStackTrace();
 			}
 		
-		return null;
+		return result;
 		
 	}
 	
@@ -267,12 +268,12 @@ public class NachrichtMapper extends DBConnection {
 		Connection con = DBConnection.connection();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT HashtagID , NachrichtID FROM nachricht");
+			ResultSet rs = stmt.executeQuery("SELECT HashtagID , NachrichtID FROM Nachricht");
 			if (rs.next()) {
 			stmt = con.createStatement();
 			
 			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO NachrichtHashtag (`NachrichtId`, `HashtagId`) VALUES ('" + NachrichtID + "', '" + HashtagID + "')");
+			stmt.executeUpdate("INSERT INTO Nachricht (`NachrichtID`, `HashtagID`) VALUES ('" + NachrichtID + "', '" + HashtagID + "')");
 			}	
 		}
 		catch (SQLException e){
@@ -290,7 +291,7 @@ public class NachrichtMapper extends DBConnection {
 		Connection con = DBConnection.connection();
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate( "INSERT INTO Unterhaltungsnachricht (`nachrichtid`, `unterhaltungsid`) VALUES ('" + NachrichtID + "', '" + UnterhaltungsID
+			stmt.executeUpdate( "INSERT INTO Unterhaltungsnachricht (`NachrichtID`, `UnterhaltungID`) VALUES ('" + NachrichtID + "', '" + UnterhaltungsID
 					+ "')");
 		} 
 		catch (Exception e) {
@@ -308,7 +309,7 @@ public class NachrichtMapper extends DBConnection {
 	 * @param bis 
 	 * @return
 	 */
-	public Vector<Nachricht> findByNutzerZeitraum(String nutzer, String von, String bis) {
+	public Vector<Nachricht> findByNutzerZeitraum(Nutzer nutzer, String von, String bis) {
 		// TODO Auto-generated method stub
 		//DB-Verbindung holen
 		Connection con = DBConnection.connection();
@@ -318,8 +319,8 @@ public class NachrichtMapper extends DBConnection {
 			Statement stmt = con.createStatement();
 			
 			//Statement ausfuellen und als Query an die DB schicken
-			ResultSet rs = stmt.executeQuery ("SELECT * FROM nachricht WHERE erstellungszeitpunkt BETWEEN '" + von + "' AND '" + bis + "'" +
-					"AND nutzer =" + nutzer + " ORDER BY Datum");
+			ResultSet rs = stmt.executeQuery ("SELECT * FROM Nachricht WHERE Erstellungszeitpunkt BETWEEN '" + von + "' AND '" + bis + "'" +
+					"AND SenderID =" + nutzer.getID() + " ORDER BY Erstellungszeitpunkt");
 			
 			/*
 			 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
@@ -327,10 +328,10 @@ public class NachrichtMapper extends DBConnection {
 			if (rs.next()) {
 				//Ergebnis-Tupel in Objekt umwandeln
 				Nachricht n = new Nachricht();
-				n.setID(rs.getInt("id"));
-				n.setText(rs.getString ("text"));
-				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-				n.setNutzerID(rs.getInt("nutzerID"));
+				n.setID(rs.getInt("NachrichtID"));
+				n.setText(rs.getString ("Text"));
+				n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				n.setNutzerID(rs.getInt("SenderID"));
 			      
 				// Hinzufuegen des neuen Objekts zum Ergebnisvektor
 		        result.addElement(n);
@@ -357,15 +358,15 @@ public class NachrichtMapper extends DBConnection {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM nachricht WHERE erstellungszeitpunkt BETWEEN'"
-					+ von + "' AND '" + bis + "'" + "ORDER BY Datum");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nachricht WHERE Erstellungszeitpunkt BETWEEN'"
+					+ von + "' AND '" + bis + "'" + "ORDER BY Erstellungszeitpunkt");
 			
 			if (rs.next()) {
 				Nachricht n = new Nachricht();
-				n.setID(rs.getInt("id"));
-				n.setText(rs.getString("text"));
-				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-				n.setNutzerID(rs.getInt("nutzerID"));
+				n.setID(rs.getInt("NachrichtID"));
+				n.setText(rs.getString("Text"));
+				n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				n.setNutzerID(rs.getInt("SenderID"));
 				
 				result.addElement(n);
 			}
@@ -387,7 +388,7 @@ public class NachrichtMapper extends DBConnection {
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeQuery("SELECT * FROM nachricht" + "WHERE id=" + n.getID());
+			stmt.executeQuery("SELECT * FROM Nachricht" + "WHERE Nachricht=" + n.getID());
 		}
 		
 		catch (SQLException e) {
