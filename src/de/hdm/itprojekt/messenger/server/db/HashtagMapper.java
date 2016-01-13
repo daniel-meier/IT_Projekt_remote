@@ -36,8 +36,8 @@ private static HashtagMapper hashtagMapper = null;
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, erstellungszeitpunkt, hashtagtext FROM hashtag "
-	              + "WHERE id=" + id + " ORDER BY id");
+	          .executeQuery("SELECT HashtagID, Erstellungszeitpunkt, HashtagText FROM Hashtag "
+	              + "WHERE HashtagID=" + id + " ORDER BY HashtagID");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -46,9 +46,9 @@ private static HashtagMapper hashtagMapper = null;
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Hashtag h = new Hashtag();
-	        h.setID(rs.getInt("id"));
-	        h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-	        h.setHashtagtext(rs.getString("hashtagtext"));
+	        h.setID(rs.getInt("HashtagID"));
+	        h.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 
 	        return h;
 	      }
@@ -76,8 +76,8 @@ private static HashtagMapper hashtagMapper = null;
 		       * Zunächst schauen wir nach, welches der momentan höchste
 		       * Primärschlüsselwert ist.
 		       */
-		      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-		          + "FROM hashtag ");
+		      ResultSet rs = stmt.executeQuery("SELECT MAX(HashtagID) AS maxid "
+		          + "FROM Hashtag ");
 
 		      // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
 		      if (rs.next()) {
@@ -90,8 +90,8 @@ private static HashtagMapper hashtagMapper = null;
 		        stmt = con.createStatement();
 
 		        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-		        stmt.executeUpdate("INSERT INTO hashtag (id, erstellungszeitpunkt, hashtagtext) "
-		            + "VALUES (" + hashtag.getID() + ",'"+ hashtag.getErstellungszeitpunkt() + "'+ hashtag.getHashtagtext() + ");
+		        stmt.executeUpdate("INSERT INTO Hashtag (HashtagID, Erstellungszeitpunkt, HashtagText) "
+		            + "VALUES (" + hashtag.getID() + ","+ hashtag.getErstellungszeitpunkt() + "," + hashtag.getHashtagtext() + ")");
 		      }
 		    }
 		    catch (SQLException e) {
@@ -112,9 +112,9 @@ private static HashtagMapper hashtagMapper = null;
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      stmt.executeUpdate("UPDATE hashtag " + "SET hashtagtext=\""
+		      stmt.executeUpdate("UPDATE Hashtag " + "SET HashtagText=\""
 		          + hashtag.getHashtagtext() + "\" "
-		          + "WHERE id=" + hashtag.getID());
+		          + "WHERE HashtagID=" + hashtag.getID());
 
 		    }
 		    catch (SQLException e) {
@@ -136,7 +136,7 @@ private static HashtagMapper hashtagMapper = null;
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      stmt.executeUpdate("DELETE FROM hashtag " + "WHERE id=" + hashtag.getID());
+		      stmt.executeUpdate("DELETE FROM Hashtag " + "WHERE Hashtag=" + hashtag.getID());
 		    }
 		    catch (SQLException e) {
 		      e.printStackTrace();
@@ -155,12 +155,12 @@ private static HashtagMapper hashtagMapper = null;
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM hashtag"
-					+ "ORDER BY name DESC");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Hashtag"
+					+ "ORDER BY HashtagText DESC");
 			while (rs.next()){
 				Hashtag h = new Hashtag();
-				h.setID(rs.getInt("id"));
-				h.setName(rs.getString("Name"));
+				h.setID(rs.getInt("HashtagID"));
+				h.setName(rs.getString("HashtagText"));
 				
 				result.addElement(h);
 			}
@@ -185,15 +185,15 @@ private static HashtagMapper hashtagMapper = null;
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT id, hashtagtext"
-	          + "FROM hashtag " + "ORDER BY id");
+	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, HashtagText"
+	          + "FROM Hashtag " + "ORDER BY HashtagID");
 
 	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
 	        Hashtag h = new Hashtag();
-	        h.setID(rs.getInt("id"));
-	        h.setHashtagtext(rs.getString("hashtag"));
+	        h.setID(rs.getInt("HashtagID"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 	    
 
 	        // Hinzufügen des neuen Objekts zum Ergebnisvektor

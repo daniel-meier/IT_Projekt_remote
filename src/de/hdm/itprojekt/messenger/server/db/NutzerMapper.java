@@ -37,8 +37,8 @@ public class NutzerMapper extends DBConnection{
 
 	      // Statement ausfüllen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT id, vorname, nachname FROM nutzer "
-	              + "WHERE id=" + id + " ORDER BY nachname");
+	          .executeQuery("SELECT NutzerID, Vorname, Nachname, EMail FROM Nutzer "
+	              + "WHERE NutzerID=" + id + " ORDER BY Nachname");
 
 	      /*
 	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
@@ -47,9 +47,9 @@ public class NutzerMapper extends DBConnection{
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Nutzer n = new Nutzer();
-	        n.setID(rs.getInt("id"));
-	        n.setVorname(rs.getString("vorname"));
-	        n.setNachname(rs.getString("nachname"));
+	        n.setID(rs.getInt("NutzerID"));
+	        n.setVorname(rs.getString("Vorname"));
+	        n.setNachname(rs.getString("Nachname"));
 
 	        return n;
 	      }
@@ -75,17 +75,17 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname "
-	          + "FROM nutzer " + "WHERE nachname LIKE '" + name
-	          + "' ORDER BY nachname");
+	      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname "
+	          + "FROM Nutzer " + "WHERE Nachname LIKE '" + name
+	          + "' ORDER BY Nachname");
 
 	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
 	        Nutzer n = new Nutzer();
-	        n.setID(rs.getInt("id"));
-	        n.setVorname(rs.getString("vorname"));
-	        n.setNachname(rs.getString("nachname"));
+	        n.setID(rs.getInt("NutzerID"));
+	        n.setVorname(rs.getString("Vorname"));
+	        n.setNachname(rs.getString("Nachname"));
 
 	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(n);
@@ -119,8 +119,8 @@ public class NutzerMapper extends DBConnection{
 	       * Zunächst schauen wir nach, welches der momentan höchste
 	       * Primärschlüsselwert ist.
 	       */
-	      ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
-	          + "FROM nutzer ");
+	      ResultSet rs = stmt.executeQuery("SELECT MAX(NutzerID) AS maxid "
+	          + "FROM Nutzer ");
 
 	      // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
 	      if (rs.next()) {
@@ -133,7 +133,7 @@ public class NutzerMapper extends DBConnection{
 	        stmt = con.createStatement();
 
 	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
-	        stmt.executeUpdate("INSERT INTO nutzer (id, vorname, nachname, email, erstellungszeitpunkt, googleid) "
+	        stmt.executeUpdate("INSERT INTO Nutzer (NutzerID, Vorname, Nachname, EMail, Erstellungszeitpunkt) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
 	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() +"')");
 	      }
@@ -156,9 +156,9 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("UPDATE nutzer " + "SET vorname=\""
-	          + n.getVorname() + "\", " + "nachname=\"" + n.getNachname() + "\" "
-	          + "WHERE id=" + n.getID());
+	      stmt.executeUpdate("UPDATE Nutzer " + "SET Vorname=\""
+	          + n.getVorname() + "\", " + "Nachname=\"" + n.getNachname() + "\" "
+	          + "WHERE NutzerID=" + n.getID());
 
 	    }
 	    catch (SQLException e) {
@@ -181,7 +181,7 @@ public class NutzerMapper extends DBConnection{
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM nutzer " + "WHERE id=" + n.getID());
+	      stmt.executeUpdate("DELETE FROM Nutzer " + "WHERE NutzerID=" + n.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -202,16 +202,16 @@ public class NutzerMapper extends DBConnection{
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname "
-		          + "FROM nutzer " + "ORDER BY nachname");
+		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname "
+		          + "FROM Nutzer " + "ORDER BY Nachname");
 
 		      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 		      // erstellt.
 		      while (rs.next()) {
 		        Nutzer n = new Nutzer();
-		        n.setID(rs.getInt("id"));
-		        n.setVorname(rs.getString("vorname"));
-		        n.setNachname(rs.getString("nachname"));
+		        n.setID(rs.getInt("NutzerID"));
+		        n.setVorname(rs.getString("Vorname"));
+		        n.setNachname(rs.getString("Nachname"));
 
 		        // Hinzufügen des neuen Objekts zum Ergebnisvektor
 		        result.addElement(n);
@@ -244,7 +244,7 @@ public class NutzerMapper extends DBConnection{
 				Statement stmt = con.createStatement();
 					
 				//Statement ausfuellen und als Query an die DB schicken
-				ResultSet rs = stmt.executeQuery("SELECT * FROM nutzer "
+				ResultSet rs = stmt.executeQuery("SELECT * FROM Nutzer "
 						+ "WHERE Vorname, Nachname='" + name + "'");
 					
 				// Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. 
@@ -253,11 +253,11 @@ public class NutzerMapper extends DBConnection{
 				if (rs.next()) {
 					//Ergebnis-Tupel in Objekt umwandeln
 					Nutzer n = new Nutzer();
-					n.setID(rs.getInt("ID"));
+					n.setID(rs.getInt("NutzerID"));
 					n.setVorname(rs.getString ("Vorname"));
 					n.setNachname(rs.getString ("Nachname"));
-					n.setEmail(rs.getString ("Email"));
-					n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+					n.setEmail(rs.getString ("EMail"));
+					n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 						
 					return n;
 				}
@@ -283,11 +283,11 @@ public class NutzerMapper extends DBConnection{
 			ResultSet rs = stmt.executeQuery("");
 			while (rs.next()) {
 				Nutzer n = new Nutzer();
-				n.setID(rs.getInt("id"));
-				n.setVorname(rs.getString("vorname"));
-				n.setNachname(rs.getString("nachname"));
-				n.setEmail(rs.getString("email"));
-				n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
+				n.setID(rs.getInt("NutzerID"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setEmail(rs.getString("EMail"));
+				n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
 				
 				return result;
 			}
