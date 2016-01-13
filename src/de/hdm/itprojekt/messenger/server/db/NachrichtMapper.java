@@ -195,7 +195,7 @@ public class NachrichtMapper extends DBConnection {
 	 * Auslesen aller Nachrichten
 	 * @return
 	 */
-	public Vector<Nachricht> getNachricht () {
+	public Vector<Nachricht> getNachrichten () {
 		return null;
 		
 	}
