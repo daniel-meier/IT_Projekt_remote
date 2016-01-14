@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
@@ -13,6 +14,7 @@ import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.report.*;
 
+@RemoteServiceRelativePath("reportgenerator")
 public interface ReportGenerator extends RemoteService {
 	
 	/**
