@@ -35,6 +35,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	private NutzerAbonnementMapper nutzerAbonnementMapper = null;
 	private HashtagAbonnementMapper hashtagAbonnementMapper = null;
 	private NachrichtMapper nachrichtMapper = null;
+	private AbonnementMapper abonnementMapper = null;
 	
 
 	/**
@@ -61,6 +62,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		this.nutzerAbonnementMapper = NutzerAbonnementMapper.getNutzerAbonnementMapper();
 		this.hashtagAbonnementMapper = HashtagAbonnementMapper.getHashtagAbonnementMapper();
 		this.nachrichtMapper = NachrichtMapper.getNachrichtMapper();
+		this.abonnementMapper = AbonnementMapper.getAbonnementMapper();
 	}
 
 
@@ -75,6 +77,34 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * ABSCHNITT, Beginn: Methoden f�r Customer-Objekte
 	 * *********************************************************
 	 */
+	
+	public AbonnementMapper getAbonnementMapper() throws IllegalArgumentException {
+		return this.abonnementMapper;
+	}
+	
+	public HashtagMapper getHashtagMapper() throws IllegalArgumentException {
+		return this.hashtagMapper;
+	}
+	
+	public NutzerMapper getNutzerMapper() throws IllegalArgumentException {
+		return this.nutzerMapper;
+	}
+	
+	public NachrichtMapper getNachrichtMapper() throws IllegalArgumentException {
+		return this.nachrichtMapper;
+	}
+	
+	public UnterhaltungMapper getUnterhaltungMapper() throws IllegalArgumentException {
+		return this.unterhaltungMapper;
+	}
+	
+	public NutzerAbonnementMapper getNutzerAbonnementMapper() throws IllegalArgumentException {
+		return this.nutzerAbonnementMapper;
+	}
+	
+	public HashtagAbonnementMapper getHashtagAbonnementMapper() throws IllegalArgumentException {
+		return this.hashtagAbonnementMapper;
+	}
 	
 	/**
 	 * Methode um sich in das System einloggen 
