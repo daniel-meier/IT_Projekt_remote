@@ -97,7 +97,7 @@ public class AbonnementInfo extends ReportFormular{
 		    suchenDialogContents.add(nichtSuchenButton);
 		    
 		    final Button nutzerSuchenButton = new Button("Suchen");
-		    nutzerSuchenButton.setStylePrimaryName("report-menubutton");
+		    nutzerSuchenButton.setStylePrimaryName("report-menubutton1");
 			  inputPanel.add(nutzerSuchenButton);
 			  
 			  nutzerSuchenButton.addClickHandler(new ClickHandler() {
@@ -116,7 +116,7 @@ public class AbonnementInfo extends ReportFormular{
 			   * Anlegen eines Labels mit dem Namen "Hashtag"
 			   */
 			  Label hashtag = new Label("Hashtag:");
-				hashtag.setStylePrimaryName("report-menubutton");
+				hashtag.setStylePrimaryName("report-menubutton2");
 				inputPanel.add(hashtag);      
 			    
 		 /**
@@ -182,7 +182,7 @@ public class AbonnementInfo extends ReportFormular{
 			    hastagSuchenDialogContents.add(nichtSuchenButton);
 			    
 			    final Button hashtagSuchenButton = new Button("Suchen");
-			    hashtagSuchenButton.setStylePrimaryName("report-menubutton");
+			    hashtagSuchenButton.setStylePrimaryName("report-menubutton1");
 				  inputPanel.add(hashtagSuchenButton);
 				  
 				  hashtagSuchenButton.addClickHandler(new ClickHandler() {
@@ -210,6 +210,7 @@ public class AbonnementInfo extends ReportFormular{
 				    addRow(flexTable);
 				    addRow(flexTable);
 				    addRow(flexTable);
+				   
 
 				    
 				    
@@ -220,6 +221,7 @@ public class AbonnementInfo extends ReportFormular{
 				    flexTable.setHTML(0, 1, "Erstellungszeitraum");
 				    flexTable.setHTML(0, 2, "Abonnierender Nutzer");
 				    flexTable.setHTML(0, 3, "Abonnierter Nutzer");
+				    flexTable.setHTML(0, 4, "Abonniertes Hashtag");
 				  
 				    
 				    this.add(flexTable);
@@ -236,6 +238,8 @@ public class AbonnementInfo extends ReportFormular{
       flexTable.setText(numRows, 1, "TEST2");
       flexTable.setText(numRows, 2, "TEST3");
       flexTable.setText(numRows, 3, "TEST4");
+      flexTable.setText(numRows, 4, "TEST5");
+      
 //      flexTable.getFlexCellFormatter().setRowSpan(0, 1, numRows + 1);
     }
 
