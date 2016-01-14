@@ -40,6 +40,7 @@ public class DBConnection {
 	 * Software neu komiieren zu m¸ssen.
 	 */
 	private static String url = "jdbc:google:rdbms://173.194.225.209:it-projekt-1174:it-projekt-2016/IT-Projekt?user=root&password=root";
+	//private static String url = "jdbc:sqlserver://edu.hdm-server.eu;" + "databaseName=DB271;user=js232;password=joel";
 	/**
 	 * Diese statische Methode kann aufgerufen werden durch 
 	 * <code>DB_COnnection.connection()</code>. Sie erstellt die
