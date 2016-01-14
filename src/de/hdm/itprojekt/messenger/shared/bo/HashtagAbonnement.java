@@ -13,6 +13,7 @@ public class HashtagAbonnement extends Abonnement{
 	private static final long serialVersionUID = 1L;
 	private int abonnierterHashtagID;
 	private Abonnement hashtagAbonnement;
+//	private String hashtagName;
 
 	/**
 	 * Konstruktor
@@ -52,5 +53,21 @@ public class HashtagAbonnement extends Abonnement{
 	public void setHashtagAbonnement(Abonnement hashtagAbonnement) {
 		this.hashtagAbonnement = hashtagAbonnement;
 	}
+
+//	/**
+//	 * Auslesen des Namens eines Hashtags
+//	 * @return
+//	 */
+//	public String getHashtagName() {
+//		return hashtagName;
+//	}
+//
+//	/**
+//	 * Setzen des Namens eines Hashtags
+//	 * @param hashtagName
+//	 */
+//	public void setHashtagName(String hashtagName) {
+//		this.hashtagName = hashtagName;
+//	}
 
 }

@@ -30,7 +30,7 @@ public class UnterhaltungMapper extends DBConnection{
 	 * @param id Primaerschluesselattribut
 	 * @return
 	 */
-	public Unterhaltung findByID (int id) {
+	public Unterhaltung findByID (int unterhaltungsID) {
 		
 		//DB-Verbindung holen
 		Connection con = DBConnection.connection();
@@ -39,12 +39,13 @@ public class UnterhaltungMapper extends DBConnection{
 			//Leeeres SQL-Statement (JDBC) anlegen
 			Statement stmt = con.createStatement();
 			
-			//Statement ausf¸llen und als Query an die B schicken
-			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungs,  Erstellungszeitpunkt FROM Unterhaltung "
-					+ "WHERE UnterhaltungsID=" + id + " ORDER BY Erstellungszeitpunkt");
+			//Statement ausfuellen und als Query an die B schicken
+			ResultSet rs = stmt.executeQuery("SELECT UnterhaltungsID,  Erstellungszeitpunkt "
+					+ "FROM Unterhaltung WHERE UnterhaltungsID=" + unterhaltungsID 
+					+ " ORDER BY Erstellungszeitpunkt");
 			
 			/*
-			 * Da ID PRim‰rschl¸sse ist, kann max. nur ein Tupel zur¸ckgegeben werden. pr¸f, ob ein ergebnis vorliegt.
+			 * Da ID PRimaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
 			 */
 			if (rs.next()) {
 				//Ergebnis-Tupel in Objekt umwandeln
@@ -101,13 +102,13 @@ public class UnterhaltungMapper extends DBConnection{
 				e2.printStackTrace();
 			}
 			/*
-			 * R¸ckgabe, des vtl. korrigierten Leistungsbringung.
+			 * Rueckgabe, des vtl. korrigierten Leistungsbringung.
 			 * 
 			 * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-			 * Objekte ¸ergeben werden, w‰re die Anpassung des Textbeitrag-Objekts auch 
-			 * ohne diese esplizite R¸ckgabe auﬂerhalb dieser Methode sichtbar. Die
-			 * explizite R¸ckgabe von t ist eher ein Stilmittel, um zu signalisieren, 
-			 * dass sich das Objekt evtl. im Laufer der Methode ver‰ndert hat.
+			 * Objekte uebergeben werden, waere die Anpassung des Textbeitrag-Objekts auch 
+			 * ohne diese esplizite Rueckgabe ausserhalb dieser Methode sichtbar. Die
+			 * explizite Rueckgabe von t ist eher ein Stilmittel, um zu signalisieren, 
+			 * dass sich das Objekt evtl. im Laufer der Methode veraendert hat.
 			 */
 			return unterhaltung;
 	}
@@ -133,7 +134,7 @@ public class UnterhaltungMapper extends DBConnection{
 			e2.printStackTrace();
 		}
 		
-		// um Analoge zu insert(Textbeitrag t) zu wahren, geben wir t zur¸ck
+		// um Analoge zu insert zu wahren, geben wir unterhaltung zurueck
 		return unterhaltung;
 	}
 		
@@ -151,7 +152,7 @@ public class UnterhaltungMapper extends DBConnection{
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("DELETE FROM Unterhaltung " + "WHERE UnterhaltungsID=" + unterhaltung.getID());
+			stmt.executeUpdate("DELETE FROM Unterhaltung WHERE UnterhaltungsID=" + unterhaltung.getID());
 			
 		}
 		catch (SQLException e2) {
@@ -161,32 +162,32 @@ public class UnterhaltungMapper extends DBConnection{
 	
 	
 
+//	/**
+//	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
+//	 * @return
+//	*/
+//	public void teilnehmerLoeschen(Nutzer teilnehmer) {
+//		Connection con = DBConnection.connection();
+//		try{
+//			Statement stmt = con.createStatement();
+//			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + nutzer.getID());
+//		}
+//		catch (SQLException e2){
+//			e2.printStackTrace();
+//		}
+//	}
+//	
+	
+		
 	/**
-	 * Loeschen eines oder mehrerer Teilnehmer aus einer Unterhaltung
-	 * @return
-	
-	public void teilnehmerLoeschen(Nutzer teilnehmer) {
-		Connection con = DBConnection.connection();
-		try{
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM unterhaltung " + "WHERE id=" + nutzer.getID());
-		}
-		catch (SQLException e2){
-			e2.printStackTrace();
-		}
-	}
-	
-	
-		*/
-	/**
-	 * Einen Teilnehmer zu einer Unterhaltung hinzuf�gen
+	 * Einen Teilnehmer zu einer Unterhaltung hinzufuegen
 	 * @param nutzername
 	 */
 	public Unterhaltung teilnehmerHinzufuegen(int UnterhaltungsID, int NutzerID){
 		Connection con = DBConnection.connection();
 		try{
 			Statement stmt = con.createStatement();
-			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
+			//TODO Nutzer pruefen ob der in der Unterhaltung ist
 			ResultSet rs = stmt.executeQuery("SELECT FROM Unterhaltungsteilnehmer "+ "WHERE NutzerID=" + getNutzerID());
 		
 			if(rs.next()){
@@ -210,12 +211,16 @@ public class UnterhaltungMapper extends DBConnection{
 
 	public Unterhaltung NachrichtenIdZuUnterhaltungId (int unterhaltungsId) {
 		Unterhaltung u = new Unterhaltung();
-		Vector<Nachricht> Nachricht = new Vector<Nachricht>();
+//		Vector<Nachricht> Nachricht = new Vector<Nachricht>();
 		Connection con = DBConnection.connection();
 		try {
 			Statement stmt = con.createStatement();
 			//TODO Nutzer pr�fen ob der in der Unterhaltung ist
-			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsnachricht.UnterhaltungsID, Nachricht.NachrichtID, Nachricht.SenderID, Nachricht.Text, Nachricht.Erstellungszeitpunkt FROM Unterhaltungsnachricht INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtID = Nachricht.NachrichtID WHERE Unterhaltungsnachricht.UnterhaltungId = '" +u.getID());
+			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsnachricht.UnterhaltungsID, "
+					+ "Nachricht.NachrichtID, Nachricht.SenderID, Nachricht.Text, "
+					+ "Nachricht.Erstellungszeitpunkt FROM Unterhaltungsnachricht "
+					+ "INNER JOIN Nachricht ON Unterhaltungsnachricht.NachrichtID = Nachricht.NachrichtID "
+					+ "WHERE Unterhaltungsnachricht.UnterhaltungId = '" +u.getID());
 		
 			if(rs.next()){
 				u.setID(rs.getInt("Unterhaltungsnachricht.UnterhaltungsID"));
@@ -265,9 +270,10 @@ public class UnterhaltungMapper extends DBConnection{
 		return result;
 	}
 	
+	
 	/** 
 	 * Auslesen aller Teilnehmer einer Unterhaltung
-	 * @return
+	 * @return result
 	 */
 	public Unterhaltung getTeilnehmer(ArrayList<Nutzer> teilnehmer) {
 		Connection con = DBConnection.connection();
@@ -275,7 +281,9 @@ public class UnterhaltungMapper extends DBConnection{
 		try{
 			Statement stmt = con.createStatement();
 			//TODO Query die UnterhaltungsTeilnehmer ausliest
-			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsteilnehmer.UnterhaltungsID, Nutzer.NutzerID, Nutzer.Vorname, Nutzer.Nachname FROM Unterhaltungsteilnehmer INNERJOIN Nutzer ON Unterhaltungsteilnehmer.NutzerID = Nutzer.NutzerID");
+			ResultSet rs = stmt.executeQuery("SELECT Unterhaltungsteilnehmer.UnterhaltungsID, "
+					+ "Nutzer.NutzerID, Nutzer.Vorname, Nutzer.Nachname FROM Unterhaltungsteilnehmer "
+					+ "INNERJOIN Nutzer ON Unterhaltungsteilnehmer.NutzerID = Nutzer.NutzerID");
 			while (rs.next()){
 				Nutzer n = new Nutzer();
 		        n.setID(rs.getInt("Nutzer.NutzerID"));

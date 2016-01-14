@@ -95,8 +95,8 @@ public interface ReportGenerator extends RemoteService {
 	 * @throws IllegalArgumentException
 	 * AbonnementsByNutzerReport
 	 */
-	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(String nachname) 
-			throws IllegalArgumentException;
+	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(Nutzer vorname,
+			Nutzer nachname) throws IllegalArgumentException;
 	
 	/**
 	 * Erstellen eines AbonnementByNutzerHashtag-Reports.
@@ -132,6 +132,5 @@ public interface ReportGenerator extends RemoteService {
 	 */
 	public Vector<NutzerAbonnement> erstelleAlleNutzerAbonnementsReport() 
 			throws IllegalArgumentException;
-
 
 }

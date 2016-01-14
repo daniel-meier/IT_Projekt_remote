@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
-import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 public class HashtagMapper extends DBConnection{
 	
@@ -26,7 +25,7 @@ private static HashtagMapper hashtagMapper = null;
 	 * @param id
 	 * @return
 	 */
-	public Hashtag findbyID (int id) {
+	public Hashtag findbyID (int hashtagID) {
 		 // DB-Verbindung holen
 	    Connection con = DBConnection.connection();
 
@@ -34,21 +33,21 @@ private static HashtagMapper hashtagMapper = null;
 	      // Leeres SQL-Statement (JDBC) anlegen
 	      Statement stmt = con.createStatement();
 
-	      // Statement ausfüllen und als Query an die DB schicken
+	      // Statement ausfuellen und als Query an die DB schicken
 	      ResultSet rs = stmt
 	          .executeQuery("SELECT HashtagID, Erstellungszeitpunkt, HashtagText FROM Hashtag "
-	              + "WHERE HashtagID=" + id + " ORDER BY HashtagID");
+	              + "WHERE HashtagID=" + hashtagID + " ORDER BY HashtagText DESC");
 
 	      /*
-	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
-	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       * Da id Primaerschluessel ist, kann max. nur ein Tupel zurueckgegeben
+	       * werden. Pruefe, ob ein Ergebnis vorliegt.
 	       */
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagID"));
 	        h.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-	        h.setHashtagtext(rs.getString("HashtagText"));
+	        h.setHashtagText(rs.getString("HashtagText"));
 
 	        return h;
 	      }
@@ -61,7 +60,7 @@ private static HashtagMapper hashtagMapper = null;
 	    return null;
 	  }
 	
-	/** Einf�gen eines Hashtag Objekts in die Datenbank
+	/** Einfuegen eines Hashtag Objekts in die Datenbank
 	 * 
 	 * @param Hashtag
 	 * @return
@@ -77,7 +76,7 @@ private static HashtagMapper hashtagMapper = null;
 		       * Primärschlüsselwert ist.
 		       */
 		      ResultSet rs = stmt.executeQuery("SELECT MAX(HashtagID) AS maxid "
-		          + "FROM Hashtag ");
+		          + "FROM Hashtag");
 
 		      // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
 		      if (rs.next()) {
@@ -91,7 +90,8 @@ private static HashtagMapper hashtagMapper = null;
 
 		        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
 		        stmt.executeUpdate("INSERT INTO Hashtag (HashtagID, Erstellungszeitpunkt, HashtagText) "
-		            + "VALUES (" + hashtag.getID() + ","+ hashtag.getErstellungszeitpunkt() + "," + hashtag.getHashtagtext() + ")");
+		            + "VALUES (" + hashtag.getID() + ","+ hashtag.getErstellungszeitpunkt() 
+		            + "," + hashtag.getHashtagText() + ")");
 		      }
 		    }
 		    catch (SQLException e) {
@@ -101,8 +101,8 @@ private static HashtagMapper hashtagMapper = null;
 		  }
 		
 	
-	/** Bearbeiten eines Hashtag Objekts in der Datenbank
-	 * 
+	/** 
+	 * Bearbeiten eines Hashtag Objekts in der Datenbank
 	 * @param Hashtag
 	 * @return
 	 */
@@ -112,8 +112,8 @@ private static HashtagMapper hashtagMapper = null;
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      stmt.executeUpdate("UPDATE Hashtag " + "SET HashtagText=\""
-		          + hashtag.getHashtagtext() + "\" "
+		      stmt.executeUpdate("UPDATE Hashtag SET HashtagText=\""
+		          + hashtag.getHashtagText() + "\" "
 		          + "WHERE HashtagID=" + hashtag.getID());
 
 		    }
@@ -125,8 +125,8 @@ private static HashtagMapper hashtagMapper = null;
 		  }
 
 	
-	/** L�schen eines Hashtag Objekts aus der Datenbank
-	 * 
+	/** 
+	 * Loeschen eines Hashtag Objekts aus der Datenbank
 	 * @param Hashtag
 	 */
 	public void loeschen (Hashtag hashtag) {
@@ -136,7 +136,7 @@ private static HashtagMapper hashtagMapper = null;
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      stmt.executeUpdate("DELETE FROM Hashtag " + "WHERE Hashtag=" + hashtag.getID());
+		      stmt.executeUpdate("DELETE FROM Hashtag WHERE Hashtag=" + hashtag.getID());
 		    }
 		    catch (SQLException e) {
 		      e.printStackTrace();
@@ -144,8 +144,8 @@ private static HashtagMapper hashtagMapper = null;
 		  }
 		
 	
-	/** Suchen eines Hashtag Objekts nach seinem Namen
-	 * 
+	/** 
+	 * Suchen eines Hashtag Objekts nach seinem Namen
 	 * @param name
 	 * @return
 	 */
@@ -160,7 +160,7 @@ private static HashtagMapper hashtagMapper = null;
 			while (rs.next()){
 				Hashtag h = new Hashtag();
 				h.setID(rs.getInt("HashtagID"));
-				h.setName(rs.getString("HashtagText"));
+				h.setHashtagText(rs.getString("HashtagText"));
 				
 				result.addElement(h);
 			}
@@ -172,8 +172,8 @@ private static HashtagMapper hashtagMapper = null;
 		
 	}
 	
-	/** Auslesen aller Hashtags
-	 * 
+	/** 
+	 * Auslesen aller Hashtags
 	 * @return
 	 */
 	public Vector<Hashtag> getAllHashtags () {
@@ -188,15 +188,15 @@ private static HashtagMapper hashtagMapper = null;
 	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, HashtagText"
 	          + "FROM Hashtag " + "ORDER BY HashtagID");
 
-	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagID"));
-	        h.setHashtagtext(rs.getString("HashtagText"));
+	        h.setHashtagText(rs.getString("HashtagText"));
 	    
 
-	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(h);
 	      }
 	    }
@@ -204,7 +204,7 @@ private static HashtagMapper hashtagMapper = null;
 	      e.printStackTrace();
 	    }
 
-	    // Ergebnisvektor zurückgeben
+	    // Ergebnisvektor zurueckgeben
 	    return result;
-}
+	}
 }

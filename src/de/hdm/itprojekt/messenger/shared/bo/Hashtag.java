@@ -10,10 +10,10 @@ public class Hashtag extends BusinessObject {
 	
 	private static final long serialVersionUID = 1L;
 	
-/**
- * Anlegen des Attributs
- */
-	private String name;
+	/**
+	 * Anlegen des Attributs
+	 */
+	private String hashtagText;
 	
 	/**
 	 * leerer Konstruktor
@@ -23,33 +23,25 @@ public class Hashtag extends BusinessObject {
 	}
 	
 	/**
-	 * Test Konstruktor für GUI Entwicklung
+	 * Test Konstruktor fuer GUI Entwicklung
 	 */
-	public Hashtag(String name){
-		this.name = name;
+	public Hashtag(String hashtagText){
+		this.hashtagText = hashtagText;
 	}
 	
 	/**
 	 * Auslesen des Namens
 	 */
-	public String getName(){
-		return this.name;
+	public String getHashtagText(){
+		return this.hashtagText;
 	}
 	
 	/**
 	 * setzen des Namens
 	 * @param name
 	 */
-	public void setName (String name){
-		this.name = name;
-	}
-	public void setHashtagtext(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-	public String getHashtagtext() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setHashtagText (String hashtagText){
+		this.hashtagText = hashtagText;
 	}
 
 }

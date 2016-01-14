@@ -90,9 +90,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 	@Override
 	public Vector<NutzerAbonnement> erstelleAbonnementByNutzerReport(
-			String nachname) throws IllegalArgumentException {
+			Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return this.nutzerAbonnementMapper.getNutzerAbonnementByNutzer(nachname);
+		return this.nutzerAbonnementMapper.getNutzerAbonnementByNutzer(vorname, nachname);
 	}
 
 	/**

@@ -9,10 +9,12 @@ public class NutzerAbonnement extends Abonnement{
 	
 	/**
 	 * Attribute eines Nutzer Abonnements
+	 * nutzerName ist der Name des abonnierten Nutzers
 	 */
 	private static final long serialVersionUID = 1L;
 	private int abonnierterNutzerID;
 	private Abonnement nutzerAbonnement;
+//	private String nutzerName;
 	
 	/**
 	 * Konstruktor
@@ -52,5 +54,21 @@ public class NutzerAbonnement extends Abonnement{
 	public void setNutzerAbonnement(Abonnement nutzerAbonnement) {
 		this.nutzerAbonnement = nutzerAbonnement;
 	}
+
+//	/**
+//	 * Auslesen des Namens eines NutzerAbonnements
+//	 * @return
+//	 */
+//	public String getNutzerName() {
+//		return nutzerName;
+//	}
+//
+//	/**
+//	 * Setzen des Namens eines NutzerAbonnements
+//	 * @param nutzerName
+//	 */
+//	public void setNutzerName(String nutzerName) {
+//		this.nutzerName = nutzerName;
+//	}
 
 }
