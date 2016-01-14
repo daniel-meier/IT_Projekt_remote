@@ -15,6 +15,7 @@ import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
+@RemoteServiceRelativePath("messenger")
 public interface MessengerAdministration extends RemoteService {
 	
 	/**  
