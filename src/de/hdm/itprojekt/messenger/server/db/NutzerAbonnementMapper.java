@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
 
 
@@ -38,7 +39,7 @@ public class NutzerAbonnementMapper extends DBConnection {
 			 // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 		      if (rs.next()) {
 		        /*
-		         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+		         * a erhaelt den bisher maximalen, nun um 1 inkrementierten
 		         * Primaerschluessel.
 		         */
 		        a.setID(rs.getInt("maxid") + 1);
@@ -57,14 +58,14 @@ public class NutzerAbonnementMapper extends DBConnection {
 			return a;
 	}
 	
-	/**
-	 * Methode um ein NutzerAbonnement zu bearbeiten
-	 * @return
-	 */
-	public NutzerAbonnement bearbeiten() {
-		//TODO Was muss die Methode können?
-		return null;
-	}
+//	/**
+//	 * Methode um ein NutzerAbonnement zu bearbeiten
+//	 * @return
+//	 */
+//	public NutzerAbonnement bearbeiten() {
+//		//TODO Was muss die Methode können?
+//		return null;
+//	}
 	
 	/**
 	 * NutzerAbonnement loeschen
@@ -76,7 +77,8 @@ public class NutzerAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM NutzerAbonnement " + "WHERE NutzerAbonnementID=" + nutzerAbonnement.getID());
+	      stmt.executeUpdate("DELETE FROM NutzerAbonnement " 
+	    		  + "WHERE NutzerAbonnementID=" + nutzerAbonnement.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -88,27 +90,29 @@ public class NutzerAbonnementMapper extends DBConnection {
 	 * @param nachname 
 	 * @return
 	 */
-	public Vector<NutzerAbonnement> getNutzerAbonnementByNutzer(String nachname) {
+	public Vector<NutzerAbonnement> getNutzerAbonnementByNutzer(Nutzer vorname, Nutzer nachname) {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
 	    Vector<NutzerAbonnement> result = new Vector<NutzerAbonnement>();
 
 	    try {
 	      Statement stmt = con.createStatement();
-//TODO
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM NutzerAbonnement" 
-	    		  + "WHERE name LIKE '" + nachname + "' ORDER BY nachname");
+
+	      ResultSet rs = stmt.executeQuery("SELECT NutzerAbonnement.NutzerAbonnementID,"
+	      		+ " Nutzer.Vorname, Nutzer.Nachname FROM NutzerAbonnement INNER JOIN Nutzer" 
+	    		+ "WHERE Vorname LIKE '" + vorname + "' AND Nachname LIKE '" 
+	      		+ nachname + "' ORDER BY Nutzer.Nachname");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
 	      while (rs.next()) {
-	        NutzerAbonnement n = new NutzerAbonnement();
-	        n.setID(rs.getInt("id"));
-	        n.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
-	    //    n.setVorname(rs.getString("vorname"));
-	    //    n.setNachname(rs.getString("nachname"));
+	        Nutzer n = new Nutzer();
+	        n.setID(rs.getInt("Nutzer.NutzerID"));
+	        n.setErstellungszeitpunkt(rs.getDate("Nutzer.Erstellungszeitpunkt"));
+	        n.setVorname(rs.getString("Nutzer.Vorname"));
+	        n.setNachname(rs.getString("Nutzer.Nachname"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
-	        result.addElement(n);
+	      //  result.add(n);
 	      }
 	    }
 	    catch (SQLException e) {
@@ -131,8 +135,9 @@ public class NutzerAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM NutzerAbonnement" 
-	          + "' ORDER BY NutzerAbonnementID");
+	      ResultSet rs = stmt.executeQuery("SELECT NutzerAbonnement.NutzerAbonnementID"
+	    		  + " Nutzer.Vorname Nutzer.Nachname FROM NutzerAbonnement INNER JOIN Nutzer" 
+	    		  + "' ORDER BY Nutzer.Nachname");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
 	      while (rs.next()) {

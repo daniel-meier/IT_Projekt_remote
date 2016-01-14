@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 
 public class AbonnementMapper extends DBConnection {
@@ -27,7 +28,7 @@ private static AbonnementMapper abonnementMapper = null;
 	 * @param id
 	 * @return
 	 */
-	public Abonnement findbyID (int id) {
+	public Abonnement findbyID (int abonnementID) {
 		
 		 // DB-Verbindung holen
 	    Connection con = DBConnection.connection();
@@ -36,21 +37,23 @@ private static AbonnementMapper abonnementMapper = null;
 	      // Leeres SQL-Statement (JDBC) anlegen
 	      Statement stmt = con.createStatement();
 
-	      // Statement ausfüllen und als Query an die DB schicken
+	      // Statement ausfuellen und als Query an die DB schicken
 	      ResultSet rs = stmt
 	          .executeQuery("SELECT AbonnementID, Erstellungszeitpunkt, AbonnentNutzerID FROM Abonnement "
-	              + "WHERE AbonnementID=" + id + " ORDER BY AbonnementID");
+	              + "WHERE AbonnementID=" + abonnementID + " ORDER BY AbonnementID");
 
 	      /*
-	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
-	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       * Da id Primuerschluessel ist, kann max. nur ein Tupel zurueckgegeben
+	       * werden. Pruefe, ob ein Ergebnis vorliegt.
 	       */
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
 	        Abonnement a = new Abonnement();
 	        a.setID(rs.getInt("AbonnementID"));
 	        a.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+//	        a.setAbonnent(rs.getString("Abonnent"));
 	     //TODO Abonnent
+	        
 	        return a;
 	      }
 	    }
@@ -74,7 +77,7 @@ private static AbonnementMapper abonnementMapper = null;
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM Abonnement" 
+	      ResultSet rs = stmt.executeQuery("SELECT * FROM Abonnement" 
 	          + "' ORDER BY AbonnementID");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein NutzerAbonnement-Objekt erstellt.
@@ -82,6 +85,7 @@ private static AbonnementMapper abonnementMapper = null;
 	        Abonnement a = new Abonnement();
 	        a.setID(rs.getInt("AbonnementID"));
 	        a.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+//	        a.setAbonnent(rs.getString("Abonnent"));
 //TODO Abonnent
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(a);

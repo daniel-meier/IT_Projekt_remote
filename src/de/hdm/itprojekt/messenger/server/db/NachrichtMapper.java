@@ -36,14 +36,14 @@ public class NachrichtMapper extends DBConnection {
 	      // Leeres SQL-Statement (JDBC) anlegen
 	      Statement stmt = con.createStatement();
 
-	      // Statement ausfüllen und als Query an die DB schicken
+	      // Statement ausfuellen und als Query an die DB schicken
 	      ResultSet rs = stmt
-	          .executeQuery("SELECT NachrichtID,Text, Erstellungszeitpunkt, HashtagID, SenderID, Empf�ngerID "
-	              + "WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
+	          .executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, HashtagID, "
+	          		+ "SenderID, EmpfaengerID WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
 
 	      /*
-	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
-	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       * Da id Primaerschluessel ist, kann max. nur ein Tupel zurueckgegeben
+	       * werden. Pruefe, ob ein Ergebnis vorliegt.
 	       */
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
@@ -80,8 +80,9 @@ public class NachrichtMapper extends DBConnection {
 				Statement stmt = con.createStatement();
 				
 				//Statement ausfuellen und als Query an die DB schicken
-				ResultSet rs = stmt.executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, SenderID FROM nachricht "
-						+ "WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
+				ResultSet rs = stmt.executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, "
+						+ "SenderID FROM nachricht WHERE NachrichtID=" + id
+						+ " ORDER BY Erstellungszeitpunkt");
 				
 				/*
 				 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.
@@ -110,7 +111,7 @@ public class NachrichtMapper extends DBConnection {
 	 * Einfuegen eines Nachricht Objekts in die Datenbank
 	 * Mittels dieser Methode wird die Nachricht erstellt.
 	 * @param Nachrichten
-	 * @return
+	 * @return n
 	 */		
 	public Nachricht einfuegen (Nachricht n) {
 		Connection con = DBConnection.connection();
@@ -119,26 +120,27 @@ public class NachrichtMapper extends DBConnection {
 			Statement stmt = con.createStatement();
 			
 			/*
-			 * Zun‰chst schauen wir nach, welches der mmentan hˆchste 
-			 * Prim‰rsch¸sselwert ist.
+			 * Zunaechst schauen wir nach, welches der momentan hoechste 
+			 * Primaerschuesselwert ist.
 			 */
 			ResultSet rs = stmt.executeQuery("SELECT MAX(NachrichtID) AS maxid"
 					+ "FROM Nachricht ");
 			
-			// Wenn wir etwas zur¸ckerhalten, kann dies nur einzeilig sein
+			// Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 			if (rs.next()) {
 				/*
-				 * t erh‰lt den bisher maximalen, un um 1 inkremetierten
-				 * Prim‰rschl¸ssel.
+				 * n erhaelt den bisher maximalen, un um 1 inkremetierten
+				 * Primaerschluessel.
 				 */
 				n.setID(rs.getInt("maxid")+1);
 				
 			stmt = con.createStatement();
 			
-			//Jetzt erst erfolgt die tats‰chliche Einf¸geoperation
-			stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, Text, Erstellungszeitpunkt, HashtagID, SenderID, Empf�ngerID" + "VALUES ("
-			+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," + n.getSenderID()+"," + n.getEmpfaegerID() +"," +n.getHashtagID()+ ")");
-				
+			//Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
+			stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, Text, Erstellungszeitpunkt, "
+					+ "HashtagID, SenderID, EmpfaengerID" + "VALUES ("
+					+ n.getID() + "," + n.getText() + "," + n.getErstellungszeitpunkt() + "," 
+					+ n.getSenderID()+"," + n.getEmpfaegerID() +"," + n.getHashtagID()+ ")");
 				}
 			}
 			catch (SQLException e2) {
@@ -152,7 +154,7 @@ public class NachrichtMapper extends DBConnection {
 	/** 
 	 * Bearbeiten eines Nachricht Objekts in der Datenbank
 	 * @param Nachricht
-	 * @return
+	 * @return n
 	 */
 	public Nachricht bearbeiten (Nachricht n) {
 		
@@ -161,14 +163,14 @@ public class NachrichtMapper extends DBConnection {
 		try {
 			Statement stmt = con.createStatement();
 			
-			stmt.executeUpdate("UPDATE Nachricht " + "SET Text= '" + n.getText() + "' " + "WHERE NachrichtID=" + n.getID());
-								
+			stmt.executeUpdate("UPDATE Nachricht " + "SET Text= '" + n.getText() + "' " 
+					+ "WHERE NachrichtID=" + n.getID());				
 		}
 		catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 		
-		// um Analoge zu insert(Textbeitrag n) zu wahren, geben wir n zur¸ck
+		// um Analoge zu insert(Textbeitrag n) zu wahren, geben wir n zurueck
 		return n;
 	}
 	
@@ -232,9 +234,9 @@ public class NachrichtMapper extends DBConnection {
 		
 	}
 	/**
-	 * einen oder mehrere Teilnehmer in Nachricht einf�gen
+	 * einen oder mehrere Teilnehmer in Nachricht einfuegen
 	 * @param teilnehmer
-	 * @return
+	 * @return result
 	 */
 	public Vector<Nutzer> getTeilnehmer(Nachricht nachricht) {
 		//TODO Sinnvoll? Oder Nachricht getSender?
@@ -332,8 +334,9 @@ public class NachrichtMapper extends DBConnection {
 			Statement stmt = con.createStatement();
 			
 			//Statement ausfuellen und als Query an die DB schicken
-			ResultSet rs = stmt.executeQuery ("SELECT * FROM Nachricht WHERE Erstellungszeitpunkt BETWEEN '" + von + "' AND '" + bis + "'" +
-					"AND SenderID =" + nutzer.getID() + " ORDER BY Erstellungszeitpunkt");
+			ResultSet rs = stmt.executeQuery ("SELECT * FROM Nachricht WHERE Erstellungszeitpunkt "
+					+ "BETWEEN '" + von + "' AND '" + bis + "'" 
+					+ "AND SenderID =" + nutzer.getID() + " ORDER BY Erstellungszeitpunkt");
 			
 			/*
 			 * Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. pruef, ob ein ergebnis vorliegt.

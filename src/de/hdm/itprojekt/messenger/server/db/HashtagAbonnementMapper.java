@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Abonnement;
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 
 public class HashtagAbonnementMapper extends DBConnection {
@@ -41,7 +42,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	      // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 	      if (rs.next()) {
 	        /*
-	         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+	         * a erhaelt den bisher maximalen, nun um 1 inkrementierten
 	         * Primaerschluessel.
 	         */
 	        a.setID(rs.getInt("maxid") + 1);
@@ -60,14 +61,14 @@ public class HashtagAbonnementMapper extends DBConnection {
 		return a;
 	}
 	
-	/**
-	 * Methode um ein Hashtag Abonnement zu bearbeiten
-	 * @return
-	 */
-	public HashtagAbonnement bearbeiten() {
-		//TODO Was muss die Methode können?
-		return null;
-	}
+//	/**
+//	 * Methode um ein Hashtag Abonnement zu bearbeiten
+//	 * @return
+//	 */
+//	public HashtagAbonnement bearbeiten() {
+//		//TODO Was muss die Methode können?
+//		return null;
+//	}
 	
 	/**
 	 * HashtagAbonnement loeschen
@@ -79,7 +80,8 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM HashtagAbonnement " + "WHERE HashtagAbonnementID=" + hashtagAbonnement.getID());
+	      stmt.executeUpdate("DELETE FROM HashtagAbonnement " 
+	    		  + "WHERE HashtagAbonnementID=" + hashtagAbonnement.getID());
 	    }
 	    catch (SQLException e) {
 	      e.printStackTrace();
@@ -91,7 +93,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	 * @param name 
 	 * @return
 	 */
-	public Vector<HashtagAbonnement> getHashtagAbonnementByName(String name) {
+	public Vector<HashtagAbonnement> getHashtagAbonnementByName(String hashtagText) {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
 	    Vector<HashtagAbonnement> result = new Vector<HashtagAbonnement>();
@@ -99,17 +101,19 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 //TODO
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM HashtagAbonnement" 
-	    		  + "WHERE name LIKE '" + name + "' ORDER BY name");
+	      ResultSet rs = stmt.executeQuery("SELECT Hashtag.HashtagID, Hashtag.HashtagText "
+	      		+ "FROM HashtagAbonnement INNER JOIN Hashtag" 
+	    		+ "WHERE HashtagText LIKE '" + hashtagText + "' ORDER BY Name");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein HashtagAbonnement-Objekt erstellt.
 	      while (rs.next()) {
-	        HashtagAbonnement h = new HashtagAbonnement();
-	        h.setID(rs.getInt("HashtagAbonnementID"));
+	        Hashtag h = new Hashtag();
+	        h.setID(rs.getInt("HashtagID"));
+	        h.setHashtagText(rs.getString("HashtagText"));
 	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
-	        result.addElement(h);
+//	        result.addElement(h);
 	      }
 	    }
 	    catch (SQLException e) {
@@ -132,17 +136,18 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT *" + "FROM HashtagAbonnement" 
-	          + "' ORDER BY HashtagAbonnementID");
+	      ResultSet rs = stmt.executeQuery("SELECT * FROM HashtagAbonnement" 
+	          + "' ORDER BY Name");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein HashtagAbonnement-Objekt erstellt.
 	      while (rs.next()) {
-	        HashtagAbonnement h = new HashtagAbonnement();
+	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagAbonnementID"));
+	        h.setHashtagText(rs.getString("HashtagText"));
 	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
-	        result.addElement(h);
+//	        result.addElement(h);
 	      }
 	    }
 	    catch (SQLException e) {
@@ -152,7 +157,5 @@ public class HashtagAbonnementMapper extends DBConnection {
 	    // Ergebnisvektor zurueckgeben
 	    return result;
 	}
-
-	
 
 }

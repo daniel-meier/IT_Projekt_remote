@@ -11,14 +11,14 @@ import de.hdm.itprojekt.messenger.shared.bo.HashtagAbonnement;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.shared.bo.NutzerAbonnement;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
-import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
-import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
-import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
+//import de.hdm.itprojekt.messenger.shared.report.AbonnementByHashtagReport;
+//import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerHashtagReport;
+//import de.hdm.itprojekt.messenger.shared.report.AbonnementsByNutzerReport;
+//import de.hdm.itprojekt.messenger.shared.report.AllHashtagAbonnementReport;
+//import de.hdm.itprojekt.messenger.shared.report.AllNutzerAbonnementsReport;
+//import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerReport;
+//import de.hdm.itprojekt.messenger.shared.report.NachrichtByNutzerZeitraumReport;
+//import de.hdm.itprojekt.messenger.shared.report.NachrichtByZeitraumReport;
 
 public interface ReportGeneratorAsync {
 
@@ -38,7 +38,7 @@ public interface ReportGeneratorAsync {
 	void erstelleAlleHashtagAbonemmentReport(
 			AsyncCallback<Vector<HashtagAbonnement>> callback);
 
-	void erstelleAbonnementByNutzerReport(String nachname,
+	void erstelleAbonnementByNutzerReport(Nutzer vorname, Nutzer nachname,
 			AsyncCallback<Vector<NutzerAbonnement>> callback);
 
 	void erstelleAbonnementByNutzerHashtagReport(Abonnement abonnement,
