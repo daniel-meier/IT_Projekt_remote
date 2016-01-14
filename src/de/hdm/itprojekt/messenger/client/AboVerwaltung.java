@@ -405,7 +405,6 @@ public class AboVerwaltung extends Formular {
 //				// TODO Auto-generated method stub
 //				
 //			}
-//
 //			@Override
 //			public void onSuccess(Vector<Nutzer> result) {
 //				// TODO Auto-generated method stub
