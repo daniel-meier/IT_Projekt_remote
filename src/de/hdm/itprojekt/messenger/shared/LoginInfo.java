@@ -1,56 +1,65 @@
 package de.hdm.itprojekt.messenger.shared;
 
-import de.hdm.itprojekt.messenger.shared.bo.*;
-
 import java.io.Serializable;
+
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 public class LoginInfo implements Serializable {
 
-private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -5207880593956618550L;
 	private boolean loggedIn = false;
 	private String loginUrl;
 	private String logoutUrl;
-	private String email;
-	private String nickname;
+	private String emailAddress;
+	private String googleId;
+	private Nutzer user;
 	
+
 	public boolean isLoggedIn() {
 		return loggedIn;
 	}
-	
+
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
-	
+
 	public String getLoginUrl() {
 		return loginUrl;
 	}
-	
+
 	public void setLoginUrl(String loginUrl) {
 		this.loginUrl = loginUrl;
 	}
-	
+
 	public String getLogoutUrl() {
 		return logoutUrl;
 	}
-	
+
 	public void setLogoutUrl(String logoutUrl) {
 		this.logoutUrl = logoutUrl;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
+
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
-	
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+
+	public Nutzer getUser() {
+		return user;
+	}
+
+	public void setUser(Nutzer user) {
+		this.user = user;
+	}
+
+	public String getGoogleId() {
+		return googleId;
+	}
+
+	public void setGoogleId(String string) {
+		this.googleId = string;
 	}
 }

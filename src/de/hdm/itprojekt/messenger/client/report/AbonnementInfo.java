@@ -132,7 +132,7 @@ public class AbonnementInfo extends ReportFormular{
 			hashtagSuchenDialogBox.setText("Geben Sie einen Hashtag, welcher gesucht werden soll!!!");
 				    
 			
-			/**
+	    		/**
 			 * Horizontales Panel dem die Dialogbox hinzugefügt wird
 			 */
 				   HorizontalPanel hastagSuchenDialogContents = new HorizontalPanel();
