@@ -39,11 +39,11 @@ public class Messenger implements EntryPoint {
 	private VerticalPanel loginPanel = new VerticalPanel ();
 	private Label loginLabel = new Label ("Please sign in to your Google account to access the Messenger application.");
 	private Anchor signInLink = new Anchor ("Sign In"); 
-	
+	private Anchor signOutLink = new Anchor ("Sign Out");
 	
 	
 	public void onModuleLoad() {
-	
+
 		/**
 		 * Check login status using login service
 		 */
@@ -53,7 +53,6 @@ public class Messenger implements EntryPoint {
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
@@ -70,11 +69,15 @@ public class Messenger implements EntryPoint {
 	
 	public void ladeMessenger() {
 		
+		
+		
 		/**
 		 * Roter Balken mit Überschrift
 		 */
 		HorizontalPanel messengerPanel = new HorizontalPanel();	
 		RootPanel.get("header").add(messengerPanel);
+		
+		
 		
 		
 		/**
@@ -173,6 +176,15 @@ public class Messenger implements EntryPoint {
 				Window.alert("Sie haben sich ausgeloggt.");
 		      }
 		    });	
+		
+		
+		/**
+		 * Set up sign out hyperlink
+		 */
+		signOutLink.setHref(loginInfo.getLogoutUrl());
+		
+		
+		navPanel.add(signOutLink);
 		
 		
 		/**

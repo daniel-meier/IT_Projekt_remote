@@ -26,7 +26,7 @@
 		<url-pattern>/messenger/reportgenerator</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>loginService</servlet-name>
 		<servlet-class>de.hdm.itprojekt.messenger.server.LoginServiceImpl</servlet-class>
 	</servlet>
