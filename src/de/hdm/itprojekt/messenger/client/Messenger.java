@@ -3,9 +3,13 @@ package de.hdm.itprojekt.messenger.client;
 
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+//import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
@@ -17,20 +21,51 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DatePicker;
 
+import de.hdm.itprojekt.messenger.shared.LoginInfo;
+import de.hdm.itprojekt.messenger.shared.LoginService;
+import de.hdm.itprojekt.messenger.shared.LoginServiceAsync;
+
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Messenger implements EntryPoint {
 
+	/**
+	 * Panel,Label und Anchor für die Anmeldung
+	 */
+	private LoginInfo loginInfo = null;
+	private VerticalPanel loginPanel = new VerticalPanel ();
+	private Label loginLabel = new Label ("Please sign in to your Google account to access the Messenger application.");
+	private Anchor signInLink = new Anchor ("Sign In"); 
+	
+	
 	
 	public void onModuleLoad() {
-		
+	
 		/**
-		 * Aufruf der Methode "ladeMessenger" 
+		 * Check login status using login service
 		 */
-		ladeMessenger();
-		
+		LoginServiceAsync loginService = GWT.create(LoginService.class);
+		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(LoginInfo result) {
+				// TODO Auto-generated method stub
+				loginInfo = result; 
+				if (loginInfo.isLoggedIn()) {
+					ladeMessenger();
+				} else {
+					ladeLogin ();
+			}
+				
 	}
 	
 	public void ladeMessenger() {
@@ -146,6 +181,25 @@ public class Messenger implements EntryPoint {
 		HorizontalPanel nachrichten = new Nachrichten();
         RootPanel.get("window").add(nachrichten);
 	}
+	
+		});
+		
+	}
+	
+	/**
+	 * ladeLogin Methode 
+	 */
+	private void ladeLogin() {
+		// Assemble login panel. 
+		signInLink.setHref(loginInfo.getLoginUrl()); 
+		loginPanel.add(loginLabel); 
+		loginPanel.add(signInLink);
+		RootPanel.get("window").clear();
+	    RootPanel.get("input").clear();
+	    RootPanel.get("navigation").clear();
+		RootPanel.get("window").add(loginPanel);
+	}
 }
+
 
 
