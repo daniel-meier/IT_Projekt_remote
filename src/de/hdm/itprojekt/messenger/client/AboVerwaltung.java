@@ -398,21 +398,21 @@ public class AboVerwaltung extends Formular {
 		
 		final CellList<Nutzer> nutzerCellList =  new NutzerCellList().erstelleNutzerCellList();
 
-//		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//
-//			@Override
-//			public void onSuccess(Vector<Nutzer> result) {
-//				// TODO Auto-generated method stub
-//				nutzerCellList.setRowData(0, TESTNUTZER);
-//			}
-//			
-//		});
+		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Vector<Nutzer> result) {
+				// TODO Auto-generated method stub
+				nutzerCellList.setRowData(0, TESTNUTZER);
+			}
+			
+		});
 		
 		nutzerCellList.setRowData(0, TESTNUTZER);
 		
@@ -422,7 +422,7 @@ public class AboVerwaltung extends Formular {
 	    
 	    ProvidesKey<Hashtag> HashtagKeyProvider = new ProvidesKey<Hashtag>() {
 			public Object getKey(Hashtag item) {
-				return (item == null) ? null : item.getName();
+				return (item == null) ? null : item.getHashtagText();
 			}
 		};
 		
