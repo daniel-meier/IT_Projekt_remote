@@ -25,8 +25,18 @@ public class Messenger implements EntryPoint {
 
 	
 	public void onModuleLoad() {
+		
 		/**
-		 * Roter Balken mit �berschrift
+		 * Aufruf der Methode "ladeMessenger" 
+		 */
+		ladeMessenger();
+		
+	}
+	
+	public void ladeMessenger() {
+		
+		/**
+		 * Roter Balken mit Überschrift
 		 */
 		HorizontalPanel messengerPanel = new HorizontalPanel();	
 		RootPanel.get("header").add(messengerPanel);
@@ -76,26 +86,6 @@ public class Messenger implements EntryPoint {
 		        RootPanel.get("window").add(aboverwaltung);
 		      }
 		    });
-//		/**
-//		 * Button
-//		 */
-//		final Button nachrichtSchreibenButton = new Button("Nachricht schreiben");
-//		nachrichtSchreibenButton.setStylePrimaryName("messenger-menubutton");
-//		navPanel.add(nachrichtSchreibenButton);
-//		
-//		
-//		nachrichtSchreibenButton.addClickHandler(new ClickHandler() {
-//			public void onClick(ClickEvent event) {
-//				HorizontalPanel nachrichtSchreiben = new NachrichtSchreiben();
-//
-//				  RootPanel.get("window").clear();
-//				    RootPanel.get("input").clear();
-//				    RootPanel.get("headline").clear();
-//			        RootPanel.get("window").add(nachrichtSchreiben);
-//			}
-//		
-//		});
-		
 		
 		/**
 		 * Button
@@ -148,23 +138,6 @@ public class Messenger implements EntryPoint {
 				Window.alert("Sie haben sich ausgeloggt.");
 		      }
 		    });	
-		
-		
-		
-		
-//		/**
-//		 * Button
-//		 */
-//		final Button logoutButton = new Button("Logout",
-//				new ClickHandler() {
-//			public void onClick(ClickEvent event) {
-//				Window.alert("Logout");
-//			}
-//		}
-//      );
-//		logoutButton.setStylePrimaryName("messenger-menubutton");
-//		navPanel.add(logoutButton);
-		        
 		
 		
 		/**
