@@ -33,7 +33,29 @@ h1{
 	font-weight: bold;
 	width: 100%;
 	margin-bottom: 1em;
+	margin-top: 10pt;
+	
+}
 
+.report-menubutton1 {
+	font-size: 100%;
+	font-weight: bold;
+	color: white;
+	width: 100%;
+	margin-bottom: 1em;
+	margin-top: 10pt;
+	background: red;
+
+}
+
+.report-menubutton {
+	font-size: 130%;
+	font-weight: bold;
+	width: 100%;
+	margin-bottom: 1em;
+	margin-top: 10pt;
+	margin-left: 20px;
+	
 }
 
 div#navigation {

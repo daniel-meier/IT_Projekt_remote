@@ -12,7 +12,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.google.appengine.api.rdbms.AppEngineDriver;
-import com.google.cloud.sql.jdbc.ResultSet;
 
 public class DBConnection {
 	
@@ -39,7 +38,10 @@ public class DBConnection {
 	 * mitgegeben, um bei einer Ver‰nderung dieser URL nicht die gesamte 
 	 * Software neu komiieren zu m¸ssen.
 	 */
-	private static String url = "jdbc:google:rdbms://173.194.225.209:it-projekt-1174:it-projekt-2016/IT-Projekt?user=root&password=root";
+	private static String url = "jdbc:mysql://173.194.225.209:3306/IT-Projekt?user=Kim&password=password123";
+//	private static String url = "jdbc:google:mysql://it-projekt-1174:it-projekt-2016?user=Tino&password=root";
+//	private static String url = "jdbc:sqlserver://edu.hdm-server.eu;" + "databaseName=DB271;user=js232;password=joel";
+	
 	/**
 	 * Diese statische Methode kann aufgerufen werden durch 
 	 * <code>DB_COnnection.connection()</code>. Sie erstellt die
@@ -65,7 +67,9 @@ public class DBConnection {
 		if ( con == null) {
 			try {
 				// Ersteinmal muss der passende SB-Treiber geladen werden
-				DriverManager.registerDriver(new AppEngineDriver());
+				//DriverManager.registerDriver(new AppEngineDriver());
+				Class.forName("com.mysql.jdbc.GoogleDriver");
+				System.out.println("Treiber geladen");
 				
 				/*
 				 * Dann erst kann uns der DriveManager eine Verbindung mit den oben 
@@ -74,16 +78,24 @@ public class DBConnection {
 				 * Diese Verbindung wird dann in der statischen Variable von 
 				 * abgespeichert und fortan verwendet.
 				 */
+			}
+//			catch (SQLException e1) {
+//	
+//				e1.printStackTrace();
+			catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+			try {
 				con = DriverManager.getConnection(url);
-			}
-			catch (SQLException e1) {
-				con = null;
-				e1.printStackTrace();
-			}
+			} catch (SQLException e1) {
+			e1.printStackTrace();
+			System.out.println("Connection Error");
 		}
 		// Zur¸ckgeben der Verbindung
-		return con;
+		
 	}
+		return con;
+}
 }
 
 
