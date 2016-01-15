@@ -16,7 +16,7 @@ public class HashtagCell extends AbstractCell<Hashtag>{
 	    }
 		
 	    sb.appendHtmlConstant("<table><tr><td>");
-	    sb.appendEscaped(value.getName());
+	    sb.appendEscaped(value.getHashtagtext());
 	    sb.appendHtmlConstant("</td></tr></table>");
 
 	    }		

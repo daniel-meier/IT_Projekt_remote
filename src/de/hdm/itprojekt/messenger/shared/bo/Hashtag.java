@@ -15,6 +15,8 @@ public class Hashtag extends BusinessObject {
  */
 	private String name;
 	
+	private String hashtagText;
+	
 	/**
 	 * leerer Konstruktor
 	 */
@@ -43,13 +45,13 @@ public class Hashtag extends BusinessObject {
 	public void setName (String name){
 		this.name = name;
 	}
-	public void setHashtagtext(String string) {
+	public void setHashtagtext(String hashtagText) {
 		// TODO Auto-generated method stub
-		
+		this.hashtagText = hashtagText;
 	}
 	public String getHashtagtext() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hashtagText;
 	}
 
 }

@@ -67,5 +67,7 @@ public interface MessengerAdministrationAsync {
 	void teilnehmerHinzufuegen(Nachricht nachricht, AsyncCallback<Vector<Nutzer>> callback);
 
 	void getNutzerCollection(AsyncCallback<Collection<String>> callback);
+	
+	void getAllHashtags(AsyncCallback<Vector<Hashtag>> callback);
 
 }

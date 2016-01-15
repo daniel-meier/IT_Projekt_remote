@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.server.db.DBConnection;
 
 public class HashtagMapper extends DBConnection{
 	
@@ -16,7 +17,10 @@ private static HashtagMapper hashtagMapper = null;
 		
 	}
 	
-	public static HashtagMapper getHashtagMapper() {
+	public static HashtagMapper getHashtagMapper(){
+		if(hashtagMapper == null){
+			hashtagMapper = new HashtagMapper();
+		}
 		return hashtagMapper;
 	}
 	
@@ -47,7 +51,7 @@ private static HashtagMapper hashtagMapper = null;
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagID"));
 	        h.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-	        h.setHashtagText(rs.getString("HashtagText"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 
 	        return h;
 	      }
@@ -91,7 +95,7 @@ private static HashtagMapper hashtagMapper = null;
 		        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
 		        stmt.executeUpdate("INSERT INTO Hashtag (HashtagID, Erstellungszeitpunkt, HashtagText) "
 		            + "VALUES (" + hashtag.getID() + ","+ hashtag.getErstellungszeitpunkt() 
-		            + "," + hashtag.getHashtagText() + ")");
+		            + "," + hashtag.getHashtagtext() + ")");
 		      }
 		    }
 		    catch (SQLException e) {
@@ -113,7 +117,7 @@ private static HashtagMapper hashtagMapper = null;
 		      Statement stmt = con.createStatement();
 
 		      stmt.executeUpdate("UPDATE Hashtag SET HashtagText=\""
-		          + hashtag.getHashtagText() + "\" "
+		          + hashtag.getHashtagtext() + "\" "
 		          + "WHERE HashtagID=" + hashtag.getID());
 
 		    }
@@ -160,7 +164,7 @@ private static HashtagMapper hashtagMapper = null;
 			while (rs.next()){
 				Hashtag h = new Hashtag();
 				h.setID(rs.getInt("HashtagID"));
-				h.setHashtagText(rs.getString("HashtagText"));
+				h.setHashtagtext(rs.getString("HashtagText"));
 				
 				result.addElement(h);
 			}
@@ -185,15 +189,15 @@ private static HashtagMapper hashtagMapper = null;
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, HashtagText"
-	          + "FROM Hashtag " + "ORDER BY HashtagID");
+	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, Erstellungszeitpunkt, HashtagText FROM Hashtag ORDER BY HashtagText");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagID"));
-	        h.setHashtagText(rs.getString("HashtagText"));
+	        h.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 	    
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor

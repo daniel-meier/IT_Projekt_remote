@@ -473,9 +473,25 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 		
 		return nutzerCollection;
+			
+	}
+	
+	
+	/**
+	 * Alle Nutzer ausgeben
+	 * @return Nutzer
+	 */
+	@Override
+	public Vector<Hashtag> getAllHashtags() throws IllegalArgumentException{
+		
+//		Hashtag test = new Hashtag("test");	
+//		Vector<Hashtag> testvector = new Vector<Hashtag>();
+//		testvector.add(test);		
+//		return testvector;
 		
 		
-		
+		return this.hashtagMapper.getAllHashtags();
+
 	}
 
 }

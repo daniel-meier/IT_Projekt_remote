@@ -150,6 +150,11 @@ public interface MessengerAdministration extends RemoteService {
 	 */
 	public Collection<String> getNutzerCollection() throws IllegalArgumentException;
 
+	/**
+	 * Alle Nutzer ausgeben
+	 */
+	public Vector<Hashtag> getAllHashtags() throws IllegalArgumentException;
+
 }
 
 
