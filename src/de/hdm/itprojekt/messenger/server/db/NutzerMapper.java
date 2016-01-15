@@ -209,7 +209,7 @@ public class NutzerMapper extends DBConnection{
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname FROM Nutzer ORDER BY Nachname");
+		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname, Email FROM Nutzer ORDER BY Nachname");
 
 		      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 		      // erstellt.
@@ -218,6 +218,7 @@ public class NutzerMapper extends DBConnection{
 		        n.setID(rs.getInt("NutzerID"));
 		        n.setVorname(rs.getString("Vorname"));
 		        n.setNachname(rs.getString("Nachname"));
+		        n.setEmail(rs.getString("Email"));
 
 		        // Hinzufügen des neuen Objekts zum Ergebnisvektor
 		        result.addElement(n);
