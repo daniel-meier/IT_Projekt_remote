@@ -67,8 +67,7 @@ public class DBConnection {
 		if ( con == null) {
 			try {
 				// Ersteinmal muss der passende SB-Treiber geladen werden
-//				DriverManager.registerDriver(new AppEngineDriver());
-				//Class.forName("com.mysql.jdbc.Driver"); // vorher: Class.forName("com.mysql.jdbc.GoogleDriver");
+//				Class.forName("com.mysql.jdbc.Driver"); // vorher: Class.forName("com.mysql.jdbc.GoogleDriver");
 				DriverManager.registerDriver(new AppEngineDriver());
 				
 				System.out.println("Treiber geladen");
