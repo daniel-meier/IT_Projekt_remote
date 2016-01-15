@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<appengine-web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	version="2.5"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+<use-google-connector-j>true</use-google-connector-j>
 
 	<!-- Servlets -->
 	<servlet>
@@ -12,7 +14,7 @@
 	<servlet-mapping>
 		<servlet-name>messengerServlet</servlet-name>
 		<url-pattern>/messenger/messenger</url-pattern>
-		<url-pattern>/reportgenerator/messenger</url-pattern>
+<!-- 		<url-pattern>/reportgenerator/messenger</url-pattern> -->
 	</servlet-mapping>
 	
 	<servlet>
@@ -22,7 +24,7 @@
 
 	<servlet-mapping>
 		<servlet-name>reportGeneratorServlet</servlet-name>
-		<url-pattern>/messenger/reportgenerator</url-pattern>
+<!-- 		<url-pattern>/messenger/reportgenerator</url-pattern> -->
 		<url-pattern>/reportgenerator/reportgenerator</url-pattern>
 	</servlet-mapping>
 
@@ -33,4 +35,4 @@
 	</welcome-file-list>
 
 
-</web-app>
+</appengine-web-app>

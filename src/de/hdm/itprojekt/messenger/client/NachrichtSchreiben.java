@@ -56,25 +56,25 @@ public class NachrichtSchreiben extends Formular{
 				     */
 				    final MultiWordSuggestOracle empfaengerHinzufuegenOracle = new MultiWordSuggestOracle();
 				    
-//				    async.getNutzerCollection(new AsyncCallback<Collection<String>>(){
-//
-//						@Override
-//						public void onFailure(Throwable caught) {
-//							// TODO Auto-generated method stub
-//							Window.alert("Fick dich");
-//						}
-//
-//						@Override
-//						public void onSuccess(Collection<String> result) {
-//							// TODO Auto-generated method stub
-//							empfaengerHinzufuegenOracle.addAll(result);
-//						}
-//				    	
-//				    });
+				    async.getNutzerCollection(new AsyncCallback<Collection<String>>(){
+
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+							Window.alert("Fick dich");
+						}
+
+						@Override
+						public void onSuccess(Collection<String> result) {
+							// TODO Auto-generated method stub
+							empfaengerHinzufuegenOracle.addAll(result);
+						}
+				    	
+				    });
 				    
-				    empfaengerHinzufuegenOracle.add("Test");
-				    empfaengerHinzufuegenOracle.add("Meier");
-				    empfaengerHinzufuegenOracle.add("Meler");
+//				    empfaengerHinzufuegenOracle.add("Test");
+//				    empfaengerHinzufuegenOracle.add("Meier");
+//				    empfaengerHinzufuegenOracle.add("Meler");
 				    
 				    /**
 				     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird

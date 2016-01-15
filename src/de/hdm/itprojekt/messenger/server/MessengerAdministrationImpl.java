@@ -25,8 +25,9 @@ import de.hdm.itprojekt.messenger.shared.bo.*;
  * Die Klasse MessengerAdministrationImpl erbt von der Klasse RemoteServiceServlet
  * und implementiert das Interface MessengerAdministration
  */
-public class MessengerAdministrationImpl extends RemoteServiceServlet implements MessengerAdministration{
 
+public class MessengerAdministrationImpl extends RemoteServiceServlet implements MessengerAdministration{
+	
 	private static final long serialVersionUID = 1L;
 	
 	private NutzerMapper nutzerMapper = null;
@@ -456,9 +457,10 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	public Collection<String> getNutzerCollection() throws IllegalArgumentException{
 		
 		Vector<Nutzer> allNutzer = this.nutzerMapper.getAllNutzer();
+		
 		Collection<String> nutzerCollection = new ArrayList<String>();
 		
-		for(int i = 0; i > allNutzer.size(); i++){
+		for(int i = 0; i < allNutzer.size(); i++){
 			
 			String vorname = allNutzer.elementAt(i).getVorname();
 			String nachname = allNutzer.elementAt(i).getNachname();
