@@ -14,13 +14,20 @@ public class NutzerMapper extends DBConnection{
 	
 	private static NutzerMapper nutzerMapper = null;
 	
-	public NutzerMapper () {
+	protected NutzerMapper () {
 		
 	}
 	
-	public static NutzerMapper getNutzerMapper() {
+	public static NutzerMapper getNutzerMapper(){
+		if(nutzerMapper == null){
+			nutzerMapper = new NutzerMapper();
+		}
 		return nutzerMapper;
 	}
+	
+//	public static NutzerMapper getNutzerMapper() {
+//		return nutzerMapper;
+//	}
 	
 	/** Suche eines Nutzers nach seiner eindeutigen Nummer
 	 * 
@@ -198,12 +205,11 @@ public class NutzerMapper extends DBConnection{
 		  Connection con = DBConnection.connection();
 		    // Ergebnisvektor vorbereiten
 		    Vector<Nutzer> result = new Vector<Nutzer>();
-
+		    
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname "
-		          + "FROM Nutzer " + "ORDER BY Nachname");
+		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname FROM Nutzer ORDER BY Nachname");
 
 		      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 		      // erstellt.

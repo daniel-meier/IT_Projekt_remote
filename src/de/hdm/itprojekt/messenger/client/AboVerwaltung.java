@@ -1,6 +1,7 @@
 package de.hdm.itprojekt.messenger.client;
 
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -407,12 +408,12 @@ public class AboVerwaltung extends Formular {
 			@Override
 			public void onSuccess(Vector<Nutzer> result) {
 				// TODO Auto-generated method stub
-//				nutzerCellList.setRowData(0, TESTNUTZER);
+				nutzerCellList.setRowData(result);
 			}
 			
 		});
 		
-		nutzerCellList.setRowData(0, TESTNUTZER);
+//		nutzerCellList.setRowData(0, TESTNUTZER);
 		
 		this.add(nutzerCellList);
 
