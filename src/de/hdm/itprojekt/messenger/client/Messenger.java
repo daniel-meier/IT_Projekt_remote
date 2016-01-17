@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.InsertPanel.ForIsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -171,20 +172,32 @@ public class Messenger implements EntryPoint {
 		logoutButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
-				//Hier Applikationslogik für Logout einfügen
-				
+				Window.Location.assign(loginInfo.getLogoutUrl());
+								
 				Window.alert("Sie haben sich ausgeloggt.");
 		      }
 		    });	
 		
+		final Button aktualisierungsButton = new Button ("Aktualisieren");
+		aktualisierungsButton.setStylePrimaryName("messenger-menubutton");
+		navPanel.add(aktualisierungsButton);
 		
-		/**
-		 * Set up sign out hyperlink
-		 */
-		signOutLink.setHref(loginInfo.getLogoutUrl());
+		aktualisierungsButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				
+				
+			}
+		});
 		
 		
-		navPanel.add(signOutLink);
+		
+		
+//		/**
+//		 * Set up sign out hyperlink
+//		 */
+//		signOutLink.setHref(loginInfo.getLogoutUrl());
+//		navPanel.add(signOutLink);
+		
 		
 		
 		/**
