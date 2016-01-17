@@ -70,4 +70,8 @@ public interface MessengerAdministrationAsync {
 	
 	void getAllHashtags(AsyncCallback<Vector<Hashtag>> callback);
 
+	void getHashtagCollection(AsyncCallback<Collection<String>> callback);
+
+	void hashtagHinzufuegen(AsyncCallback<Vector<Hashtag>> callback);
+
 }

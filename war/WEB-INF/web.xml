@@ -14,7 +14,6 @@
 	<servlet-mapping>
 		<servlet-name>messengerServlet</servlet-name>
 		<url-pattern>/messenger/messenger</url-pattern>
-<!-- 		<url-pattern>/reportgenerator/messenger</url-pattern> -->
 	</servlet-mapping>
 	
 	<servlet>
@@ -24,8 +23,17 @@
 
 	<servlet-mapping>
 		<servlet-name>reportGeneratorServlet</servlet-name>
-<!-- 		<url-pattern>/messenger/reportgenerator</url-pattern> -->
-		<url-pattern>/reportgenerator/reportgenerator</url-pattern>
+		<url-pattern>/messenger/reportgenerator</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>loginService</servlet-name>
+		<servlet-class>de.hdm.itprojekt.messenger.server.LoginServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>loginService</servlet-name>
+		<url-pattern>/messenger/loginservice</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 import de.hdm.itprojekt.messenger.server.db.DBConnection;
 
 public class HashtagMapper extends DBConnection{
@@ -211,5 +212,31 @@ private static HashtagMapper hashtagMapper = null;
 
 	    // Ergebnisvektor zurueckgeben
 	    return result;
+	}
+
+	public Vector<Hashtag> hashtagInFeldHinzufuegen() {
+		// TODO Auto-generated method stub
+		Connection con = DBConnection.connection();
+		Vector<Hashtag> result = new Vector<Hashtag>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("SELECT HashtagID, Hashtagtext Erstellungszeitpunkt"
+					+ "FROM Hashtag");
+			while (rs.next()){
+				Hashtag h = new Hashtag();
+				h.setID(rs.getInt("HashtagID"));
+				h.setHashtagtext(rs.getString("Hashtagtext"));
+				h.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+				
+				result.add(h);
+			}
+		}
+				catch (SQLException e){
+					e.printStackTrace();
+				}
+			
+			return result;
 	}
 }
