@@ -58,7 +58,7 @@ public interface MessengerAdministrationAsync {
 
 	void logout(AsyncCallback<Void> callback);
 
-	void nachrichtSenden(Nachricht nachricht, AsyncCallback<Nachricht> callback);
+	void nachrichtSenden(Nachricht nachricht, AsyncCallback<Void> callback);
 
 	void nutzerAnlegen(String email, String vorname, String nachname, AsyncCallback<Nutzer> callback);
 
@@ -67,5 +67,11 @@ public interface MessengerAdministrationAsync {
 	void teilnehmerHinzufuegen(Nachricht nachricht, AsyncCallback<Vector<Nutzer>> callback);
 
 	void getNutzerCollection(AsyncCallback<Collection<String>> callback);
+	
+	void getAllHashtags(AsyncCallback<Vector<Hashtag>> callback);
+
+	void getHashtagCollection(AsyncCallback<Collection<String>> callback);
+
+	void hashtagHinzufuegen(AsyncCallback<Vector<Hashtag>> callback);
 
 }

@@ -103,7 +103,7 @@ public interface MessengerAdministration extends RemoteService {
 	/**
 	 * Nachricht senden
 	 */
-	public Nachricht nachrichtSenden(Nachricht nachricht);
+	public void nachrichtSenden(Nachricht nachricht);
 	
 	/**
 	 * Nachricht erstellen
@@ -149,6 +149,21 @@ public interface MessengerAdministration extends RemoteService {
 	 * NutzerCollection ausgeben
 	 */
 	public Collection<String> getNutzerCollection() throws IllegalArgumentException;
+
+	/**
+	 * Alle Nutzer ausgeben
+	 */
+	public Vector<Hashtag> getAllHashtags() throws IllegalArgumentException;
+
+	/**
+	 * HashtagCollection ausgeben
+	 */
+	public Collection<String> getHashtagCollection() throws IllegalArgumentException;
+	
+	/**
+	 * Hashtag hinzufuegen
+	 */
+	public Vector<Hashtag> hashtagHinzufuegen() throws IllegalArgumentException;
 
 }
 

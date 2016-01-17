@@ -12,7 +12,7 @@ private static final long serialVersionUID = 1L;
 	private String loginUrl;
 	private String logoutUrl;
 	private String email;
-	private Nutzer user;
+	private String nickname;
 	
 	public boolean isLoggedIn() {
 		return loggedIn;
@@ -46,11 +46,11 @@ private static final long serialVersionUID = 1L;
 		this.email = email;
 	}
 
-	public Nutzer getUser() {
-		return user;
+	public String getNickname() {
+		return nickname;
 	}
 	
-	public void setUser(Nutzer user) {
-		this.user = user;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

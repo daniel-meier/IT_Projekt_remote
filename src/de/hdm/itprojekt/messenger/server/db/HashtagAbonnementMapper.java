@@ -66,7 +66,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 //	 * @return
 //	 */
 //	public HashtagAbonnement bearbeiten() {
-//		//TODO Was muss die Methode können?
+//		//TODO Was muss die Methode kï¿½nnen?
 //		return null;
 //	}
 	
@@ -109,7 +109,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	      while (rs.next()) {
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagID"));
-	        h.setHashtagText(rs.getString("HashtagText"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
@@ -143,7 +143,7 @@ public class HashtagAbonnementMapper extends DBConnection {
 	      while (rs.next()) {
 	        Hashtag h = new Hashtag();
 	        h.setID(rs.getInt("HashtagAbonnementID"));
-	        h.setHashtagText(rs.getString("HashtagText"));
+	        h.setHashtagtext(rs.getString("HashtagText"));
 	        //h.setErstellungszeitpunkt(rs.getDate("erstellungszeitpunkt"));
 
 	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor

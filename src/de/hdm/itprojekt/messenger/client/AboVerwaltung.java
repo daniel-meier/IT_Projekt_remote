@@ -396,73 +396,51 @@ public class AboVerwaltung extends Formular {
 		
 		
 		final CellList<Nutzer> nutzerCellList =  new NutzerCellList().erstelleNutzerCellList();
-
+		
 		async.getAllNutzer(new AsyncCallback<Vector<Nutzer>>(){
-
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
 				
 			}
 
-		@Override
+			@Override
 			public void onSuccess(Vector<Nutzer> result) {
 				// TODO Auto-generated method stub
 				nutzerCellList.setRowData(result);
 
 			}
-			
 		});
-		
-//		nutzerCellList.setRowData(0, TESTNUTZER);
-		
+				
 		this.add(nutzerCellList);
 
 	    
 		
-		
-		
-	    
 	    ProvidesKey<Hashtag> HashtagKeyProvider = new ProvidesKey<Hashtag>() {
 			public Object getKey(Hashtag item) {
-				return (item == null) ? null : item.getHashtagText();
+				return (item == null) ? null : item.getHashtagtext();
 			}
 		};
 		
-	    // Create a cell to render each value.
-	    HashtagCell HashtagCell = new HashtagCell();
+		final CellList<Hashtag> hashtagCellList =  new HashtagCellList().erstelleHashtagCellList();
 
-	    // Use the cell in a CellList.
-	    CellList<Hashtag> HashtagCellList = new CellList<Hashtag>(HashtagCell, HashtagKeyProvider);
+		async.getAllHashtags(new AsyncCallback<Vector<Hashtag>>(){
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				Window.alert("Geht nicht!");
+			}
+			@Override
+			public void onSuccess(Vector<Hashtag> result) {
+				// TODO Auto-generated method stub
+				hashtagCellList.setRowData(result);
+			}
+		});
+				
+		this.add(hashtagCellList);
+		
 	    
-	    // Set the width of the CellList.
-	    HashtagCellList.setWidth("230px");
-	    
-	    //Stylen der CellList
-	    HashtagCellList.setStylePrimaryName("CellList1");
 
-	    // Push the data into the widget.
-	    HashtagCellList.setRowData(0, TESTHASHTAG);
-
-	    // Add it to the root panel.
-	    this.add(HashtagCellList);	    
-	    
-	    // Set a key provider that provides a unique key for each contact. If key is
-	    // used to identify contacts when fields (such as the name and address)
-	    // change.
-	    HashtagCellList.setPageSize(30);
-	    HashtagCellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.INCREASE_RANGE);
-	    HashtagCellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.BOUND_TO_SELECTION);
-
-	    // Add a selection model so we can select cells.
-	    final SingleSelectionModel<Hashtag> HashtagSelectionModel = new SingleSelectionModel<Hashtag>(HashtagKeyProvider);
-	    HashtagCellList.setSelectionModel(HashtagSelectionModel);
-	    HashtagSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-	      public void onSelectionChange(SelectionChangeEvent event) {
-//	        contactForm.setContact(selectionModel.getSelectedObject());
-//	    	Window.alert("Du hast gewählt: " + HashtagSelectionModel.getSelectedObject().getName());
-	      }
-	    });
 	    
 	    
 	    

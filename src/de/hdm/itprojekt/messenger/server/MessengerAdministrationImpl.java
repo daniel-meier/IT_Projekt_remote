@@ -345,10 +345,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Nachricht senden
 	 * @param text
-	 * @return
 	 */
-	public Nachricht nachrichtSenden(Nachricht nachricht) throws IllegalArgumentException{
-		return this.nachrichtMapper.senden(nachricht);	
+	public void nachrichtSenden(Nachricht n) throws IllegalArgumentException{
+		this.nachrichtMapper.senden(n);	
 	}
 	
 	/**
@@ -473,9 +472,55 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 		
 		
 		return nutzerCollection;
+			
+	}
+	
+	
+	/**
+	 * Alle Nutzer ausgeben
+	 * @return Nutzer
+	 */
+	@Override
+	public Vector<Hashtag> getAllHashtags() throws IllegalArgumentException{
+		
+//		Hashtag test = new Hashtag("test");	
+//		Vector<Hashtag> testvector = new Vector<Hashtag>();
+//		testvector.add(test);		
+//		return testvector;
 		
 		
-		
+		return this.hashtagMapper.getAllHashtags();
+
 	}
 
+	/**
+	 * HashtagCollection ausgeben
+	 */
+	@Override
+	public Collection<String> getHashtagCollection() throws IllegalArgumentException{
+		
+		Vector<Hashtag> allHashtags = this.hashtagMapper.getAllHashtags();
+		
+		Collection<String> hashtagCollection = new ArrayList<String>();
+		
+		for(int i = 0; i < allHashtags.size(); i++){
+			
+			String name = allHashtags.elementAt(i).getHashtagtext();
+			
+			hashtagCollection.add(name);	
+			
+		}
+		
+		
+		return hashtagCollection;
+			
+	}
+	
+	/**
+	 * Hashtag ausgeben
+	 */
+	public Vector<Hashtag> hashtagHinzufuegen() throws IllegalArgumentException{
+		return this.hashtagMapper.hashtagInFeldHinzufuegen();
+	}
+	
 }
