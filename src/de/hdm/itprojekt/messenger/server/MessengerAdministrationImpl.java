@@ -345,10 +345,9 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	/**
 	 * Nachricht senden
 	 * @param text
-	 * @return
 	 */
-	public Nachricht nachrichtSenden(Nachricht nachricht) throws IllegalArgumentException{
-		return this.nachrichtMapper.senden(nachricht);	
+	public void nachrichtSenden(Nachricht n) throws IllegalArgumentException{
+		this.nachrichtMapper.senden(n);	
 	}
 	
 	/**

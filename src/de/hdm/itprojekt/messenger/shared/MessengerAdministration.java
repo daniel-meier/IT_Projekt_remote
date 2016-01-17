@@ -103,7 +103,7 @@ public interface MessengerAdministration extends RemoteService {
 	/**
 	 * Nachricht senden
 	 */
-	public Nachricht nachrichtSenden(Nachricht nachricht);
+	public void nachrichtSenden(Nachricht nachricht);
 	
 	/**
 	 * Nachricht erstellen

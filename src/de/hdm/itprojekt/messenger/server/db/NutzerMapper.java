@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import de.hdm.itprojekt.messenger.server.db.DBConnection;
@@ -42,14 +41,14 @@ public class NutzerMapper extends DBConnection{
 	      // Leeres SQL-Statement (JDBC) anlegen
 	      Statement stmt = con.createStatement();
 
-	      // Statement ausfüllen und als Query an die DB schicken
+	      // Statement ausfuellen und als Query an die DB schicken
 	      ResultSet rs = stmt
 	          .executeQuery("SELECT NutzerID, Vorname, Nachname, EMail FROM Nutzer "
 	              + "WHERE NutzerID=" + id + " ORDER BY Nachname");
 
 	      /*
-	       * Da id Primärschlüssel ist, kann max. nur ein Tupel zurückgegeben
-	       * werden. Prüfe, ob ein Ergebnis vorliegt.
+	       * Da id Primaerschluessel ist, kann max. nur ein Tupel zurueckgegeben
+	       * werden. Pruefe, ob ein Ergebnis vorliegt.
 	       */
 	      if (rs.next()) {
 	        // Ergebnis-Tupel in Objekt umwandeln
@@ -57,6 +56,7 @@ public class NutzerMapper extends DBConnection{
 	        n.setID(rs.getInt("NutzerID"));
 	        n.setVorname(rs.getString("Vorname"));
 	        n.setNachname(rs.getString("Nachname"));
+	        n.setEmail(rs.getString("EMail"));
 
 	        return n;
 	      }
@@ -71,9 +71,9 @@ public class NutzerMapper extends DBConnection{
 	   * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
 	   * 
 	   * @param name Nachname der Kunden, die ausgegeben werden sollen
-	   * @return Ein Vektor mit Nutzer-Objekten, die sämtliche Nutzer mit dem
-	   *         gesuchten Nachnamen repräsentieren. Bei evtl. Exceptions wird ein
-	   *         partiell gefüllter oder ggf. auch leerer Vetor zurückgeliefert.
+	   * @return Ein Vektor mit Nutzer-Objekten, die saemtliche Nutzer mit dem
+	   *         gesuchten Nachnamen repraesentieren. Bei evtl. Exceptions wird ein
+	   *         partiell gefuellter oder ggf. auch leerer Vetor zurueckgeliefert.
 	   */
 	  public Vector<Nutzer> findByNachname(String name) {
 	    Connection con = DBConnection.connection();
@@ -86,7 +86,7 @@ public class NutzerMapper extends DBConnection{
 	          + "FROM Nutzer " + "WHERE Nachname LIKE '" + name
 	          + "' ORDER BY Nachname");
 
-	      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+	      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.
 	      while (rs.next()) {
 	        Nutzer n = new Nutzer();
@@ -94,7 +94,7 @@ public class NutzerMapper extends DBConnection{
 	        n.setVorname(rs.getString("Vorname"));
 	        n.setNachname(rs.getString("Nachname"));
 
-	        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 	        result.addElement(n);
 	      }
 	    }
@@ -102,18 +102,18 @@ public class NutzerMapper extends DBConnection{
 	      e.printStackTrace();
 	    }
 
-	    // Ergebnisvektor zurückgeben
+	    // Ergebnisvektor zurueckgeben
 	    return result;
 	  }
 	
 	
 	/**
-	   * Einfügen eines <code>Nutzer</code>-Objekts in die Datenbank. Dabei wird
-	   * auch der Primärschlüssel des übergebenen Objekts geprüft und ggf.
+	   * Einfuegen eines <code>Nutzer</code>-Objekts in die Datenbank. Dabei wird
+	   * auch der Primaerschluessel des uebergebenen Objekts geprueft und ggf.
 	   * berichtigt.
 	   * 
 	   * @param c das zu speichernde Objekt
-	   * @return das bereits übergebene Objekt, jedoch mit ggf. korrigierter
+	   * @return das bereits uebergebene Objekt, jedoch mit ggf. korrigierter
 	   *         <code>id</code>.
 	   */
 	  public Nutzer nutzerAnlegen(Nutzer n) {
@@ -123,23 +123,23 @@ public class NutzerMapper extends DBConnection{
 	      Statement stmt = con.createStatement();
 
 	      /*
-	       * Zunächst schauen wir nach, welches der momentan höchste
-	       * Primärschlüsselwert ist.
+	       * Zunaechst schauen wir nach, welches der momentan hoechste
+	       * Primaerschluesselwert ist.
 	       */
 	      ResultSet rs = stmt.executeQuery("SELECT MAX(NutzerID) AS maxid "
-	          + "FROM Nutzer ");
+	          + "FROM Nutzer");
 
-	      // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
+	      // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
 	      if (rs.next()) {
 	        /*
-	         * c erhält den bisher maximalen, nun um 1 inkrementierten
-	         * Primärschlüssel.
+	         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+	         * Primaerschluessel.
 	         */
 	        n.setID(rs.getInt("maxid") + 1);
 
 	        stmt = con.createStatement();
 
-	        // Jetzt erst erfolgt die tatsächliche Einfügeoperation
+	        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
 	        stmt.executeUpdate("INSERT INTO Nutzer (NutzerID, Vorname, Nachname, EMail, Erstellungszeitpunkt) "
 	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
 	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() +"')");
@@ -178,9 +178,9 @@ public class NutzerMapper extends DBConnection{
 	
 	
 	/**
-	   * Löschen der Daten eines <code>Nutzer</code>-Objekts aus der Datenbank.
+	   * Loeschen der Daten eines <code>Nutzer</code>-Objekts aus der Datenbank.
 	   * 
-	   * @param n das aus der DB zu löschende "Objekt"
+	   * @param n das aus der DB zu loeschende "Objekt"
 	   */
 	  public void loescheNutzer(Nutzer n) {
 	    Connection con = DBConnection.connection();
@@ -197,9 +197,9 @@ public class NutzerMapper extends DBConnection{
 	
 	/** Auslesen aller Nutzer
 	 * 
-	 * @return Ein Vektor mit Customer-Objekten, die sämtliche Kunden
-   *         repräsentieren. Bei evtl. Exceptions wird ein partiell gef�llter
-   *         oder ggf. auch leerer Vetor zurückgeliefert.
+	 * @return Ein Vektor mit Customer-Objekten, die saemtliche Kunden
+   *         repraesentieren. Bei evtl. Exceptions wird ein partiell gefuellter
+   *         oder ggf. auch leerer Vetor zurueckgeliefert.
 	 */
 	public Vector<Nutzer> getAllNutzer() {
 		  Connection con = DBConnection.connection();
@@ -209,18 +209,19 @@ public class NutzerMapper extends DBConnection{
 		    try {
 		      Statement stmt = con.createStatement();
 
-		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname, Email FROM Nutzer ORDER BY Nachname");
+		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname, EMail "
+		      		+ "FROM Nutzer ORDER BY Nachname");
 
-		      // Für jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+		      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 		      // erstellt.
 		      while (rs.next()) {
 		        Nutzer n = new Nutzer();
 		        n.setID(rs.getInt("NutzerID"));
 		        n.setVorname(rs.getString("Vorname"));
 		        n.setNachname(rs.getString("Nachname"));
-		        n.setEmail(rs.getString("Email"));
+		        n.setEmail(rs.getString("EMail"));
 
-		        // Hinzufügen des neuen Objekts zum Ergebnisvektor
+		        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
 		        result.addElement(n);
 		      }
 		    }
@@ -228,19 +229,19 @@ public class NutzerMapper extends DBConnection{
 		      e.printStackTrace();
 		    }
 
-		    // Ergebnisvektor zurückgeben
+		    // Ergebnisvektor zurueckgeben
 		    return result;
 	}
+	
+	
 	/**
 	 * Suchen eines Nutzers mit vorgegebenem Namen. Da dieser nicht eindeutig ist,
 	 * werden mehrere Objekte zurueckgegeben.
 	 * 
-	 *  @param ID Prim‰rschl¸sselattribut (->DB)
-	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schl¸ssel entspricht, null bei 
+	 *  @param ID Primaerschluesselattribut (->DB)
+	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schluessel entspricht, null bei 
 	 *  nicht vohandenem DB-Tupel.
 	 */
-
-
 
 	 public Nutzer findNutzerByName(String name) {
 		 	//DB-Verbindung holen
@@ -287,7 +288,8 @@ public class NutzerMapper extends DBConnection{
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nutzer"
+					+ "WHERE EMail='" + email + "'");
 			while (rs.next()) {
 				Nutzer n = new Nutzer();
 				n.setID(rs.getInt("NutzerID"));

@@ -58,7 +58,7 @@ public interface MessengerAdministrationAsync {
 
 	void logout(AsyncCallback<Void> callback);
 
-	void nachrichtSenden(Nachricht nachricht, AsyncCallback<Nachricht> callback);
+	void nachrichtSenden(Nachricht nachricht, AsyncCallback<Void> callback);
 
 	void nutzerAnlegen(String email, String vorname, String nachname, AsyncCallback<Nutzer> callback);
 

@@ -180,7 +180,7 @@ private static HashtagMapper hashtagMapper = null;
 	 * Auslesen aller Hashtags
 	 * @return
 	 */
-	public Vector<Hashtag> getAllHashtags () {
+	public Vector<Hashtag> getAllHashtags() {
 		
 		Connection con = DBConnection.connection();
 	    // Ergebnisvektor vorbereiten
@@ -189,7 +189,8 @@ private static HashtagMapper hashtagMapper = null;
 	    try {
 	      Statement stmt = con.createStatement();
 
-	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, Erstellungszeitpunkt, HashtagText FROM Hashtag ORDER BY HashtagText");
+	      ResultSet rs = stmt.executeQuery("SELECT HashtagID, Erstellungszeitpunkt, "
+	      		+ "HashtagText FROM Hashtag ORDER BY HashtagText");
 
 	      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
 	      // erstellt.

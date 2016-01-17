@@ -37,8 +37,7 @@ public class NachrichtMapper extends DBConnection {
 	      Statement stmt = con.createStatement();
 
 	      // Statement ausfuellen und als Query an die DB schicken
-	      ResultSet rs = stmt
-	          .executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, HashtagID, "
+	      ResultSet rs = stmt.executeQuery("SELECT NachrichtID, Text, Erstellungszeitpunkt, HashtagID, "
 	          		+ "SenderID, EmpfaengerID WHERE NachrichtID=" + id + " ORDER BY Erstellungszeitpunkt");
 
 	      /*
@@ -205,6 +204,7 @@ public class NachrichtMapper extends DBConnection {
 	
 	/**
 	 * Auslesen aller Nachrichten nach Nutzer
+	 * (Diese Methode gibt alle Beiträge eines Nutzers anhand der ID in einer Liste aus)
 	 * @param n
 	 * @return nachrichtListe
 	 */
@@ -395,23 +395,29 @@ public class NachrichtMapper extends DBConnection {
 
 	/**
 	 * Senden einer Nachricht
+	 * (diese Methode speichert eine neue Nachricht in der Datenbank)
 	 * @param text
 	 * @return
 	 */
-	public Nachricht senden(Nachricht n) {
+	public void senden(Nachricht n) {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeQuery("SELECT * FROM Nachricht" + "WHERE Nachricht=" + n.getID());
+			ResultSet rs = stmt.executeQuery("SELECT MAX(NachrichtID) AS maxid FROM Nachricht");
+			if (rs.next()) {
+				n.setID(rs.getInt("maxid") + 1);
+				stmt = con.createStatement();
+				stmt.executeUpdate("INSERT INTO Nachricht (NachrichtID, NutzerID, HashtagID, Text, UnterhaltungsID, Erstellungszeitpunkt"
+						+ "VALES (" + n.getID() + ",'" + n.getNutzerID() + "','" + n.getHashtagID() + "','" + n.getText() + "','" + n.getUnterhaltungsID()
+						+ "','" + n.getErstellungszeitpunkt());
+			}
 		}
 		
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
 	}
 	
 	
