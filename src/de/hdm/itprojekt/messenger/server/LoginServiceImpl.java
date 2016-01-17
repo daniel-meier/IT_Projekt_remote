@@ -5,10 +5,17 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+import de.hdm.itprojekt.messenger.client.ClientsideSettings;
+import de.hdm.itprojekt.messenger.server.db.NutzerMapper;
 import de.hdm.itprojekt.messenger.shared.LoginInfo;
 import de.hdm.itprojekt.messenger.shared.LoginService;
+import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
+import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
+	
+	final MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
+
 	
 	private static final long serialVersionUID = 1L;
 //	private String requestUri;
@@ -61,6 +68,24 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 		LoginInfo loginInfo = new LoginInfo ();
 		
 		if(user!= null) {
+			NutzerMapper nMapper = NutzerMapper.getNutzerMapper();
+
+			Nutzer n = nMapper.findByEmail(loginInfo
+					.getEmail());
+			
+			if (n != null){
+			}
+			else{
+				n = new Nutzer();
+				n.setEmail(loginInfo.getEmail());
+				n.setVorname("undefined");
+				n.setNachname("undefined");
+				
+				async.nutzerAnlegen(n.getEmail(),n.getVorname(),n.getNachname(), null);
+				
+
+			}
+			
 			loginInfo.setLoggedIn (true);
 			loginInfo.setEmail(user.getEmail());
 			loginInfo.setNickname(user.getNickname());

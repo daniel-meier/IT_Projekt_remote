@@ -281,10 +281,10 @@ public class NutzerMapper extends DBConnection{
 	 * @param email
 	 * @return
 	 */
-	 public Vector<Nutzer> findByEmail(String email) {
+	 public Nutzer findByEmail(String email) {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
-		Vector<Nutzer> result = new Vector<Nutzer>();
+		Nutzer result = new Nutzer();
 		
 		try {
 			Statement stmt = con.createStatement();

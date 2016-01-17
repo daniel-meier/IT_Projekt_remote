@@ -19,6 +19,16 @@ import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 
 public class NachrichtSchreiben extends Formular{
 	
+	String hinzugefuegteHashtags = "Hinzugefügte Hashtags";
+	
+	public void test(String h){
+		hinzugefuegteHashtags = h;
+	}
+	
+	
+	
+	
+	
 	public void onLoad() {
 		
 			final MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
@@ -189,6 +199,9 @@ public class NachrichtSchreiben extends Formular{
 				     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
 				     */
 				    final SuggestBox hashtagHinzufuegenSuggestBox = new SuggestBox(hashtagHinzufuegenOracle);
+				    
+				    hashtagHinzufuegenSuggestBox.setText("ABC");
+				    
 				    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenSuggestBox);
 				    
 				    
@@ -199,7 +212,6 @@ public class NachrichtSchreiben extends Formular{
 				    
 				    
 				    
-				    String hinzugefügteHashtags = "Hinzugefügte Hashtags";
 				    
 				    
 				    
@@ -216,19 +228,23 @@ public class NachrichtSchreiben extends Formular{
 				            	  
 				            	  
 				            	  
-				            	  hashtagHinzufuegenSuggestBox.addValueChangeHandler(new ValueChangeHandler<String>() {
-
-										@Override
-										public void onValueChange(
-												ValueChangeEvent<String> event) {
-											// TODO Auto-generated method stub
-											String text = hashtagHinzufuegenSuggestBox.getValue();
-							            	System.out.println(text);
-
-										}
-				            		});
-
-				            	  System.out.println(hashtagHinzufuegenSuggestBox.getValue());
+//				            	  hashtagHinzufuegenSuggestBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+//
+//										@Override
+//										public void onValueChange(
+//												ValueChangeEvent<String> event) {
+//											// TODO Auto-generated method stub
+//											String text = hashtagHinzufuegenSuggestBox.getValue();
+//							            	System.out.println(text);
+//
+//										}
+//				            		});
+//
+//				            	  System.out.println(hashtagHinzufuegenSuggestBox.getValue());
+				            	  
+				            	  
+				            	  String h = hashtagHinzufuegenSuggestBox.getText();
+				            	  test(h);
 				            	  
 				            	  
 				            	  
@@ -358,7 +374,7 @@ public class NachrichtSchreiben extends Formular{
 			TextBox hashtagsTextbox = new TextBox();
 			hashtagsTextbox.setEnabled(false);
 			hashtagsTextbox.setWidth("399px");
-			hashtagsTextbox.setText(hinzugefügteHashtags);
+			hashtagsTextbox.setText(hinzugefuegteHashtags);
 			nachrichtSchreiben.add(hashtagsTextbox);
 			
 			

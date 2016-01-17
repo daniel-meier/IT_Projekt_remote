@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.hdm.itprojekt.messenger.client.ClientsideSettings;
 import de.hdm.itprojekt.messenger.server.db.*;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
+import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
 import de.hdm.itprojekt.messenger.shared.bo.*;
 
 /**
@@ -27,6 +29,8 @@ import de.hdm.itprojekt.messenger.shared.bo.*;
  */
 
 public class MessengerAdministrationImpl extends RemoteServiceServlet implements MessengerAdministration{
+	
+	final MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -234,7 +238,7 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 	 * @param email
 	 * @return
 	 */
-	public Vector<Nutzer> getNutzerByEmail(String email) throws IllegalArgumentException{
+	public Nutzer getNutzerByEmail(String email) throws IllegalArgumentException{
 		return this.nutzerMapper.findByEmail(email);
 	}
 
