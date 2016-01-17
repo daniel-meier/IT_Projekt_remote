@@ -1,21 +1,28 @@
 package de.hdm.itprojekt.messenger.client;
 
 import java.util.Collection;
+import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 
+import de.hdm.itprojekt.messenger.shared.MessengerAdministration;
 import de.hdm.itprojekt.messenger.shared.MessengerAdministrationAsync;
+import de.hdm.itprojekt.messenger.shared.bo.Hashtag;
 
 public class NachrichtSchreiben extends Formular{
 	
 	public void onLoad() {
 		
-			MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
-		
+			final MessengerAdministrationAsync async = ClientsideSettings.getMessenger();
+//			MessengerAdministrationAsync test = GWT.create(MessengerAdministration.class);
 		
 			super.onLoad();
 			setHeadline("Neue Nachricht schreiben");
@@ -88,10 +95,32 @@ public class NachrichtSchreiben extends Formular{
 				    Button empfaengerHinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
 				              public void onClick(ClickEvent event) {
 				            	  empfaengerHinzufuegenDialogBox.hide();
+				              
+				            	  
 				                //Hier Applikationslogik für hinzufügen des Empfängers einfügen!!!
+			            	  
+//				            	  test.teilnehmerHinzufuegen(nachricht, AsyncCallback<Vector<Nutzer>> callback) {
+//
+//										@Override
+//										public void onFailure(Throwable caught) {
+//											// TODO Auto-generated method stub
+//											Window.alert("Nutzer konnte nicht hinzugefügt werden");
+//										}
+//
+//										@Override
+//										public void onSuccess(Vector<Nutzer> result) {
+//											// TODO Auto-generated method stub
+//											empfaengerHinzufuegenOracle.addAll(result);
+//										}
+//				            	  
+//				            	  
+//				            	  }    
 				              }
-				            });
-				    
+				              
+		});
+				             	    
+
+				      
 				    /**
 				     * Button, zum abbrechen 
 				     */
@@ -132,11 +161,29 @@ public class NachrichtSchreiben extends Formular{
 				    /**
 				     * Oracle, dass die vorzuschlagenden Wörter der SuggestBox enthält 
 				     */
-				    MultiWordSuggestOracle hashtagHinzufuegenOracle = new MultiWordSuggestOracle();
-				    hashtagHinzufuegenOracle.add("#0711");
-				    hashtagHinzufuegenOracle.add("#Stuttgart");
-				    hashtagHinzufuegenOracle.add("#Hochschule der Medien");
-				    hashtagHinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
+				    final MultiWordSuggestOracle hashtagHinzufuegenOracle = new MultiWordSuggestOracle();
+				    
+				    async.getHashtagCollection(new AsyncCallback<Collection<String>>() {
+				    	
+
+				    	@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+							Window.alert("Fick dich");
+						}
+						
+						@Override
+						public void onSuccess (Collection<String> result) {
+							// TODO Auto-generated method stub
+							hashtagHinzufuegenOracle.addAll(result);
+						}
+				    });
+				    
+				    
+//				    hashtagHinzufuegenOracle.add("#0711");
+//				    hashtagHinzufuegenOracle.add("#Stuttgart");
+//				    hashtagHinzufuegenOracle.add("#Hochschule der Medien");
+//				    hashtagHinzufuegenOracle.add("#Ich Liebe das IT-Projekt");
 				    
 				    /**
 				     * SuggestBox, die anschließend dem erstellten Panel hinzugefügt wird
@@ -144,16 +191,66 @@ public class NachrichtSchreiben extends Formular{
 				    final SuggestBox hashtagHinzufuegenSuggestBox = new SuggestBox(hashtagHinzufuegenOracle);
 				    hashtagHinzufuegenDialogContents.add(hashtagHinzufuegenSuggestBox);
 				    
+				    
+				    
+				    
+				    
+				    
+				    
+				    
+				    
+				    String hinzugefügteHashtags = "Hinzugefügte Hashtags";
+				    
+				    
+				    
 				    /**
 				     * Button, zum hinzufügen des gewählten Hashtags 
 				     */
-				    Button hashtagHinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
+				   Button hashtagHinzufuegenButton = new Button("Hinzufügen", new ClickHandler() {
 				              public void onClick(ClickEvent event) {
-				            	  hashtagHinzufuegenDialogBox.hide();
+				            	  hashtagHinzufuegenDialogBox.hide(true);
 				                //Hier Applikationslogik für hinzufügen des Hashtags einfügen!!!
-				              }
+				            	  
+//				            	  hashtagHinzufuegenSuggestBox.getValue();
+//				            	  System.out.println(hashtagHinzufuegenSuggestBox.get
+				            	  
+				            	  
+				            	  
+				            	  hashtagHinzufuegenSuggestBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+
+										@Override
+										public void onValueChange(
+												ValueChangeEvent<String> event) {
+											// TODO Auto-generated method stub
+											String text = hashtagHinzufuegenSuggestBox.getValue();
+							            	System.out.println(text);
+
+										}
+				            		});
+
+				            	  System.out.println(hashtagHinzufuegenSuggestBox.getValue());
+				            	  
+				            	  
+				            	  
+				            	  
+				            	  async.hashtagHinzufuegen(new AsyncCallback<Vector<Hashtag>>() {
+
+									@Override
+									public void onFailure(Throwable caught) {
+										// TODO Auto-generated method stub
+										
+									}
+
+									@Override
+									public void onSuccess(Vector<Hashtag> result) {
+										// TODO Auto-generated method stub
+									}
+				            	  
+				              
 				            });
-				    
+				   }
+				   });
+				            	  
 				    /**
 				     * Button, zum abbrechen 
 				     */
@@ -261,7 +358,7 @@ public class NachrichtSchreiben extends Formular{
 			TextBox hashtagsTextbox = new TextBox();
 			hashtagsTextbox.setEnabled(false);
 			hashtagsTextbox.setWidth("399px");
-			hashtagsTextbox.setText("Hinzugefügte Hashtags");
+			hashtagsTextbox.setText(hinzugefügteHashtags);
 			nachrichtSchreiben.add(hashtagsTextbox);
 			
 			
@@ -277,7 +374,8 @@ public class NachrichtSchreiben extends Formular{
 		    
 		    
 		    		
-		
+				    }	
 
 }
-}
+	
+

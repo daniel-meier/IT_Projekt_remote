@@ -494,4 +494,34 @@ public class MessengerAdministrationImpl extends RemoteServiceServlet implements
 
 	}
 
+	/**
+	 * HashtagCollection ausgeben
+	 */
+	@Override
+	public Collection<String> getHashtagCollection() throws IllegalArgumentException{
+		
+		Vector<Hashtag> allHashtags = this.hashtagMapper.getAllHashtags();
+		
+		Collection<String> hashtagCollection = new ArrayList<String>();
+		
+		for(int i = 0; i < allHashtags.size(); i++){
+			
+			String name = allHashtags.elementAt(i).getHashtagtext();
+			
+			hashtagCollection.add(name);	
+			
+		}
+		
+		
+		return hashtagCollection;
+			
+	}
+	
+	/**
+	 * Hashtag ausgeben
+	 */
+	public Vector<Hashtag> hashtagHinzufuegen() throws IllegalArgumentException{
+		return this.hashtagMapper.hashtagInFeldHinzufuegen();
+	}
+	
 }

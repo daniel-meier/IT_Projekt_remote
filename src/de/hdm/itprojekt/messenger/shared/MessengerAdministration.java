@@ -155,6 +155,16 @@ public interface MessengerAdministration extends RemoteService {
 	 */
 	public Vector<Hashtag> getAllHashtags() throws IllegalArgumentException;
 
+	/**
+	 * HashtagCollection ausgeben
+	 */
+	public Collection<String> getHashtagCollection() throws IllegalArgumentException;
+	
+	/**
+	 * Hashtag hinzufuegen
+	 */
+	public Vector<Hashtag> hashtagHinzufuegen() throws IllegalArgumentException;
+
 }
 
 
