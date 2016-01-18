@@ -5,47 +5,58 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ReportFormular extends VerticalPanel{
-	
-public void onLoad(){
-		
+/**
+ * 
+ * @author kimbo
+ *
+ */
+public class ReportFormular extends VerticalPanel {
+
+	public void onLoad() {
+
 		super.onLoad();
-		
+
 	}
 	
+	/**
+	 * 
+	 */
 	private HorizontalPanel headlinePanel = null;
 	private HorizontalPanel inputPanel = null;
-	
-	public void setHeadline(String headlineName){
-		
+
+	public void setHeadline(String headlineName) {
+
 		/**
 		 * Horizontal Panel für Überschrift
 		 */
-	    headlinePanel = new HorizontalPanel();
+		headlinePanel = new HorizontalPanel();
 		RootPanel.get("headline").add(headlinePanel);
-		
-		
+
 		Label headline = new Label(headlineName);
 		headline.setStyleName("headline");
-        headlinePanel.add(headline);
+		headlinePanel.add(headline);
 	}
-	
-	public HorizontalPanel getHeadline(){
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HorizontalPanel getHeadline() {
 		return headlinePanel;
 	}
 	
-	public HorizontalPanel getInputPanel(){
-	
+	/**
+	 * 
+	 * @return
+	 */
+	public HorizontalPanel getInputPanel() {
+
 		/**
 		 * Horizontal Panel für Edit-Buttons
 		 */
 		inputPanel = new HorizontalPanel();
 		RootPanel.get("input").add(inputPanel);
-	
-		return inputPanel;
-		
-		
-	}
-	
-}
 
+		return inputPanel;
+	}
+}

@@ -9,283 +9,300 @@ import java.util.Vector;
 import de.hdm.itprojekt.messenger.server.db.DBConnection;
 import de.hdm.itprojekt.messenger.shared.bo.Nutzer;
 
-public class NutzerMapper extends DBConnection{
-	
+/**
+ * NutzerMapper ist eine Subklasse, welche von der Superklasse DBConnection erbt
+ * @author kimbo
+ *
+ */
+public class NutzerMapper extends DBConnection {
+
 	private static NutzerMapper nutzerMapper = null;
-	
-	protected NutzerMapper () {
-		
+
+	protected NutzerMapper() {
+
 	}
-	
-	public static NutzerMapper getNutzerMapper(){
-		if(nutzerMapper == null){
+
+	public static NutzerMapper getNutzerMapper() {
+		if (nutzerMapper == null) {
 			nutzerMapper = new NutzerMapper();
 		}
 		return nutzerMapper;
 	}
-	
-//	public static NutzerMapper getNutzerMapper() {
-//		return nutzerMapper;
-//	}
-	
-	/** Suche eines Nutzers nach seiner eindeutigen Nummer
+
+	// public static NutzerMapper getNutzerMapper() {
+	// return nutzerMapper;
+	// }
+
+	/**
+	 * Suche eines Nutzers nach seiner eindeutigen Nummer
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public Nutzer findNutzerByID (int id) {
-		 // DB-Verbindung holen
-	    Connection con = DBConnection.connection();
+	public Nutzer findNutzerByID(int id) {
+		// DB-Verbindung holen
+		Connection con = DBConnection.connection();
 
-	    try {
-	      // Leeres SQL-Statement (JDBC) anlegen
-	      Statement stmt = con.createStatement();
+		try {
+			// Leeres SQL-Statement (JDBC) anlegen
+			Statement stmt = con.createStatement();
 
-	      // Statement ausfuellen und als Query an die DB schicken
-	      ResultSet rs = stmt
-	          .executeQuery("SELECT NutzerID, Vorname, Nachname, EMail FROM Nutzer "
-	              + "WHERE NutzerID=" + id + " ORDER BY Nachname");
+			// Statement ausfuellen und als Query an die DB schicken
+			ResultSet rs = stmt
+					.executeQuery("SELECT NutzerID, Vorname, Nachname, EMail FROM Nutzer "
+							+ "WHERE NutzerID=" + id + " ORDER BY Nachname");
 
-	      /*
-	       * Da id Primaerschluessel ist, kann max. nur ein Tupel zurueckgegeben
-	       * werden. Pruefe, ob ein Ergebnis vorliegt.
-	       */
-	      if (rs.next()) {
-	        // Ergebnis-Tupel in Objekt umwandeln
-	        Nutzer n = new Nutzer();
-	        n.setID(rs.getInt("NutzerID"));
-	        n.setVorname(rs.getString("Vorname"));
-	        n.setNachname(rs.getString("Nachname"));
-	        n.setEmail(rs.getString("EMail"));
+			/*
+			 * Da id Primaerschluessel ist, kann max. nur ein Tupel
+			 * zurueckgegeben werden. Pruefe, ob ein Ergebnis vorliegt.
+			 */
+			if (rs.next()) {
+				// Ergebnis-Tupel in Objekt umwandeln
+				Nutzer n = new Nutzer();
+				n.setID(rs.getInt("NutzerID"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setEmail(rs.getString("EMail"));
 
-	        return n;
-	      }
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-	    return null;
+				return n;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
-	   * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
-	   * 
-	   * @param name Nachname der Kunden, die ausgegeben werden sollen
-	   * @return Ein Vektor mit Nutzer-Objekten, die saemtliche Nutzer mit dem
-	   *         gesuchten Nachnamen repraesentieren. Bei evtl. Exceptions wird ein
-	   *         partiell gefuellter oder ggf. auch leerer Vetor zurueckgeliefert.
-	   */
-	  public Vector<Nutzer> findByNachname(String name) {
-	    Connection con = DBConnection.connection();
-	    Vector<Nutzer> result = new Vector<Nutzer>();
-
-	    try {
-	      Statement stmt = con.createStatement();
-
-	      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname "
-	          + "FROM Nutzer " + "WHERE Nachname LIKE '" + name
-	          + "' ORDER BY Nachname");
-
-	      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
-	      // erstellt.
-	      while (rs.next()) {
-	        Nutzer n = new Nutzer();
-	        n.setID(rs.getInt("NutzerID"));
-	        n.setVorname(rs.getString("Vorname"));
-	        n.setNachname(rs.getString("Nachname"));
-
-	        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
-	        result.addElement(n);
-	      }
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-
-	    // Ergebnisvektor zurueckgeben
-	    return result;
-	  }
-	
-	
-	/**
-	   * Einfuegen eines <code>Nutzer</code>-Objekts in die Datenbank. Dabei wird
-	   * auch der Primaerschluessel des uebergebenen Objekts geprueft und ggf.
-	   * berichtigt.
-	   * 
-	   * @param c das zu speichernde Objekt
-	   * @return das bereits uebergebene Objekt, jedoch mit ggf. korrigierter
-	   *         <code>id</code>.
-	   */
-	  public Nutzer nutzerAnlegen(Nutzer n) {
-	    Connection con = DBConnection.connection();
-
-	    try {
-	      Statement stmt = con.createStatement();
-
-	      /*
-	       * Zunaechst schauen wir nach, welches der momentan hoechste
-	       * Primaerschluesselwert ist.
-	       */
-	      ResultSet rs = stmt.executeQuery("SELECT MAX(NutzerID) AS maxid "
-	          + "FROM Nutzer");
-
-	      // Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
-	      if (rs.next()) {
-	        /*
-	         * c erhaelt den bisher maximalen, nun um 1 inkrementierten
-	         * Primaerschluessel.
-	         */
-	        n.setID(rs.getInt("maxid") + 1);
-
-	        stmt = con.createStatement();
-
-	        // Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
-	        stmt.executeUpdate("INSERT INTO Nutzer (NutzerID, Vorname, Nachname, EMail, Erstellungszeitpunkt) "
-	            + "VALUES (" + n.getID() + ",'" + n.getVorname() + "','"
-	            + n.getNachname() + "''" + n.getEmail() + "','" + n.getErstellungszeitpunkt() +"')");
-	      }
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-		return n;
-	  }
-	
-	/** Bearbeiten eines Nutzer Objekts in der Datenbank
+	 * Auslesen aller Kunden-Objekte mit gegebenem Nachnamen
 	 * 
-	 @param n das Objekt, das in die DB geschrieben werden soll
-   * @return das als Parameter übergebene Objekt
-   */
+	 * @param name
+	 *            Nachname der Kunden, die ausgegeben werden sollen
+	 * @return Ein Vektor mit Nutzer-Objekten, die saemtliche Nutzer mit dem
+	 *         gesuchten Nachnamen repraesentieren. Bei evtl. Exceptions wird
+	 *         ein partiell gefuellter oder ggf. auch leerer Vetor
+	 *         zurueckgeliefert.
+	 */
+	public Vector<Nutzer> findByNachname(String name) {
+		Connection con = DBConnection.connection();
+		Vector<Nutzer> result = new Vector<Nutzer>();
+
+		try {
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt
+					.executeQuery("SELECT NutzerID, Vorname, Nachname "
+							+ "FROM Nutzer " + "WHERE Nachname LIKE '" + name
+							+ "' ORDER BY Nachname");
+
+			// Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+			// erstellt.
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				n.setID(rs.getInt("NutzerID"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+
+				// Hinzufuegen des neuen Objekts zum Ergebnisvektor
+				result.addElement(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		// Ergebnisvektor zurueckgeben
+		return result;
+	}
+
+	/**
+	 * Einfuegen eines <code>Nutzer</code>-Objekts in die Datenbank. Dabei wird
+	 * auch der Primaerschluessel des uebergebenen Objekts geprueft und ggf.
+	 * berichtigt.
+	 * 
+	 * @param c
+	 *            das zu speichernde Objekt
+	 * @return das bereits uebergebene Objekt, jedoch mit ggf. korrigierter
+	 *         <code>id</code>.
+	 */
+	public Nutzer nutzerAnlegen(Nutzer n) {
+		Connection con = DBConnection.connection();
+
+		try {
+			Statement stmt = con.createStatement();
+
+			/*
+			 * Zunaechst schauen wir nach, welches der momentan hoechste
+			 * Primaerschluesselwert ist.
+			 */
+			ResultSet rs = stmt.executeQuery("SELECT MAX(NutzerID) AS maxid "
+					+ "FROM Nutzer");
+
+			// Wenn wir etwas zurueckerhalten, kann dies nur einzeilig sein
+			if (rs.next()) {
+				/*
+				 * c erhaelt den bisher maximalen, nun um 1 inkrementierten
+				 * Primaerschluessel.
+				 */
+				n.setID(rs.getInt("maxid") + 1);
+
+				stmt = con.createStatement();
+
+				// Jetzt erst erfolgt die tatsaechliche Einfuegeoperation
+				stmt.executeUpdate("INSERT INTO Nutzer (NutzerID, Vorname, Nachname, EMail, Erstellungszeitpunkt) "
+						+ "VALUES ("
+						+ n.getID()
+						+ ",'"
+						+ n.getVorname()
+						+ "','"
+						+ n.getNachname()
+						+ "''"
+						+ n.getEmail()
+						+ "','"
+						+ n.getErstellungszeitpunkt() + "')");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
+	}
+
+	/**
+	 * Bearbeiten eines Nutzer Objekts in der Datenbank
+	 * 
+	 * @param n
+	 *            das Objekt, das in die DB geschrieben werden soll
+	 * @return das als Parameter übergebene Objekt
+	 */
 
 	public Nutzer bearbeiteNutzer(Nutzer n) {
-	    Connection con = DBConnection.connection();
+		Connection con = DBConnection.connection();
 
-	    try {
-	      Statement stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("UPDATE Nutzer " + "SET Vorname=\""
-	          + n.getVorname() + "\", " + "Nachname=\"" + n.getNachname() + "\" "
-	          + "WHERE NutzerID=" + n.getID());
+			stmt.executeUpdate("UPDATE Nutzer " + "SET Vorname=\""
+					+ n.getVorname() + "\", " + "Nachname=\"" + n.getNachname()
+					+ "\" " + "WHERE NutzerID=" + n.getID());
 
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-	    // Um Analogie zu insert(Customer c) zu wahren, geben wir c zurück
-	    return n;
-	  }
-	
-	
+		// Um Analogie zu insert(Customer c) zu wahren, geben wir c zurück
+		return n;
+	}
+
 	/**
-	   * Loeschen der Daten eines <code>Nutzer</code>-Objekts aus der Datenbank.
-	   * 
-	   * @param n das aus der DB zu loeschende "Objekt"
-	   */
-	  public void loescheNutzer(Nutzer n) {
-	    Connection con = DBConnection.connection();
+	 * Loeschen der Daten eines <code>Nutzer</code>-Objekts aus der Datenbank.
+	 * 
+	 * @param n
+	 *            das aus der DB zu loeschende "Objekt"
+	 */
+	public void loescheNutzer(Nutzer n) {
+		Connection con = DBConnection.connection();
 
-	    try {
-	      Statement stmt = con.createStatement();
+		try {
+			Statement stmt = con.createStatement();
 
-	      stmt.executeUpdate("DELETE FROM Nutzer " + "WHERE NutzerID=" + n.getID());
-	    }
-	    catch (SQLException e) {
-	      e.printStackTrace();
-	    }
-	  }
-	
-	/** Auslesen aller Nutzer
+			stmt.executeUpdate("DELETE FROM Nutzer " + "WHERE NutzerID="
+					+ n.getID());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Auslesen aller Nutzer
 	 * 
 	 * @return Ein Vektor mit Customer-Objekten, die saemtliche Kunden
-   *         repraesentieren. Bei evtl. Exceptions wird ein partiell gefuellter
-   *         oder ggf. auch leerer Vetor zurueckgeliefert.
+	 *         repraesentieren. Bei evtl. Exceptions wird ein partiell
+	 *         gefuellter oder ggf. auch leerer Vetor zurueckgeliefert.
 	 */
 	public Vector<Nutzer> getAllNutzer() {
-		  Connection con = DBConnection.connection();
-		    // Ergebnisvektor vorbereiten
-		    Vector<Nutzer> result = new Vector<Nutzer>();
-		    
-		    try {
-		      Statement stmt = con.createStatement();
+		Connection con = DBConnection.connection();
+		// Ergebnisvektor vorbereiten
+		Vector<Nutzer> result = new Vector<Nutzer>();
 
-		      ResultSet rs = stmt.executeQuery("SELECT NutzerID, Vorname, Nachname, EMail "
-		      		+ "FROM Nutzer ORDER BY Nachname");
+		try {
+			Statement stmt = con.createStatement();
 
-		      // Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
-		      // erstellt.
-		      while (rs.next()) {
-		        Nutzer n = new Nutzer();
-		        n.setID(rs.getInt("NutzerID"));
-		        n.setVorname(rs.getString("Vorname"));
-		        n.setNachname(rs.getString("Nachname"));
-		        n.setEmail(rs.getString("EMail"));
+			ResultSet rs = stmt
+					.executeQuery("SELECT NutzerID, Vorname, Nachname, EMail "
+							+ "FROM Nutzer ORDER BY Nachname");
 
-		        // Hinzufuegen des neuen Objekts zum Ergebnisvektor
-		        result.addElement(n);
-		      }
-		    }
-		    catch (SQLException e) {
-		      e.printStackTrace();
-		    }
+			// Fuer jeden Eintrag im Suchergebnis wird nun ein Customer-Objekt
+			// erstellt.
+			while (rs.next()) {
+				Nutzer n = new Nutzer();
+				n.setID(rs.getInt("NutzerID"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setEmail(rs.getString("EMail"));
 
-		    // Ergebnisvektor zurueckgeben
-		    return result;
+				// Hinzufuegen des neuen Objekts zum Ergebnisvektor
+				result.addElement(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		// Ergebnisvektor zurueckgeben
+		return result;
 	}
-	
-	
+
 	/**
-	 * Suchen eines Nutzers mit vorgegebenem Namen. Da dieser nicht eindeutig ist,
-	 * werden mehrere Objekte zurueckgegeben.
+	 * Suchen eines Nutzers mit vorgegebenem Namen. Da dieser nicht eindeutig
+	 * ist, werden mehrere Objekte zurueckgegeben.
 	 * 
-	 *  @param ID Primaerschluesselattribut (->DB)
-	 *  @return Nutzer-Objekt, das dem ¸bergebenen Schluessel entspricht, null bei 
-	 *  nicht vohandenem DB-Tupel.
+	 * @param ID
+	 *            Primaerschluesselattribut (->DB)
+	 * @return Nutzer-Objekt, das dem ¸bergebenen Schluessel entspricht, null
+	 *         bei nicht vohandenem DB-Tupel.
 	 */
 
-	 public Nutzer findNutzerByName(String name) {
-		 	//DB-Verbindung holen
-			Connection con = DBConnection.connection();
-				
-			try {
-				//Leeeres SQL-Statement (JDBC) anlegen
-				Statement stmt = con.createStatement();
-					
-				//Statement ausfuellen und als Query an die DB schicken
-				ResultSet rs = stmt.executeQuery("SELECT * FROM Nutzer "
-						+ "WHERE Vorname, Nachname='" + name + "'");
-					
-				// Da ID Primaerschluesse ist, kann max. nur ein Tupel zurueckgegeben werden. 
-				// pruef, ob ein ergebnis vorliegt.
-					 
-				if (rs.next()) {
-					//Ergebnis-Tupel in Objekt umwandeln
-					Nutzer n = new Nutzer();
-					n.setID(rs.getInt("NutzerID"));
-					n.setVorname(rs.getString ("Vorname"));
-					n.setNachname(rs.getString ("Nachname"));
-					n.setEmail(rs.getString ("EMail"));
-					n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-						
-					return n;
-				}
+	public Nutzer findNutzerByName(String name) {
+		// DB-Verbindung holen
+		Connection con = DBConnection.connection();
+
+		try {
+			// Leeeres SQL-Statement (JDBC) anlegen
+			Statement stmt = con.createStatement();
+
+			// Statement ausfuellen und als Query an die DB schicken
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Nutzer "
+					+ "WHERE Vorname, Nachname='" + name + "'");
+
+			// Da ID Primaerschluesse ist, kann max. nur ein Tupel
+			// zurueckgegeben werden.
+			// pruef, ob ein ergebnis vorliegt.
+
+			if (rs.next()) {
+				// Ergebnis-Tupel in Objekt umwandeln
+				Nutzer n = new Nutzer();
+				n.setID(rs.getInt("NutzerID"));
+				n.setVorname(rs.getString("Vorname"));
+				n.setNachname(rs.getString("Nachname"));
+				n.setEmail(rs.getString("EMail"));
+				n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
+
+				return n;
 			}
-				catch (SQLException e2) {
-					e2.printStackTrace();					
-				}
-			return null;
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
 	 * Methode um einen Nutzer nach seiner Email Adresse zu suchen
+	 * 
 	 * @param email
 	 * @return
 	 */
-	 public Vector<Nutzer> findByEmail(String email) {
+	public Vector<Nutzer> findByEmail(String email) {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.connection();
 		Vector<Nutzer> result = new Vector<Nutzer>();
-		
+
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Nutzer"
@@ -297,129 +314,83 @@ public class NutzerMapper extends DBConnection{
 				n.setNachname(rs.getString("Nachname"));
 				n.setEmail(rs.getString("EMail"));
 				n.setErstellungszeitpunkt(rs.getDate("Erstellungszeitpunkt"));
-				
+
 				return result;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
-	} 
-	
-	 /**
-	public Nutzer findNutzerByName(String searchWord, int maxResults,
-				boolean onlyModules, boolean onlyProducts)
-				throws IllegalArgumentException, SQLException {
-		
-	}
-			// DB-Verbindung holen
-	
-			Connection con = DBConnection.connection();
-			Nutzer result = new Nutzer();
-			String whereQuery = "";
-			
-			if (!searchWord.isEmpty()) {
-				String[] words = searchWord.split(" ");
-				for (String word : words) {
-					if (word.length() > 3) {
-						Vector<String> fuzzySearchWords = getLevenshtein1(word);
-						for (String fuzzyWord : fuzzySearchWords) {
-							whereQuery += "name LIKE '%" + fuzzyWord + "%' OR ";
-							
-						}
-					} else {
-						
-						// Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben
-						// haben
-						whereQuery += "name LIKE '%" + word + "%' OR ";
-						
-					}
-				}
-				if (whereQuery.length() > 5) {
-					// Letztes OR aus Query entfernen
-					whereQuery = whereQuery.substring(0, whereQuery.length() - 4);
-				}
-				try {
-					// Leeres SQL-Statement (JDBC) anlegen
-					Statement stmt = con.createStatement();
-					// Statement ausfuellen
-					String sqlQuery = "SELECT * FROM nutzer WHERE " + whereQuery
-							+ " ORDER BY name LIMIT " + maxResults;
-					 // Query an die DB schicken
-					ResultSet rs = stmt.executeQuery(sqlQuery);
-
-					// Für jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt
-					// erstellt.
-					
-					while (rs.next()) {
-						int nutzerId = rs.getInt("nutzerid");
-						Nutzer elementFromCache = cachePartlist.getElementById(elementId);
-						if (elementFromCache != null) {
-							result.add(elementFromCache, 1);
-							continue;
-						}
-
-						Nutzer p = NutzerMapper.getNutzerMapper().findByElement(
-								elementId);
-
-						if (p != null) {
-							result.add(p, 1);
-						} else if (!onlyProducts) {
-
-
-
-							// Wenn es sich um ein Modul handelt, dieses hinzufügen
-							// ansonsten, das Element als
-							// Bauteil hinzufügen.
-							if (m != null) {
-								result.add(m, 1);
-							} else {
-								if (!onlyModules && !onlyProducts) {
-
-									Element e = new Element();
-									e.setId(elementId);
-
-									e.setName(rs.getString("name"));
-									e.setDescription(rs.getString("description"));
-									e.setMaterialDescription(rs
-											.getString("material_description"));
-
-									Timestamp timestamp = rs
-											.getTimestamp("creation_date");
-									if (timestamp != null) {
-										Date creationDate = new java.util.Date(
-												timestamp.getTime());
-										e.setCreationDate(creationDate);
-									}
-
-									Timestamp timestamp2 = rs
-											.getTimestamp("last_update");
-									if (timestamp2 != null) {
-										Date lastUpdateDate = new java.util.Date(
-												timestamp2.getTime());
-										e.setLastUpdate(lastUpdateDate);
-									}
-
-									e.setLastUser(UserMapper.getUserMapper()
-											.getLastUpdateUserNameByElementId(
-													e.getId()));
-
-									// Hinzufuegen des neuen Objekts zum
-									// Ergebnisvektor
-									result.add(e, 1);
-								}
-							}
-						}
-					}
-
-					rs.close();
-					stmt.close();
-				} catch (SQLException ex) {
-					throw new IllegalArgumentException(ex.getMessage());
-				}
-			}
-
-			return result;
-		} */
 	}
 
+	/**
+	 * public Nutzer findNutzerByName(String searchWord, int maxResults, boolean
+	 * onlyModules, boolean onlyProducts) throws IllegalArgumentException,
+	 * SQLException {
+	 * 
+	 * } // DB-Verbindung holen
+	 * 
+	 * Connection con = DBConnection.connection(); Nutzer result = new Nutzer();
+	 * String whereQuery = "";
+	 * 
+	 * if (!searchWord.isEmpty()) { String[] words = searchWord.split(" "); for
+	 * (String word : words) { if (word.length() > 3) { Vector<String>
+	 * fuzzySearchWords = getLevenshtein1(word); for (String fuzzyWord :
+	 * fuzzySearchWords) { whereQuery += "name LIKE '%" + fuzzyWord + "%' OR ";
+	 * 
+	 * } } else {
+	 * 
+	 * // Fuzzy Suche nur bei Wörtern die mehr als 3 Buchstaben // haben
+	 * whereQuery += "name LIKE '%" + word + "%' OR ";
+	 * 
+	 * } } if (whereQuery.length() > 5) { // Letztes OR aus Query entfernen
+	 * whereQuery = whereQuery.substring(0, whereQuery.length() - 4); } try { //
+	 * Leeres SQL-Statement (JDBC) anlegen Statement stmt =
+	 * con.createStatement(); // Statement ausfuellen String sqlQuery =
+	 * "SELECT * FROM nutzer WHERE " + whereQuery + " ORDER BY name LIMIT " +
+	 * maxResults; // Query an die DB schicken ResultSet rs =
+	 * stmt.executeQuery(sqlQuery);
+	 * 
+	 * // Für jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt //
+	 * erstellt.
+	 * 
+	 * while (rs.next()) { int nutzerId = rs.getInt("nutzerid"); Nutzer
+	 * elementFromCache = cachePartlist.getElementById(elementId); if
+	 * (elementFromCache != null) { result.add(elementFromCache, 1); continue; }
+	 * 
+	 * Nutzer p = NutzerMapper.getNutzerMapper().findByElement( elementId);
+	 * 
+	 * if (p != null) { result.add(p, 1); } else if (!onlyProducts) {
+	 * 
+	 * 
+	 * 
+	 * // Wenn es sich um ein Modul handelt, dieses hinzufügen // ansonsten, das
+	 * Element als // Bauteil hinzufügen. if (m != null) { result.add(m, 1); }
+	 * else { if (!onlyModules && !onlyProducts) {
+	 * 
+	 * Element e = new Element(); e.setId(elementId);
+	 * 
+	 * e.setName(rs.getString("name"));
+	 * e.setDescription(rs.getString("description"));
+	 * e.setMaterialDescription(rs .getString("material_description"));
+	 * 
+	 * Timestamp timestamp = rs .getTimestamp("creation_date"); if (timestamp !=
+	 * null) { Date creationDate = new java.util.Date( timestamp.getTime());
+	 * e.setCreationDate(creationDate); }
+	 * 
+	 * Timestamp timestamp2 = rs .getTimestamp("last_update"); if (timestamp2 !=
+	 * null) { Date lastUpdateDate = new java.util.Date( timestamp2.getTime());
+	 * e.setLastUpdate(lastUpdateDate); }
+	 * 
+	 * e.setLastUser(UserMapper.getUserMapper()
+	 * .getLastUpdateUserNameByElementId( e.getId()));
+	 * 
+	 * // Hinzufuegen des neuen Objekts zum // Ergebnisvektor result.add(e, 1);
+	 * } } } }
+	 * 
+	 * rs.close(); stmt.close(); } catch (SQLException ex) { throw new
+	 * IllegalArgumentException(ex.getMessage()); } }
+	 * 
+	 * return result; }
+	 */
+}

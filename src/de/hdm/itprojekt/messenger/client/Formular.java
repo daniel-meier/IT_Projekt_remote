@@ -6,42 +6,62 @@ import com.google.gwt.user.client.ui.*;
 
 public class Formular extends HorizontalPanel {
 
-	public void onLoad(){
-		
+	/**
+	 * 
+	 */
+	public void onLoad() {
+
 		super.onLoad();
-		
+
 	}
-	
+
+	/**
+	 * 
+	 */
 	private HorizontalPanel headlinePanel = null;
 	private HorizontalPanel buttonPanel = null;
-	
-	public void setHeadline(String headlineName){
-		
+
+	/**
+	 * 
+	 * @param headlineName
+	 */
+	public void setHeadline(String headlineName) {
+
 		/**
 		 * Horizontal Panel für Überschrift
 		 */
-	    headlinePanel = new HorizontalPanel();
+		headlinePanel = new HorizontalPanel();
 		RootPanel.get("headline").add(headlinePanel);
-		
-		
+
+		/**
+		 * 
+		 */
 		Label headline = new Label(headlineName);
 		headline.setStyleName("headline");
-        headlinePanel.add(headline);
+		headlinePanel.add(headline);
 	}
-	
-	public HorizontalPanel getHeadline(){
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HorizontalPanel getHeadline() {
 		return headlinePanel;
 	}
-	
-	public HorizontalPanel getButtonPanel(){
-	
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HorizontalPanel getButtonPanel() {
+
 		/**
 		 * Horizontal Panel für Edit-Buttons
 		 */
 		buttonPanel = new HorizontalPanel();
 		RootPanel.get("input").add(buttonPanel);
-	
+
 		return buttonPanel;
 	}
-	
+
 }

@@ -10,21 +10,23 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.itprojekt.messenger.shared.bo.Nachricht;
 import de.hdm.itprojekt.messenger.shared.bo.Unterhaltung;
 
-public class NachrichtCell extends AbstractCell<Nachricht>{
+/**
+ * NachrichtCell ist eine Subklasse, welche von der Superklasse AbstractCell<Nachrichten> erbt
+ * @author kimbo
+ *
+ */
+public class NachrichtCell extends AbstractCell<Nachricht> {
 
 	@Override
-	public void render(Context context,
-			Nachricht value, SafeHtmlBuilder sb) {
-		
-		if (value == null) {
-	      return;
-	    }
-		
-		  sb.appendHtmlConstant("<div style='margin-bottom: 5px; '>");
-	      sb.appendEscaped("Name des Nachrichtensenders: ");
-	      sb.appendEscaped("Nachrichtentext");
-		  sb.appendHtmlConstant("</div>");
-	    
-	    }		
+	public void render(Context context, Nachricht value, SafeHtmlBuilder sb) {
 
+		if (value == null) {
+			return;
+		}
+
+		sb.appendHtmlConstant("<div style='margin-bottom: 5px; '>");
+		sb.appendEscaped("Name des Nachrichtensenders: ");
+		sb.appendEscaped("Nachrichtentext");
+		sb.appendHtmlConstant("</div>");
+	}
 }
